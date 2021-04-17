@@ -51,7 +51,7 @@ namespace HugoWorld {
 
         public static void Start()
         {
-            _start.Play();
+            //_start.Play();
         }
     }
 }

@@ -41,5 +41,23 @@ namespace HugoWorld.WCF.Services {
                 ToList();
             }
         }
+
+        public CompteJoueurDTO GetAccountByName(string p_Username)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                CompteJoueur c = dbContext.CompteJoueurs.FirstOrDefault(x => x.NomJoueur == p_Username);
+
+                return new CompteJoueurDTO()
+                {
+                    Id = c.Id,
+                    NomJoueur = c.NomJoueur,
+                    Courriel = c.Courriel,
+                    Prenom = c.Prenom,
+                    Nom = c.Nom,
+                    TypeUtilisateur = c.TypeUtilisateur
+                };
+            }
+        }
     }
 }

@@ -81,6 +81,12 @@
   <ItemGroup>
     <Compile Include="Area.cs" />
     <Compile Include="BitmapCache.cs" />
+    <Compile Include="Vue\ClassCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\ClassCreator.Designer.cs">
+      <DependentUpon>ClassCreator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vue\Crusader.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     <Compile Include="DAL\MapTile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Vue\ClassCreator.resx">
+      <DependentUpon>ClassCreator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Vue\Crusader.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Crusader.cs</DependentUpon>

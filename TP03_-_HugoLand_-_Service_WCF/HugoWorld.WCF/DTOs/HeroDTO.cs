@@ -10,9 +10,9 @@ namespace HugoWorld.WCF.DTOs {
         [DataMember]
         public int CompteJoueurId { get; set; }
         [DataMember]
-        public int Niveau { get; set; }
+        public long Niveau { get; set; }
         [DataMember]
-        public int Experience { get; set; }
+        public long Experience { get; set; }
         [DataMember]
         public int x { get; set; }
         [DataMember]

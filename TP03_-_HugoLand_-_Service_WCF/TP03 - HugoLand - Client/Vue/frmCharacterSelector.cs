@@ -17,9 +17,5 @@ namespace HugoWorld.Vue
             InitializeComponent();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            //Open new Character form
-        }
     }
 }

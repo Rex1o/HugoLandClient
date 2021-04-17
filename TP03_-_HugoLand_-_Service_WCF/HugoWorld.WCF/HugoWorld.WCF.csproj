@@ -43,6 +43,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\TP03 - HugoLand - Client\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\TP03 - HugoLand - Client\packages\FluentValidation.10.0.4\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -71,6 +74,7 @@
     <Compile Include="Services\JoueurService.cs" />
     <Compile Include="Services\MondeService.cs" />
     <Compile Include="Services\OpertaionContractAttribute.cs" />
+    <Compile Include="Validators\ClasseDTOValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

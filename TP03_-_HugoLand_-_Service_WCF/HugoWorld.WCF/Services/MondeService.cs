@@ -1,5 +1,24 @@
-﻿namespace HugoWorld.WCF.Services {
+﻿using HugoWorld.WCF.DTOs;
+using System.Collections.Generic;
+using TP01_Library.Models;
+using System.Linq;
 
-    public partial class HugoLandService : IMondeService {
+namespace HugoWorld.WCF.Services {
+
+    public partial class HugoLandService : IMondeService
+    {
+        public List<MondeDTO> ListWorlds()
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                return dbContext.Mondes.Select(m => new MondeDTO()
+                {
+                    Id = m.Id,
+                    Description = m.Description,
+                    LimiteX = m.LimiteX,
+                    LimiteY = m.LimiteY
+                }).ToList();
+            }
+        }
     }
 }

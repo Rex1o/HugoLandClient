@@ -15,12 +15,17 @@ namespace HugoWorld.Vue
         public ClassCreator()
         {
             InitializeComponent();
+            
         }
 
         private void ClassCreator_Load(object sender, EventArgs e)
         {
-
+             
         }
 
+        private void btnAddClass_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

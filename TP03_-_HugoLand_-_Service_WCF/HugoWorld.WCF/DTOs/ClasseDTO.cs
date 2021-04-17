@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace HugoWorld.WCF.DTOs {
+namespace HugoWorld.WCF.DTOs
+{
 
     [DataContract]
-    public class ClasseDTO {
+    public class ClasseDTO
+    {
         [DataMember]
         public int Id { get; set; }
+        [DataMember]
+        public string Descrpition { get; set; }
         [DataMember]
         public string NomClasse { get; set; }
         [DataMember]
@@ -19,10 +23,5 @@ namespace HugoWorld.WCF.DTOs {
         public int StatBaseVitalite { get; set; }
         [DataMember]
         public int MondeId { get; set; }
-
-        [DataMember]
-        public virtual MondeDTO Monde { get; set; }
-        [DataMember]
-        public virtual List<HeroDTO> Heros { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace HugoWorld.WCF.Services {
     public interface IJoueurService {
         string Connection(string p_Username, string p_Password);
 
-        List<HeroDTO> GetHeroesById(int p_Id);
+        List<HeroDTO> GetHeroesByAccountId(int p_Id);
 
     }
 }

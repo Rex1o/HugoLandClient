@@ -18,7 +18,7 @@ namespace HugoWorld.WCF.Services {
             }
         }
 
-        public List<HeroDTO> GetHeroesById(int p_Id)
+        public List<HeroDTO> GetHeroesByAccountId(int p_Id)
         {
             using (var context = new HugoLandContext())
             {

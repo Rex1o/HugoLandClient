@@ -1,6 +1,9 @@
+using HugoWorld.Vue;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using TP01_Library.Controllers;
+using TP01_Library.Models;
 
 namespace HugoWorld {
 
@@ -58,7 +61,7 @@ namespace HugoWorld {
         private void Crusader_Shown(object sender, EventArgs e)
         {
             //Il dit qu'il veut voir l'autre fenêtre derrière donc j'ai mis les
-            //forms dans l'event shown masi pour le character selection, il vas falloir modifier le code
+            //forms dans l'event shown masi pour le character selection, il vas falloir modifier le code 
             //pcqu'il est intilialisé dans le form initialise (et ici nous somme après cette méthode)
 
             //ShowLoginForm Here
@@ -68,6 +71,21 @@ namespace HugoWorld {
             Login.ShowDialog();
 
             //Show Character Selector/Creator Here
+            frmCharacterSelector chSelect = new frmCharacterSelector(Outil.GetActiveUser());
+            chSelect.ShowDialog();
+
+            //if there is an error with the selection
+            while(chSelect.DialogResult == DialogResult.Abort)
+            {
+              DialogResult r =  MessageBox.Show(chSelect.ErrorMsg, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                if (r == DialogResult.Retry)
+                    chSelect.ShowDialog();
+                else
+                    this.Close();
+            }
+
+            //Loads the hero into the game
+            _gameState.LoadHero(chSelect.Hero);
 
             //Then Show help/Start game
             this.Enabled = true;

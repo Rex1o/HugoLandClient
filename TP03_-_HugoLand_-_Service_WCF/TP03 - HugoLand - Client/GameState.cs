@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using TP01_Library.Models;
 
-namespace HugoWorld {
+namespace HugoWorld
+{
 
-    public class GameState {
+    public class GameState
+    {
         public SizeF GameArea;
         public World World;
+        public Hero Hero;
         public int Attack;
         public int Armour;
         public int Level;
@@ -148,6 +152,15 @@ namespace HugoWorld {
             Health = 100;
             Treasure = 0;
             GameIsWon = false;
+        }
+
+        /// <summary>
+        /// Loads hero stats
+        /// </summary>
+        /// <param name="h"></param>
+        public void LoadHero(Hero h)
+        {
+            Hero = h;
         }
 
         //Each line contains a comma delimited tile definition that the tile constructor understands

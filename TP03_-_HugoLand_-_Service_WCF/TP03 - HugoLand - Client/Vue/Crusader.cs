@@ -58,7 +58,7 @@ namespace HugoWorld {
         private void Crusader_Shown(object sender, EventArgs e)
         {
             //Il dit qu'il veut voir l'autre fenêtre derrière donc j'ai mis les
-            //forms dans l'event shown masi pour le character selection, il vas falloir modifier le code 
+            //forms dans l'event shown masi pour le character selection, il vas falloir modifier le code
             //pcqu'il est intilialisé dans le form initialise (et ici nous somme après cette méthode)
 
             //ShowLoginForm Here
@@ -68,7 +68,6 @@ namespace HugoWorld {
             Login.ShowDialog();
 
             //Show Character Selector/Creator Here
-
 
             //Then Show help/Start game
             this.Enabled = true;

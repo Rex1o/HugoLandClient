@@ -70,7 +70,6 @@
     <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\JoueurService.cs" />
     <Compile Include="Services\MondeService.cs" />
-    <Compile Include="Services\OpertaionContractAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

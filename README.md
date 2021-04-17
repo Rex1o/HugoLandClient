@@ -41,7 +41,7 @@
 
 ### Supplémentaire-2
 
-- Intégrer les controllers du TP01_Library dans leurs services respectifs [FAIT] Vincent
+- Intégrer les controllers du TP01_Library dans leurs services respectifs
 - Un système d'héritage pour le monde, objetmonde, item, monstre et heros
 - Un système d'héritage pour les items, effets items, inventaire héros
 - Implémentation d'un design pattern pour faciliter le tout (lequel though, peut-être le Bridge (?) celui que Kevin et Arnaud ont présenter)

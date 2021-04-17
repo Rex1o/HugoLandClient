@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\TP03 - HugoLand - Client\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\TP03 - HugoLand - Client\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,6 +14,8 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,10 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\TP02 - HugoLand - Editeur de Mondes (Base)\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\TP03 - HugoLand - Client\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\TP02 - HugoLand - Editeur de Mondes (Base)\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\TP03 - HugoLand - Client\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -51,12 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classe.cs">
-      <DependentUpon>HugoLandContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CompteJoueur.cs">
-      <DependentUpon>HugoLandContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\ClasseController.cs" />
     <Compile Include="Controllers\CompteJoueurController.cs" />
     <Compile Include="Controllers\Constantes.cs" />
@@ -67,72 +64,87 @@
     <Compile Include="Controllers\MonstreController.cs" />
     <Compile Include="Controllers\ObjetMondeController.cs" />
     <Compile Include="Controllers\Outil.cs" />
-    <Compile Include="EffetItem.cs">
-      <DependentUpon>HugoLandContext.tt</DependentUpon>
+    <Compile Include="Models\Classe.cs">
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Hero.cs">
-      <DependentUpon>HugoLandContext.tt</DependentUpon>
+    <Compile Include="Models\CompteJoueur.cs">
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="HugoLandContext.Context.cs">
+    <Compile Include="Models\EffetItem.cs">
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Hero.cs">
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HugoLandEDM.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HugoLandContext.Context.tt</DependentUpon>
+      <DependentUpon>HugoLandEDM.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="HugoLandContext.cs">
+    <Compile Include="Models\HugoLandEDM.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HugoLandContext.tt</DependentUpon>
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="HugoLandContext.Designer.cs">
+    <Compile Include="Models\HugoLandEDM.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HugoLandContext.edmx</DependentUpon>
+      <DependentUpon>HugoLandEDM.edmx</DependentUpon>
     </Compile>
-    <Compile Include="InventaireHero.cs">
-      <DependentUpon>HugoLandContext.tt</DependentUpon>
+    <Compile Include="Models\InventaireHero.cs">
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Item.cs">
-      <DependentUpon>HugoLandContext.tt</DependentUpon>
+    <Compile Include="Models\Item.cs">
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Monde.cs">
-      <DependentUpon>HugoLandContext.tt</DependentUpon>
+    <Compile Include="Models\Monde.cs">
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Monstre.cs">
-      <DependentUpon>HugoLandContext.tt</DependentUpon>
+    <Compile Include="Models\Monstre.cs">
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ObjetMonde.cs">
-      <DependentUpon>HugoLandContext.tt</DependentUpon>
+    <Compile Include="Models\ObjetMonde.cs">
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>HugoLandContext.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="HugoLandContext.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HugoLandContext.edmx</DependentUpon>
-      <LastGenOutput>HugoLandContext.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="HugoLandContext.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HugoLandContext.edmx</DependentUpon>
-      <LastGenOutput>HugoLandContext.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="HugoLandContext.edmx">
+    <EntityDeploy Include="Models\HugoLandEDM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HugoLandContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>HugoLandEDM.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="HugoLandContext.edmx.diagram">
-      <DependentUpon>HugoLandContext.edmx</DependentUpon>
+    <None Include="Models\HugoLandEDM.edmx.diagram">
+      <DependentUpon>HugoLandEDM.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Models\HugoLandEDM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HugoLandEDM.edmx</DependentUpon>
+      <LastGenOutput>HugoLandEDM.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\HugoLandEDM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HugoLandEDM.edmx</DependentUpon>
+      <LastGenOutput>HugoLandEDM.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\TP03 - HugoLand - Client\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\TP03 - HugoLand - Client\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\TP03 - HugoLand - Client\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\TP03 - HugoLand - Client\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\TP03 - HugoLand - Client\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\TP03 - HugoLand - Client\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace HugoWorld
-{
+namespace HugoWorld {
+
     //Textpop up used to display damage when monsters and players are hit
-    struct textPopup
-    {
+    internal struct textPopup {
         public int X;
         public int Y;
         public string Text;
@@ -22,8 +20,7 @@ namespace HugoWorld
         }
     }
 
-    public class World : GameObject
-    {
+    public class World : GameObject {
         private const string _startArea = "start";
 
         private Dictionary<string, Area> _world = new Dictionary<string, Area>();
@@ -77,7 +74,6 @@ namespace HugoWorld
             }
         }
 
-
         public override void Update(double gameTime, double elapsedTime)
         {
             //We only actually update the current area the rest all 'sleep'
@@ -125,7 +121,7 @@ namespace HugoWorld
         private void checkObjects()
         {
             Tile objectTile = _currentArea.Map[_heroPosition.X, _heroPosition.Y].ObjectTile;
-            if (objectTile == null) 
+            if (objectTile == null)
                 return;
             switch (objectTile.Category)
             {
@@ -181,10 +177,13 @@ namespace HugoWorld
             {
                 case HeroDirection.Right:
                     return (_heroSprite.Location.X >= _heroDestination.X);
+
                 case HeroDirection.Left:
                     return (_heroSprite.Location.X <= _heroDestination.X);
+
                 case HeroDirection.Up:
                     return (_heroSprite.Location.Y <= _heroDestination.Y);
+
                 case HeroDirection.Down:
                     return (_heroSprite.Location.Y >= _heroDestination.Y);
             }
@@ -212,7 +211,6 @@ namespace HugoWorld
                     graphics.DrawString(popup.Text, _font, _blackBrush, popup.X, popup.Y);
                 }
             }
-
         }
 
         /// <summary>
@@ -399,7 +397,6 @@ namespace HugoWorld
                                 _tiles["bon"].Bitmap, _tiles["bon"].Rectangle, _tiles["bon"].NumberOfFrames);
                         _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
                     }
-
                 }
                 //Hero
                 _popups.Clear();
@@ -426,7 +423,6 @@ namespace HugoWorld
             //If the next tile is a blocker then we can't move
             if (mapTile.Tile.IsBlock) return false;
 
-
             return true;
         }
 
@@ -440,7 +436,6 @@ namespace HugoWorld
             {
                 mapTile.ObjectHealth = mapTile.ObjectTile.Health;
             }
-
 
             mapTile.ObjectHealth -= damage;
 
@@ -459,8 +454,6 @@ namespace HugoWorld
             _popups.Add(new textPopup((int)mapTile.Sprite.Location.X + 40, (int)mapTile.Sprite.Location.Y + 20, (damage != 0) ? damage.ToString() : "miss"));
 
             return returnValue;
-
-
         }
 
         private void checkDoors(MapTile mapTile, int x, int y)
@@ -499,8 +492,7 @@ namespace HugoWorld
                                             _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY);
         }
 
-        private enum HeroDirection
-        {
+        private enum HeroDirection {
             Left,
             Right,
             Up,

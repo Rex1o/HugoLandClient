@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TP01_Library.Models;
 
-namespace TP01_Library.Controllers
-{
-    public class ItemController
-    {
+namespace TP01_Library.Controllers {
+
+    public class ItemController {
+
         /// <summary>
         /// Auteur: Mathias Lavoie-Rivard |
         /// Summary: Permet de créer un nouvel item. |

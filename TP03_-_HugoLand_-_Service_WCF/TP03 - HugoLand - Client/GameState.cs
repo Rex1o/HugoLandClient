@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
-using System.Windows.Forms;
-using System.Media;
 using System.IO;
+using System.Windows.Forms;
 
-namespace HugoWorld
-{
-    public class GameState
-    {
+namespace HugoWorld {
+
+    public class GameState {
         public SizeF GameArea;
         public World World;
         public int Attack;
@@ -40,8 +37,6 @@ namespace HugoWorld
         private static Brush _brush = new SolidBrush(Color.White);
         private static Random _random = new Random();
 
-
-
         public GameState(SizeF gameArea)
         {
             GameArea = gameArea;
@@ -63,7 +58,7 @@ namespace HugoWorld
             _treasureSprite.ColorKey = Color.FromArgb(75, 75, 75);
             _potionSprite = new Sprite(this, 580, y += 74, _tiles["pot"].Bitmap, _tiles["pot"].Rectangle, _tiles["pot"].NumberOfFrames);
             _potionSprite.ColorKey = Color.FromArgb(75, 75, 75);
-            _brownKeySprite = new Sprite(this, 580, y +=74, _tiles["kbr"].Bitmap, _tiles["kbr"].Rectangle, _tiles["kbr"].NumberOfFrames);
+            _brownKeySprite = new Sprite(this, 580, y += 74, _tiles["kbr"].Bitmap, _tiles["kbr"].Rectangle, _tiles["kbr"].NumberOfFrames);
             _brownKeySprite.ColorKey = Color.FromArgb(75, 75, 75);
             _greenKeySprite = new Sprite(this, 654, y, _tiles["kgr"].Bitmap, _tiles["kgr"].Rectangle, _tiles["kgr"].NumberOfFrames);
             _greenKeySprite.ColorKey = Color.FromArgb(75, 75, 75);
@@ -110,7 +105,7 @@ namespace HugoWorld
             if (HasRedKey) _redKeySprite.Draw(graphics);
             int y = 65;
             graphics.DrawString(Experience.ToString(), _font, _brush, 650, y);
-            graphics.DrawString(Health.ToString(), _font, _brush, 650, y+=74);
+            graphics.DrawString(Health.ToString(), _font, _brush, 650, y += 74);
             graphics.DrawString(Attack.ToString(), _font, _brush, 650, y += 74);
             graphics.DrawString(Armour.ToString(), _font, _brush, 650, y += 74);
             graphics.DrawString(Treasure.ToString(), _font, _brush, 650, y += 74);
@@ -129,14 +124,12 @@ namespace HugoWorld
                 graphics.DrawString("You Won!", _font, _brush, 200, 250);
                 graphics.DrawString("Press 's' to play again", _font, _brush, 100, 300);
             }
-
         }
 
         public void Update(double gameTime, double elapsedTime)
         {
             World.Update(gameTime, elapsedTime);
         }
-
 
         public void Initialize()
         {
@@ -148,11 +141,11 @@ namespace HugoWorld
             //Reset the game state
             Attack = 1;
             Potions = 10;
-            Armour = 1; 
+            Armour = 1;
             Experience = 0;
             Level = 1;
             _nextUpgrade = 20;
-            Health = 100; 
+            Health = 100;
             Treasure = 0;
             GameIsWon = false;
         }
@@ -165,7 +158,7 @@ namespace HugoWorld
                 string line;
                 while ((line = stream.ReadLine()) != null)
                 {
-                    //separate out the elements of the 
+                    //separate out the elements of the
                     string[] elements = line.Split(',');
 
                     //And make the tile.
@@ -174,7 +167,6 @@ namespace HugoWorld
                 }
             }
         }
-
 
         public void KeyDown(Keys keys)
         {
@@ -185,7 +177,7 @@ namespace HugoWorld
             }
             else
             {
-                //If game is over then allow S to restart 
+                //If game is over then allow S to restart
                 if (keys == Keys.S)
                 {
                     Initialize();

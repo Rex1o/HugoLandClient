@@ -1,18 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.IO;
-using System.Diagnostics;
 
-namespace HugoWorld
-{
+namespace HugoWorld {
 
     /// <summary>
     /// Area defines the 8x8 grid that contains a set of MapTiles
     /// </summary>
-    public class Area : GameObject
-    {
+    public class Area : GameObject {
         public const int AreaOffsetX = 30;
         public const int AreaOffsetY = 50;
         public const int MapSizeX = 8;
@@ -73,7 +69,6 @@ namespace HugoWorld
                     mapTile.ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
                 }
             }
-
         }
 
         public override void Update(double gameTime, double elapsedTime)
@@ -91,7 +86,6 @@ namespace HugoWorld
                     mapTile.ObjectSprite.Update(gameTime, elapsedTime);
                 }
             }
-
         }
 
         public override void Draw(Graphics graphics)
@@ -105,7 +99,6 @@ namespace HugoWorld
                     mapTile.ObjectSprite.Draw(graphics);
                 }
             }
-
         }
     }
 }

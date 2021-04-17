@@ -1,16 +1,17 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
+using System.Data.Entity;
+using TP01_Library.Models;
 
-namespace TP01_Library.Controllers
-{
+namespace TP01_Library.Controllers {
+
     /// <summary>
     /// Auteur :        Vincent Pelland
     /// Description:    Gestion des mondes créés dans HugoLand.
     /// Date :          2021-02-10
     /// </summary>
-    public class MondeController
-    {
+    public class MondeController {
+
         /// <summary>
         /// Auteur :        Vincent Pelland
         /// Description:    Ajoute un monde neuf, sans listes mais fourni les dimensions et sa description.

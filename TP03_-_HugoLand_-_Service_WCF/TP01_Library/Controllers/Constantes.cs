@@ -1,7 +1,6 @@
-﻿namespace TP01_Library.Controllers
-{
-    public class Constantes
-    {
+﻿namespace TP01_Library.Controllers {
+
+    public class Constantes {
         public const int MAX_LEVEL = 201;
         public const int DMG_PER_LEVEL = 50;
         public const int DMG_MIN_GAP = 100;
@@ -10,8 +9,7 @@
 
         public const int MAX_STAT = 100;
 
-        public enum Types
-        {
+        public enum Types {
             Joueur = 0,
             Admin
         }

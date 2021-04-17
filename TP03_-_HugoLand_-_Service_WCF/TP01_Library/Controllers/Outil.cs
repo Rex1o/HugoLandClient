@@ -1,9 +1,9 @@
 ﻿using System;
+using TP01_Library.Models;
 
-namespace TP01_Library.Controllers
-{
-    public static class Outil
-    {
+namespace TP01_Library.Controllers {
+
+    public static class Outil {
         private static CompteJoueur _ActiveUser;
         private static Monde MondeToEdit;
 

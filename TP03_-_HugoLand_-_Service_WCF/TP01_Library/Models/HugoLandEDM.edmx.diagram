@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5b44dad4672a42b2b2fe88b5638d0b2b" Name="Diagram1">
-        <EntityTypeShape EntityType="HugoLandModel.Classe" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+      <Diagram DiagramId="ecf78d7bc1fd4f278c1b1ef025a090f2" Name="Diagram1">
+        <EntityTypeShape EntityType="HugoLandModel.Classe" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="HugoLandModel.CompteJoueur" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HugoLandModel.EffetItem" Width="1.5" PointX="9.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HugoLandModel.EffetItem" Width="1.5" PointX="12.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HugoLandModel.Hero" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HugoLandModel.InventaireHero" Width="1.5" PointX="7.5" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HugoLandModel.Item" Width="1.5" PointX="7.5" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HugoLandModel.Monde" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HugoLandModel.InventaireHero" Width="1.5" PointX="7.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="HugoLandModel.Item" Width="1.5" PointX="10.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HugoLandModel.Monde" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HugoLandModel.Monstre" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HugoLandModel.ObjetMonde" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HugoLandModel.sysdiagram" Width="1.5" PointX="5.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HugoLandModel.sysdiagram" Width="1.5" PointX="5.75" PointY="2.5" IsExpanded="true" />
         <AssociationConnector Association="HugoLandModel.FK_Classe_Monde" ManuallyRouted="false" />
         <AssociationConnector Association="HugoLandModel.FK_Hero_Classe" ManuallyRouted="false" />
         <AssociationConnector Association="HugoLandModel.IsPartOfAccount" ManuallyRouted="false" />

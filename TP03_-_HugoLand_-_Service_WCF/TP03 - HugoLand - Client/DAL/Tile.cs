@@ -1,12 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 
-namespace HugoWorld
-{
-    public class Tile 
-    {
+namespace HugoWorld {
+
+    public class Tile {
         private static BitmapCache _bitmaps = new BitmapCache();
         public const int TileSizeX = 64;
         public const int TileSizeY = 64;
@@ -20,6 +17,7 @@ namespace HugoWorld
 
         //Special fields for some
         public string Color;
+
         public int Health;
 
         public string Name;
@@ -34,10 +32,10 @@ namespace HugoWorld
             NumberOfFrames = Convert.ToInt32(tileData[7]);
             Rectangle = new Rectangle((Convert.ToInt32(tileData[4]) - 1) * TileSizeX, (Convert.ToInt32(tileData[5]) - 1) * TileSizeY, TileSizeX * NumberOfFrames, TileSizeY);
             IsTransparent = (tileData[6].ToLower() == "y");
-            IsBlock = ((tileData[8].ToLower())=="block");
+            IsBlock = ((tileData[8].ToLower()) == "block");
 
             //Some types of tiles have a color
-            if (Category == "door" || Category =="key")
+            if (Category == "door" || Category == "key")
             {
                 Color = tileData[9].ToLower();
             }
@@ -47,7 +45,6 @@ namespace HugoWorld
             {
                 Health = Convert.ToInt32(tileData[9]);
             }
-
         }
     }
 }

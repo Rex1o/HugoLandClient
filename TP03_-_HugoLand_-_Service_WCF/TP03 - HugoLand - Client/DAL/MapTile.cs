@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 
-namespace HugoWorld
-{
+namespace HugoWorld {
+
     /// <summary>
     /// A MapTile is a reference to the original tile and the sprite that represents it. Note that they have to be different
     /// because each tile can be used for multiple map tiles and each sprite has to have a unique location
     /// Each MapTile can also have an other tile object associated with it which is used for special items and monsters
     /// If its a monster then the current health is also stored per MapTile.
     /// </summary>
-    public class MapTile
-    {
+    public class MapTile {
         public Tile Tile;
         public Sprite Sprite;
         public Sprite ObjectSprite;
@@ -40,7 +36,5 @@ namespace HugoWorld
                 ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
             }
         }
-
     }
-
 }

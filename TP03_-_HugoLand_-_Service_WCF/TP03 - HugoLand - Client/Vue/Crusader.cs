@@ -1,16 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Diagnostics;
+using System.Windows.Forms;
 
-namespace HugoWorld
-{
-    public partial class HugoWorld : Form
-    {
+namespace HugoWorld {
+
+    public partial class HugoWorld : Form {
         private Stopwatch _timer = new Stopwatch();
         private double _lastTime;
         private long _frameCounter;
@@ -36,7 +30,6 @@ namespace HugoWorld
             _lastTime = 0.0;
             _timer.Reset();
             _timer.Start();
-
         }
 
         private void Crusader_Paint(object sender, PaintEventArgs e)
@@ -47,25 +40,20 @@ namespace HugoWorld
             _lastTime = gameTime;
             _frameCounter++;
 
-
             //Perform any animation and updates
             _gameState.Update(gameTime, elapsedTime);
-
 
             //Draw everything
             _gameState.Draw(e.Graphics);
 
-
             //Force the next Paint()
             this.Invalidate();
-
         }
 
         private void Crusader_KeyDown(object sender, KeyEventArgs e)
         {
             _gameState.KeyDown(e.KeyCode);
         }
-
 
         private void Crusader_Shown(object sender, EventArgs e)
         {

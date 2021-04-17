@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace HugoWorld {
 
-namespace HugoWorld
-{
-    class Hero
-    {
+    internal class Hero {
     }
 }

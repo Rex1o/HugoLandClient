@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TP01_Library
+namespace TP01_Library.Models
 {
     using System;
     using System.Data.Entity;
@@ -20,7 +20,6 @@ namespace TP01_Library
         public HugoLandContext()
             : base("name=HugoLandContext")
         {
-            this.Database.CommandTimeout = 300;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

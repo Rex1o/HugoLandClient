@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TP01_Library.Models;
 
-namespace TP01_Library.Controllers
-{
+namespace TP01_Library.Controllers {
+
     /// <summary>
     /// Auteur :        Vincent Pelland
     /// Descripton:     Gère les actions sur les Monstres.
     /// Date :          2021-02-10
     /// </summary>
-    public class MonstreController
-    {
+    public class MonstreController {
         private Random _rnd = new Random();
 
         /// <summary>

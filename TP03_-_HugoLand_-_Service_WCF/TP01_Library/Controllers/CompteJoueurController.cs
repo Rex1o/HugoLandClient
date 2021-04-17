@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
+using TP01_Library.Models;
 
-namespace TP01_Library.Controllers
-{
-    public class CompteJoueurController
-    {
+
+namespace TP01_Library.Controllers {
+
+    public class CompteJoueurController {
+
         /// <summary>
         /// Auteur: Mathias Lavoie-Rivard |
         /// Summary: Permet de créer un compte. |

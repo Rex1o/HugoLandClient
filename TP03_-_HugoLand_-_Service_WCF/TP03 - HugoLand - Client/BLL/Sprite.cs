@@ -1,22 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
 
+namespace HugoWorld {
 
-namespace HugoWorld
-{
-    public class Sprite : GameObject
-    {
-
+    public class Sprite : GameObject {
         public PointF Velocity;
         public PointF Acceleration;
         public PointF Location;
         public SizeF Size;
         public bool Flip;
         public int CurrentFrame;
-        
+
         private Color _colorKey;
         private ImageAttributes _attributes;
 
@@ -27,11 +23,11 @@ namespace HugoWorld
         public Color ColorKey
         {
             get { return _colorKey; }
-            set 
+            set
             {
                 _colorKey = value;
                 //Set the color key for this sprite;
-                _attributes= new ImageAttributes();
+                _attributes = new ImageAttributes();
                 _attributes.SetColorKey(_colorKey, _colorKey);
             }
         }
@@ -40,8 +36,6 @@ namespace HugoWorld
         {
             get { return _frames.Count; }
         }
-	
-        
 
         private Sprite()
         {
@@ -67,8 +61,6 @@ namespace HugoWorld
             initialize(gameState, x, y, _frames[0].Width, _frames[0].Height);
         }
 
-
-
         public Sprite(GameState gameState, float x, float y, Bitmap bitmap, Rectangle rectangle, int numberAnimationFrames)
         {
             for (int i = 0; i < numberAnimationFrames; i++)
@@ -78,7 +70,7 @@ namespace HugoWorld
                 //Set the location and use the height and width from the 1st frame
                 initialize(gameState, x, y, rectangle.Width / numberAnimationFrames, rectangle.Height);
 
-                _rectangle.Add(new Rectangle(rectangle.X + i * rectangle.Width / numberAnimationFrames, rectangle.Y, 
+                _rectangle.Add(new Rectangle(rectangle.X + i * rectangle.Width / numberAnimationFrames, rectangle.Y,
                                               rectangle.Width / numberAnimationFrames, rectangle.Height));
             }
         }
@@ -116,7 +108,7 @@ namespace HugoWorld
                 Rectangle outputRect = Rectangle.Empty;
                 if (Flip)
                 {
-                    outputRect = new Rectangle((int)Location.X+(int)Size.Width, (int)Location.Y, -(int)Size.Width, (int)Size.Height);
+                    outputRect = new Rectangle((int)Location.X + (int)Size.Width, (int)Location.Y, -(int)Size.Width, (int)Size.Height);
                 }
                 else
                 {
@@ -126,15 +118,15 @@ namespace HugoWorld
                 if (_attributes == null)
                 {
                     graphics.DrawImage(_frames[CurrentFrame], outputRect,
-                                                                _rectangle[CurrentFrame].X, _rectangle[CurrentFrame].Y, 
-                                                                _rectangle[CurrentFrame].Width, _rectangle[CurrentFrame].Height, 
+                                                                _rectangle[CurrentFrame].X, _rectangle[CurrentFrame].Y,
+                                                                _rectangle[CurrentFrame].Width, _rectangle[CurrentFrame].Height,
                                                                 GraphicsUnit.Pixel);
                 }
                 else
                 {
                     graphics.DrawImage(_frames[CurrentFrame], outputRect,
                                                                 _rectangle[CurrentFrame].X, _rectangle[CurrentFrame].Y,
-                                                                _rectangle[CurrentFrame].Width, _rectangle[CurrentFrame].Height, 
+                                                                _rectangle[CurrentFrame].Width, _rectangle[CurrentFrame].Height,
                                                                 GraphicsUnit.Pixel, _attributes);
                 }
             }
@@ -143,11 +135,10 @@ namespace HugoWorld
         public static bool Collision(Sprite sprite1, Sprite sprite2)
         {
             //See if the sprite rectangles overlap
-            return ! ( sprite1.Location.X > sprite2.Location.X + sprite2.Size.Width
-		            || sprite1.Location.X + sprite1.Size.Width < sprite2.Location.X
-		            || sprite1.Location.Y > sprite2.Location.Y + sprite2.Size.Height
-		            || sprite1.Location.Y + sprite1.Size.Height < sprite2.Location.Y);
+            return !(sprite1.Location.X > sprite2.Location.X + sprite2.Size.Width
+                    || sprite1.Location.X + sprite1.Size.Width < sprite2.Location.X
+                    || sprite1.Location.Y > sprite2.Location.Y + sprite2.Size.Height
+                    || sprite1.Location.Y + sprite1.Size.Height < sprite2.Location.Y);
         }
-
     }
 }

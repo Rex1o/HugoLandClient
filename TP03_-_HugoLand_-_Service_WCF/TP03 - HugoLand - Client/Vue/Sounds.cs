@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Media;
 
-namespace HugoWorld
-{
+namespace HugoWorld {
+
     /// <summary>
     /// Sounds is a static class for any other part of the program to use to play the sounds.
     /// </summary>
-    public static class Sounds
-    {
+    public static class Sounds {
         private static SoundPlayer _eat = new SoundPlayer(@"gamedata\eat.wav");
         private static SoundPlayer _pickup = new SoundPlayer(@"gamedata\pickup.wav");
         private static SoundPlayer _fight = new SoundPlayer(@"gamedata\fight.wav");
@@ -27,7 +23,6 @@ namespace HugoWorld
             _magic.Load();
             _start.Load();
         }
-
 
         public static void Eat()
         {
@@ -58,6 +53,5 @@ namespace HugoWorld
         {
             _start.Play();
         }
-
     }
 }

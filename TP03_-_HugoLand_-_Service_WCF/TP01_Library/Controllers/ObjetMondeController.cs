@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TP01_Library.Models;
 
-namespace TP01_Library.Controllers
-{
+namespace TP01_Library.Controllers {
+
     /// <summary>
     /// Auteur :        Vincent Pelland
     /// Description:    Gère les actions sur les ObjetMondes.
     /// Date :          2021-02-10
     /// </summary>
-    public class ObjetMondeController
-    {
+    public class ObjetMondeController {
+
         /// <summary>
         /// Auteur :        Vincent Pelland
         /// Description:    Créer un nouvel objetmonde d'un monde spécifique passé en paramètre.

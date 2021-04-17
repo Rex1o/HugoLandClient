@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TP01_Library.Models;
 
-namespace TP01_Library.Controllers
-{
+namespace TP01_Library.Controllers {
+
     /// <summary>
     /// Auteur :        Simon Lalancette
     /// Description:    Gère les actions liées au Héros.
     /// Date :          2021-02-13
     /// </summary>
-    public class HeroController
-    {
+    public class HeroController {
         private Random _rnd = new Random();
 
         /// <summary>

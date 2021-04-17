@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TP01_Library
+namespace TP01_Library.Models
 {
     using System;
     using System.Collections.Generic;

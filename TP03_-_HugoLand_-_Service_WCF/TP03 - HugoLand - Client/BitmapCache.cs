@@ -1,15 +1,12 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 
-namespace HugoWorld
-{
+namespace HugoWorld {
+
     /// <summary>
     /// Provides a cache of bitmaps. Will return the existing reference if it exists or load a new one
     /// </summary>
-    public class BitmapCache
-    {
+    public class BitmapCache {
         private static Dictionary<string, Bitmap> _bitmaps = new Dictionary<string, Bitmap>();
 
         public Bitmap this[string filename]

@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TP01_Library.Models;
 
-namespace TP01_Library.Controllers
-{
+namespace TP01_Library.Controllers {
+
     /// <summary>
     /// Auteur :        Vincent Pelland
     /// Description:    Gère les action liées aux classes d'un monde.
     /// Date :          2021-02-13
     /// </summary>
-    public class ClasseController
-    {
+    public class ClasseController {
+
         /// <summary>
         /// Auteur :        Vincent Pelland
         /// Description:    Permet d'ajouter une classe selon son monde passé en paramètre.

@@ -1,9 +1,11 @@
 ﻿using System.Linq;
+using TP01_Library.Models;
 
-namespace TP01_Library.Controllers
-{
-    public class EffetItemController
-    {
+
+namespace TP01_Library.Controllers {
+
+    public class EffetItemController {
+
         /// <summary>
         /// Auteur : Vincent Pelland
         /// Description:

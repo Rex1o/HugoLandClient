@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TP01_Library
+namespace TP01_Library.Models
 {
     using System;
     using System.Collections.Generic;
@@ -23,10 +23,5 @@ namespace TP01_Library
         public Nullable<int> ImageId { get; set; }
     
         public virtual Monde Monde { get; set; }
-
-        public ObjetMonde Clone()
-        {
-            return (ObjetMonde)this.MemberwiseClone();
-        }
     }
 }

@@ -31,6 +31,7 @@
             this.lblListTitle = new System.Windows.Forms.Label();
             this.lstCharacters = new System.Windows.Forms.ListBox();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnOk = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblListTitle
@@ -52,12 +53,14 @@
             this.lstCharacters.Name = "lstCharacters";
             this.lstCharacters.Size = new System.Drawing.Size(559, 312);
             this.lstCharacters.TabIndex = 1;
+            this.lstCharacters.SelectedIndexChanged += new System.EventHandler(this.lstCharacters_SelectedIndexChanged);
             // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
             this.btnAdd.BackgroundImage = global::HugoWorld.Properties.Resources.GreenPlusBtn;
             this.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Location = new System.Drawing.Point(583, 68);
             this.btnAdd.Name = "btnAdd";
@@ -65,12 +68,24 @@
             this.btnAdd.TabIndex = 2;
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnOk
+            // 
+            this.btnOk.Location = new System.Drawing.Point(645, 406);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(143, 32);
+            this.btnOk.TabIndex = 3;
+            this.btnOk.Text = "Select";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // frmCharacterSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lstCharacters);
             this.Controls.Add(this.lblListTitle);
@@ -88,5 +103,6 @@
         private System.Windows.Forms.Label lblListTitle;
         private System.Windows.Forms.ListBox lstCharacters;
         public System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnOk;
     }
 }

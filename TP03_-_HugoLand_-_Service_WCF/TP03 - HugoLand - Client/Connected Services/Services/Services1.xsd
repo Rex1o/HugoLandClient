@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/HugoWorld.WCF.DTOs" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/HugoWorld.WCF.DTOs" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld.WCF/Services?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfHeroDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HeroDTO" nillable="true" type="tns:HeroDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHeroDTO" nillable="true" type="tns:ArrayOfHeroDTO" />
+  <xs:complexType name="HeroDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClasseId" type="xs:int" />
+      <xs:element minOccurs="0" name="CompteJoueurId" type="xs:int" />
+      <xs:element minOccurs="0" name="EstConnecte" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Experience" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="MondeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Niveau" type="xs:long" />
+      <xs:element minOccurs="0" name="NomHero" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatDex" type="xs:int" />
+      <xs:element minOccurs="0" name="StatInt" type="xs:int" />
+      <xs:element minOccurs="0" name="StatStr" type="xs:int" />
+      <xs:element minOccurs="0" name="StatVitalite" type="xs:int" />
+      <xs:element minOccurs="0" name="x" type="xs:int" />
+      <xs:element minOccurs="0" name="y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HeroDTO" nillable="true" type="tns:HeroDTO" />
+  <xs:complexType name="CompteJoueurDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Courriel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="MotDePasseHash" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Nom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NomJoueur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Prenom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Salt" type="ser:guid" />
+      <xs:element minOccurs="0" name="TypeUtilisateur" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompteJoueurDTO" nillable="true" type="tns:CompteJoueurDTO" />
+</xs:schema>

@@ -1,6 +1,9 @@
+using HugoWorld.Vue;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using TP01_Library.Controllers;
+using TP01_Library.Models;
 
 namespace HugoWorld {
 
@@ -68,7 +71,21 @@ namespace HugoWorld {
             Login.ShowDialog();
 
             //Show Character Selector/Creator Here
+            frmCharacterSelector chSelect = new frmCharacterSelector(Outil.GetActiveUser());
+            chSelect.ShowDialog();
 
+            //if there is an error with the selection
+            while(chSelect.DialogResult == DialogResult.Abort)
+            {
+              DialogResult r =  MessageBox.Show(chSelect.ErrorMsg, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                if (r == DialogResult.Retry)
+                    chSelect.ShowDialog();
+                else
+                    this.Close();
+            }
+
+            //Loads the hero into the game
+            _gameState.LoadHero(chSelect.Hero);
 
             //Then Show help/Start game
             this.Enabled = true;

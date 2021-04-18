@@ -75,12 +75,19 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Area.cs" />
     <Compile Include="BitmapCache.cs" />
+    <Compile Include="Connected Services\Services\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Vue\ClassCreator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,7 +120,6 @@
     <Compile Include="Vue\help.Designer.cs">
       <DependentUpon>help.cs</DependentUpon>
     </Compile>
-    <Compile Include="Hero.cs" />
     <Compile Include="DAL\MapTile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +151,22 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="Connected Services\Services\HugoLandService.wsdl" />
+    <None Include="Connected Services\Services\HugoWorld.Services.CompteJoueurDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services\HugoWorld.Services.HeroDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services\Services.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Services\Services1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Services\Services2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Eula.rtf" />
     <None Include="GameData\TileLookups.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -166,6 +188,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+    <None Include="Connected Services\Services\Services.disco" />
+    <None Include="Connected Services\Services\configuration91.svcinfo" />
+    <None Include="Connected Services\Services\configuration.svcinfo" />
+    <None Include="Connected Services\Services\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Documentation\2dprimer_cs.htm" />
     <Content Include="Documentation\Crusaders_cs.htm" />
     <Content Include="Documentation\images\Crusader.png" />
@@ -227,7 +256,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Validator\" />
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -167,6 +167,9 @@
     <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.MondeDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.TileImport.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\HL_Services\Services.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -174,6 +177,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\HL_Services\Services2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\HL_Services\Services3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Eula.rtf" />

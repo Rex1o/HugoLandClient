@@ -16,8 +16,7 @@
       <xs:element minOccurs="0" name="EstConnecte" type="xs:boolean" />
       <xs:element minOccurs="0" name="Experience" type="xs:long" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Image" nillable="true" type="tns:TileImgDTO" />
-      <xs:element minOccurs="0" name="ImageId" type="xs:int" />
+      <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfTileImgDTO" />
       <xs:element minOccurs="0" name="InventaireHeros" nillable="true" type="tns:ArrayOfInventaireHeroDTO" />
       <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfItemDTO" />
       <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:MondeDTO" />
@@ -60,6 +59,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CompteJoueurDTO" nillable="true" type="tns:CompteJoueurDTO" />
+  <xs:complexType name="ArrayOfTileImgDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TileImgDTO" nillable="true" type="tns:TileImgDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTileImgDTO" nillable="true" type="tns:ArrayOfTileImgDTO" />
   <xs:complexType name="TileImgDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="ImageId" type="xs:int" />
@@ -170,4 +175,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ObjetMondeDTO" nillable="true" type="tns:ObjetMondeDTO" />
+  <xs:complexType name="MonstreDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfTileImgDTO" />
+      <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:MondeDTO" />
+      <xs:element minOccurs="0" name="MondeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Niveau" type="xs:int" />
+      <xs:element minOccurs="0" name="Nom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatDmgMax" type="xs:int" />
+      <xs:element minOccurs="0" name="StatDmgMin" type="xs:int" />
+      <xs:element minOccurs="0" name="StatPV" type="xs:int" />
+      <xs:element minOccurs="0" name="x" type="xs:int" />
+      <xs:element minOccurs="0" name="y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MonstreDTO" nillable="true" type="tns:MonstreDTO" />
 </xs:schema>

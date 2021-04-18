@@ -18,8 +18,9 @@ namespace TP01_Library.Models
         public TileImg()
         {
             this.Items = new HashSet<Item>();
-            this.Monstres = new HashSet<Monstre>();
             this.ObjetMondes = new HashSet<ObjetMonde>();
+            this.Monstres = new HashSet<Monstre>();
+            this.Heroes = new HashSet<Hero>();
         }
     
         public int ImageId { get; set; }
@@ -28,8 +29,10 @@ namespace TP01_Library.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ObjetMonde> ObjetMondes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Monstre> Monstres { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ObjetMonde> ObjetMondes { get; set; }
+        public virtual ICollection<Hero> Heroes { get; set; }
     }
 }

@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IJoueurService_Connection_InputMessage">
@@ -85,6 +86,24 @@
   <wsdl:message name="IClasseService_AddClassToDatabase_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddClassToDatabaseResponse" />
   </wsdl:message>
+  <wsdl:message name="ITileImgService_MonstreToTile_InputMessage">
+    <wsdl:part name="parameters" element="tns:MonstreToTile" />
+  </wsdl:message>
+  <wsdl:message name="ITileImgService_MonstreToTile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MonstreToTileResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITileImgService_ItemToTile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ItemToTile" />
+  </wsdl:message>
+  <wsdl:message name="ITileImgService_ItemToTile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ItemToTileResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITileImgService_ObjetMondeToTile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObjetMondeToTile" />
+  </wsdl:message>
+  <wsdl:message name="ITileImgService_ObjetMondeToTile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObjetMondeToTileResponse" />
+  </wsdl:message>
   <wsdl:portType name="IJoueurService">
     <wsdl:operation name="Connection">
       <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/Connection" message="tns:IJoueurService_Connection_InputMessage" />
@@ -143,6 +162,20 @@
     <wsdl:operation name="AddClassToDatabase">
       <wsdl:input wsaw:Action="http://tempuri.org/IClasseService/AddClassToDatabase" message="tns:IClasseService_AddClassToDatabase_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IClasseService/AddClassToDatabaseResponse" message="tns:IClasseService_AddClassToDatabase_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ITileImgService">
+    <wsdl:operation name="MonstreToTile">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITileImgService/MonstreToTile" message="tns:ITileImgService_MonstreToTile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITileImgService/MonstreToTileResponse" message="tns:ITileImgService_MonstreToTile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ItemToTile">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITileImgService/ItemToTile" message="tns:ITileImgService_ItemToTile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITileImgService/ItemToTileResponse" message="tns:ITileImgService_ItemToTile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObjetMondeToTile">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITileImgService/ObjetMondeToTile" message="tns:ITileImgService_ObjetMondeToTile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITileImgService/ObjetMondeToTileResponse" message="tns:ITileImgService_ObjetMondeToTile_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IJoueurService" type="tns:IJoueurService">
@@ -274,6 +307,36 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_ITileImgService" type="tns:ITileImgService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MonstreToTile">
+      <soap:operation soapAction="http://tempuri.org/ITileImgService/MonstreToTile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ItemToTile">
+      <soap:operation soapAction="http://tempuri.org/ITileImgService/ItemToTile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObjetMondeToTile">
+      <soap:operation soapAction="http://tempuri.org/ITileImgService/ObjetMondeToTile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="HugoLandService">
     <wsdl:port name="BasicHttpBinding_IJoueurService" binding="tns:BasicHttpBinding_IJoueurService">
       <soap:address location="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" />
@@ -285,6 +348,9 @@
       <soap:address location="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" />
     </wsdl:port>
     <wsdl:port name="BasicHttpBinding_IClasseService" binding="tns:BasicHttpBinding_IClasseService">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_ITileImgService" binding="tns:BasicHttpBinding_ITileImgService">
       <soap:address location="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" />
     </wsdl:port>
   </wsdl:service>

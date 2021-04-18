@@ -47,8 +47,6 @@ namespace HugoWorld_WCF.DTOs {
 
         [DataMember]
         public bool EstConnecte { get; set; }
-        [DataMember]
-        public int ImageId { get; set; }
 
         [DataMember]
         public virtual ClasseDTO Classe { get; set; }
@@ -66,6 +64,6 @@ namespace HugoWorld_WCF.DTOs {
         public virtual List<ItemDTO> Items { get; set; }
            
         [DataMember]
-        public virtual TileImgDTO Image { get; set; }
+        public virtual List<TileImgDTO> Images { get; set; }
     }
 }

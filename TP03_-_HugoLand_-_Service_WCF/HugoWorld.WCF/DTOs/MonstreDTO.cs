@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace HugoWorld_WCF.DTOs {
 
@@ -33,10 +34,7 @@ namespace HugoWorld_WCF.DTOs {
         public int MondeId { get; set; }
 
         [DataMember]
-        public int ImageId { get; set; }
-
-        [DataMember]
-        public virtual TileImgDTO Image {get; set;}
+        public virtual List<TileImgDTO> Images {get; set;}
 
         [DataMember]
         public virtual MondeDTO Monde { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a6838e53a76f48cc8cffdc28e761b998" Name="Diagram1">
+      <Diagram DiagramId="a6838e53a76f48cc8cffdc28e761b998" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="HugoLand.Classe" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HugoLand.CompteJoueur" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HugoLand.EffetItem" Width="1.5" PointX="12.75" PointY="9.125" IsExpanded="true" />
@@ -28,8 +28,10 @@
         <AssociationConnector Association="HugoLand.FK_TileImgItem" ManuallyRouted="false" />
         <AssociationConnector Association="HugoLand.FK_Monstre_Monde" ManuallyRouted="false" />
         <AssociationConnector Association="HugoLand.FK_ObjetMonde_Monde" ManuallyRouted="false" />
-        <AssociationConnector Association="HugoLand.FK_MonstreTileImg" ManuallyRouted="false" />
+        <AssociationConnector ManuallyRouted="false" Association="HugoLand.FK_MonstreTileImg" />
         <AssociationConnector Association="HugoLand.FK_TileImgObjetMonde" ManuallyRouted="false" />
+        <AssociationConnector Association="HugoLand.MonstreTileImg" />
+        <AssociationConnector Association="HugoLand.HeroTileImg" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

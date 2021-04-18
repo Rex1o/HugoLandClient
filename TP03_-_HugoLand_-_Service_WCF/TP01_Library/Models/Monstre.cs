@@ -14,6 +14,12 @@ namespace TP01_Library.Models
     
     public partial class Monstre
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Monstre()
+        {
+            this.Images = new HashSet<TileImg>();
+        }
+    
         public int Id { get; set; }
         public string Nom { get; set; }
         public int Niveau { get; set; }
@@ -23,9 +29,9 @@ namespace TP01_Library.Models
         public float StatDmgMin { get; set; }
         public float StatDmgMax { get; set; }
         public int MondeId { get; set; }
-        public int ImageId { get; set; }
     
         public virtual Monde Monde { get; set; }
-        public virtual TileImg TileImg { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TileImg> Images { get; set; }
     }
 }

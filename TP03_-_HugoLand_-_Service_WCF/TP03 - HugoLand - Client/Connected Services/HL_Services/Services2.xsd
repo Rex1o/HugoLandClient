@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" />
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" />
   <xs:element name="Connection">
     <xs:complexType>
       <xs:sequence>
@@ -176,6 +177,48 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="AddClassToDatabaseResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MonstreToTile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="monstre" nillable="true" type="q7:MonstreDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MonstreToTileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" minOccurs="0" name="MonstreToTileResult" nillable="true" type="q8:TileImport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemToTile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="item" nillable="true" type="q9:ItemDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ItemToTileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" minOccurs="0" name="ItemToTileResult" nillable="true" type="q10:TileImport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObjetMondeToTile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="objet" nillable="true" type="q11:ObjetMondeDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObjetMondeToTileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" minOccurs="0" name="ObjetMondeToTileResult" nillable="true" type="q12:TileImport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -67,6 +67,7 @@
     <Compile Include="DTOs\MondeDTO.cs" />
     <Compile Include="DTOs\MonstreDTO.cs" />
     <Compile Include="DTOs\ObjetMondeDTO.cs" />
+    <Compile Include="Models\TileImport.cs" />
     <Compile Include="Services\ClasseService.cs" />
     <Compile Include="Services\IClasseService.cs" />
     <Compile Include="DTOs\TileImgDTO.cs" />
@@ -75,8 +76,10 @@
     <Compile Include="Services\IMondeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ItemService.cs" />
+    <Compile Include="Services\ITileImgService.cs" />
     <Compile Include="Services\JoueurService.cs" />
     <Compile Include="Services\MondeService.cs" />
+    <Compile Include="Services\TileImgService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

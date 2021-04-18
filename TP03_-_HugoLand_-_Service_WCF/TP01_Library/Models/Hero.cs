@@ -19,6 +19,7 @@ namespace TP01_Library.Models
         {
             this.InventaireHeroes = new HashSet<InventaireHero>();
             this.Items = new HashSet<Item>();
+            this.Images = new HashSet<TileImg>();
         }
     
         public int Id { get; set; }
@@ -35,7 +36,6 @@ namespace TP01_Library.Models
         public int ClasseId { get; set; }
         public string NomHero { get; set; }
         public bool EstConnecte { get; set; }
-        public Nullable<int> ImageId { get; set; }
     
         public virtual Classe Classe { get; set; }
         public virtual CompteJoueur CompteJoueur { get; set; }
@@ -44,5 +44,7 @@ namespace TP01_Library.Models
         public virtual Monde Monde { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TileImg> Images { get; set; }
     }
 }

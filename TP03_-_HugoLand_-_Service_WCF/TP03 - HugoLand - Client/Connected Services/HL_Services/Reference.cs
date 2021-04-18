@@ -44,10 +44,7 @@ namespace HugoWorld_Client.HL_Services {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HugoWorld_Client.HL_Services.TileImgDTO ImageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ImageIdField;
+        private HugoWorld_Client.HL_Services.TileImgDTO[] ImagesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private HugoWorld_Client.HL_Services.InventaireHeroDTO[] InventaireHerosField;
@@ -187,27 +184,14 @@ namespace HugoWorld_Client.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HugoWorld_Client.HL_Services.TileImgDTO Image {
+        public HugoWorld_Client.HL_Services.TileImgDTO[] Images {
             get {
-                return this.ImageField;
+                return this.ImagesField;
             }
             set {
-                if ((object.ReferenceEquals(this.ImageField, value) != true)) {
-                    this.ImageField = value;
-                    this.RaisePropertyChanged("Image");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ImageId {
-            get {
-                return this.ImageIdField;
-            }
-            set {
-                if ((this.ImageIdField.Equals(value) != true)) {
-                    this.ImageIdField = value;
-                    this.RaisePropertyChanged("ImageId");
+                if ((object.ReferenceEquals(this.ImagesField, value) != true)) {
+                    this.ImagesField = value;
+                    this.RaisePropertyChanged("Images");
                 }
             }
         }
@@ -710,67 +694,6 @@ namespace HugoWorld_Client.HL_Services {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TileImgDTO", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs")]
-    [System.SerializableAttribute()]
-    public partial class TileImgDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ImageIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Imageb64Field;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ImageId {
-            get {
-                return this.ImageIdField;
-            }
-            set {
-                if ((this.ImageIdField.Equals(value) != true)) {
-                    this.ImageIdField = value;
-                    this.RaisePropertyChanged("ImageId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Imageb64 {
-            get {
-                return this.Imageb64Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Imageb64Field, value) != true)) {
-                    this.Imageb64Field = value;
-                    this.RaisePropertyChanged("Imageb64");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="MondeDTO", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs")]
     [System.SerializableAttribute()]
     public partial class MondeDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -928,6 +851,67 @@ namespace HugoWorld_Client.HL_Services {
                 if ((object.ReferenceEquals(this.ObjetMondesField, value) != true)) {
                     this.ObjetMondesField = value;
                     this.RaisePropertyChanged("ObjetMondes");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TileImgDTO", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs")]
+    [System.SerializableAttribute()]
+    public partial class TileImgDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ImageIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Imageb64Field;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ImageId {
+            get {
+                return this.ImageIdField;
+            }
+            set {
+                if ((this.ImageIdField.Equals(value) != true)) {
+                    this.ImageIdField = value;
+                    this.RaisePropertyChanged("ImageId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Imageb64 {
+            get {
+                return this.Imageb64Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Imageb64Field, value) != true)) {
+                    this.Imageb64Field = value;
+                    this.RaisePropertyChanged("Imageb64");
                 }
             }
         }
@@ -1586,6 +1570,400 @@ namespace HugoWorld_Client.HL_Services {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MonstreDTO", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs")]
+    [System.SerializableAttribute()]
+    public partial class MonstreDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private HugoWorld_Client.HL_Services.TileImgDTO[] ImagesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private HugoWorld_Client.HL_Services.MondeDTO MondeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MondeIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NiveauField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NomField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StatDmgMaxField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StatDmgMinField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StatPVField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int xField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int yField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public HugoWorld_Client.HL_Services.TileImgDTO[] Images {
+            get {
+                return this.ImagesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImagesField, value) != true)) {
+                    this.ImagesField = value;
+                    this.RaisePropertyChanged("Images");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public HugoWorld_Client.HL_Services.MondeDTO Monde {
+            get {
+                return this.MondeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MondeField, value) != true)) {
+                    this.MondeField = value;
+                    this.RaisePropertyChanged("Monde");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MondeId {
+            get {
+                return this.MondeIdField;
+            }
+            set {
+                if ((this.MondeIdField.Equals(value) != true)) {
+                    this.MondeIdField = value;
+                    this.RaisePropertyChanged("MondeId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Niveau {
+            get {
+                return this.NiveauField;
+            }
+            set {
+                if ((this.NiveauField.Equals(value) != true)) {
+                    this.NiveauField = value;
+                    this.RaisePropertyChanged("Niveau");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nom {
+            get {
+                return this.NomField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NomField, value) != true)) {
+                    this.NomField = value;
+                    this.RaisePropertyChanged("Nom");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StatDmgMax {
+            get {
+                return this.StatDmgMaxField;
+            }
+            set {
+                if ((this.StatDmgMaxField.Equals(value) != true)) {
+                    this.StatDmgMaxField = value;
+                    this.RaisePropertyChanged("StatDmgMax");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StatDmgMin {
+            get {
+                return this.StatDmgMinField;
+            }
+            set {
+                if ((this.StatDmgMinField.Equals(value) != true)) {
+                    this.StatDmgMinField = value;
+                    this.RaisePropertyChanged("StatDmgMin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StatPV {
+            get {
+                return this.StatPVField;
+            }
+            set {
+                if ((this.StatPVField.Equals(value) != true)) {
+                    this.StatPVField = value;
+                    this.RaisePropertyChanged("StatPV");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int x {
+            get {
+                return this.xField;
+            }
+            set {
+                if ((this.xField.Equals(value) != true)) {
+                    this.xField = value;
+                    this.RaisePropertyChanged("x");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int y {
+            get {
+                return this.yField;
+            }
+            set {
+                if ((this.yField.Equals(value) != true)) {
+                    this.yField = value;
+                    this.RaisePropertyChanged("y");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TileImport", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models")]
+    [System.SerializableAttribute()]
+    public partial class TileImport : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CategoryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ColorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int HealthField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsBlockField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsTransparentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NumberOfFramesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ShortcutField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Category {
+            get {
+                return this.CategoryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
+                    this.CategoryField = value;
+                    this.RaisePropertyChanged("Category");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Color {
+            get {
+                return this.ColorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ColorField, value) != true)) {
+                    this.ColorField = value;
+                    this.RaisePropertyChanged("Color");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Health {
+            get {
+                return this.HealthField;
+            }
+            set {
+                if ((this.HealthField.Equals(value) != true)) {
+                    this.HealthField = value;
+                    this.RaisePropertyChanged("Health");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ID {
+            get {
+                return this.IDField;
+            }
+            set {
+                if ((this.IDField.Equals(value) != true)) {
+                    this.IDField = value;
+                    this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsBlock {
+            get {
+                return this.IsBlockField;
+            }
+            set {
+                if ((this.IsBlockField.Equals(value) != true)) {
+                    this.IsBlockField = value;
+                    this.RaisePropertyChanged("IsBlock");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsTransparent {
+            get {
+                return this.IsTransparentField;
+            }
+            set {
+                if ((this.IsTransparentField.Equals(value) != true)) {
+                    this.IsTransparentField = value;
+                    this.RaisePropertyChanged("IsTransparent");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int NumberOfFrames {
+            get {
+                return this.NumberOfFramesField;
+            }
+            set {
+                if ((this.NumberOfFramesField.Equals(value) != true)) {
+                    this.NumberOfFramesField = value;
+                    this.RaisePropertyChanged("NumberOfFrames");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Shortcut {
+            get {
+                return this.ShortcutField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ShortcutField, value) != true)) {
+                    this.ShortcutField = value;
+                    this.RaisePropertyChanged("Shortcut");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HL_Services.IJoueurService")]
     public interface IJoueurService {
@@ -1897,6 +2275,81 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<bool> AddClassToDatabaseAsync(HugoWorld_Client.HL_Services.ClasseDTO p_Class) {
             return base.Channel.AddClassToDatabaseAsync(p_Class);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HL_Services.ITileImgService")]
+    public interface ITileImgService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITileImgService/MonstreToTile", ReplyAction="http://tempuri.org/ITileImgService/MonstreToTileResponse")]
+        HugoWorld_Client.HL_Services.TileImport MonstreToTile(HugoWorld_Client.HL_Services.MonstreDTO monstre);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITileImgService/MonstreToTile", ReplyAction="http://tempuri.org/ITileImgService/MonstreToTileResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport> MonstreToTileAsync(HugoWorld_Client.HL_Services.MonstreDTO monstre);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITileImgService/ItemToTile", ReplyAction="http://tempuri.org/ITileImgService/ItemToTileResponse")]
+        HugoWorld_Client.HL_Services.TileImport ItemToTile(HugoWorld_Client.HL_Services.ItemDTO item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITileImgService/ItemToTile", ReplyAction="http://tempuri.org/ITileImgService/ItemToTileResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport> ItemToTileAsync(HugoWorld_Client.HL_Services.ItemDTO item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITileImgService/ObjetMondeToTile", ReplyAction="http://tempuri.org/ITileImgService/ObjetMondeToTileResponse")]
+        HugoWorld_Client.HL_Services.TileImport ObjetMondeToTile(HugoWorld_Client.HL_Services.ObjetMondeDTO objet);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITileImgService/ObjetMondeToTile", ReplyAction="http://tempuri.org/ITileImgService/ObjetMondeToTileResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport> ObjetMondeToTileAsync(HugoWorld_Client.HL_Services.ObjetMondeDTO objet);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ITileImgServiceChannel : HugoWorld_Client.HL_Services.ITileImgService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class TileImgServiceClient : System.ServiceModel.ClientBase<HugoWorld_Client.HL_Services.ITileImgService>, HugoWorld_Client.HL_Services.ITileImgService {
+        
+        public TileImgServiceClient() {
+        }
+        
+        public TileImgServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public TileImgServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public TileImgServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public TileImgServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public HugoWorld_Client.HL_Services.TileImport MonstreToTile(HugoWorld_Client.HL_Services.MonstreDTO monstre) {
+            return base.Channel.MonstreToTile(monstre);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport> MonstreToTileAsync(HugoWorld_Client.HL_Services.MonstreDTO monstre) {
+            return base.Channel.MonstreToTileAsync(monstre);
+        }
+        
+        public HugoWorld_Client.HL_Services.TileImport ItemToTile(HugoWorld_Client.HL_Services.ItemDTO item) {
+            return base.Channel.ItemToTile(item);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport> ItemToTileAsync(HugoWorld_Client.HL_Services.ItemDTO item) {
+            return base.Channel.ItemToTileAsync(item);
+        }
+        
+        public HugoWorld_Client.HL_Services.TileImport ObjetMondeToTile(HugoWorld_Client.HL_Services.ObjetMondeDTO objet) {
+            return base.Channel.ObjetMondeToTile(objet);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport> ObjetMondeToTileAsync(HugoWorld_Client.HL_Services.ObjetMondeDTO objet) {
+            return base.Channel.ObjetMondeToTileAsync(objet);
         }
     }
 }

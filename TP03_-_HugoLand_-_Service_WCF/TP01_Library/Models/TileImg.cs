@@ -12,20 +12,9 @@ namespace TP01_Library.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Monstre
+    public partial class TileImg
     {
-        public int Id { get; set; }
-        public string Nom { get; set; }
-        public int Niveau { get; set; }
-        public int x { get; set; }
-        public int y { get; set; }
-        public int StatPV { get; set; }
-        public float StatDmgMin { get; set; }
-        public float StatDmgMax { get; set; }
-        public int MondeId { get; set; }
         public int ImageId { get; set; }
-    
-        public virtual Monde Monde { get; set; }
-        public virtual TileImg Image { get; set; }
+        public string Imageb64 { get; set; }
     }
 }

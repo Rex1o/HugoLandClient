@@ -4,9 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ecf78d7bc1fd4f278c1b1ef025a090f2" Name="Diagram1">
+      <Diagram DiagramId="ecf78d7bc1fd4f278c1b1ef025a090f2" Name="Diagram1" ZoomLevel="58">
         <EntityTypeShape EntityType="HugoLandModel.Classe" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HugoLandModel.CompteJoueur" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HugoLandModel.EffetItem" Width="1.5" PointX="12.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HugoLandModel.Hero" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HugoLandModel.InventaireHero" Width="1.5" PointX="7.5" PointY="7" IsExpanded="true" />
@@ -17,7 +16,6 @@
         <EntityTypeShape EntityType="HugoLandModel.sysdiagram" Width="1.5" PointX="5.75" PointY="2.5" IsExpanded="true" />
         <AssociationConnector Association="HugoLandModel.FK_Classe_Monde" ManuallyRouted="false" />
         <AssociationConnector Association="HugoLandModel.FK_Hero_Classe" ManuallyRouted="false" />
-        <AssociationConnector Association="HugoLandModel.IsPartOfAccount" ManuallyRouted="false" />
         <AssociationConnector Association="HugoLandModel.FK_EffetItem_Item" ManuallyRouted="false" />
         <AssociationConnector Association="HugoLandModel.BelongsToHero" ManuallyRouted="false" />
         <AssociationConnector Association="HugoLandModel.FK_Hero_Monde" ManuallyRouted="false" />
@@ -26,6 +24,13 @@
         <AssociationConnector Association="HugoLandModel.FK_Item_Monde" ManuallyRouted="false" />
         <AssociationConnector Association="HugoLandModel.FK_Monstre_Monde" ManuallyRouted="false" />
         <AssociationConnector Association="HugoLandModel.FK_ObjetMonde_Monde" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HugoLandModel.TileImg" Width="1.5" PointX="8" PointY="12.25" />
+        <AssociationConnector Association="HugoLandModel.MonstreTileImg" />
+        <AssociationConnector Association="HugoLandModel.TileImgObjetMonde" />
+        <AssociationConnector Association="HugoLandModel.HeroTileImg" />
+        <AssociationConnector Association="HugoLandModel.TileImgItem" />
+        <EntityTypeShape EntityType="HugoLandModel.CompteJoueur" Width="1.5" PointX="8.375" PointY="1" />
+        <AssociationConnector Association="HugoLandModel.IsPartOfAccount1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -106,7 +106,16 @@
     <Compile Include="Models\ObjetMonde.cs">
       <DependentUpon>HugoLandEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>HugoLandEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TileImg.cs">
       <DependentUpon>HugoLandEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,6 +141,7 @@
       <DependentUpon>HugoLandEDM.edmx</DependentUpon>
       <LastGenOutput>HugoLandEDM.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\HugoLandEDM.edmx.sql" />
     <Content Include="Models\HugoLandEDM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>HugoLandEDM.edmx</DependentUpon>

@@ -27,8 +27,8 @@ namespace TP01_Library.Models
         public Nullable<int> x { get; set; }
         public Nullable<int> y { get; set; }
         public int MondeId { get; set; }
-        public Nullable<int> ImageId { get; set; }
         public Nullable<int> IdHero { get; set; }
+        public int ImageId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EffetItem> EffetItems { get; set; }
@@ -36,5 +36,6 @@ namespace TP01_Library.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InventaireHero> InventaireHeroes { get; set; }
         public virtual Monde Monde { get; set; }
+        public virtual TileImg Image { get; set; }
     }
 }

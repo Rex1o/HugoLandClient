@@ -64,6 +64,7 @@
     <Compile Include="DTOs\MondeDTO.cs" />
     <Compile Include="DTOs\MonstreDTO.cs" />
     <Compile Include="DTOs\ObjetMondeDTO.cs" />
+    <Compile Include="DTOs\TileImgDTO.cs" />
     <Compile Include="Services\IItemService.cs" />
     <Compile Include="Services\IJoueurService.cs" />
     <Compile Include="Services\IMondeService.cs" />

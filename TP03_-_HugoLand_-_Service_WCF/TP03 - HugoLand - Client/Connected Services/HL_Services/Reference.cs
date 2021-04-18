@@ -44,6 +44,12 @@ namespace HugoWorld_Client.HL_Services {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private HugoWorld_Client.HL_Services.TileImgDTO ImageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ImageIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private HugoWorld_Client.HL_Services.InventaireHeroDTO[] InventaireHerosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -176,6 +182,32 @@ namespace HugoWorld_Client.HL_Services {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public HugoWorld_Client.HL_Services.TileImgDTO Image {
+            get {
+                return this.ImageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImageField, value) != true)) {
+                    this.ImageField = value;
+                    this.RaisePropertyChanged("Image");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ImageId {
+            get {
+                return this.ImageIdField;
+            }
+            set {
+                if ((this.ImageIdField.Equals(value) != true)) {
+                    this.ImageIdField = value;
+                    this.RaisePropertyChanged("ImageId");
                 }
             }
         }
@@ -710,6 +742,67 @@ namespace HugoWorld_Client.HL_Services {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TileImgDTO", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs")]
+    [System.SerializableAttribute()]
+    public partial class TileImgDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ImageIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Imageb64Field;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ImageId {
+            get {
+                return this.ImageIdField;
+            }
+            set {
+                if ((this.ImageIdField.Equals(value) != true)) {
+                    this.ImageIdField = value;
+                    this.RaisePropertyChanged("ImageId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Imageb64 {
+            get {
+                return this.Imageb64Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Imageb64Field, value) != true)) {
+                    this.Imageb64Field = value;
+                    this.RaisePropertyChanged("Imageb64");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="MondeDTO", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs")]
     [System.SerializableAttribute()]
     public partial class MondeDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -1031,7 +1124,10 @@ namespace HugoWorld_Client.HL_Services {
         private System.Nullable<int> IdHeroField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> ImageIdField;
+        private HugoWorld_Client.HL_Services.TileImgDTO ImageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ImageIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private HugoWorld_Client.HL_Services.InventaireHeroDTO[] InventaireHeroDTOsField;
@@ -1127,7 +1223,20 @@ namespace HugoWorld_Client.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ImageId {
+        public HugoWorld_Client.HL_Services.TileImgDTO Image {
+            get {
+                return this.ImageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImageField, value) != true)) {
+                    this.ImageField = value;
+                    this.RaisePropertyChanged("Image");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ImageId {
             get {
                 return this.ImageIdField;
             }
@@ -1243,7 +1352,10 @@ namespace HugoWorld_Client.HL_Services {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> ImageIdField;
+        private HugoWorld_Client.HL_Services.TileImgDTO ImageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ImageIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private HugoWorld_Client.HL_Services.MondeDTO MondeField;
@@ -1297,7 +1409,20 @@ namespace HugoWorld_Client.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> ImageId {
+        public HugoWorld_Client.HL_Services.TileImgDTO Image {
+            get {
+                return this.ImageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImageField, value) != true)) {
+                    this.ImageField = value;
+                    this.RaisePropertyChanged("Image");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ImageId {
             get {
                 return this.ImageIdField;
             }

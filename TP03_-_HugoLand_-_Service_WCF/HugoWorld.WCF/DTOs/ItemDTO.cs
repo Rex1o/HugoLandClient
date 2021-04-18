@@ -25,7 +25,7 @@ namespace HugoWorld_WCF.DTOs {
         public int MondeId { get; set; }
 
         [DataMember]
-        public int? ImageId { get; set; }
+        public int ImageId { get; set; }
 
         [DataMember]
         public int? IdHero { get; set; }
@@ -38,6 +38,9 @@ namespace HugoWorld_WCF.DTOs {
 
         [DataMember]
         public virtual HeroDTO Hero { get; set; }
+
+        [DataMember]
+        public virtual TileImgDTO Image { get; set; }
 
         [DataMember]
         public virtual MondeDTO Monde { get; set; }

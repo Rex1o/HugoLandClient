@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel;
-using HugoWorld.WCF.DTOs;
 using System.Collections.Generic;
+using HugoWorld_WCF.DTOs;
 
 namespace HugoWorld_WCF.Services {
 

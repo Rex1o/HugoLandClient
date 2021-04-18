@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="580cf556-c159-4bca-b10a-e6d4d4a3d9b1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ee79f8b5-6bba-4263-a5e1-4960f8f48925" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="HugoLandService.wsdl" MetadataType="Wsdl" ID="742d17f1-63ed-475e-84e4-355e88459808" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?wsdl" />
-    <MetadataFile FileName="Services.xsd" MetadataType="Schema" ID="624303f0-487d-4c73-a764-01013429e364" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd2" />
-    <MetadataFile FileName="Services.disco" MetadataType="Disco" ID="9e292e59-694b-453b-b13c-d9f955e0cdbf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?disco" />
-    <MetadataFile FileName="Services1.xsd" MetadataType="Schema" ID="93bac877-e973-40c8-9314-1b8a52db57dd" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd1" />
-    <MetadataFile FileName="Services2.xsd" MetadataType="Schema" ID="c58a9505-32d3-4cf2-bfb3-169b63c1a225" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd0" />
+    <MetadataFile FileName="HugoLandService.wsdl" MetadataType="Wsdl" ID="4de4b30f-ee9d-4878-8040-ee69523ac039" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?wsdl" />
+    <MetadataFile FileName="Services.xsd" MetadataType="Schema" ID="bc4f297a-0ef1-4c43-b0ba-9b3b9232b193" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd2" />
+    <MetadataFile FileName="Services.disco" MetadataType="Disco" ID="3caeb523-dee1-49e9-8e6d-47c91bd3eeec" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?disco" />
+    <MetadataFile FileName="Services1.xsd" MetadataType="Schema" ID="6bdf0e23-932c-42a0-9db8-74a2fe77ec69" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd1" />
+    <MetadataFile FileName="Services2.xsd" MetadataType="Schema" ID="cf01a51b-a252-42a2-b563-dc2f83ed2425" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

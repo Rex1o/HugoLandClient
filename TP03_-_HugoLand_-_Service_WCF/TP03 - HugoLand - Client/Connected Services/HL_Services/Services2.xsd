@@ -44,4 +44,125 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ListWorlds">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListWorldsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="ListWorldsResult" nillable="true" type="q3:ArrayOfMondeDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="p_Nom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="p_Description" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="p_X" type="xs:int" />
+        <xs:element minOccurs="0" name="p_Y" type="xs:int" />
+        <xs:element minOccurs="0" name="p_ImageId" type="xs:int" />
+        <xs:element minOccurs="0" name="p_MondeId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddItemResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteItemById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="p_ItemId" type="xs:int" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="p_Hero" nillable="true" type="q4:HeroDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteItemByIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditItemQuantityById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="p_ItemId" type="xs:int" />
+        <xs:element minOccurs="0" name="p_Quantite" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditItemQuantityByIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRangeItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="lstItems" nillable="true" type="q5:ArrayOfItemDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRangeItemsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveRangeById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="p_ItemId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveRangeByIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddItemEffectById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="p_ItemId" type="xs:int" />
+        <xs:element minOccurs="0" name="p_ValeurEffet" type="xs:int" />
+        <xs:element minOccurs="0" name="p_TypeEffet" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddItemEffectByIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteItemEffectById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="p_EffetItemId" type="xs:int" />
+        <xs:element minOccurs="0" name="p_ItemId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteItemEffectByIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditItemEffectById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="p_ItemId" type="xs:int" />
+        <xs:element minOccurs="0" name="p_EffetItemId" type="xs:int" />
+        <xs:element minOccurs="0" name="p_ValeurEffet" type="xs:int" />
+        <xs:element minOccurs="0" name="p_TypeEffet" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditItemEffectByIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

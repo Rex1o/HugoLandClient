@@ -1,6 +1,9 @@
-﻿namespace HugoWorld_WCF.Services {
+﻿using HugoWorld_WCF.DTOs;
+using System.Collections.Generic;
+using System.Linq;
+using TP01_Library.Models;
 
-namespace HugoWorld.WCF.Services {
+namespace HugoWorld_WCF.Services {
 
     public partial class HugoLandService : IMondeService
     {

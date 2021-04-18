@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="Area.cs" />
     <Compile Include="BitmapCache.cs" />
+    <Compile Include="BLL\Outils.cs" />
     <Compile Include="Connected Services\HL_Services\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -157,6 +158,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\HL_Services\HugoWorld.HL_Services.HeroDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\HL_Services\HugoWorld.HL_Services.MondeDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\HL_Services\Services.xsd">

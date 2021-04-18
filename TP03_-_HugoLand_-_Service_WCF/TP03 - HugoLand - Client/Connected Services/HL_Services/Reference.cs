@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HL_Services {
+namespace HugoLand.HL_Services {
     using System.Runtime.Serialization;
     using System;
     
@@ -356,6 +356,9 @@ namespace HL_Services {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescrpitionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private HL_Services.HeroDTO[] HerosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -389,6 +392,19 @@ namespace HL_Services {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Descrpition {
+            get {
+                return this.DescrpitionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescrpitionField, value) != true)) {
+                    this.DescrpitionField = value;
+                    this.RaisePropertyChanged("Descrpition");
+                }
             }
         }
         
@@ -1549,6 +1565,198 @@ namespace HL_Services {
         
         public System.Threading.Tasks.Task<HL_Services.CompteJoueurDTO> GetAccountByNameAsync(string p_Username) {
             return base.Channel.GetAccountByNameAsync(p_Username);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HL_Services.IMondeService")]
+    public interface IMondeService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/ListWorlds", ReplyAction="http://tempuri.org/IMondeService/ListWorldsResponse")]
+        HL_Services.MondeDTO[] ListWorlds();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/ListWorlds", ReplyAction="http://tempuri.org/IMondeService/ListWorldsResponse")]
+        System.Threading.Tasks.Task<HL_Services.MondeDTO[]> ListWorldsAsync();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IMondeServiceChannel : HL_Services.IMondeService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class MondeServiceClient : System.ServiceModel.ClientBase<HL_Services.IMondeService>, HL_Services.IMondeService {
+        
+        public MondeServiceClient() {
+        }
+        
+        public MondeServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public MondeServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public MondeServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public MondeServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public HL_Services.MondeDTO[] ListWorlds() {
+            return base.Channel.ListWorlds();
+        }
+        
+        public System.Threading.Tasks.Task<HL_Services.MondeDTO[]> ListWorldsAsync() {
+            return base.Channel.ListWorldsAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HL_Services.IItemService")]
+    public interface IItemService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/AddItem", ReplyAction="http://tempuri.org/IItemService/AddItemResponse")]
+        void AddItem(string p_Nom, string p_Description, int p_X, int p_Y, int p_ImageId, int p_MondeId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/AddItem", ReplyAction="http://tempuri.org/IItemService/AddItemResponse")]
+        System.Threading.Tasks.Task AddItemAsync(string p_Nom, string p_Description, int p_X, int p_Y, int p_ImageId, int p_MondeId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/DeleteItemById", ReplyAction="http://tempuri.org/IItemService/DeleteItemByIdResponse")]
+        void DeleteItemById(int p_ItemId, HL_Services.HeroDTO p_Hero);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/DeleteItemById", ReplyAction="http://tempuri.org/IItemService/DeleteItemByIdResponse")]
+        System.Threading.Tasks.Task DeleteItemByIdAsync(int p_ItemId, HL_Services.HeroDTO p_Hero);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/EditItemQuantityById", ReplyAction="http://tempuri.org/IItemService/EditItemQuantityByIdResponse")]
+        void EditItemQuantityById(int p_ItemId, int p_Quantite);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/EditItemQuantityById", ReplyAction="http://tempuri.org/IItemService/EditItemQuantityByIdResponse")]
+        System.Threading.Tasks.Task EditItemQuantityByIdAsync(int p_ItemId, int p_Quantite);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/AddRangeItems", ReplyAction="http://tempuri.org/IItemService/AddRangeItemsResponse")]
+        void AddRangeItems(HL_Services.ItemDTO[] lstItems);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/AddRangeItems", ReplyAction="http://tempuri.org/IItemService/AddRangeItemsResponse")]
+        System.Threading.Tasks.Task AddRangeItemsAsync(HL_Services.ItemDTO[] lstItems);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/RemoveRangeById", ReplyAction="http://tempuri.org/IItemService/RemoveRangeByIdResponse")]
+        void RemoveRangeById(int p_ItemId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/RemoveRangeById", ReplyAction="http://tempuri.org/IItemService/RemoveRangeByIdResponse")]
+        System.Threading.Tasks.Task RemoveRangeByIdAsync(int p_ItemId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/AddItemEffectById", ReplyAction="http://tempuri.org/IItemService/AddItemEffectByIdResponse")]
+        void AddItemEffectById(int p_ItemId, int p_ValeurEffet, int p_TypeEffet);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/AddItemEffectById", ReplyAction="http://tempuri.org/IItemService/AddItemEffectByIdResponse")]
+        System.Threading.Tasks.Task AddItemEffectByIdAsync(int p_ItemId, int p_ValeurEffet, int p_TypeEffet);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/DeleteItemEffectById", ReplyAction="http://tempuri.org/IItemService/DeleteItemEffectByIdResponse")]
+        void DeleteItemEffectById(int p_EffetItemId, int p_ItemId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/DeleteItemEffectById", ReplyAction="http://tempuri.org/IItemService/DeleteItemEffectByIdResponse")]
+        System.Threading.Tasks.Task DeleteItemEffectByIdAsync(int p_EffetItemId, int p_ItemId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/EditItemEffectById", ReplyAction="http://tempuri.org/IItemService/EditItemEffectByIdResponse")]
+        void EditItemEffectById(int p_ItemId, int p_EffetItemId, int p_ValeurEffet, int p_TypeEffet);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/EditItemEffectById", ReplyAction="http://tempuri.org/IItemService/EditItemEffectByIdResponse")]
+        System.Threading.Tasks.Task EditItemEffectByIdAsync(int p_ItemId, int p_EffetItemId, int p_ValeurEffet, int p_TypeEffet);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IItemServiceChannel : HL_Services.IItemService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ItemServiceClient : System.ServiceModel.ClientBase<HL_Services.IItemService>, HL_Services.IItemService {
+        
+        public ItemServiceClient() {
+        }
+        
+        public ItemServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ItemServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ItemServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ItemServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void AddItem(string p_Nom, string p_Description, int p_X, int p_Y, int p_ImageId, int p_MondeId) {
+            base.Channel.AddItem(p_Nom, p_Description, p_X, p_Y, p_ImageId, p_MondeId);
+        }
+        
+        public System.Threading.Tasks.Task AddItemAsync(string p_Nom, string p_Description, int p_X, int p_Y, int p_ImageId, int p_MondeId) {
+            return base.Channel.AddItemAsync(p_Nom, p_Description, p_X, p_Y, p_ImageId, p_MondeId);
+        }
+        
+        public void DeleteItemById(int p_ItemId, HL_Services.HeroDTO p_Hero) {
+            base.Channel.DeleteItemById(p_ItemId, p_Hero);
+        }
+        
+        public System.Threading.Tasks.Task DeleteItemByIdAsync(int p_ItemId, HL_Services.HeroDTO p_Hero) {
+            return base.Channel.DeleteItemByIdAsync(p_ItemId, p_Hero);
+        }
+        
+        public void EditItemQuantityById(int p_ItemId, int p_Quantite) {
+            base.Channel.EditItemQuantityById(p_ItemId, p_Quantite);
+        }
+        
+        public System.Threading.Tasks.Task EditItemQuantityByIdAsync(int p_ItemId, int p_Quantite) {
+            return base.Channel.EditItemQuantityByIdAsync(p_ItemId, p_Quantite);
+        }
+        
+        public void AddRangeItems(HL_Services.ItemDTO[] lstItems) {
+            base.Channel.AddRangeItems(lstItems);
+        }
+        
+        public System.Threading.Tasks.Task AddRangeItemsAsync(HL_Services.ItemDTO[] lstItems) {
+            return base.Channel.AddRangeItemsAsync(lstItems);
+        }
+        
+        public void RemoveRangeById(int p_ItemId) {
+            base.Channel.RemoveRangeById(p_ItemId);
+        }
+        
+        public System.Threading.Tasks.Task RemoveRangeByIdAsync(int p_ItemId) {
+            return base.Channel.RemoveRangeByIdAsync(p_ItemId);
+        }
+        
+        public void AddItemEffectById(int p_ItemId, int p_ValeurEffet, int p_TypeEffet) {
+            base.Channel.AddItemEffectById(p_ItemId, p_ValeurEffet, p_TypeEffet);
+        }
+        
+        public System.Threading.Tasks.Task AddItemEffectByIdAsync(int p_ItemId, int p_ValeurEffet, int p_TypeEffet) {
+            return base.Channel.AddItemEffectByIdAsync(p_ItemId, p_ValeurEffet, p_TypeEffet);
+        }
+        
+        public void DeleteItemEffectById(int p_EffetItemId, int p_ItemId) {
+            base.Channel.DeleteItemEffectById(p_EffetItemId, p_ItemId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteItemEffectByIdAsync(int p_EffetItemId, int p_ItemId) {
+            return base.Channel.DeleteItemEffectByIdAsync(p_EffetItemId, p_ItemId);
+        }
+        
+        public void EditItemEffectById(int p_ItemId, int p_EffetItemId, int p_ValeurEffet, int p_TypeEffet) {
+            base.Channel.EditItemEffectById(p_ItemId, p_EffetItemId, p_ValeurEffet, p_TypeEffet);
+        }
+        
+        public System.Threading.Tasks.Task EditItemEffectByIdAsync(int p_ItemId, int p_EffetItemId, int p_ValeurEffet, int p_TypeEffet) {
+            return base.Channel.EditItemEffectByIdAsync(p_ItemId, p_EffetItemId, p_ValeurEffet, p_TypeEffet);
         }
     }
 }

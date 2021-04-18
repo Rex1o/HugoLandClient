@@ -25,6 +25,60 @@
   <wsdl:message name="IJoueurService_GetAccountByName_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAccountByNameResponse" />
   </wsdl:message>
+  <wsdl:message name="IMondeService_ListWorlds_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListWorlds" />
+  </wsdl:message>
+  <wsdl:message name="IMondeService_ListWorlds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListWorldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_AddItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddItem" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_AddItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_DeleteItemById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItemById" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_DeleteItemById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItemByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_EditItemQuantityById_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditItemQuantityById" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_EditItemQuantityById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditItemQuantityByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_AddRangeItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRangeItems" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_AddRangeItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRangeItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_RemoveRangeById_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveRangeById" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_RemoveRangeById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveRangeByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_AddItemEffectById_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddItemEffectById" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_AddItemEffectById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddItemEffectByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_DeleteItemEffectById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItemEffectById" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_DeleteItemEffectById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteItemEffectByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_EditItemEffectById_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditItemEffectById" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_EditItemEffectById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditItemEffectByIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IJoueurService">
     <wsdl:operation name="Connection">
       <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/Connection" message="tns:IJoueurService_Connection_InputMessage" />
@@ -37,6 +91,46 @@
     <wsdl:operation name="GetAccountByName">
       <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/GetAccountByName" message="tns:IJoueurService_GetAccountByName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IJoueurService/GetAccountByNameResponse" message="tns:IJoueurService_GetAccountByName_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IMondeService">
+    <wsdl:operation name="ListWorlds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMondeService/ListWorlds" message="tns:IMondeService_ListWorlds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMondeService/ListWorldsResponse" message="tns:IMondeService_ListWorlds_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IItemService">
+    <wsdl:operation name="AddItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/AddItem" message="tns:IItemService_AddItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/AddItemResponse" message="tns:IItemService_AddItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItemById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/DeleteItemById" message="tns:IItemService_DeleteItemById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/DeleteItemByIdResponse" message="tns:IItemService_DeleteItemById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditItemQuantityById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/EditItemQuantityById" message="tns:IItemService_EditItemQuantityById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/EditItemQuantityByIdResponse" message="tns:IItemService_EditItemQuantityById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRangeItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/AddRangeItems" message="tns:IItemService_AddRangeItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/AddRangeItemsResponse" message="tns:IItemService_AddRangeItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRangeById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/RemoveRangeById" message="tns:IItemService_RemoveRangeById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/RemoveRangeByIdResponse" message="tns:IItemService_RemoveRangeById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddItemEffectById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/AddItemEffectById" message="tns:IItemService_AddItemEffectById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/AddItemEffectByIdResponse" message="tns:IItemService_AddItemEffectById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItemEffectById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/DeleteItemEffectById" message="tns:IItemService_DeleteItemEffectById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/DeleteItemEffectByIdResponse" message="tns:IItemService_DeleteItemEffectById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditItemEffectById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/EditItemEffectById" message="tns:IItemService_EditItemEffectById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/EditItemEffectByIdResponse" message="tns:IItemService_EditItemEffectById_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IJoueurService" type="tns:IJoueurService">
@@ -69,8 +163,101 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IMondeService" type="tns:IMondeService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListWorlds">
+      <soap:operation soapAction="http://tempuri.org/IMondeService/ListWorlds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IItemService" type="tns:IItemService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddItem">
+      <soap:operation soapAction="http://tempuri.org/IItemService/AddItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItemById">
+      <soap:operation soapAction="http://tempuri.org/IItemService/DeleteItemById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditItemQuantityById">
+      <soap:operation soapAction="http://tempuri.org/IItemService/EditItemQuantityById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRangeItems">
+      <soap:operation soapAction="http://tempuri.org/IItemService/AddRangeItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRangeById">
+      <soap:operation soapAction="http://tempuri.org/IItemService/RemoveRangeById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddItemEffectById">
+      <soap:operation soapAction="http://tempuri.org/IItemService/AddItemEffectById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteItemEffectById">
+      <soap:operation soapAction="http://tempuri.org/IItemService/DeleteItemEffectById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditItemEffectById">
+      <soap:operation soapAction="http://tempuri.org/IItemService/EditItemEffectById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="HugoLandService">
     <wsdl:port name="BasicHttpBinding_IJoueurService" binding="tns:BasicHttpBinding_IJoueurService">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IMondeService" binding="tns:BasicHttpBinding_IMondeService">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IItemService" binding="tns:BasicHttpBinding_IItemService">
       <soap:address location="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" />
     </wsdl:port>
   </wsdl:service>

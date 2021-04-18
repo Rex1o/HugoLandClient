@@ -1,4 +1,5 @@
 ﻿//using HugoWorld.Services;
+using HugoWorld.Services;
 using System;
 using System.Windows.Forms;
 using TP01_Library.Controllers;
@@ -6,6 +7,9 @@ using TP01_Library.Controllers;
 namespace HugoWorld {
 
     public partial class frmConnection : Form {
+
+        //Service a utiliser
+        private readonly JoueurServiceClient joueurService = new JoueurServiceClient();
         //private readonly JoueurServiceClient joueurService;
 
         /// <summary>
@@ -38,7 +42,7 @@ namespace HugoWorld {
             string password = txt_password.Text;
 
             CompteJoueurController controller = new CompteJoueurController();
-            string reponse = controller.ValiderConnexion(password, username);
+            string reponse = joueurService.Connection(username, password);
             //string reponse = joueurService.Connection(password, username);
 
             if (reponse == "INVALIDE")

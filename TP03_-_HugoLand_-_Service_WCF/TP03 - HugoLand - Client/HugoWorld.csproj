@@ -9,7 +9,7 @@
     <ProjectGuid>{306074A2-7150-43EB-8A5A-84E8ED210502}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HugoWorld</RootNamespace>
+    <RootNamespace>HugoWorld_Client</RootNamespace>
     <AssemblyName>HugoWorld</AssemblyName>
     <ApplicationIcon>app.ico</ApplicationIcon>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -154,13 +154,13 @@
     </Compile>
     <None Include="app.config" />
     <None Include="Connected Services\HL_Services\HugoLandService.wsdl" />
-    <None Include="Connected Services\HL_Services\HugoWorld.HL_Services.CompteJoueurDTO.datasource">
+    <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.CompteJoueurDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\HL_Services\HugoWorld.HL_Services.HeroDTO.datasource">
+    <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.HeroDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\HL_Services\HugoWorld.HL_Services.MondeDTO.datasource">
+    <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.MondeDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\HL_Services\Services.xsd">

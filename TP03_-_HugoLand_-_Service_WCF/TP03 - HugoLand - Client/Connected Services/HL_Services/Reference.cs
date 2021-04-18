@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HugoLand.HL_Services {
+namespace HugoWorld_Client.HL_Services {
     using System.Runtime.Serialization;
     using System;
     
@@ -23,13 +23,13 @@ namespace HugoLand.HL_Services {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.ClasseDTO ClasseField;
+        private HugoWorld_Client.HL_Services.ClasseDTO ClasseField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ClasseIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.CompteJoueurDTO CompteJoueurField;
+        private HugoWorld_Client.HL_Services.CompteJoueurDTO CompteJoueurField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int CompteJoueurIdField;
@@ -44,13 +44,13 @@ namespace HugoLand.HL_Services {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.InventaireHeroDTO[] InventaireHerosField;
+        private HugoWorld_Client.HL_Services.InventaireHeroDTO[] InventaireHerosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.ItemDTO[] ItemsField;
+        private HugoWorld_Client.HL_Services.ItemDTO[] ItemsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.MondeDTO MondeField;
+        private HugoWorld_Client.HL_Services.MondeDTO MondeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MondeIdField;
@@ -90,7 +90,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.ClasseDTO Classe {
+        public HugoWorld_Client.HL_Services.ClasseDTO Classe {
             get {
                 return this.ClasseField;
             }
@@ -116,7 +116,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.CompteJoueurDTO CompteJoueur {
+        public HugoWorld_Client.HL_Services.CompteJoueurDTO CompteJoueur {
             get {
                 return this.CompteJoueurField;
             }
@@ -181,7 +181,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.InventaireHeroDTO[] InventaireHeros {
+        public HugoWorld_Client.HL_Services.InventaireHeroDTO[] InventaireHeros {
             get {
                 return this.InventaireHerosField;
             }
@@ -194,7 +194,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.ItemDTO[] Items {
+        public HugoWorld_Client.HL_Services.ItemDTO[] Items {
             get {
                 return this.ItemsField;
             }
@@ -207,7 +207,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.MondeDTO Monde {
+        public HugoWorld_Client.HL_Services.MondeDTO Monde {
             get {
                 return this.MondeField;
             }
@@ -359,13 +359,13 @@ namespace HugoLand.HL_Services {
         private string DescrpitionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.HeroDTO[] HerosField;
+        private HugoWorld_Client.HL_Services.HeroDTO[] HerosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.MondeDTO MondeField;
+        private HugoWorld_Client.HL_Services.MondeDTO MondeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MondeIdField;
@@ -409,7 +409,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.HeroDTO[] Heros {
+        public HugoWorld_Client.HL_Services.HeroDTO[] Heros {
             get {
                 return this.HerosField;
             }
@@ -435,7 +435,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.MondeDTO Monde {
+        public HugoWorld_Client.HL_Services.MondeDTO Monde {
             get {
                 return this.MondeField;
             }
@@ -548,7 +548,7 @@ namespace HugoLand.HL_Services {
         private string CourrielField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.HeroDTO[] HerosField;
+        private HugoWorld_Client.HL_Services.HeroDTO[] HerosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -595,7 +595,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.HeroDTO[] Heros {
+        public HugoWorld_Client.HL_Services.HeroDTO[] Heros {
             get {
                 return this.HerosField;
             }
@@ -718,19 +718,19 @@ namespace HugoLand.HL_Services {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.ClasseDTO[] ClassesField;
+        private HugoWorld_Client.HL_Services.ClasseDTO[] ClassesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.HeroDTO[] HerosField;
+        private HugoWorld_Client.HL_Services.HeroDTO[] HerosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.ItemDTO[] ItemsField;
+        private HugoWorld_Client.HL_Services.ItemDTO[] ItemsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int LimiteXField;
@@ -739,10 +739,10 @@ namespace HugoLand.HL_Services {
         private int LimiteYField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.MondeDTO[] MonstresField;
+        private HugoWorld_Client.HL_Services.MondeDTO[] MonstresField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.ObjetMondeDTO[] ObjetMondesField;
+        private HugoWorld_Client.HL_Services.ObjetMondeDTO[] ObjetMondesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -755,7 +755,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.ClasseDTO[] Classes {
+        public HugoWorld_Client.HL_Services.ClasseDTO[] Classes {
             get {
                 return this.ClassesField;
             }
@@ -781,7 +781,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.HeroDTO[] Heros {
+        public HugoWorld_Client.HL_Services.HeroDTO[] Heros {
             get {
                 return this.HerosField;
             }
@@ -807,7 +807,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.ItemDTO[] Items {
+        public HugoWorld_Client.HL_Services.ItemDTO[] Items {
             get {
                 return this.ItemsField;
             }
@@ -846,7 +846,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.MondeDTO[] Monstres {
+        public HugoWorld_Client.HL_Services.MondeDTO[] Monstres {
             get {
                 return this.MonstresField;
             }
@@ -859,7 +859,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.ObjetMondeDTO[] ObjetMondes {
+        public HugoWorld_Client.HL_Services.ObjetMondeDTO[] ObjetMondes {
             get {
                 return this.ObjetMondesField;
             }
@@ -891,7 +891,7 @@ namespace HugoLand.HL_Services {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.HeroDTO HeroField;
+        private HugoWorld_Client.HL_Services.HeroDTO HeroField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdHeroField;
@@ -900,7 +900,7 @@ namespace HugoLand.HL_Services {
         private int IdInventaireHeroField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.ItemDTO ItemField;
+        private HugoWorld_Client.HL_Services.ItemDTO ItemField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ItemIdField;
@@ -919,7 +919,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.HeroDTO Hero {
+        public HugoWorld_Client.HL_Services.HeroDTO Hero {
             get {
                 return this.HeroField;
             }
@@ -958,7 +958,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.ItemDTO Item {
+        public HugoWorld_Client.HL_Services.ItemDTO Item {
             get {
                 return this.ItemField;
             }
@@ -1019,10 +1019,10 @@ namespace HugoLand.HL_Services {
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.EffetItemDTO[] EffetsItemsField;
+        private HugoWorld_Client.HL_Services.EffetItemDTO[] EffetsItemsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.HeroDTO HeroField;
+        private HugoWorld_Client.HL_Services.HeroDTO HeroField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -1034,10 +1034,10 @@ namespace HugoLand.HL_Services {
         private System.Nullable<int> ImageIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.InventaireHeroDTO[] InventaireHeroDTOsField;
+        private HugoWorld_Client.HL_Services.InventaireHeroDTO[] InventaireHeroDTOsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.MondeDTO MondeField;
+        private HugoWorld_Client.HL_Services.MondeDTO MondeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MondeIdField;
@@ -1075,7 +1075,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.EffetItemDTO[] EffetsItems {
+        public HugoWorld_Client.HL_Services.EffetItemDTO[] EffetsItems {
             get {
                 return this.EffetsItemsField;
             }
@@ -1088,7 +1088,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.HeroDTO Hero {
+        public HugoWorld_Client.HL_Services.HeroDTO Hero {
             get {
                 return this.HeroField;
             }
@@ -1140,7 +1140,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.InventaireHeroDTO[] InventaireHeroDTOs {
+        public HugoWorld_Client.HL_Services.InventaireHeroDTO[] InventaireHeroDTOs {
             get {
                 return this.InventaireHeroDTOsField;
             }
@@ -1153,7 +1153,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.MondeDTO Monde {
+        public HugoWorld_Client.HL_Services.MondeDTO Monde {
             get {
                 return this.MondeField;
             }
@@ -1246,7 +1246,7 @@ namespace HugoLand.HL_Services {
         private System.Nullable<int> ImageIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.MondeDTO MondeField;
+        private HugoWorld_Client.HL_Services.MondeDTO MondeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MondeIdField;
@@ -1310,7 +1310,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.MondeDTO Monde {
+        public HugoWorld_Client.HL_Services.MondeDTO Monde {
             get {
                 return this.MondeField;
             }
@@ -1397,7 +1397,7 @@ namespace HugoLand.HL_Services {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HL_Services.ItemDTO ItemField;
+        private HugoWorld_Client.HL_Services.ItemDTO ItemField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ItemIdField;
@@ -1432,7 +1432,7 @@ namespace HugoLand.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HL_Services.ItemDTO Item {
+        public HugoWorld_Client.HL_Services.ItemDTO Item {
             get {
                 return this.ItemField;
             }
@@ -1504,25 +1504,25 @@ namespace HugoLand.HL_Services {
         System.Threading.Tasks.Task<string> ConnectionAsync(string p_Username, string p_Password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/GetHeroesByAccountId", ReplyAction="http://tempuri.org/IJoueurService/GetHeroesByAccountIdResponse")]
-        HL_Services.HeroDTO[] GetHeroesByAccountId(int p_Id);
+        HugoWorld_Client.HL_Services.HeroDTO[] GetHeroesByAccountId(int p_Id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/GetHeroesByAccountId", ReplyAction="http://tempuri.org/IJoueurService/GetHeroesByAccountIdResponse")]
-        System.Threading.Tasks.Task<HL_Services.HeroDTO[]> GetHeroesByAccountIdAsync(int p_Id);
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO[]> GetHeroesByAccountIdAsync(int p_Id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/GetAccountByName", ReplyAction="http://tempuri.org/IJoueurService/GetAccountByNameResponse")]
-        HL_Services.CompteJoueurDTO GetAccountByName(string p_Username);
+        HugoWorld_Client.HL_Services.CompteJoueurDTO GetAccountByName(string p_Username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/GetAccountByName", ReplyAction="http://tempuri.org/IJoueurService/GetAccountByNameResponse")]
-        System.Threading.Tasks.Task<HL_Services.CompteJoueurDTO> GetAccountByNameAsync(string p_Username);
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.CompteJoueurDTO> GetAccountByNameAsync(string p_Username);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IJoueurServiceChannel : HL_Services.IJoueurService, System.ServiceModel.IClientChannel {
+    public interface IJoueurServiceChannel : HugoWorld_Client.HL_Services.IJoueurService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class JoueurServiceClient : System.ServiceModel.ClientBase<HL_Services.IJoueurService>, HL_Services.IJoueurService {
+    public partial class JoueurServiceClient : System.ServiceModel.ClientBase<HugoWorld_Client.HL_Services.IJoueurService>, HugoWorld_Client.HL_Services.IJoueurService {
         
         public JoueurServiceClient() {
         }
@@ -1551,19 +1551,19 @@ namespace HugoLand.HL_Services {
             return base.Channel.ConnectionAsync(p_Username, p_Password);
         }
         
-        public HL_Services.HeroDTO[] GetHeroesByAccountId(int p_Id) {
+        public HugoWorld_Client.HL_Services.HeroDTO[] GetHeroesByAccountId(int p_Id) {
             return base.Channel.GetHeroesByAccountId(p_Id);
         }
         
-        public System.Threading.Tasks.Task<HL_Services.HeroDTO[]> GetHeroesByAccountIdAsync(int p_Id) {
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO[]> GetHeroesByAccountIdAsync(int p_Id) {
             return base.Channel.GetHeroesByAccountIdAsync(p_Id);
         }
         
-        public HL_Services.CompteJoueurDTO GetAccountByName(string p_Username) {
+        public HugoWorld_Client.HL_Services.CompteJoueurDTO GetAccountByName(string p_Username) {
             return base.Channel.GetAccountByName(p_Username);
         }
         
-        public System.Threading.Tasks.Task<HL_Services.CompteJoueurDTO> GetAccountByNameAsync(string p_Username) {
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.CompteJoueurDTO> GetAccountByNameAsync(string p_Username) {
             return base.Channel.GetAccountByNameAsync(p_Username);
         }
     }
@@ -1573,19 +1573,19 @@ namespace HugoLand.HL_Services {
     public interface IMondeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/ListWorlds", ReplyAction="http://tempuri.org/IMondeService/ListWorldsResponse")]
-        HL_Services.MondeDTO[] ListWorlds();
+        HugoWorld_Client.HL_Services.MondeDTO[] ListWorlds();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/ListWorlds", ReplyAction="http://tempuri.org/IMondeService/ListWorldsResponse")]
-        System.Threading.Tasks.Task<HL_Services.MondeDTO[]> ListWorldsAsync();
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MondeDTO[]> ListWorldsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IMondeServiceChannel : HL_Services.IMondeService, System.ServiceModel.IClientChannel {
+    public interface IMondeServiceChannel : HugoWorld_Client.HL_Services.IMondeService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class MondeServiceClient : System.ServiceModel.ClientBase<HL_Services.IMondeService>, HL_Services.IMondeService {
+    public partial class MondeServiceClient : System.ServiceModel.ClientBase<HugoWorld_Client.HL_Services.IMondeService>, HugoWorld_Client.HL_Services.IMondeService {
         
         public MondeServiceClient() {
         }
@@ -1606,11 +1606,11 @@ namespace HugoLand.HL_Services {
                 base(binding, remoteAddress) {
         }
         
-        public HL_Services.MondeDTO[] ListWorlds() {
+        public HugoWorld_Client.HL_Services.MondeDTO[] ListWorlds() {
             return base.Channel.ListWorlds();
         }
         
-        public System.Threading.Tasks.Task<HL_Services.MondeDTO[]> ListWorldsAsync() {
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MondeDTO[]> ListWorldsAsync() {
             return base.Channel.ListWorldsAsync();
         }
     }
@@ -1626,10 +1626,10 @@ namespace HugoLand.HL_Services {
         System.Threading.Tasks.Task AddItemAsync(string p_Nom, string p_Description, int p_X, int p_Y, int p_ImageId, int p_MondeId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/DeleteItemById", ReplyAction="http://tempuri.org/IItemService/DeleteItemByIdResponse")]
-        void DeleteItemById(int p_ItemId, HL_Services.HeroDTO p_Hero);
+        void DeleteItemById(int p_ItemId, HugoWorld_Client.HL_Services.HeroDTO p_Hero);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/DeleteItemById", ReplyAction="http://tempuri.org/IItemService/DeleteItemByIdResponse")]
-        System.Threading.Tasks.Task DeleteItemByIdAsync(int p_ItemId, HL_Services.HeroDTO p_Hero);
+        System.Threading.Tasks.Task DeleteItemByIdAsync(int p_ItemId, HugoWorld_Client.HL_Services.HeroDTO p_Hero);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/EditItemQuantityById", ReplyAction="http://tempuri.org/IItemService/EditItemQuantityByIdResponse")]
         void EditItemQuantityById(int p_ItemId, int p_Quantite);
@@ -1638,10 +1638,10 @@ namespace HugoLand.HL_Services {
         System.Threading.Tasks.Task EditItemQuantityByIdAsync(int p_ItemId, int p_Quantite);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/AddRangeItems", ReplyAction="http://tempuri.org/IItemService/AddRangeItemsResponse")]
-        void AddRangeItems(HL_Services.ItemDTO[] lstItems);
+        void AddRangeItems(HugoWorld_Client.HL_Services.ItemDTO[] lstItems);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/AddRangeItems", ReplyAction="http://tempuri.org/IItemService/AddRangeItemsResponse")]
-        System.Threading.Tasks.Task AddRangeItemsAsync(HL_Services.ItemDTO[] lstItems);
+        System.Threading.Tasks.Task AddRangeItemsAsync(HugoWorld_Client.HL_Services.ItemDTO[] lstItems);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/RemoveRangeById", ReplyAction="http://tempuri.org/IItemService/RemoveRangeByIdResponse")]
         void RemoveRangeById(int p_ItemId);
@@ -1669,12 +1669,12 @@ namespace HugoLand.HL_Services {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IItemServiceChannel : HL_Services.IItemService, System.ServiceModel.IClientChannel {
+    public interface IItemServiceChannel : HugoWorld_Client.HL_Services.IItemService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ItemServiceClient : System.ServiceModel.ClientBase<HL_Services.IItemService>, HL_Services.IItemService {
+    public partial class ItemServiceClient : System.ServiceModel.ClientBase<HugoWorld_Client.HL_Services.IItemService>, HugoWorld_Client.HL_Services.IItemService {
         
         public ItemServiceClient() {
         }
@@ -1703,11 +1703,11 @@ namespace HugoLand.HL_Services {
             return base.Channel.AddItemAsync(p_Nom, p_Description, p_X, p_Y, p_ImageId, p_MondeId);
         }
         
-        public void DeleteItemById(int p_ItemId, HL_Services.HeroDTO p_Hero) {
+        public void DeleteItemById(int p_ItemId, HugoWorld_Client.HL_Services.HeroDTO p_Hero) {
             base.Channel.DeleteItemById(p_ItemId, p_Hero);
         }
         
-        public System.Threading.Tasks.Task DeleteItemByIdAsync(int p_ItemId, HL_Services.HeroDTO p_Hero) {
+        public System.Threading.Tasks.Task DeleteItemByIdAsync(int p_ItemId, HugoWorld_Client.HL_Services.HeroDTO p_Hero) {
             return base.Channel.DeleteItemByIdAsync(p_ItemId, p_Hero);
         }
         
@@ -1719,11 +1719,11 @@ namespace HugoLand.HL_Services {
             return base.Channel.EditItemQuantityByIdAsync(p_ItemId, p_Quantite);
         }
         
-        public void AddRangeItems(HL_Services.ItemDTO[] lstItems) {
+        public void AddRangeItems(HugoWorld_Client.HL_Services.ItemDTO[] lstItems) {
             base.Channel.AddRangeItems(lstItems);
         }
         
-        public System.Threading.Tasks.Task AddRangeItemsAsync(HL_Services.ItemDTO[] lstItems) {
+        public System.Threading.Tasks.Task AddRangeItemsAsync(HugoWorld_Client.HL_Services.ItemDTO[] lstItems) {
             return base.Channel.AddRangeItemsAsync(lstItems);
         }
         

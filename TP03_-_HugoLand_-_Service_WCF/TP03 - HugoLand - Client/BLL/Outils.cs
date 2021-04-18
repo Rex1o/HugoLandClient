@@ -1,4 +1,4 @@
-﻿using HugoLand.HL_Services;
+﻿using HugoWorld_Client.HL_Services;
 using System;
 
 namespace HugoWorld.BLL {

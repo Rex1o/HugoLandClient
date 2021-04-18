@@ -1,11 +1,11 @@
-﻿using HugoWorld.WCF.DTOs;
+﻿using HugoWorld_WCF.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
 using TP01_Library.Models;
 
-namespace HugoWorld.WCF.Services {
+namespace HugoWorld_WCF.Services {
 
     public partial class HugoLandService : IJoueurService {
 

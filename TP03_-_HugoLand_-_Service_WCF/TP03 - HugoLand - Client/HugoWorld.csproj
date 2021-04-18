@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,7 +12,7 @@
     <RootNamespace>HugoWorld</RootNamespace>
     <AssemblyName>HugoWorld</AssemblyName>
     <ApplicationIcon>app.ico</ApplicationIcon>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -79,11 +79,12 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Area.cs" />
     <Compile Include="BitmapCache.cs" />
-    <Compile Include="Connected Services\Services\Reference.cs">
+    <Compile Include="Connected Services\HL_Services\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -151,20 +152,20 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="Connected Services\Services\HugoLandService.wsdl" />
-    <None Include="Connected Services\Services\HugoWorld.Services.CompteJoueurDTO.datasource">
+    <None Include="Connected Services\HL_Services\HugoLandService.wsdl" />
+    <None Include="Connected Services\HL_Services\HugoWorld.HL_Services.CompteJoueurDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\Services\HugoWorld.Services.HeroDTO.datasource">
+    <None Include="Connected Services\HL_Services\HugoWorld.HL_Services.HeroDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\Services\Services.xsd">
+    <None Include="Connected Services\HL_Services\Services.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\Services\Services1.xsd">
+    <None Include="Connected Services\HL_Services\Services1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\Services\Services2.xsd">
+    <None Include="Connected Services\HL_Services\Services2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Eula.rtf" />
@@ -188,10 +189,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
-    <None Include="Connected Services\Services\Services.disco" />
-    <None Include="Connected Services\Services\configuration91.svcinfo" />
-    <None Include="Connected Services\Services\configuration.svcinfo" />
-    <None Include="Connected Services\Services\Reference.svcmap">
+    <None Include="Connected Services\HL_Services\Services.disco" />
+    <None Include="Connected Services\HL_Services\configuration91.svcinfo" />
+    <None Include="Connected Services\HL_Services\configuration.svcinfo" />
+    <None Include="Connected Services\HL_Services\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -259,7 +260,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\Services\" />
+    <WCFMetadataStorage Include="Connected Services\HL_Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

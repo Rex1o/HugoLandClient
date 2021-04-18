@@ -1,5 +1,4 @@
-﻿//using HugoWorld.Services;
-using HugoWorld.Services;
+﻿using HL_Services;
 using System;
 using System.Windows.Forms;
 using TP01_Library.Controllers;
@@ -9,15 +8,14 @@ namespace HugoWorld {
     public partial class frmConnection : Form {
 
         //Service a utiliser
-        private readonly JoueurServiceClient joueurService = new JoueurServiceClient();
-        //private readonly JoueurServiceClient joueurService;
+        private readonly JoueurServiceClient joueurService;
 
         /// <summary>
         /// Description : Initialise le formulaire de connexion
         /// </summary>
         public frmConnection()
         {
-            //joueurService = new JoueurServiceClient();
+            joueurService = new JoueurServiceClient();
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
@@ -41,9 +39,8 @@ namespace HugoWorld {
             string username = txt_username.Text;
             string password = txt_password.Text;
 
-            CompteJoueurController controller = new CompteJoueurController();
+            //CompteJoueurController controller = new CompteJoueurController();
             string reponse = joueurService.Connection(username, password);
-            //string reponse = joueurService.Connection(password, username);
 
             if (reponse == "INVALIDE")
             {
@@ -53,9 +50,7 @@ namespace HugoWorld {
             else if (reponse == "SUCCESS")
             {
                 //Outil.SetActiveUser(joueurService.GetAccountByName(username));
-                Outil.SetActiveUser(controller.TrouverJoueur(username));
-                //if (joueurService.GetAccountByName(username).TypeUtilisateur == 2)
-                if (controller.TrouverJoueur(username).TypeUtilisateur == 2)
+                if (joueurService.GetAccountByName(username).TypeUtilisateur == 2)
                 {
                     this.Close();
                 }

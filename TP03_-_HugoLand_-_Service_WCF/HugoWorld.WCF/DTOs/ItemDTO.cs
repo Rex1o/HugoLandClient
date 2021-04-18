@@ -1,6 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
-namespace HugoWorld.WCF.DTOs {
+namespace HugoWorld_WCF.DTOs {
 
     [DataContract]
     public class ItemDTO {
@@ -29,16 +30,16 @@ namespace HugoWorld.WCF.DTOs {
         [DataMember]
         public int? IdHero { get; set; }
 
-        //[DataMember]
-        //public virtual List<EffetItemDTO> EffetsItems { get; set; }
+        [DataMember]
+        public virtual List<EffetItemDTO> EffetsItems { get; set; }
 
-        //[DataMember]
-        //public virtual List<InventaireHeroDTO> InventaireHeroDTOs { get; set; }
+        [DataMember]
+        public virtual List<InventaireHeroDTO> InventaireHeroDTOs { get; set; }
 
-        //[DataMember]
-        //public virtual HeroDTO Hero { get; set; }
+        [DataMember]
+        public virtual HeroDTO Hero { get; set; }
 
-        //[DataMember]
-        //public virtual MondeDTO Monde { get; set; }
+        [DataMember]
+        public virtual MondeDTO Monde { get; set; }
     }
 }

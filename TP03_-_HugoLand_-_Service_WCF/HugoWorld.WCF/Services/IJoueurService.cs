@@ -1,8 +1,8 @@
-﻿using HugoWorld.WCF.DTOs;
+﻿using HugoWorld_WCF.DTOs;
 using System.Collections.Generic;
 using System.ServiceModel;
 
-namespace HugoWorld.WCF.Services {
+namespace HugoWorld_WCF.Services {
 
     [ServiceContract]
     public interface IJoueurService {

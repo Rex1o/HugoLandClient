@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace HugoWorld.WCF.DTOs {
+namespace HugoWorld_WCF.DTOs {
 
     [DataContract]
     public class MonstreDTO {
@@ -35,7 +35,7 @@ namespace HugoWorld.WCF.DTOs {
         [DataMember]
         public int ImageId { get; set; }
 
-        //[DataMember]
-        //public virtual MondeDTO Monde { get; set; }
+        [DataMember]
+        public virtual MondeDTO Monde { get; set; }
     }
 }

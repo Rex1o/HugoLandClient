@@ -5,11 +5,9 @@ using System.IO;
 using System.Windows.Forms;
 using TP01_Library.Models;
 
-namespace HugoWorld
-{
+namespace HugoWorld {
 
-    public class GameState
-    {
+    public class GameState {
         public SizeF GameArea;
         public World World;
         public Hero Hero;

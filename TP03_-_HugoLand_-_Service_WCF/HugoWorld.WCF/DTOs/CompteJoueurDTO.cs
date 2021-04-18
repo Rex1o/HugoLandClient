@@ -1,6 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
-namespace HugoWorld.WCF.DTOs {
+namespace HugoWorld_WCF.DTOs {
 
     [DataContract]
     public class CompteJoueurDTO {
@@ -31,7 +32,7 @@ namespace HugoWorld.WCF.DTOs {
         [DataMember]
         public System.Guid Salt { get; set; }
 
-        //[DataMember]
-        //public virtual List<HeroDTO> Heros { get; set; }
+        [DataMember]
+        public virtual List<HeroDTO> Heros { get; set; }
     }
 }

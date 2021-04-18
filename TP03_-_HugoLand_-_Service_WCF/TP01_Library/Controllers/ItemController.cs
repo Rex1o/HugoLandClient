@@ -31,8 +31,6 @@ namespace TP01_Library.Controllers {
                     ImageId = p_ImageID
                 });
 
-                //ImageId = p_ImageID
-
                 dbcontext.SaveChanges();
             }
         }

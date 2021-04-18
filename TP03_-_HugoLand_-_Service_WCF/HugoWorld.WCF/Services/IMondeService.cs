@@ -2,7 +2,7 @@
 using HugoWorld.WCF.DTOs;
 using System.Collections.Generic;
 
-namespace HugoWorld.WCF.Services {
+namespace HugoWorld_WCF.Services {
 
     [ServiceContract]
     public interface IMondeService {

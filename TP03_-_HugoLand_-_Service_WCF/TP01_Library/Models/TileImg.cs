@@ -14,7 +14,22 @@ namespace TP01_Library.Models
     
     public partial class TileImg
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TileImg()
+        {
+            this.Items = new HashSet<Item>();
+            this.Monstres = new HashSet<Monstre>();
+            this.ObjetMondes = new HashSet<ObjetMonde>();
+        }
+    
         public int ImageId { get; set; }
         public string Imageb64 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Item> Items { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Monstre> Monstres { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ObjetMonde> ObjetMondes { get; set; }
     }
 }

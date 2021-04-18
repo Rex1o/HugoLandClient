@@ -28,6 +28,7 @@ namespace TP01_Library.Models
         }
     
         public virtual DbSet<Classe> Classes { get; set; }
+        public virtual DbSet<CompteJoueur> CompteJoueurs { get; set; }
         public virtual DbSet<EffetItem> EffetItems { get; set; }
         public virtual DbSet<Hero> Heros { get; set; }
         public virtual DbSet<InventaireHero> InventaireHeroes { get; set; }
@@ -37,7 +38,6 @@ namespace TP01_Library.Models
         public virtual DbSet<ObjetMonde> ObjetMondes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TileImg> TileImgs { get; set; }
-        public virtual DbSet<CompteJoueur> CompteJoueurs { get; set; }
     
         public virtual int Connexion(string pNomJoueur, string pMotDePasse, ObjectParameter message)
         {
@@ -79,48 +79,6 @@ namespace TP01_Library.Models
                 new ObjectParameter("pMotDePasse", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreerCompteJoueur", pNomUtilisateurParameter, pCourrielParameter, pPrenomParameter, pNomParameter, pTypeUtilisateurParameter, pMotDePasseParameter, message);
-        }
-    
-        public virtual int Connexion1(string pNomJoueur, string pMotDePasse, ObjectParameter message)
-        {
-            var pNomJoueurParameter = pNomJoueur != null ?
-                new ObjectParameter("pNomJoueur", pNomJoueur) :
-                new ObjectParameter("pNomJoueur", typeof(string));
-    
-            var pMotDePasseParameter = pMotDePasse != null ?
-                new ObjectParameter("pMotDePasse", pMotDePasse) :
-                new ObjectParameter("pMotDePasse", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Connexion1", pNomJoueurParameter, pMotDePasseParameter, message);
-        }
-    
-        public virtual int CreerCompteJoueur1(string pNomUtilisateur, string pCourriel, string pPrenom, string pNom, Nullable<int> pTypeUtilisateur, string pMotDePasse, ObjectParameter message)
-        {
-            var pNomUtilisateurParameter = pNomUtilisateur != null ?
-                new ObjectParameter("pNomUtilisateur", pNomUtilisateur) :
-                new ObjectParameter("pNomUtilisateur", typeof(string));
-    
-            var pCourrielParameter = pCourriel != null ?
-                new ObjectParameter("pCourriel", pCourriel) :
-                new ObjectParameter("pCourriel", typeof(string));
-    
-            var pPrenomParameter = pPrenom != null ?
-                new ObjectParameter("pPrenom", pPrenom) :
-                new ObjectParameter("pPrenom", typeof(string));
-    
-            var pNomParameter = pNom != null ?
-                new ObjectParameter("pNom", pNom) :
-                new ObjectParameter("pNom", typeof(string));
-    
-            var pTypeUtilisateurParameter = pTypeUtilisateur.HasValue ?
-                new ObjectParameter("pTypeUtilisateur", pTypeUtilisateur) :
-                new ObjectParameter("pTypeUtilisateur", typeof(int));
-    
-            var pMotDePasseParameter = pMotDePasse != null ?
-                new ObjectParameter("pMotDePasse", pMotDePasse) :
-                new ObjectParameter("pMotDePasse", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CreerCompteJoueur1", pNomUtilisateurParameter, pCourrielParameter, pPrenomParameter, pNomParameter, pTypeUtilisateurParameter, pMotDePasseParameter, message);
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

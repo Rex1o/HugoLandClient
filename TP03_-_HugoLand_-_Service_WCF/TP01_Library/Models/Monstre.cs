@@ -26,6 +26,6 @@ namespace TP01_Library.Models
         public int ImageId { get; set; }
     
         public virtual Monde Monde { get; set; }
-        public virtual TileImg Image { get; set; }
+        public virtual TileImg TileImg { get; set; }
     }
 }

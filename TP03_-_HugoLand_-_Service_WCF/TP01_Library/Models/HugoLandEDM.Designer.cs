@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\slala\Desktop\ECOLE\Session_4\bd\Tp03\TP03_-_HugoLand_-_Service_WCF\TP01_Library\Models\HugoLandEDM.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\matla\Documents\GitHub\HugoLandClient\TP03_-_HugoLand_-_Service_WCF\TP01_Library\Models\HugoLandEDM.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

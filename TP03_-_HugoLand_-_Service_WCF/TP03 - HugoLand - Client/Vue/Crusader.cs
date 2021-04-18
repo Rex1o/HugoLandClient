@@ -1,3 +1,4 @@
+using HugoWorld.BLL;
 using HugoWorld.Vue;
 using System;
 using System.Diagnostics;
@@ -16,6 +17,8 @@ namespace HugoWorld {
         {
             //Setup the form
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
             //Startup the game state
@@ -70,7 +73,7 @@ namespace HugoWorld {
             Login.ShowDialog();
 
             //Show Character Selector/Creator Here
-            frmCharacterSelector chSelect = new frmCharacterSelector(Outil.GetActiveUser()); // <= ça plante, need new Outil.cs dans le WCF
+            frmCharacterSelector chSelect = new frmCharacterSelector(Outils.GetActiveUser()); // <= ça plante, need new Outil.cs dans le WCF
             chSelect.ShowDialog();
 
             //if there is an error with the selection
@@ -89,6 +92,7 @@ namespace HugoWorld {
             //Then Show help/Start game
             this.Enabled = true;
             Form help = new helpform();
+            help.StartPosition = FormStartPosition.CenterScreen;
             help.Show();
             help.Focus();
         }

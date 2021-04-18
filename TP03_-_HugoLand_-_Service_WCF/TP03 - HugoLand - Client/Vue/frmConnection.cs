@@ -1,7 +1,7 @@
-﻿using HugoWorld_Client.HL_Services;
+﻿using HugoWorld.BLL;
+using HugoWorld_Client.HL_Services;
 using System;
 using System.Windows.Forms;
-using TP01_Library.Controllers;
 
 namespace HugoWorld {
 
@@ -39,31 +39,45 @@ namespace HugoWorld {
             string username = txt_username.Text;
             string password = txt_password.Text;
 
-            //CompteJoueurController controller = new CompteJoueurController();
-            string reponse = joueurService.Connection(username, password);
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
+                string reponse = joueurService.Connection(username, password);
 
-            if (reponse == "INVALIDE")
-            {
-                MessageBox.Show("USERNAME IS INVALID", "Connection error",
-    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (reponse == "SUCCESS")
-            {
-                //Outil.SetActiveUser(joueurService.GetAccountByName(username));
-                if (joueurService.GetAccountByName(username).TypeUtilisateur == 2)
+                if (reponse == "INVALIDE")
                 {
-                    this.Close();
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show("USERNAME IS INVALID", "Connection error",
+        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else
+                else if (reponse == "SUCCESS")
                 {
-                    MessageBox.Show("YOU DO NOT HAVE PERMISSIONS TO LOG IN", "Connection error",
-    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Cursor = Cursors.Default;
+
+                    Outils.SetActiveUser(joueurService.GetAccountByName(username));
+                    if (joueurService.GetAccountByName(username).TypeUtilisateur == 2)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        this.Cursor = Cursors.Default;
+                        MessageBox.Show("YOU DO NOT HAVE PERMISSIONS TO LOG IN", "Connection error",
+        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else if (reponse == "INCORRECT")
+                {
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show("PASSWORD IS INVALID", "Connection error",
+        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else if (reponse == "INCORRECT")
+            catch
             {
-                MessageBox.Show("PASSWORD IS INVALID", "Connection error",
-    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Cursor = Cursors.Default;
+                MessageBox.Show("PLEASE RECONNECT", "Connection error",
+MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

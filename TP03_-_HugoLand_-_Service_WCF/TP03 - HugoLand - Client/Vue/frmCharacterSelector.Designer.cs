@@ -58,7 +58,7 @@
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.BackgroundImage = global::HugoWorld.Properties.Resources.GreenPlusBtn;
+            this.btnAdd.BackgroundImage = global::HugoWorld_Client.Properties.Resources.GreenPlusBtn;
             this.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;

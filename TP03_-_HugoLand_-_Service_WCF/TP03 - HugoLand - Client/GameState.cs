@@ -1,3 +1,4 @@
+using HugoWorld_Client.HL_Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,7 +11,7 @@ namespace HugoWorld {
     public class GameState {
         public SizeF GameArea;
         public World World;
-        public Hero Hero;
+        public HeroDTO Hero;
         public int Attack;
         public int Armour;
         public int Level;
@@ -156,7 +157,7 @@ namespace HugoWorld {
         /// Loads hero stats
         /// </summary>
         /// <param name="h"></param>
-        public void LoadHero(Hero h)
+        public void LoadHero(HeroDTO h)
         {
             Hero = h;
         }

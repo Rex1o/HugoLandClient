@@ -1,22 +1,25 @@
-﻿using System;
+﻿using HugoWorld_Client.HL_Services;
+using System;
 using System.Windows.Forms;
 using TP01_Library.Models;
 
 namespace HugoWorld.Vue {
 
     public partial class frmCharacterSelector : Form {
-        public Hero Hero { get; set; }
+        public HeroDTO Hero { get; set; }
         public string ErrorMsg { get; set; }
-        private Hero _selectedHero;
-        private CompteJoueur _user;
+        private HeroDTO _selectedHero;
+        private CompteJoueurDTO _user;
 
-        public frmCharacterSelector(CompteJoueur j)
+        public frmCharacterSelector(CompteJoueurDTO j)
         {
             _user = j;
+            InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.FlatAppearance.BorderSize = 0;
             btnOk.Enabled = false;
-            InitializeComponent();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

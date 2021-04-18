@@ -156,8 +156,10 @@ namespace HugoWorld.Vue
             // 
             // CmbWorld
             // 
+            this.CmbWorld.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbWorld.FormattingEnabled = true;
             this.CmbWorld.Location = new System.Drawing.Point(11, 390);
+            this.CmbWorld.MaxDropDownItems = 100;
             this.CmbWorld.Name = "CmbWorld";
             this.CmbWorld.Size = new System.Drawing.Size(242, 24);
             this.CmbWorld.TabIndex = 13;
@@ -177,7 +179,7 @@ namespace HugoWorld.Vue
             this.btnAddClass.Name = "btnAddClass";
             this.btnAddClass.Size = new System.Drawing.Size(242, 55);
             this.btnAddClass.TabIndex = 15;
-            this.btnAddClass.Text = "btnAddClass";
+            this.btnAddClass.Text = "Add Class";
             this.btnAddClass.UseVisualStyleBackColor = true;
             this.btnAddClass.Click += new System.EventHandler(this.btnAddClass_Click);
             // 

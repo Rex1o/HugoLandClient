@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ecf78d7bc1fd4f278c1b1ef025a090f2" Name="Diagram1">
+      <Diagram DiagramId="ecf78d7bc1fd4f278c1b1ef025a090f2" Name="Diagram1" ZoomLevel="71">
         <EntityTypeShape EntityType="HugoLandModel.Classe" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="HugoLandModel.CompteJoueur" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HugoLandModel.EffetItem" Width="1.5" PointX="12.75" PointY="7.625" IsExpanded="true" />

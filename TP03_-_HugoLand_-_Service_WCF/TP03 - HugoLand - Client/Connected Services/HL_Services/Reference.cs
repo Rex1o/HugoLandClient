@@ -1759,4 +1759,51 @@ namespace HugoWorld_Client.HL_Services {
             return base.Channel.EditItemEffectByIdAsync(p_ItemId, p_EffetItemId, p_ValeurEffet, p_TypeEffet);
         }
     }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HL_Services.IClasseService")]
+    public interface IClasseService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/AddClassToDatabase", ReplyAction="http://tempuri.org/IClasseService/AddClassToDatabaseResponse")]
+        bool AddClassToDatabase(HugoWorld_Client.HL_Services.ClasseDTO p_Class);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/AddClassToDatabase", ReplyAction="http://tempuri.org/IClasseService/AddClassToDatabaseResponse")]
+        System.Threading.Tasks.Task<bool> AddClassToDatabaseAsync(HugoWorld_Client.HL_Services.ClasseDTO p_Class);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IClasseServiceChannel : HugoWorld_Client.HL_Services.IClasseService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ClasseServiceClient : System.ServiceModel.ClientBase<HugoWorld_Client.HL_Services.IClasseService>, HugoWorld_Client.HL_Services.IClasseService {
+        
+        public ClasseServiceClient() {
+        }
+        
+        public ClasseServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ClasseServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ClasseServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ClasseServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public bool AddClassToDatabase(HugoWorld_Client.HL_Services.ClasseDTO p_Class) {
+            return base.Channel.AddClassToDatabase(p_Class);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddClassToDatabaseAsync(HugoWorld_Client.HL_Services.ClasseDTO p_Class) {
+            return base.Channel.AddClassToDatabaseAsync(p_Class);
+        }
+    }
 }

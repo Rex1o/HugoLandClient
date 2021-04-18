@@ -52,9 +52,9 @@ namespace HugoWorld.Vue
             this.lblBaseForce.AutoSize = true;
             this.lblBaseForce.Location = new System.Drawing.Point(9, 187);
             this.lblBaseForce.Name = "lblBaseForce";
-            this.lblBaseForce.Size = new System.Drawing.Size(80, 17);
+            this.lblBaseForce.Size = new System.Drawing.Size(125, 21);
             this.lblBaseForce.TabIndex = 0;
-            this.lblBaseForce.Text = "Base force:";
+            this.lblBaseForce.Text = "Base strenght:";
             // 
             // lblBaseDexterity
             // 
@@ -89,6 +89,7 @@ namespace HugoWorld.Vue
             this.txtBaseForce.Name = "txtBaseForce";
             this.txtBaseForce.Size = new System.Drawing.Size(242, 22);
             this.txtBaseForce.TabIndex = 4;
+            this.txtBaseForce.TextChanged += new System.EventHandler(this.txtBaseForce_TextChanged);
             // 
             // txtBaseDexterity
             // 
@@ -96,6 +97,7 @@ namespace HugoWorld.Vue
             this.txtBaseDexterity.Name = "txtBaseDexterity";
             this.txtBaseDexterity.Size = new System.Drawing.Size(242, 22);
             this.txtBaseDexterity.TabIndex = 5;
+            this.txtBaseDexterity.TextChanged += new System.EventHandler(this.txtBaseDexterity_TextChanged);
             // 
             // txtBaseVitality
             // 
@@ -103,6 +105,7 @@ namespace HugoWorld.Vue
             this.txtBaseVitality.Name = "txtBaseVitality";
             this.txtBaseVitality.Size = new System.Drawing.Size(242, 22);
             this.txtBaseVitality.TabIndex = 6;
+            this.txtBaseVitality.TextChanged += new System.EventHandler(this.txtBaseVitality_TextChanged);
             // 
             // txtBaseIntegrity
             // 
@@ -110,6 +113,7 @@ namespace HugoWorld.Vue
             this.txtBaseIntegrity.Name = "txtBaseIntegrity";
             this.txtBaseIntegrity.Size = new System.Drawing.Size(242, 22);
             this.txtBaseIntegrity.TabIndex = 7;
+            this.txtBaseIntegrity.TextChanged += new System.EventHandler(this.txtBaseIntegrity_TextChanged);
             // 
             // lblName
             // 
@@ -156,8 +160,10 @@ namespace HugoWorld.Vue
             // 
             // CmbWorld
             // 
+            this.CmbWorld.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbWorld.FormattingEnabled = true;
             this.CmbWorld.Location = new System.Drawing.Point(11, 390);
+            this.CmbWorld.MaxDropDownItems = 100;
             this.CmbWorld.Name = "CmbWorld";
             this.CmbWorld.Size = new System.Drawing.Size(242, 24);
             this.CmbWorld.TabIndex = 13;
@@ -177,7 +183,7 @@ namespace HugoWorld.Vue
             this.btnAddClass.Name = "btnAddClass";
             this.btnAddClass.Size = new System.Drawing.Size(242, 55);
             this.btnAddClass.TabIndex = 15;
-            this.btnAddClass.Text = "btnAddClass";
+            this.btnAddClass.Text = "Add Class";
             this.btnAddClass.UseVisualStyleBackColor = true;
             this.btnAddClass.Click += new System.EventHandler(this.btnAddClass_Click);
             // 

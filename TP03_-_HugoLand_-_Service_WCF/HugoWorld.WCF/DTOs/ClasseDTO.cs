@@ -22,11 +22,5 @@ namespace HugoWorld_WCF.DTOs {
         public int StatBaseVitalite { get; set; }
         [DataMember]
         public int MondeId { get; set; }
-
-        [DataMember]
-        public virtual MondeDTO Monde { get; set; }
-
-        [DataMember]
-        public virtual List<HeroDTO> Heros { get; set; }
     }
 }

@@ -89,6 +89,7 @@ namespace HugoWorld.Vue
             this.txtBaseForce.Name = "txtBaseForce";
             this.txtBaseForce.Size = new System.Drawing.Size(242, 22);
             this.txtBaseForce.TabIndex = 4;
+            this.txtBaseForce.TextChanged += new System.EventHandler(this.txtBaseForce_TextChanged);
             // 
             // txtBaseDexterity
             // 
@@ -96,6 +97,7 @@ namespace HugoWorld.Vue
             this.txtBaseDexterity.Name = "txtBaseDexterity";
             this.txtBaseDexterity.Size = new System.Drawing.Size(242, 22);
             this.txtBaseDexterity.TabIndex = 5;
+            this.txtBaseDexterity.TextChanged += new System.EventHandler(this.txtBaseDexterity_TextChanged);
             // 
             // txtBaseVitality
             // 
@@ -103,6 +105,7 @@ namespace HugoWorld.Vue
             this.txtBaseVitality.Name = "txtBaseVitality";
             this.txtBaseVitality.Size = new System.Drawing.Size(242, 22);
             this.txtBaseVitality.TabIndex = 6;
+            this.txtBaseVitality.TextChanged += new System.EventHandler(this.txtBaseVitality_TextChanged);
             // 
             // txtBaseIntegrity
             // 
@@ -110,6 +113,7 @@ namespace HugoWorld.Vue
             this.txtBaseIntegrity.Name = "txtBaseIntegrity";
             this.txtBaseIntegrity.Size = new System.Drawing.Size(242, 22);
             this.txtBaseIntegrity.TabIndex = 7;
+            this.txtBaseIntegrity.TextChanged += new System.EventHandler(this.txtBaseIntegrity_TextChanged);
             // 
             // lblName
             // 

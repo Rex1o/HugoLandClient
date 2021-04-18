@@ -32,7 +32,30 @@ namespace HugoWorld.Vue
         {
             string itemstr = CmbWorld.SelectedItem.ToString();
             int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
-            
+            ClasseDTO ClassToAdd = new ClasseDTO()
+            {
+
+            };
+        }
+
+        private void txtBaseForce_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBaseDexterity_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBaseVitality_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBaseIntegrity_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -72,6 +72,9 @@ namespace HugoWorld {
             this.Enabled = false;
             Login.ShowDialog();
 
+            while (Login.DialogResult != DialogResult.OK)
+                Login.ShowDialog();
+
             //Show Character Selector/Creator Here
             frmCharacterSelector chSelect = new frmCharacterSelector(Outils.GetActiveUser()); // <= ça plante, need new Outil.cs dans le WCF
             chSelect.ShowDialog();

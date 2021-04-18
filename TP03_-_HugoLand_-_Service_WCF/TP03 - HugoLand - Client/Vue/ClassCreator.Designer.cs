@@ -52,9 +52,9 @@ namespace HugoWorld.Vue
             this.lblBaseForce.AutoSize = true;
             this.lblBaseForce.Location = new System.Drawing.Point(9, 187);
             this.lblBaseForce.Name = "lblBaseForce";
-            this.lblBaseForce.Size = new System.Drawing.Size(80, 17);
+            this.lblBaseForce.Size = new System.Drawing.Size(125, 21);
             this.lblBaseForce.TabIndex = 0;
-            this.lblBaseForce.Text = "Base force:";
+            this.lblBaseForce.Text = "Base strenght:";
             // 
             // lblBaseDexterity
             // 

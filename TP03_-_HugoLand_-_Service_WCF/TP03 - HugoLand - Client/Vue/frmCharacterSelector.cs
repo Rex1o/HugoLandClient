@@ -17,6 +17,8 @@ namespace HugoWorld.Vue {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
 
+            //Remplir la liste selon le user
+
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.FlatAppearance.BorderSize = 0;
             btnOk.Enabled = false;

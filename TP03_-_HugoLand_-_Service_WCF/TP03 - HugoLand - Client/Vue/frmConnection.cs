@@ -3,12 +3,15 @@ using HugoWorld_Client.HL_Services;
 using System;
 using System.Windows.Forms;
 
-namespace HugoWorld {
+namespace HugoWorld
+{
 
-    public partial class frmConnection : Form {
+    public partial class frmConnection : Form
+    {
 
         //Service a utiliser
         private readonly JoueurServiceClient joueurService;
+        string reponse = "NewAttempt";
 
         /// <summary>
         /// Description : Initialise le formulaire de connexion
@@ -42,13 +45,13 @@ namespace HugoWorld {
             this.Cursor = Cursors.WaitCursor;
             try
             {
-                string reponse = joueurService.Connection(username, password);
+                reponse = joueurService.Connection(username, password);
 
                 if (reponse == "INVALIDE")
                 {
                     this.Cursor = Cursors.Default;
                     MessageBox.Show("USERNAME IS INVALID", "Connection error",
-        MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 }
                 else if (reponse == "SUCCESS")
                 {
@@ -63,22 +66,36 @@ namespace HugoWorld {
                     {
                         this.Cursor = Cursors.Default;
                         MessageBox.Show("YOU DO NOT HAVE PERMISSIONS TO LOG IN", "Connection error",
-        MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                        reponse = "Error";
                     }
                 }
                 else if (reponse == "INCORRECT")
                 {
                     this.Cursor = Cursors.Default;
                     MessageBox.Show("PASSWORD IS INVALID", "Connection error",
-        MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 }
             }
             catch
             {
                 this.Cursor = Cursors.Default;
                 MessageBox.Show("PLEASE RECONNECT", "Connection error",
-MessageBoxButtons.OK, MessageBoxIcon.Warning);
+MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
+        }
+
+        private void frmConnection_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (reponse != "SUCCESS")
+            {
+                this.DialogResult = DialogResult.No;
+            }
+            else
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+
         }
     }
 }

@@ -372,7 +372,7 @@ namespace HugoWorld_Client.HL_Services {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescrpitionField;
+        private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
@@ -406,14 +406,14 @@ namespace HugoWorld_Client.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Descrpition {
+        public string Description {
             get {
-                return this.DescrpitionField;
+                return this.DescriptionField;
             }
             set {
-                if ((object.ReferenceEquals(this.DescrpitionField, value) != true)) {
-                    this.DescrpitionField = value;
-                    this.RaisePropertyChanged("Descrpition");
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
                 }
             }
         }
@@ -2099,6 +2099,53 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MondeDTO[]> ListWorldsAsync() {
             return base.Channel.ListWorldsAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HL_Services.IClasseService")]
+    public interface IClasseService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/AddClassToDataBase", ReplyAction="http://tempuri.org/IClasseService/AddClassToDataBaseResponse")]
+        void AddClassToDataBase(int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/AddClassToDataBase", ReplyAction="http://tempuri.org/IClasseService/AddClassToDataBaseResponse")]
+        System.Threading.Tasks.Task AddClassToDataBaseAsync(int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IClasseServiceChannel : HugoWorld_Client.HL_Services.IClasseService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ClasseServiceClient : System.ServiceModel.ClientBase<HugoWorld_Client.HL_Services.IClasseService>, HugoWorld_Client.HL_Services.IClasseService {
+        
+        public ClasseServiceClient() {
+        }
+        
+        public ClasseServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ClasseServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ClasseServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ClasseServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void AddClassToDataBase(int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId) {
+            base.Channel.AddClassToDataBase(p_Str, p_Dex, p_Vit, p_Int, p_WId);
+        }
+        
+        public System.Threading.Tasks.Task AddClassToDataBaseAsync(int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId) {
+            return base.Channel.AddClassToDataBaseAsync(p_Str, p_Dex, p_Vit, p_Int, p_WId);
         }
     }
     

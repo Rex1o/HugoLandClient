@@ -57,6 +57,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddClassToDataBase">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="p_Str" type="xs:int" />
+        <xs:element minOccurs="0" name="p_Dex" type="xs:int" />
+        <xs:element minOccurs="0" name="p_Vit" type="xs:int" />
+        <xs:element minOccurs="0" name="p_Int" type="xs:int" />
+        <xs:element minOccurs="0" name="p_WId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddClassToDataBaseResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddItem">
     <xs:complexType>
       <xs:sequence>

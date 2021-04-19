@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Hugoworld.Validators;
+using TP01_Library.Models;
 
 namespace HugoWorld.Vue
 {
@@ -21,17 +22,34 @@ namespace HugoWorld.Vue
         private int _Integrity;
         private readonly ClasseDTOValidator ClasseValidator;
         private readonly MondeServiceClient ServiceMonde;
+        private readonly ClasseServiceClient ServiceClass;
 
         public ClassCreator()
         {
             ClasseValidator = new ClasseDTOValidator();
             ServiceMonde = new MondeServiceClient();
 
+            //Test
+            //ClasseDTO c;
+            //c = new ClasseDTO()
+            //{
+            //    NomClasse = "Test",
+            //    Description = "Test",
+            //    StatBaseStr = 16,
+            //    StatBaseDex = 16,
+            //    StatBaseVitalite = 16,
+            //    StatBaseInt = 16,
+            //    MondeId = 255
+            //};
+            //ServiceClass.AddClassToDataBase(c.StatBaseStr, c.StatBaseDex, c.StatBaseVitalite, c.StatBaseInt, c.MondeId);
 
+ 
             InitializeComponent();
             this.DialogResult = DialogResult.Cancel;
             this.StartPosition = FormStartPosition.CenterParent;
             List<MondeDTO> Mondes = ServiceMonde.ListWorlds().ToList();
+            ServiceMonde.Close();
+            ServiceClass = new ClasseServiceClient();
             CmbWorld.DataSource = Mondes.Select(x => x.Id + " : " + x.Description).ToArray();
 
             _Strength = 16;
@@ -52,11 +70,11 @@ namespace HugoWorld.Vue
 
                 string itemstr = CmbWorld.SelectedItem.ToString();
                 int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
-                ClasseDTO ClassToAdd;
-                ClassToAdd = new ClasseDTO()
+                ClasseDTO c;
+                c = new ClasseDTO()
                 {
-                    NomClasse = txtName.Text.Trim(),
-                    Descrpition = txtDescription.Text.Trim(),
+                    NomClasse = txtName.Text,
+                    Description = txtDescription.Text,
                     StatBaseStr = _Strength,
                     StatBaseDex = _Dexterity,
                     StatBaseVitalite = _Vitality,
@@ -64,29 +82,27 @@ namespace HugoWorld.Vue
                     MondeId = id
                 };
 
-                //                var result = ClasseValidator.Validate(ClassToAdd);
+                var result = ClasseValidator.Validate(c);
 
-                //                if (result.IsValid)
-                //                {
-                //                    try
-                //                    {
+                if (result.IsValid)
+                {
+                    try
+                    {
+                        //c.NomClasse.ToString(), c.Description.ToString(),
+                        ServiceClass.AddClassToDataBase( c.StatBaseStr,c.StatBaseDex,c.StatBaseVitalite,c.StatBaseInt,c.MondeId);
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                        MessageBox.Show("An error occured while adding the class to the database", "ERROR",
+MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                    }
 
-
-
-
-
-                //                    }
-                //                    catch
-                //                    {
-                //                        MessageBox.Show("ERROR", "An error occured while adding the class to the database",
-                //MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                //                    }
-
-                //                }
-                //                else
-                //                {
-                //                    ShowErrorsMessageBox(result);
-                //                }
+                }
+                else
+                {
+                    ShowErrorsMessageBox(result);
+                }
             }
             else
             {

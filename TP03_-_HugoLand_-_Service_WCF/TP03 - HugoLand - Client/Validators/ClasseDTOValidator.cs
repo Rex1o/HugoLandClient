@@ -17,7 +17,7 @@ namespace Hugoworld.Validators
                 .MaximumLength(255)
                 .WithMessage("Please provide a shorter name");
 
-            RuleFor(c => c.Descrpition)
+            RuleFor(c => c.Description)
                 .NotEmpty()
                 .WithMessage("Please provide a description")
                 .MaximumLength(255)

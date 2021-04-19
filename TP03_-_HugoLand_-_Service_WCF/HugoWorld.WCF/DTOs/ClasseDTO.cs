@@ -9,7 +9,7 @@ namespace HugoWorld_WCF.DTOs {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public string Descrpition { get; set; }
+        public string Description { get; set; }
         [DataMember]
         public string NomClasse { get; set; }
         [DataMember]

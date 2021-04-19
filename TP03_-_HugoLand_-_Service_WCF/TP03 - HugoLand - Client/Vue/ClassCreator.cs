@@ -24,11 +24,8 @@ namespace HugoWorld.Vue
         ClasseServiceClient ServiceClass;
         MondeServiceClient ServiceMonde;
 
-
         public ClassCreator()
         {
-
-
             //Test
             //ClasseDTO c;
             //c = new ClasseDTO()
@@ -89,12 +86,11 @@ namespace HugoWorld.Vue
                         ServiceClass = new ClasseServiceClient();
                         //c.NomClasse.ToString(), c.Description.ToString(),
                         //Requêtes ####################### le programm crash ici #########################
-                        ServiceClass.AddClassToDataBase(c.StatBaseStr, c.StatBaseDex, c.StatBaseVitalite, c.StatBaseInt, c.MondeId);
+                        ServiceClass.AddClassToDataBase(c.NomClasse, c.Description, c.StatBaseStr, c.StatBaseDex, c.StatBaseVitalite, c.StatBaseInt, c.MondeId);
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        throw;
-                        MessageBox.Show("An error occured while adding the class to the database", "ERROR",
+                        MessageBox.Show("An error occured while adding the class to the database\n" + ex.Message, "ERROR",
 MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                     }
 

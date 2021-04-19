@@ -136,7 +136,7 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
           <Property Name="TypeObjet" Type="int" Nullable="false" />
           <Property Name="MondeId" Type="int" Nullable="false" />
           <Property Name="ImageId" Type="int" Nullable="false" />
-          <Property Name="IsBlock" Type="bit" />
+          <Property Name="IsBlock" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -583,7 +583,7 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
           <Property Name="ImageId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Monde" Relationship="Self.FK_ObjetMonde_Monde" FromRole="ObjetMondes" ToRole="Mondes" />
           <NavigationProperty Name="TileImg" Relationship="Self.FK_TileImgObjetMonde" FromRole="ObjetMondes" ToRole="TileImgs" />
-          <Property Name="IsBlock" Type="Boolean" />
+          <Property Name="IsBlock" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>

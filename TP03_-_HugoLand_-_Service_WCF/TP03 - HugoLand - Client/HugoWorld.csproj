@@ -159,13 +159,31 @@
     </Compile>
     <None Include="app.config" />
     <None Include="Connected Services\HL_Services\HugoLandService.wsdl" />
+    <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.ClasseDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.CompteJoueurDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.EffetItemDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.HeroDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.InventaireHeroDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.ItemDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.MondeDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.MonstreDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.ObjetMondeDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\HL_Services\HugoWorld_Client.HL_Services.TileImport.datasource">
@@ -184,6 +202,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\HL_Services\Services4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\HL_Services\Services5.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Eula.rtf" />

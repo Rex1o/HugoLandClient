@@ -30,6 +30,7 @@ namespace HugoWorld_WCF.Services {
             {
                 dbContext.EffetItems.Add(new EffetItem()
                 {
+                    Item = dbContext.Items.Find(p_ItemId),
                     ItemId = p_ItemId,
                     ValeurEffet = p_ValeurEffet,
                     TypeEffet = p_TypeEffet
@@ -56,6 +57,7 @@ namespace HugoWorld_WCF.Services {
                 context.SaveChanges();
             }
         }
+
 
         public void DeleteItemById(int p_ItemId, HeroDTO p_Hero)
         {
@@ -87,7 +89,7 @@ namespace HugoWorld_WCF.Services {
             using (HugoLandContext dbContext = new HugoLandContext())
             {
                 EffetItem effetItem = dbContext.EffetItems.FirstOrDefault(x => x.ItemId == p_ItemId && x.Id == p_EffetItemId);
-                
+
                 if (effetItem != null)
                 {
                     dbContext.EffetItems.Remove(effetItem);
@@ -145,6 +147,55 @@ namespace HugoWorld_WCF.Services {
                 //La requête SQL est beacoup plus rapide que le entity framework
                 context.Database.ExecuteSqlCommand($"DELETE FROM dbo.Item WHERE MondeId = {p_Id}");
             }
+        }
+
+        public List<ItemDTO> ConvertToItemsDTOs(ICollection<Item> items)
+        {
+            List<Item> _items = items.ToList();
+
+            List<ItemDTO> itemDTOs = new List<ItemDTO>();
+            _items.ForEach(s => itemDTOs.Add(new ItemDTO(s)
+            {
+                EffetsItems = ConvertToEffetItemsDTOs(s.EffetItems),
+                InventaireHeroDTOs = ConvertToInventaireHeroDTOs(s.InventaireHeroes)
+            }));
+            return itemDTOs;
+        }
+
+        public List<EffetItemDTO> ConvertToEffetItemsDTOs(ICollection<EffetItem> effetItems)
+        {
+            List<EffetItem> _effetItems = effetItems.ToList();
+
+            List<EffetItemDTO> effetItemsDTOs = new List<EffetItemDTO>();
+            _effetItems.ForEach(s => effetItemsDTOs.Add(new EffetItemDTO(s)));
+            return effetItemsDTOs;
+        }
+
+        public List<InventaireHeroDTO> ConvertToInventaireHeroDTOs(ICollection<InventaireHero> inventaireHeroes)
+        {
+            List<InventaireHero> _inventaireHeroes = inventaireHeroes.ToList();
+
+            List<InventaireHeroDTO> inventaireHeroesDTOs = new List<InventaireHeroDTO>();
+            _inventaireHeroes.ForEach(s => inventaireHeroesDTOs.Add(new InventaireHeroDTO(s)));
+            return inventaireHeroesDTOs;
+        }
+
+        public List<MonstreDTO> ConvertToMonstresDTOs(ICollection<Monstre> monstres)
+        {
+            List<Monstre> _monstres = monstres.ToList();
+
+            List<MonstreDTO> monstresDTOs = new List<MonstreDTO>();
+            _monstres.ForEach(s => monstresDTOs.Add(new MonstreDTO(s)));
+            return monstresDTOs;
+        }
+
+        public List<ObjetMondeDTO> ConvertToObjetMondeDTOs(ICollection<ObjetMonde> objetMondes)
+        {
+            List<ObjetMonde> _objetMondes = objetMondes.ToList();
+
+            List<ObjetMondeDTO> objetMondesDTOS = new List<ObjetMondeDTO>();
+            _objetMondes.ForEach(s => objetMondesDTOS.Add(new ObjetMondeDTO(s)));
+            return objetMondesDTOS;
         }
     }
 }

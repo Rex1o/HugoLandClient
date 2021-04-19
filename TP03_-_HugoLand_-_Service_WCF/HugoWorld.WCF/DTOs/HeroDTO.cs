@@ -1,10 +1,38 @@
-﻿using System.Collections.Generic;
+﻿using HugoWorld_WCF.Services;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
+using TP01_Library.Models;
 
 namespace HugoWorld_WCF.DTOs {
-
     [DataContract]
     public class HeroDTO {
+
+        private readonly HugoLandService joueurService = new HugoLandService();
+        public HeroDTO()
+        {
+
+        }
+        public HeroDTO(Hero hero)
+        {
+            Id = hero.Id;
+            NomHero = hero.NomHero;
+            CompteJoueurId = hero.CompteJoueurId;
+            Niveau = hero.Niveau;
+            Experience = hero.Experience;
+            x = hero.x;
+            y = hero.y;
+            StatStr = hero.StatStr;
+            StatDex = hero.StatDex;
+            StatInt = hero.StatInt;
+            StatVitalite = hero.StatVitalite;
+            MondeId = hero.MondeId;
+            ClasseId = hero.ClasseId;
+            EstConnecte = hero.EstConnecte;
+
+            Monde = new MondeDTO(hero.Monde);
+            Classe = new ClasseDTO(hero.Classe);
+            CompteJoueur = new CompteJoueurDTO(hero.CompteJoueur);
+        }
 
         [DataMember]
         public int Id { get; set; }

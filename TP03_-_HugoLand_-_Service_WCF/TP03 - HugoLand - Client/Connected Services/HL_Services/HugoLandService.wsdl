@@ -5,8 +5,9 @@
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" />
-      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" />
-      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TP01_Library.Models" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IJoueurService_Connection_InputMessage">
@@ -32,6 +33,18 @@
   </wsdl:message>
   <wsdl:message name="IJoueurService_GetHeroById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetHeroByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJoueurService_ConvertToHerosDTO_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToHerosDTO" />
+  </wsdl:message>
+  <wsdl:message name="IJoueurService_ConvertToHerosDTO_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToHerosDTOResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJoueurService_ConvertToClassesDTO_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToClassesDTO" />
+  </wsdl:message>
+  <wsdl:message name="IJoueurService_ConvertToClassesDTO_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToClassesDTOResponse" />
   </wsdl:message>
   <wsdl:message name="IMondeService_ListWorlds_InputMessage">
     <wsdl:part name="parameters" element="tns:ListWorlds" />
@@ -93,6 +106,36 @@
   <wsdl:message name="IItemService_EditItemEffectById_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditItemEffectByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IItemService_ConvertToItemsDTOs_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToItemsDTOs" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_ConvertToItemsDTOs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToItemsDTOsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_ConvertToEffetItemsDTOs_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToEffetItemsDTOs" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_ConvertToEffetItemsDTOs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToEffetItemsDTOsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_ConvertToInventaireHeroDTOs_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToInventaireHeroDTOs" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_ConvertToInventaireHeroDTOs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToInventaireHeroDTOsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_ConvertToMonstresDTOs_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToMonstresDTOs" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_ConvertToMonstresDTOs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToMonstresDTOsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_ConvertToObjetMondeDTOs_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToObjetMondeDTOs" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_ConvertToObjetMondeDTOs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertToObjetMondeDTOsResponse" />
+  </wsdl:message>
   <wsdl:message name="ITileImgService_MonstreToTile_InputMessage">
     <wsdl:part name="parameters" element="tns:MonstreToTile" />
   </wsdl:message>
@@ -127,6 +170,14 @@
     <wsdl:operation name="GetHeroById">
       <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/GetHeroById" message="tns:IJoueurService_GetHeroById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IJoueurService/GetHeroByIdResponse" message="tns:IJoueurService_GetHeroById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToHerosDTO">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/ConvertToHerosDTO" message="tns:IJoueurService_ConvertToHerosDTO_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJoueurService/ConvertToHerosDTOResponse" message="tns:IJoueurService_ConvertToHerosDTO_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToClassesDTO">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/ConvertToClassesDTO" message="tns:IJoueurService_ConvertToClassesDTO_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJoueurService/ConvertToClassesDTOResponse" message="tns:IJoueurService_ConvertToClassesDTO_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IMondeService">
@@ -174,6 +225,26 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IItemService/EditItemEffectById" message="tns:IItemService_EditItemEffectById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IItemService/EditItemEffectByIdResponse" message="tns:IItemService_EditItemEffectById_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ConvertToItemsDTOs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/ConvertToItemsDTOs" message="tns:IItemService_ConvertToItemsDTOs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/ConvertToItemsDTOsResponse" message="tns:IItemService_ConvertToItemsDTOs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToEffetItemsDTOs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/ConvertToEffetItemsDTOs" message="tns:IItemService_ConvertToEffetItemsDTOs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/ConvertToEffetItemsDTOsResponse" message="tns:IItemService_ConvertToEffetItemsDTOs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToInventaireHeroDTOs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/ConvertToInventaireHeroDTOs" message="tns:IItemService_ConvertToInventaireHeroDTOs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/ConvertToInventaireHeroDTOsResponse" message="tns:IItemService_ConvertToInventaireHeroDTOs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToMonstresDTOs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/ConvertToMonstresDTOs" message="tns:IItemService_ConvertToMonstresDTOs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/ConvertToMonstresDTOsResponse" message="tns:IItemService_ConvertToMonstresDTOs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToObjetMondeDTOs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/ConvertToObjetMondeDTOs" message="tns:IItemService_ConvertToObjetMondeDTOs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/ConvertToObjetMondeDTOsResponse" message="tns:IItemService_ConvertToObjetMondeDTOs_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ITileImgService">
     <wsdl:operation name="MonstreToTile">
@@ -220,6 +291,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetHeroById">
       <soap:operation soapAction="http://tempuri.org/IJoueurService/GetHeroById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToHerosDTO">
+      <soap:operation soapAction="http://tempuri.org/IJoueurService/ConvertToHerosDTO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToClassesDTO">
+      <soap:operation soapAction="http://tempuri.org/IJoueurService/ConvertToClassesDTO" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -319,6 +408,51 @@
     </wsdl:operation>
     <wsdl:operation name="EditItemEffectById">
       <soap:operation soapAction="http://tempuri.org/IItemService/EditItemEffectById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToItemsDTOs">
+      <soap:operation soapAction="http://tempuri.org/IItemService/ConvertToItemsDTOs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToEffetItemsDTOs">
+      <soap:operation soapAction="http://tempuri.org/IItemService/ConvertToEffetItemsDTOs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToInventaireHeroDTOs">
+      <soap:operation soapAction="http://tempuri.org/IItemService/ConvertToInventaireHeroDTOs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToMonstresDTOs">
+      <soap:operation soapAction="http://tempuri.org/IItemService/ConvertToMonstresDTOs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertToObjetMondeDTOs">
+      <soap:operation soapAction="http://tempuri.org/IItemService/ConvertToObjetMondeDTOs" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

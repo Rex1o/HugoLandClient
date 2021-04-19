@@ -1,9 +1,28 @@
 ﻿using System.Runtime.Serialization;
+using TP01_Library.Models;
 
 namespace HugoWorld_WCF.DTOs {
 
     [DataContract]
     public class ObjetMondeDTO {
+        public ObjetMondeDTO()
+        {
+
+        }
+
+        public ObjetMondeDTO(ObjetMonde objetMonde)
+        {
+            Id = objetMonde.Id;
+            x = objetMonde.x;
+            y = objetMonde.y;
+            Description = objetMonde.Description;
+            TypeObjet = objetMonde.TypeObjet;
+            MondeId = objetMonde.MondeId;
+            ImageId = objetMonde.ImageId;
+            IsBlock = objetMonde.IsBlock;
+            Monde = new MondeDTO(objetMonde.Monde);
+            // TileImg?
+        }
 
         [DataMember]
         public int Id { get; set; }

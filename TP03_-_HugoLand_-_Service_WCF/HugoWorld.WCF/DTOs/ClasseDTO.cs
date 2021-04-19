@@ -1,11 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
+using TP01_Library.Models;
 
 namespace HugoWorld_WCF.DTOs {
 
     [DataContract]
     public class ClasseDTO
     {
+        public ClasseDTO()
+        {
+
+        }
+        public ClasseDTO(Classe classe)
+        {
+            Id = classe.Id;
+            Description = classe.Description;
+            NomClasse = classe.NomClasse;
+            StatBaseDex = classe.StatBaseDex;
+            StatBaseInt = classe.StatBaseInt;
+            StatBaseStr = classe.StatBaseStr;
+            StatBaseVitalite = classe.StatBaseVitalite;
+            MondeId = classe.MondeId;
+        }
         [DataMember]
         public int Id { get; set; }
         [DataMember]

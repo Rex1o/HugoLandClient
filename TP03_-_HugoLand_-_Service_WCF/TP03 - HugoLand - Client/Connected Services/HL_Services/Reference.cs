@@ -1419,6 +1419,9 @@ namespace HugoWorld_Client.HL_Services {
         private int ImageIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsBlockField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private HugoWorld_Client.HL_Services.MondeDTO MondeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1491,6 +1494,19 @@ namespace HugoWorld_Client.HL_Services {
                 if ((this.ImageIdField.Equals(value) != true)) {
                     this.ImageIdField = value;
                     this.RaisePropertyChanged("ImageId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsBlock {
+            get {
+                return this.IsBlockField;
+            }
+            set {
+                if ((this.IsBlockField.Equals(value) != true)) {
+                    this.IsBlockField = value;
+                    this.RaisePropertyChanged("IsBlock");
                 }
             }
         }
@@ -1797,6 +1813,9 @@ namespace HugoWorld_Client.HL_Services {
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] ImagesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool IsBlockField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1813,6 +1832,15 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string color1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int maxDMGField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int minDMGField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1872,6 +1900,19 @@ namespace HugoWorld_Client.HL_Services {
                 if ((this.IDField.Equals(value) != true)) {
                     this.IDField = value;
                     this.RaisePropertyChanged("ID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] Images {
+            get {
+                return this.ImagesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImagesField, value) != true)) {
+                    this.ImagesField = value;
+                    this.RaisePropertyChanged("Images");
                 }
             }
         }
@@ -1950,6 +1991,45 @@ namespace HugoWorld_Client.HL_Services {
                 if ((object.ReferenceEquals(this.TypeField, value) != true)) {
                     this.TypeField = value;
                     this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Name="color")]
+        public string color1 {
+            get {
+                return this.color1Field;
+            }
+            set {
+                if ((object.ReferenceEquals(this.color1Field, value) != true)) {
+                    this.color1Field = value;
+                    this.RaisePropertyChanged("color1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int maxDMG {
+            get {
+                return this.maxDMGField;
+            }
+            set {
+                if ((this.maxDMGField.Equals(value) != true)) {
+                    this.maxDMGField = value;
+                    this.RaisePropertyChanged("maxDMG");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int minDMG {
+            get {
+                return this.minDMGField;
+            }
+            set {
+                if ((this.minDMGField.Equals(value) != true)) {
+                    this.minDMGField = value;
+                    this.RaisePropertyChanged("minDMG");
                 }
             }
         }

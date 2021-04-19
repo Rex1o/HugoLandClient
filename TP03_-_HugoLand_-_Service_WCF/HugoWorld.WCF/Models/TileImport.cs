@@ -17,11 +17,14 @@ namespace HugoWorld_WCF.Models
         public int NumberOfFrames;
         public bool IsBlock;
         public string Category;
+        public string color;
 
         //Special fields for some
         public string Color;
 
         public int Health;
+        public int minDMG;
+        public int maxDMG;
 
         public string Name;
         public string Shortcut;

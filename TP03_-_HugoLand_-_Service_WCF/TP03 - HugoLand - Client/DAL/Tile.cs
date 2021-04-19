@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using HugoWorld_Client.HL_Services;
 
 namespace HugoWorld {
 
@@ -8,6 +9,8 @@ namespace HugoWorld {
         public const int TileSizeX = 64;
         public const int TileSizeY = 64;
 
+        public int ID;
+        public string Type;
         public Bitmap Bitmap;
         public Rectangle Rectangle;
         public bool IsTransparent;
@@ -19,6 +22,8 @@ namespace HugoWorld {
         public string Color;
 
         public int Health;
+        public int minDmg;
+        public int maxDmg;
 
         public string Name;
         public string Shortcut;
@@ -44,6 +49,33 @@ namespace HugoWorld {
             if (Category == "character")
             {
                 Health = Convert.ToInt32(tileData[9]);
+            }
+        }
+
+        public Tile(TileImport tile)
+        {
+            Name = tile.Name;
+            Shortcut = tile.Shortcut;
+            Category = tile.Category;
+
+            NumberOfFrames = tile.NumberOfFrames;
+            IsTransparent = tile.IsTransparent;
+            IsBlock = tile.IsBlock;
+
+            //Some types of tiles have a color
+            if (Category == "door" || Category == "key")
+            {
+                Color = tile.Color;
+            }
+
+            //Some types of tiles have health
+            if (Category == "character")
+            {
+                Health = tile.Health;
+                minDmg = tile.minDMG;
+                maxDmg = tile.maxDMG;
+                ID = tile.ID;
+                Type = tile.Type;
             }
         }
     }

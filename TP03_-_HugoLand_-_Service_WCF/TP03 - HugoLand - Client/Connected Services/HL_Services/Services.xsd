@@ -167,6 +167,7 @@
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Image" nillable="true" type="tns:TileImgDTO" />
       <xs:element minOccurs="0" name="ImageId" type="xs:int" />
+      <xs:element minOccurs="0" name="IsBlock" type="xs:boolean" />
       <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:MondeDTO" />
       <xs:element minOccurs="0" name="MondeId" type="xs:int" />
       <xs:element minOccurs="0" name="TypeObjet" type="xs:int" />

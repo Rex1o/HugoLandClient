@@ -27,6 +27,9 @@ namespace HugoWorld_WCF.DTOs {
         public int ImageId { get; set; }
 
         [DataMember]
+        public bool IsBlock { get; set; }
+
+        [DataMember]
         public virtual MondeDTO Monde { get; set; }
 
         [DataMember]

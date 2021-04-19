@@ -20,14 +20,14 @@ namespace HugoWorld.Vue
         private int _Dexterity;
         private int _Vitality;
         private int _Integrity;
-        private readonly ClasseDTOValidator ClasseValidator;
-        private readonly MondeServiceClient ServiceMonde;
-        private readonly ClasseServiceClient ServiceClass;
+        private readonly ClasseDTOValidator ClasseValidator = new ClasseDTOValidator();
+        ClasseServiceClient ServiceClass;
+        MondeServiceClient ServiceMonde;
+
 
         public ClassCreator()
         {
-            ClasseValidator = new ClasseDTOValidator();
-            ServiceMonde = new MondeServiceClient();
+
 
             //Test
             //ClasseDTO c;
@@ -43,19 +43,15 @@ namespace HugoWorld.Vue
             //};
             //ServiceClass.AddClassToDataBase(c.StatBaseStr, c.StatBaseDex, c.StatBaseVitalite, c.StatBaseInt, c.MondeId);
 
- 
             InitializeComponent();
             this.DialogResult = DialogResult.Cancel;
             this.StartPosition = FormStartPosition.CenterParent;
-            List<MondeDTO> Mondes = ServiceMonde.ListWorlds().ToList();
-            ServiceMonde.Close();
-            ServiceClass = new ClasseServiceClient();
-            CmbWorld.DataSource = Mondes.Select(x => x.Id + " : " + x.Description).ToArray();
 
-            _Strength = 16;
-            _Dexterity = 16;
-            _Vitality = 16;
-            _Integrity = 16;
+            //Initialisation du clientMonde
+            ServiceMonde = new MondeServiceClient();
+            List<MondeDTO> Mondes = ServiceMonde.ListWorlds().ToList();
+
+            CmbWorld.DataSource = Mondes.Select(x => x.Id + " : " + x.Description).ToArray();
         }
 
         private void ClassCreator_Load(object sender, EventArgs e)
@@ -70,8 +66,9 @@ namespace HugoWorld.Vue
 
                 string itemstr = CmbWorld.SelectedItem.ToString();
                 int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
-                ClasseDTO c;
-                c = new ClasseDTO()
+
+                 //Creation d'un objet
+                ClasseDTO c = new ClasseDTO()
                 {
                     NomClasse = txtName.Text,
                     Description = txtDescription.Text,
@@ -88,8 +85,11 @@ namespace HugoWorld.Vue
                 {
                     try
                     {
+                        //Création du ClientClasse
+                        ServiceClass = new ClasseServiceClient();
                         //c.NomClasse.ToString(), c.Description.ToString(),
-                        ServiceClass.AddClassToDataBase( c.StatBaseStr,c.StatBaseDex,c.StatBaseVitalite,c.StatBaseInt,c.MondeId);
+                        //Requêtes ####################### le programm crash ici #########################
+                        ServiceClass.AddClassToDataBase(c.StatBaseStr, c.StatBaseDex, c.StatBaseVitalite, c.StatBaseInt, c.MondeId);
                     }
                     catch (Exception)
                     {

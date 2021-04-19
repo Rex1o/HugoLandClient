@@ -1,225 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" />
-  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" />
-  <xs:element name="Connection">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="p_Username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="p_Password" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ConnectionResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="ConnectionResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetHeroesByAccountId">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="p_Id" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetHeroesByAccountIdResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="GetHeroesByAccountIdResult" nillable="true" type="q1:ArrayOfHeroDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetAccountByName">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="p_Username" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetAccountByNameResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="GetAccountByNameResult" nillable="true" type="q2:CompteJoueurDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ListWorlds">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ListWorldsResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="ListWorldsResult" nillable="true" type="q3:ArrayOfMondeDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddItem">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="p_Nom" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="p_Description" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="p_X" type="xs:int" />
-        <xs:element minOccurs="0" name="p_Y" type="xs:int" />
-        <xs:element minOccurs="0" name="p_ImageId" type="xs:int" />
-        <xs:element minOccurs="0" name="p_MondeId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddItemResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteItemById">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="p_ItemId" type="xs:int" />
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="p_Hero" nillable="true" type="q4:HeroDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteItemByIdResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EditItemQuantityById">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="p_ItemId" type="xs:int" />
-        <xs:element minOccurs="0" name="p_Quantite" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EditItemQuantityByIdResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddRangeItems">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="lstItems" nillable="true" type="q5:ArrayOfItemDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddRangeItemsResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RemoveRangeById">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="p_ItemId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RemoveRangeByIdResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddItemEffectById">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="p_ItemId" type="xs:int" />
-        <xs:element minOccurs="0" name="p_ValeurEffet" type="xs:int" />
-        <xs:element minOccurs="0" name="p_TypeEffet" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddItemEffectByIdResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteItemEffectById">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="p_EffetItemId" type="xs:int" />
-        <xs:element minOccurs="0" name="p_ItemId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DeleteItemEffectByIdResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EditItemEffectById">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="p_ItemId" type="xs:int" />
-        <xs:element minOccurs="0" name="p_EffetItemId" type="xs:int" />
-        <xs:element minOccurs="0" name="p_ValeurEffet" type="xs:int" />
-        <xs:element minOccurs="0" name="p_TypeEffet" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EditItemEffectByIdResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddClassToDatabase">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="p_Class" nillable="true" type="q6:ClasseDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddClassToDatabaseResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="AddClassToDatabaseResult" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="MonstreToTile">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="monstre" nillable="true" type="q7:MonstreDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="MonstreToTileResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" minOccurs="0" name="MonstreToTileResult" nillable="true" type="q8:TileImport" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ItemToTile">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="item" nillable="true" type="q9:ItemDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ItemToTileResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" minOccurs="0" name="ItemToTileResult" nillable="true" type="q10:TileImport" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ObjetMondeToTile">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="objet" nillable="true" type="q11:ObjetMondeDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ObjetMondeToTileResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" minOccurs="0" name="ObjetMondeToTileResult" nillable="true" type="q12:TileImport" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfHeroDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HeroDTO" nillable="true" type="tns:HeroDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHeroDTO" nillable="true" type="tns:ArrayOfHeroDTO" />
+  <xs:complexType name="HeroDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Classe" nillable="true" type="tns:ClasseDTO" />
+      <xs:element minOccurs="0" name="ClasseId" type="xs:int" />
+      <xs:element minOccurs="0" name="CompteJoueur" nillable="true" type="tns:CompteJoueurDTO" />
+      <xs:element minOccurs="0" name="CompteJoueurId" type="xs:int" />
+      <xs:element minOccurs="0" name="EstConnecte" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Experience" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfTileImgDTO" />
+      <xs:element minOccurs="0" name="InventaireHeros" nillable="true" type="tns:ArrayOfInventaireHeroDTO" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfItemDTO" />
+      <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:MondeDTO" />
+      <xs:element minOccurs="0" name="MondeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Niveau" type="xs:long" />
+      <xs:element minOccurs="0" name="NomHero" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatDex" type="xs:int" />
+      <xs:element minOccurs="0" name="StatInt" type="xs:int" />
+      <xs:element minOccurs="0" name="StatStr" type="xs:int" />
+      <xs:element minOccurs="0" name="StatVitalite" type="xs:int" />
+      <xs:element minOccurs="0" name="x" type="xs:int" />
+      <xs:element minOccurs="0" name="y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HeroDTO" nillable="true" type="tns:HeroDTO" />
+  <xs:complexType name="ClasseDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Descrpition" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="MondeId" type="xs:int" />
+      <xs:element minOccurs="0" name="NomClasse" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatBaseDex" type="xs:int" />
+      <xs:element minOccurs="0" name="StatBaseInt" type="xs:int" />
+      <xs:element minOccurs="0" name="StatBaseStr" type="xs:int" />
+      <xs:element minOccurs="0" name="StatBaseVitalite" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClasseDTO" nillable="true" type="tns:ClasseDTO" />
+  <xs:complexType name="CompteJoueurDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Courriel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Heros" nillable="true" type="tns:ArrayOfHeroDTO" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="MotDePasseHash" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Nom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NomJoueur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Prenom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Salt" type="ser:guid" />
+      <xs:element minOccurs="0" name="TypeUtilisateur" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompteJoueurDTO" nillable="true" type="tns:CompteJoueurDTO" />
+  <xs:complexType name="ArrayOfTileImgDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TileImgDTO" nillable="true" type="tns:TileImgDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTileImgDTO" nillable="true" type="tns:ArrayOfTileImgDTO" />
+  <xs:complexType name="TileImgDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ImageId" type="xs:int" />
+      <xs:element minOccurs="0" name="Imageb64" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TileImgDTO" nillable="true" type="tns:TileImgDTO" />
+  <xs:complexType name="ArrayOfInventaireHeroDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventaireHeroDTO" nillable="true" type="tns:InventaireHeroDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInventaireHeroDTO" nillable="true" type="tns:ArrayOfInventaireHeroDTO" />
+  <xs:complexType name="InventaireHeroDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Hero" nillable="true" type="tns:HeroDTO" />
+      <xs:element minOccurs="0" name="IdHero" type="xs:int" />
+      <xs:element minOccurs="0" name="IdInventaireHero" type="xs:int" />
+      <xs:element minOccurs="0" name="Item" nillable="true" type="tns:ItemDTO" />
+      <xs:element minOccurs="0" name="ItemId" type="xs:int" />
+      <xs:element minOccurs="0" name="Quantite" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InventaireHeroDTO" nillable="true" type="tns:InventaireHeroDTO" />
+  <xs:complexType name="ItemDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EffetsItems" nillable="true" type="tns:ArrayOfEffetItemDTO" />
+      <xs:element minOccurs="0" name="Hero" nillable="true" type="tns:HeroDTO" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IdHero" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Image" nillable="true" type="tns:TileImgDTO" />
+      <xs:element minOccurs="0" name="ImageId" type="xs:int" />
+      <xs:element minOccurs="0" name="InventaireHeroDTOs" nillable="true" type="tns:ArrayOfInventaireHeroDTO" />
+      <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:MondeDTO" />
+      <xs:element minOccurs="0" name="MondeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Nom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="x" type="xs:int" />
+      <xs:element minOccurs="0" name="y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemDTO" nillable="true" type="tns:ItemDTO" />
+  <xs:complexType name="ArrayOfEffetItemDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EffetItemDTO" nillable="true" type="tns:EffetItemDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEffetItemDTO" nillable="true" type="tns:ArrayOfEffetItemDTO" />
+  <xs:complexType name="EffetItemDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Item" nillable="true" type="tns:ItemDTO" />
+      <xs:element minOccurs="0" name="ItemId" type="xs:int" />
+      <xs:element minOccurs="0" name="TypeEffet" type="xs:int" />
+      <xs:element minOccurs="0" name="ValeurEffet" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EffetItemDTO" nillable="true" type="tns:EffetItemDTO" />
+  <xs:complexType name="MondeDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Classes" nillable="true" type="tns:ArrayOfClasseDTO" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Heros" nillable="true" type="tns:ArrayOfHeroDTO" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfItemDTO" />
+      <xs:element minOccurs="0" name="LimiteX" type="xs:int" />
+      <xs:element minOccurs="0" name="LimiteY" type="xs:int" />
+      <xs:element minOccurs="0" name="Monstres" nillable="true" type="tns:ArrayOfMondeDTO" />
+      <xs:element minOccurs="0" name="ObjetMondes" nillable="true" type="tns:ArrayOfObjetMondeDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MondeDTO" nillable="true" type="tns:MondeDTO" />
+  <xs:complexType name="ArrayOfClasseDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClasseDTO" nillable="true" type="tns:ClasseDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClasseDTO" nillable="true" type="tns:ArrayOfClasseDTO" />
+  <xs:complexType name="ArrayOfItemDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemDTO" nillable="true" type="tns:ItemDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfItemDTO" nillable="true" type="tns:ArrayOfItemDTO" />
+  <xs:complexType name="ArrayOfMondeDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MondeDTO" nillable="true" type="tns:MondeDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMondeDTO" nillable="true" type="tns:ArrayOfMondeDTO" />
+  <xs:complexType name="ArrayOfObjetMondeDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObjetMondeDTO" nillable="true" type="tns:ObjetMondeDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfObjetMondeDTO" nillable="true" type="tns:ArrayOfObjetMondeDTO" />
+  <xs:complexType name="ObjetMondeDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Image" nillable="true" type="tns:TileImgDTO" />
+      <xs:element minOccurs="0" name="ImageId" type="xs:int" />
+      <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:MondeDTO" />
+      <xs:element minOccurs="0" name="MondeId" type="xs:int" />
+      <xs:element minOccurs="0" name="TypeObjet" type="xs:int" />
+      <xs:element minOccurs="0" name="x" type="xs:int" />
+      <xs:element minOccurs="0" name="y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjetMondeDTO" nillable="true" type="tns:ObjetMondeDTO" />
+  <xs:complexType name="MonstreDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfTileImgDTO" />
+      <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:MondeDTO" />
+      <xs:element minOccurs="0" name="MondeId" type="xs:int" />
+      <xs:element minOccurs="0" name="Niveau" type="xs:int" />
+      <xs:element minOccurs="0" name="Nom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatDmgMax" type="xs:int" />
+      <xs:element minOccurs="0" name="StatDmgMin" type="xs:int" />
+      <xs:element minOccurs="0" name="StatPV" type="xs:int" />
+      <xs:element minOccurs="0" name="x" type="xs:int" />
+      <xs:element minOccurs="0" name="y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MonstreDTO" nillable="true" type="tns:MonstreDTO" />
 </xs:schema>

@@ -5,10 +5,8 @@ using System.Windows.Forms;
 
 namespace HugoWorld
 {
-
     public partial class frmConnection : Form
     {
-
         //Service a utiliser
         private readonly JoueurServiceClient joueurService;
         string reponse = "NewAttempt";

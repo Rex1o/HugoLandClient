@@ -27,6 +27,12 @@
   <wsdl:message name="IJoueurService_GetAccountByName_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAccountByNameResponse" />
   </wsdl:message>
+  <wsdl:message name="IJoueurService_GetHeroById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHeroById" />
+  </wsdl:message>
+  <wsdl:message name="IJoueurService_GetHeroById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHeroByIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IMondeService_ListWorlds_InputMessage">
     <wsdl:part name="parameters" element="tns:ListWorlds" />
   </wsdl:message>
@@ -118,6 +124,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/GetAccountByName" message="tns:IJoueurService_GetAccountByName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IJoueurService/GetAccountByNameResponse" message="tns:IJoueurService_GetAccountByName_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetHeroById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/GetHeroById" message="tns:IJoueurService_GetHeroById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJoueurService/GetHeroByIdResponse" message="tns:IJoueurService_GetHeroById_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IMondeService">
     <wsdl:operation name="ListWorlds">
@@ -201,6 +211,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAccountByName">
       <soap:operation soapAction="http://tempuri.org/IJoueurService/GetAccountByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHeroById">
+      <soap:operation soapAction="http://tempuri.org/IJoueurService/GetHeroById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

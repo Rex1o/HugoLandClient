@@ -23,22 +23,24 @@ namespace HugoWorld_WCF.Services {
         {
             using (HugoLandContext context = new HugoLandContext())
             {
-                return context.Heros.Where(x => x.CompteJoueurId == p_Id).Select(m => new HeroDTO()
-                {
-                    Id = m.Id,
-                    Niveau = m.Niveau,
-                    Experience = m.Experience,
-                    x = m.x,
-                    y = m.y,
-                    StatStr = m.StatStr,
-                    StatDex = m.StatDex,
-                    StatInt = m.StatInt,
-                    StatVitalite = m.StatVitalite,
-                    MondeId = m.MondeId,
-                    ClasseId = m.ClasseId,
-                    NomHero = m.NomHero,
-                    EstConnecte = m.EstConnecte
-                }).
+                return context.CompteJoueurs
+                    .Find(p_Id)?.Heros
+                    .Select(m => new HeroDTO()
+                    {
+                        Id = m.Id,
+                        Niveau = m.Niveau,
+                        Experience = m.Experience,
+                        x = m.x,
+                        y = m.y,
+                        StatStr = m.StatStr,
+                        StatDex = m.StatDex,
+                        StatInt = m.StatInt,
+                        StatVitalite = m.StatVitalite,
+                        MondeId = m.MondeId,
+                        ClasseId = m.ClasseId,
+                        NomHero = m.NomHero,
+                        EstConnecte = m.EstConnecte
+                    }).
                 ToList();
             }
         }
@@ -47,18 +49,38 @@ namespace HugoWorld_WCF.Services {
         {
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-                return dbContext.CompteJoueurs
-                    .Where(x => x.NomJoueur.StartsWith(p_Username))
-                    .Select(s => new CompteJoueurDTO()
+                CompteJoueur compteJoueur = dbContext.CompteJoueurs
+                    .FirstOrDefault(x => x.NomJoueur.StartsWith(p_Username));
+
+                if (compteJoueur != null)
+                {
+                    List<HeroDTO> heroDTOs = GetHeroesByAccountId(compteJoueur.Id);
+                    CompteJoueurDTO compteJoueurDTO = new CompteJoueurDTO()
                     {
-                        Id = s.Id,
-                        NomJoueur = s.NomJoueur,
-                        Courriel = s.Courriel,
-                        Prenom = s.Prenom,
-                        Nom = s.Nom,
-                        TypeUtilisateur = s.TypeUtilisateur
-                    }).Single();
+                        Id = compteJoueur.Id,
+                        NomJoueur = compteJoueur.NomJoueur,
+                        Courriel = compteJoueur.Courriel,
+                        Prenom = compteJoueur.Prenom,
+                        Nom = compteJoueur.Nom,
+                        TypeUtilisateur = compteJoueur.TypeUtilisateur,
+                        Heros = heroDTOs
+                    };
+                    return compteJoueurDTO;
+                }
+
+                return null;
             }
+        }
+
+        public HeroDTO GetHeroById(int p_Id)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                //dbContext.Heros
+                //   .Find(p_Id)
+
+            }
+            throw new NotImplementedException();
         }
     }
 }

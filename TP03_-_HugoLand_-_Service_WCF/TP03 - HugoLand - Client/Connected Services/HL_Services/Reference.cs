@@ -2065,6 +2065,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/GetAccountByName", ReplyAction="http://tempuri.org/IJoueurService/GetAccountByNameResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.CompteJoueurDTO> GetAccountByNameAsync(string p_Username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/GetHeroById", ReplyAction="http://tempuri.org/IJoueurService/GetHeroByIdResponse")]
+        HugoWorld_Client.HL_Services.HeroDTO GetHeroById(int p_Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/GetHeroById", ReplyAction="http://tempuri.org/IJoueurService/GetHeroByIdResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO> GetHeroByIdAsync(int p_Id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2116,6 +2122,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.CompteJoueurDTO> GetAccountByNameAsync(string p_Username) {
             return base.Channel.GetAccountByNameAsync(p_Username);
+        }
+        
+        public HugoWorld_Client.HL_Services.HeroDTO GetHeroById(int p_Id) {
+            return base.Channel.GetHeroById(p_Id);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO> GetHeroByIdAsync(int p_Id) {
+            return base.Channel.GetHeroByIdAsync(p_Id);
         }
     }
     

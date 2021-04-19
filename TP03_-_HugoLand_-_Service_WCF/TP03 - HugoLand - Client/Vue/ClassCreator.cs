@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Hugoworld.Validators;
-using TP01_Library.Models;
+using TP01_Library.Controllers;
 
 namespace HugoWorld.Vue
 {
@@ -21,34 +21,24 @@ namespace HugoWorld.Vue
         private int _Vitality;
         private int _Integrity;
         private readonly ClasseDTOValidator ClasseValidator = new ClasseDTOValidator();
-        ClasseServiceClient ServiceClass;
-        MondeServiceClient ServiceMonde;
+        private ClassServiceClient ServiceClass = new ClassServiceClient();
+        private MondeServiceClient ServiceMonde = new MondeServiceClient();
 
         public ClassCreator()
         {
-            //Test
-            //ClasseDTO c;
-            //c = new ClasseDTO()
-            //{
-            //    NomClasse = "Test",
-            //    Description = "Test",
-            //    StatBaseStr = 16,
-            //    StatBaseDex = 16,
-            //    StatBaseVitalite = 16,
-            //    StatBaseInt = 16,
-            //    MondeId = 255
-            //};
-            //ServiceClass.AddClassToDataBase(c.StatBaseStr, c.StatBaseDex, c.StatBaseVitalite, c.StatBaseInt, c.MondeId);
-
             InitializeComponent();
             this.DialogResult = DialogResult.Cancel;
             this.StartPosition = FormStartPosition.CenterParent;
 
-            //Initialisation du clientMonde
-            ServiceMonde = new MondeServiceClient();
             List<MondeDTO> Mondes = ServiceMonde.ListWorlds().ToList();
-
+            
+           
             CmbWorld.DataSource = Mondes.Select(x => x.Id + " : " + x.Description).ToArray();
+
+            _Strength = 16;
+            _Dexterity = 16;
+            _Vitality = 16;
+            _Integrity = 16;
         }
 
         private void ClassCreator_Load(object sender, EventArgs e)
@@ -82,11 +72,10 @@ namespace HugoWorld.Vue
                 {
                     try
                     {
-                        //Création du ClientClasse
-                        ServiceClass = new ClasseServiceClient();
-                        //c.NomClasse.ToString(), c.Description.ToString(),
                         //Requêtes ####################### le programm crash ici #########################
-                        ServiceClass.AddClassToDataBase(c.NomClasse, c.Description, c.StatBaseStr, c.StatBaseDex, c.StatBaseVitalite, c.StatBaseInt, c.MondeId);
+                        //ServiceClass.AddClassToDataBase(txtName.Text, txtDescription.Text, _Strength, _Dexterity, _Vitality, _Integrity, id);
+                        ClasseController controller = new ClasseController();
+                        controller.AjouterClasse(c.MondeId,c.NomClasse,c.Description,c.StatBaseStr,c.StatBaseDex,c.StatBaseInt,c.StatBaseVitalite);
                     }
                     catch (Exception ex)
                     {
@@ -138,9 +127,10 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             {
                 if (nValue < 1)
                 {
-                    _Strength = nValue;
                     return false;
                 }
+                
+                    _Strength = nValue;
             }
             else
             {
@@ -152,9 +142,9 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             {
                 if (nValue < 1)
                 {
-                    _Dexterity = nValue;
                     return false;
                 }
+                    _Dexterity = nValue;
             }
             else
             {
@@ -166,9 +156,9 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             {
                 if (nValue < 1)
                 {
-                    _Vitality = nValue;
                     return false;
                 }
+                    _Vitality = nValue;
             }
             else
             {
@@ -180,9 +170,9 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             {
                 if (nValue < 1)
                 {
-                    _Integrity = nValue;
                     return false;
                 }
+                    _Integrity = nValue;
             }
             else
             {

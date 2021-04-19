@@ -23,26 +23,23 @@ namespace TP01_Library.Controllers {
         /// <param name="p_iStatBaseDex"></param>
         /// <param name="p_iStatBaseInt"></param>
         /// <param name="p_iStatBaseVit"></param>
-        public void AjouterClasse(Monde p_monde, string p_sNomClasse, string p_sDescription, int p_iStatBaseStr,
+        public void AjouterClasse(int p_MondeId, string p_sNomClasse, string p_sDescription, int p_iStatBaseStr,
                                 int p_iStatBaseDex, int p_iStatBaseInt, int p_iStatBaseVit)
         {
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-                if (p_monde != null)
-                {
+
                     dbContext.Classes.Add(new Classe()
                     {
-                        NomClasse = p_sNomClasse ?? "Noob",
-                        Description = p_sDescription ?? "Noob",
+                        NomClasse = p_sNomClasse,
+                        Description = p_sDescription,
                         StatBaseStr = p_iStatBaseStr,
                         StatBaseDex = p_iStatBaseDex,
                         StatBaseInt = p_iStatBaseInt,
                         StatBaseVitalite = p_iStatBaseVit,
-                        Monde = p_monde,
-                        MondeId = p_monde.Id
+                        MondeId = p_MondeId
                     });
                     dbContext.SaveChanges();
-                }
             }
         }
 

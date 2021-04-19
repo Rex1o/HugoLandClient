@@ -2261,40 +2261,40 @@ namespace HugoWorld_Client.HL_Services {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HL_Services.IClasseService")]
-    public interface IClasseService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HL_Services.IClassService")]
+    public interface IClassService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/AddClassToDataBase", ReplyAction="http://tempuri.org/IClasseService/AddClassToDataBaseResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClassService/AddClassToDataBase", ReplyAction="http://tempuri.org/IClassService/AddClassToDataBaseResponse")]
         void AddClassToDataBase(string p_Description, string p_Name, int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/AddClassToDataBase", ReplyAction="http://tempuri.org/IClasseService/AddClassToDataBaseResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClassService/AddClassToDataBase", ReplyAction="http://tempuri.org/IClassService/AddClassToDataBaseResponse")]
         System.Threading.Tasks.Task AddClassToDataBaseAsync(string p_Description, string p_Name, int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IClasseServiceChannel : HugoWorld_Client.HL_Services.IClasseService, System.ServiceModel.IClientChannel {
+    public interface IClassServiceChannel : HugoWorld_Client.HL_Services.IClassService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ClasseServiceClient : System.ServiceModel.ClientBase<HugoWorld_Client.HL_Services.IClasseService>, HugoWorld_Client.HL_Services.IClasseService {
+    public partial class ClassServiceClient : System.ServiceModel.ClientBase<HugoWorld_Client.HL_Services.IClassService>, HugoWorld_Client.HL_Services.IClassService {
         
-        public ClasseServiceClient() {
+        public ClassServiceClient() {
         }
         
-        public ClasseServiceClient(string endpointConfigurationName) : 
+        public ClassServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public ClasseServiceClient(string endpointConfigurationName, string remoteAddress) : 
+        public ClassServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ClasseServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ClassServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ClasseServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ClassServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         

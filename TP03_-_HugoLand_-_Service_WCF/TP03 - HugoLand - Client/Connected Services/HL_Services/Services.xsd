@@ -195,28 +195,7 @@
       <xs:element minOccurs="0" name="Prenom" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Salt" type="ser:guid" />
       <xs:element minOccurs="0" name="TypeUtilisateur" type="xs:int" />
-      <xs:element minOccurs="0" name="IsTransparent" type="xs:boolean" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="NumberOfFrames" type="xs:int" />
-      <xs:element minOccurs="0" name="Shortcut" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Type" type="tns:TypeTile" />
-      <xs:element minOccurs="0" name="color" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="maxDMG" type="xs:int" />
-      <xs:element minOccurs="0" name="minDMG" type="xs:int" />
-      <xs:element minOccurs="0" name="x" type="xs:int" />
-      <xs:element minOccurs="0" name="y" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="TileImport" nillable="true" type="tns:TileImport" />
-  <xs:simpleType name="TypeTile">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="ObjetMonde" />
-      <xs:enumeration value="Monstre" />
-      <xs:enumeration value="Item" />
-      <xs:enumeration value="ClasseHero" />
-      <xs:enumeration value="Tile" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="TypeTile" nillable="true" type="tns:TypeTile" />
   <xs:element name="CompteJoueur" nillable="true" type="tns:CompteJoueur" />
 </xs:schema>

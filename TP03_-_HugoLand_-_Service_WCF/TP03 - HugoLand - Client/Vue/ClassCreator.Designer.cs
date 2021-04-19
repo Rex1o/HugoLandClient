@@ -38,9 +38,9 @@ namespace HugoWorld.Vue
             this.txtBaseVitality = new System.Windows.Forms.TextBox();
             this.txtBaseIntegrity = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.lblDescription = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.CmbWorld = new System.Windows.Forms.ComboBox();
             this.lblWorld = new System.Windows.Forms.Label();
@@ -52,9 +52,9 @@ namespace HugoWorld.Vue
             this.lblBaseForce.AutoSize = true;
             this.lblBaseForce.Location = new System.Drawing.Point(9, 187);
             this.lblBaseForce.Name = "lblBaseForce";
-            this.lblBaseForce.Size = new System.Drawing.Size(125, 21);
+            this.lblBaseForce.Size = new System.Drawing.Size(128, 21);
             this.lblBaseForce.TabIndex = 0;
-            this.lblBaseForce.Text = "Base strenght:";
+            this.lblBaseForce.Text = "Base Strength:";
             // 
             // lblBaseDexterity
             // 
@@ -89,6 +89,7 @@ namespace HugoWorld.Vue
             this.txtBaseForce.Name = "txtBaseForce";
             this.txtBaseForce.Size = new System.Drawing.Size(242, 22);
             this.txtBaseForce.TabIndex = 4;
+            this.txtBaseForce.Text = "16";
             this.txtBaseForce.TextChanged += new System.EventHandler(this.txtBaseForce_TextChanged);
             // 
             // txtBaseDexterity
@@ -97,6 +98,7 @@ namespace HugoWorld.Vue
             this.txtBaseDexterity.Name = "txtBaseDexterity";
             this.txtBaseDexterity.Size = new System.Drawing.Size(242, 22);
             this.txtBaseDexterity.TabIndex = 5;
+            this.txtBaseDexterity.Text = "16";
             this.txtBaseDexterity.TextChanged += new System.EventHandler(this.txtBaseDexterity_TextChanged);
             // 
             // txtBaseVitality
@@ -105,6 +107,7 @@ namespace HugoWorld.Vue
             this.txtBaseVitality.Name = "txtBaseVitality";
             this.txtBaseVitality.Size = new System.Drawing.Size(242, 22);
             this.txtBaseVitality.TabIndex = 6;
+            this.txtBaseVitality.Text = "16";
             this.txtBaseVitality.TextChanged += new System.EventHandler(this.txtBaseVitality_TextChanged);
             // 
             // txtBaseIntegrity
@@ -113,6 +116,7 @@ namespace HugoWorld.Vue
             this.txtBaseIntegrity.Name = "txtBaseIntegrity";
             this.txtBaseIntegrity.Size = new System.Drawing.Size(242, 22);
             this.txtBaseIntegrity.TabIndex = 7;
+            this.txtBaseIntegrity.Text = "16";
             this.txtBaseIntegrity.TextChanged += new System.EventHandler(this.txtBaseIntegrity_TextChanged);
             // 
             // lblName
@@ -124,13 +128,13 @@ namespace HugoWorld.Vue
             this.lblName.TabIndex = 8;
             this.lblName.Text = "Name";
             // 
-            // textBox1
+            // txtDescription
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 125);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(239, 59);
-            this.textBox1.TabIndex = 9;
+            this.txtDescription.Location = new System.Drawing.Point(12, 125);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(239, 59);
+            this.txtDescription.TabIndex = 9;
             // 
             // lblDescription
             // 
@@ -141,12 +145,12 @@ namespace HugoWorld.Vue
             this.lblDescription.TabIndex = 10;
             this.lblDescription.Text = "Description";
             // 
-            // textBox2
+            // txtName
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 80);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(241, 22);
-            this.textBox2.TabIndex = 11;
+            this.txtName.Location = new System.Drawing.Point(12, 80);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(241, 22);
+            this.txtName.TabIndex = 11;
             // 
             // lblTitle
             // 
@@ -196,9 +200,9 @@ namespace HugoWorld.Vue
             this.Controls.Add(this.lblWorld);
             this.Controls.Add(this.CmbWorld);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblDescription);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtBaseIntegrity);
             this.Controls.Add(this.txtBaseVitality);
@@ -227,9 +231,9 @@ namespace HugoWorld.Vue
         private System.Windows.Forms.TextBox txtBaseVitality;
         private System.Windows.Forms.TextBox txtBaseIntegrity;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label lblDescription;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ComboBox CmbWorld;
         private System.Windows.Forms.Label lblWorld;

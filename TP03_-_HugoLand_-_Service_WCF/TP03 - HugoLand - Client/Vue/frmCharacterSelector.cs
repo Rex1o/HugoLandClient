@@ -7,7 +7,7 @@ namespace HugoWorld.Vue {
     public partial class frmCharacterSelector : Form {
         public HeroDTO Hero { get; set; }
         public string ErrorMsg { get; set; }
-        private HeroDTO _selectedHero;
+        private HeroDTO _selectedHero = new HeroDTO();
         private CompteJoueurDTO _user;
 
         public frmCharacterSelector(CompteJoueurDTO j)

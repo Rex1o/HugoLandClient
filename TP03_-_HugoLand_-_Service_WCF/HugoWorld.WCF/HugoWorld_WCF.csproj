@@ -50,10 +50,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
@@ -68,9 +70,9 @@
     <Compile Include="DTOs\MonstreDTO.cs" />
     <Compile Include="DTOs\ObjetMondeDTO.cs" />
     <Compile Include="Models\TileImport.cs" />
+    <Compile Include="DTOs\TileImgDTO.cs" />
     <Compile Include="Services\ClasseService.cs" />
     <Compile Include="Services\IClasseService.cs" />
-    <Compile Include="DTOs\TileImgDTO.cs" />
     <Compile Include="Services\IItemService.cs" />
     <Compile Include="Services\IJoueurService.cs" />
     <Compile Include="Services\IMondeService.cs" />

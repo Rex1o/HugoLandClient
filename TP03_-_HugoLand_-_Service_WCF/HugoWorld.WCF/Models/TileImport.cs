@@ -12,7 +12,7 @@ namespace HugoWorld_WCF.Models
         //public Rectangle Rectangle;
         public List<string> Images;
         public int ID;
-        public string Type;
+        public TypeTile Type;
         public bool IsTransparent;
         public int NumberOfFrames;
         public bool IsBlock;
@@ -28,5 +28,7 @@ namespace HugoWorld_WCF.Models
 
         public string Name;
         public string Shortcut;
+        public int x;
+        public int y;
     }
 }

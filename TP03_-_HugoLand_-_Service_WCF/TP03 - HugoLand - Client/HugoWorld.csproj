@@ -93,6 +93,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="DAL\CTileLibrary.cs" />
     <Compile Include="Validators\ClasseDTOValidator.cs" />
     <Compile Include="Vue\ClassCreator.cs">
       <SubType>Form</SubType>

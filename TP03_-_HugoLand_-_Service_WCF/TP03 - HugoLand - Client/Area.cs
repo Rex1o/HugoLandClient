@@ -2,13 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using HugoWorld_Client.HL_Services;
 
-namespace HugoWorld {
+namespace HugoWorld
+{
 
     /// <summary>
     /// Area defines the 8x8 grid that contains a set of MapTiles
     /// </summary>
-    public class Area : GameObject {
+    public class Area : GameObject
+    {
         public const int AreaOffsetX = 30;
         public const int AreaOffsetY = 50;
         public const int MapSizeX = 8;
@@ -67,6 +70,35 @@ namespace HugoWorld {
                 if (mapTile.ObjectTile.IsTransparent)
                 {
                     mapTile.ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
+                }
+            }
+        }
+
+        public Area(int AreaCount, Dictionary<string, Tile> tiles, List<TileImport> objects, int[] connection)
+        {
+            Name = AreaCount.ToString();
+
+            NorthArea = connection[0].ToString();
+            EastArea = connection[1].ToString();
+            SouthArea = connection[2].ToString();
+            WestArea = connection[3].ToString();
+
+            foreach (TileImport t in objects)
+            {
+                MapTile mapT = new MapTile();
+                Map[t.x, t.y] = mapT;
+
+                if (t.Type == TypeTile.Item || t.Type == TypeTile.Monstre)
+                {
+                    mapT.ObjectTile = tiles[t.Name];
+                }
+                else
+                    mapT.Tile = tiles[t.Name];
+
+                mapT.SetSprite(t.x, t.y);
+                if (mapT.ObjectTile.IsTransparent)
+                {
+                    mapT.ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
                 }
             }
         }

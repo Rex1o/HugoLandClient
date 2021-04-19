@@ -1831,7 +1831,7 @@ namespace HugoWorld_Client.HL_Services {
         private string ShortcutField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TypeField;
+        private HugoWorld_Client.HL_Services.TypeTile TypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string color1Field;
@@ -1841,6 +1841,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int minDMGField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int xField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int yField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1983,12 +1989,12 @@ namespace HugoWorld_Client.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Type {
+        public HugoWorld_Client.HL_Services.TypeTile Type {
             get {
                 return this.TypeField;
             }
             set {
-                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
+                if ((this.TypeField.Equals(value) != true)) {
                     this.TypeField = value;
                     this.RaisePropertyChanged("Type");
                 }
@@ -2034,6 +2040,32 @@ namespace HugoWorld_Client.HL_Services {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int x {
+            get {
+                return this.xField;
+            }
+            set {
+                if ((this.xField.Equals(value) != true)) {
+                    this.xField = value;
+                    this.RaisePropertyChanged("x");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int y {
+            get {
+                return this.yField;
+            }
+            set {
+                if ((this.yField.Equals(value) != true)) {
+                    this.yField = value;
+                    this.RaisePropertyChanged("y");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -2042,6 +2074,26 @@ namespace HugoWorld_Client.HL_Services {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TypeTile", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models")]
+    public enum TypeTile : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ObjetMonde = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Monstre = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Item = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ClasseHero = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Tile = 4,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

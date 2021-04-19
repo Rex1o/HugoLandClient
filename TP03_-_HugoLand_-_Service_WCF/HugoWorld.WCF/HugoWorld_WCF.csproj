@@ -71,6 +71,7 @@
     <Compile Include="DTOs\ObjetMondeDTO.cs" />
     <Compile Include="Models\TileImport.cs" />
     <Compile Include="DTOs\TileImgDTO.cs" />
+    <Compile Include="Models\TypeTyle.cs" />
     <Compile Include="Services\ClasseService.cs" />
     <Compile Include="Services\IClasseService.cs" />
     <Compile Include="Services\IItemService.cs" />

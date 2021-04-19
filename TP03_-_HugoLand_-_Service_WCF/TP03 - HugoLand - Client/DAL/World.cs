@@ -73,6 +73,23 @@ namespace HugoWorld {
                 }
             }
         }
+        private void LoadWorld(HugoWorld_Client.HL_Services.MondeDTO w)
+        {
+            int x = 0;
+            int y = 0;
+            int AreaCount = 0;
+
+            while(x < w.LimiteX)
+            {
+                while(y < w.LimiteY)
+                {
+
+
+                    y += 8;
+                }
+                x += 8;
+            }
+        }
 
         public override void Update(double gameTime, double elapsedTime)
         {

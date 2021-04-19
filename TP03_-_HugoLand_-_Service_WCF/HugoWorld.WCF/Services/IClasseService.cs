@@ -1,15 +1,14 @@
 ﻿using HugoWorld_WCF.DTOs;
 using System.Collections.Generic;
 using System.ServiceModel;
-using TP01_Library.Models;
 
-namespace HugoWorld_WCF.Services
-{
+namespace HugoWorld_WCF.Services {
+
     [ServiceContract]
-    public interface IClasseService
-    {
+    public interface IClasseService {
         [OperationContract]
-        //void AddClassToDataBase(int p_WId, string p_Name, string p_Description, int p_Str, int p_Dex, int p_Vit, int p_Int);
         void AddClassToDataBase(ClasseDTO classeDTO);
+        [OperationContract]
+        List<ClasseDTO> GetClasseDTOs(); 
     }
 }

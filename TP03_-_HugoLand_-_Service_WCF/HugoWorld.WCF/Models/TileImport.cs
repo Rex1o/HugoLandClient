@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace HugoWorld_WCF.Models
-{
-    public class TileImport
-    {
+namespace HugoWorld_WCF.Models {
+
+    public class TileImport {
+
         //public Bitmap Bitmap;
         //public Rectangle Rectangle;
         public List<string> Images;
+
         public int ID;
         public TypeTile Type;
         public bool IsTransparent;

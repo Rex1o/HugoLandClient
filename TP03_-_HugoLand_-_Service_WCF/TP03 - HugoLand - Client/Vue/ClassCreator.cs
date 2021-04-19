@@ -4,11 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-
-using Hugoworld.Validators;
 using TP01_Library.Controllers;
 
 namespace HugoWorld.Vue {
+
     public partial class ClassCreator : Form {
         private int _Strength;
         private int _Dexterity;
@@ -20,7 +19,6 @@ namespace HugoWorld.Vue {
 
         public ClassCreator()
         {
-
             _Strength = 16;
             _Dexterity = 16;
             _Vitality = 16;
@@ -44,7 +42,6 @@ namespace HugoWorld.Vue {
             this.DialogResult = DialogResult.Cancel;
             this.StartPosition = FormStartPosition.CenterParent;
 
-
             //Initialisation du clientMonde
             mondeService = new MondeServiceClient();
             classeService = new ClasseServiceClient();
@@ -59,7 +56,6 @@ namespace HugoWorld.Vue {
         {
             if (ValidateInput())
             {
-
                 string itemstr = CmbWorld.SelectedItem.ToString();
                 int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
 
@@ -82,17 +78,20 @@ namespace HugoWorld.Vue {
                     try
                     {
 
-                        //         ####################### controllers du TP01 #########################
-                        ClasseController controller = new ClasseController();
-                        controller.AjouterClasse(c.MondeId,c.NomClasse,c.Description,c.StatBaseStr,c.StatBaseDex,c.StatBaseInt,c.StatBaseVitalite);
+                        var classeDTOs = classeService.GetClasseDTOs();
+                        classeService.AddClassToDataBase(c);
+                        string pause = "";
 
-						//Requêtes ####################### le programm crash ici #########################
+                        //         ####################### controllers du TP01 #########################
+                        //ClasseController controller = new ClasseController();
+                        //controller.AjouterClasse(c.MondeId, c.NomClasse, c.Description, c.StatBaseStr, c.StatBaseDex, c.StatBaseInt, c.StatBaseVitalite);
+
+                        //Requêtes ####################### le programm crash ici #########################
                         //Création du ClientClasse
                         //ServiceClass = new ClasseServiceClient();
                         //c.NomClasse.ToString(), c.Description.ToString(),
                         //classeService.AddClassToDataBase(c.NomClasse, c.Description, c.StatBaseStr, c.StatBaseDex, c.StatBaseVitalite, c.StatBaseInt, c.MondeId);
                         //classeService.AddClassToDataBase(id, txtName.Text, txtDescription.Text, _Strength, _Dexterity, _Vitality, _Integrity);
-                        //classeService.AddClassToDataBase(c);
                         //classeService.Abort();
                     }
                     catch (Exception ex)
@@ -100,7 +99,6 @@ namespace HugoWorld.Vue {
                         MessageBox.Show("An error occured while adding the class to the database\n" + ex.Message, "ERROR",
 MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                     }
-
                 }
                 else
                 {
@@ -116,19 +114,16 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
         private void txtBaseForce_TextChanged(object sender, EventArgs e)
         {
             UpdateUI();
-
         }
 
         private void txtBaseDexterity_TextChanged(object sender, EventArgs e)
         {
             UpdateUI();
-
         }
 
         private void txtBaseVitality_TextChanged(object sender, EventArgs e)
         {
             UpdateUI();
-
         }
 
         private void txtBaseIntegrity_TextChanged(object sender, EventArgs e)
@@ -147,8 +142,8 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 {
                     return false;
                 }
-                
-                    _Strength = nValue;
+
+                _Strength = nValue;
             }
             else
             {
@@ -162,7 +157,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 {
                     return false;
                 }
-                    _Dexterity = nValue;
+                _Dexterity = nValue;
             }
             else
             {
@@ -176,7 +171,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 {
                     return false;
                 }
-                    _Vitality = nValue;
+                _Vitality = nValue;
             }
             else
             {
@@ -190,13 +185,12 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 {
                     return false;
                 }
-                    _Integrity = nValue;
+                _Integrity = nValue;
             }
             else
             {
                 return false;
             }
-
 
             return true;
         }

@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using HugoWorld_WCF.Services;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Linq;
 using TP01_Library.Models;
-using HugoWorld_WCF.Services;
 
 namespace HugoWorld_WCF.DTOs {
 

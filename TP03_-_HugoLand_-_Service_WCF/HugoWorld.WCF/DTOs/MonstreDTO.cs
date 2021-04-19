@@ -1,14 +1,14 @@
-﻿using System.Runtime.Serialization;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using TP01_Library.Models;
 
 namespace HugoWorld_WCF.DTOs {
 
     [DataContract]
     public class MonstreDTO {
+
         public MonstreDTO()
         {
-
         }
 
         public MonstreDTO(Monstre monstre)
@@ -53,7 +53,7 @@ namespace HugoWorld_WCF.DTOs {
         public int MondeId { get; set; }
 
         [DataMember]
-        public virtual List<TileImgDTO> Images {get; set;}
+        public virtual List<TileImgDTO> Images { get; set; }
 
         [DataMember]
         public virtual MondeDTO Monde { get; set; }

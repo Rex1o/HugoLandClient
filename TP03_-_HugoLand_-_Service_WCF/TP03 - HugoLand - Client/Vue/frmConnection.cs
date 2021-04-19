@@ -3,13 +3,14 @@ using HugoWorld_Client.HL_Services;
 using System;
 using System.Windows.Forms;
 
-namespace HugoWorld
-{
-    public partial class frmConnection : Form
-    {
+namespace HugoWorld {
+
+    public partial class frmConnection : Form {
+
         //Service a utiliser
         private readonly JoueurServiceClient joueurService;
-        string reponse = "NewAttempt";
+
+        private string reponse = "NewAttempt";
 
         /// <summary>
         /// Description : Initialise le formulaire de connexion
@@ -93,7 +94,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             {
                 this.DialogResult = DialogResult.OK;
             }
-
         }
     }
 }

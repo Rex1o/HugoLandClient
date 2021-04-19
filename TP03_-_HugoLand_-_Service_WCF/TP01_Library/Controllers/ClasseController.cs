@@ -46,17 +46,17 @@ namespace TP01_Library.Controllers {
             //}
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-                    dbContext.Classes.Add(new Classe()
-                    {
-                        NomClasse = p_sNomClasse,
-                        Description = p_sDescription,
-                        StatBaseStr = p_iStatBaseStr,
-                        StatBaseDex = p_iStatBaseDex,
-                        StatBaseInt = p_iStatBaseInt,
-                        StatBaseVitalite = p_iStatBaseVit,
-                        MondeId = p_MondeId
-                    });
-                    dbContext.SaveChanges();
+                dbContext.Classes.Add(new Classe()
+                {
+                    NomClasse = p_sNomClasse,
+                    Description = p_sDescription,
+                    StatBaseStr = p_iStatBaseStr,
+                    StatBaseDex = p_iStatBaseDex,
+                    StatBaseInt = p_iStatBaseInt,
+                    StatBaseVitalite = p_iStatBaseVit,
+                    MondeId = p_MondeId
+                });
+                dbContext.SaveChanges();
             }
         }
 

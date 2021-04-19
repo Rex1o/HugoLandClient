@@ -1,32 +1,41 @@
 ﻿using HugoWorld_WCF.DTOs;
 using System.Collections.Generic;
-using System.ServiceModel;
-using TP01_Library.Models;
+using System.Linq;
 using TP01_Library.Controllers;
+using TP01_Library.Models;
 
-namespace HugoWorld_WCF.Services
-{
-    public partial class HugoLandService : IClasseService
-    {
-        public void AddClassToDataBase(ClasseDTO classeDTO)
+namespace HugoWorld_WCF.Services {
+
+    public partial class HugoLandService : IClasseService {
+
+        public async void AddClassToDataBase(ClasseDTO classeDTO)
         {
-            //using (HugoLandContext dbContext = new HugoLandContext())
-            //{
-            //    Classe classe = new Classe()
-            //    {
-            //        NomClasse = p_Name,
-            //        Description = p_Description,
-            //        StatBaseStr = p_Str,
-            //        StatBaseDex = p_Dex,
-            //        StatBaseInt = p_Int,
-            //        StatBaseVitalite = p_Vit,
-            //        MondeId = p_WId
-            //    };
-            //    dbContext.Entry(classe).State = System.Data.Entity.EntityState.Added;
-            //    await dbContext.SaveChangesAsync();
-            //}
-            ClasseController classeController = new ClasseController();
-            classeController.AjouterClasse(classeDTO.MondeId, classeDTO.NomClasse, classeDTO.Description, classeDTO.StatBaseStr, classeDTO.StatBaseDex, classeDTO.StatBaseInt, classeDTO.StatBaseVitalite);
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                Classe classe = new Classe()
+                {
+                    NomClasse = classeDTO.NomClasse,
+                    Description = classeDTO.Description,
+                    StatBaseStr = classeDTO.StatBaseStr,
+                    StatBaseDex = classeDTO.StatBaseDex,
+                    StatBaseInt = classeDTO.StatBaseInt,
+                    StatBaseVitalite = classeDTO.StatBaseVitalite,
+                    MondeId = classeDTO.MondeId
+                };
+                dbContext.Entry(classe).State = System.Data.Entity.EntityState.Added;
+                await dbContext.SaveChangesAsync();
+            }
+
+            //ClasseController classeController = new ClasseController();
+            //classeController.AjouterClasse(classeDTO.MondeId, classeDTO.NomClasse, classeDTO.Description, classeDTO.StatBaseStr, classeDTO.StatBaseDex, classeDTO.StatBaseInt, classeDTO.StatBaseVitalite);
+        }
+
+        public List<ClasseDTO> GetClasseDTOs()
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                return dbContext.Classes.ToList().Select(x => new ClasseDTO(x)).ToList();
+            }
         }
     }
 }

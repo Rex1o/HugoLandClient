@@ -10,7 +10,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HugoWorld_Client</RootNamespace>
-    <AssemblyName>HugoWorld</AssemblyName>
+    <AssemblyName>HugoWorld_Client</AssemblyName>
     <ApplicationIcon>app.ico</ApplicationIcon>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileUpgradeFlags>

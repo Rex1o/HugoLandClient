@@ -6,9 +6,9 @@ namespace HugoWorld_WCF.DTOs {
 
     [DataContract]
     public class MondeDTO {
+
         public MondeDTO()
         {
-
         }
 
         public MondeDTO(Monde monde)

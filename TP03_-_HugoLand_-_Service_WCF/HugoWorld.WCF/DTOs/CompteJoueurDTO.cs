@@ -8,10 +8,11 @@ namespace HugoWorld_WCF.DTOs {
     [DataContract]
     public class CompteJoueurDTO {
         private HugoLandService joueurService = new HugoLandService();
+
         public CompteJoueurDTO()
         {
-
         }
+
         public CompteJoueurDTO(CompteJoueur compteJoueur)
         {
             Id = compteJoueur.Id;

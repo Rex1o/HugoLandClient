@@ -2261,49 +2261,63 @@ namespace HugoWorld_Client.HL_Services {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HL_Services.IClassService")]
-    public interface IClassService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HL_Services.IClasseService")]
+    public interface IClasseService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClassService/AddClassToDataBase", ReplyAction="http://tempuri.org/IClassService/AddClassToDataBaseResponse")]
-        void AddClassToDataBase(string p_Description, string p_Name, int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/AddClassToDataBase", ReplyAction="http://tempuri.org/IClasseService/AddClassToDataBaseResponse")]
+        void AddClassToDataBase(HugoWorld_Client.HL_Services.ClasseDTO classeDTO);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClassService/AddClassToDataBase", ReplyAction="http://tempuri.org/IClassService/AddClassToDataBaseResponse")]
-        System.Threading.Tasks.Task AddClassToDataBaseAsync(string p_Description, string p_Name, int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/AddClassToDataBase", ReplyAction="http://tempuri.org/IClasseService/AddClassToDataBaseResponse")]
+        System.Threading.Tasks.Task AddClassToDataBaseAsync(HugoWorld_Client.HL_Services.ClasseDTO classeDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/GetClasseDTOs", ReplyAction="http://tempuri.org/IClasseService/GetClasseDTOsResponse")]
+        HugoWorld_Client.HL_Services.ClasseDTO[] GetClasseDTOs();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/GetClasseDTOs", ReplyAction="http://tempuri.org/IClasseService/GetClasseDTOsResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ClasseDTO[]> GetClasseDTOsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IClassServiceChannel : HugoWorld_Client.HL_Services.IClassService, System.ServiceModel.IClientChannel {
+    public interface IClasseServiceChannel : HugoWorld_Client.HL_Services.IClasseService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ClassServiceClient : System.ServiceModel.ClientBase<HugoWorld_Client.HL_Services.IClassService>, HugoWorld_Client.HL_Services.IClassService {
+    public partial class ClasseServiceClient : System.ServiceModel.ClientBase<HugoWorld_Client.HL_Services.IClasseService>, HugoWorld_Client.HL_Services.IClasseService {
         
-        public ClassServiceClient() {
+        public ClasseServiceClient() {
         }
         
-        public ClassServiceClient(string endpointConfigurationName) : 
+        public ClasseServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public ClassServiceClient(string endpointConfigurationName, string remoteAddress) : 
+        public ClasseServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ClassServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ClasseServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public ClassServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ClasseServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
-        public void AddClassToDataBase(string p_Description, string p_Name, int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId) {
-            base.Channel.AddClassToDataBase(p_Description, p_Name, p_Str, p_Dex, p_Vit, p_Int, p_WId);
+        public void AddClassToDataBase(HugoWorld_Client.HL_Services.ClasseDTO classeDTO) {
+            base.Channel.AddClassToDataBase(classeDTO);
         }
         
-        public System.Threading.Tasks.Task AddClassToDataBaseAsync(string p_Description, string p_Name, int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId) {
-            return base.Channel.AddClassToDataBaseAsync(p_Description, p_Name, p_Str, p_Dex, p_Vit, p_Int, p_WId);
+        public System.Threading.Tasks.Task AddClassToDataBaseAsync(HugoWorld_Client.HL_Services.ClasseDTO classeDTO) {
+            return base.Channel.AddClassToDataBaseAsync(classeDTO);
+        }
+        
+        public HugoWorld_Client.HL_Services.ClasseDTO[] GetClasseDTOs() {
+            return base.Channel.GetClasseDTOs();
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ClasseDTO[]> GetClasseDTOsAsync() {
+            return base.Channel.GetClasseDTOsAsync();
         }
     }
     

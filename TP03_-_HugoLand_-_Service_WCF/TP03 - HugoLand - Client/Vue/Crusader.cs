@@ -3,7 +3,6 @@ using HugoWorld.Vue;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
-using TP01_Library.Controllers;
 
 namespace HugoWorld {
 

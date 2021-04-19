@@ -1,15 +1,10 @@
 ﻿using HugoWorld_WCF.DTOs;
 using HugoWorld_WCF.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HugoWorld_WCF.Services
-{
-    public partial class HugoLandService : ITileImgService
-    {
+namespace HugoWorld_WCF.Services {
+
+    public partial class HugoLandService : ITileImgService {
         //public TileImport ItemToTile(ItemDTO item)
         //{
         //    TileImport tile = new TileImport();

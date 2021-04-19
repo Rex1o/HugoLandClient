@@ -6,6 +6,7 @@ using TP01_Library.Models;
 namespace HugoWorld_WCF.Services {
 
     public partial class HugoLandService : IItemService {
+
         public void AddItem(string p_Nom, string p_Description, int p_X, int p_Y, int p_ImageId, int p_MondeId)
         {
             using (HugoLandContext dbcontext = new HugoLandContext())
@@ -57,7 +58,6 @@ namespace HugoWorld_WCF.Services {
                 context.SaveChanges();
             }
         }
-
 
         public void DeleteItemById(int p_ItemId, HeroDTO p_Hero)
         {

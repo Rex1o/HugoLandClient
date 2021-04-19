@@ -1,6 +1,6 @@
+using HugoWorld_Client.HL_Services;
 using System;
 using System.Drawing;
-using HugoWorld_Client.HL_Services;
 
 namespace HugoWorld {
 
@@ -30,7 +30,6 @@ namespace HugoWorld {
 
         public Tile()
         {
-
         }
 
         public Tile(string[] tileData)

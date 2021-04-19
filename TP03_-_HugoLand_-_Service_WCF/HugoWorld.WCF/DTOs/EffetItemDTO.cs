@@ -5,9 +5,9 @@ namespace HugoWorld_WCF.DTOs {
 
     [DataContract]
     public class EffetItemDTO {
+
         public EffetItemDTO()
         {
-
         }
 
         public EffetItemDTO(EffetItem effetItem)

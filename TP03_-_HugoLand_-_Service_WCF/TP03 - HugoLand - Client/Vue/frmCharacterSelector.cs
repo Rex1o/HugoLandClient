@@ -1,6 +1,5 @@
 ﻿using HugoWorld_Client.HL_Services;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace HugoWorld.Vue {

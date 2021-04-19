@@ -1,7 +1,7 @@
 ﻿using HugoWorld_WCF.DTOs;
 using System;
-using System.Data.Entity;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
 using TP01_Library.Models;
@@ -91,7 +91,6 @@ namespace HugoWorld_WCF.Services {
             {
                 //dbContext.Heros
                 //   .Find(p_Id)
-
             }
             throw new NotImplementedException();
         }
@@ -101,7 +100,7 @@ namespace HugoWorld_WCF.Services {
             List<Hero> _heroes = heroes.ToList();
 
             List<HeroDTO> heroDTOs = new List<HeroDTO>();
-            _heroes.ForEach(h => heroDTOs.Add(new HeroDTO(h) 
+            _heroes.ForEach(h => heroDTOs.Add(new HeroDTO(h)
             {
                 InventaireHeros = ConvertToInventaireHeroDTOs(h.InventaireHeroes),
                 Items = ConvertToItemsDTOs(h.Items)

@@ -1,17 +1,15 @@
+using HugoWorld_Client.HL_Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using HugoWorld_Client.HL_Services;
 
-namespace HugoWorld
-{
+namespace HugoWorld {
 
     /// <summary>
     /// Area defines the 8x8 grid that contains a set of MapTiles
     /// </summary>
-    public class Area : GameObject
-    {
+    public class Area : GameObject {
         public const int AreaOffsetX = 30;
         public const int AreaOffsetY = 50;
         public const int MapSizeX = 8;

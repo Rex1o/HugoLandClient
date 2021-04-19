@@ -4,14 +4,15 @@ using System.Runtime.Serialization;
 using TP01_Library.Models;
 
 namespace HugoWorld_WCF.DTOs {
+
     [DataContract]
     public class HeroDTO {
-
         private readonly HugoLandService joueurService = new HugoLandService();
+
         public HeroDTO()
         {
-
         }
+
         public HeroDTO(Hero hero)
         {
             Id = hero.Id;
@@ -90,7 +91,7 @@ namespace HugoWorld_WCF.DTOs {
 
         [DataMember]
         public virtual List<ItemDTO> Items { get; set; }
-           
+
         [DataMember]
         public virtual List<TileImgDTO> Images { get; set; }
     }

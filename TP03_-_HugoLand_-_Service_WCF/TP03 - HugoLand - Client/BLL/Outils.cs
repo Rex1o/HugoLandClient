@@ -2,8 +2,8 @@
 using System;
 
 namespace HugoWorld.BLL {
-    public static class Outils {
 
+    public static class Outils {
         private static CompteJoueurDTO _activeUser;
         private static MondeDTO _mondeToEdit;
 

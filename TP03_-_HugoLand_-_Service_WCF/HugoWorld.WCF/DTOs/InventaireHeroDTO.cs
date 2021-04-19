@@ -1,9 +1,24 @@
 ﻿using System.Runtime.Serialization;
+using TP01_Library.Models;
 
 namespace HugoWorld_WCF.DTOs {
 
     [DataContract]
     public class InventaireHeroDTO {
+        public InventaireHeroDTO()
+        {
+
+        }
+
+        public InventaireHeroDTO(InventaireHero inventaireHero)
+        {
+            IdHero = inventaireHero.IdHero;
+            ItemId = inventaireHero.ItemId;
+            IdInventaireHero = inventaireHero.IdInventaireHero;
+            Quantite = inventaireHero.Quantite;
+            Hero = new HeroDTO(inventaireHero.Hero);
+            Item = new ItemDTO(inventaireHero.Item);
+        }
 
         [DataMember]
         public int IdHero { get; set; }

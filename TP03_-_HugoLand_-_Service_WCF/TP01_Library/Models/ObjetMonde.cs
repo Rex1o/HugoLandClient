@@ -21,7 +21,7 @@ namespace TP01_Library.Models
         public int TypeObjet { get; set; }
         public int MondeId { get; set; }
         public int ImageId { get; set; }
-        public Nullable<bool> IsBlock { get; set; }
+        public bool IsBlock { get; set; }
     
         public virtual Monde Monde { get; set; }
         public virtual TileImg TileImg { get; set; }

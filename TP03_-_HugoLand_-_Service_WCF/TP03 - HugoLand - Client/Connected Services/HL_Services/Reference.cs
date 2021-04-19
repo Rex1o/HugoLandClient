@@ -723,7 +723,7 @@ namespace HugoWorld_Client.HL_Services {
         private int LimiteYField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HugoWorld_Client.HL_Services.MondeDTO[] MonstresField;
+        private HugoWorld_Client.HL_Services.MonstreDTO[] MonstresField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private HugoWorld_Client.HL_Services.ObjetMondeDTO[] ObjetMondesField;
@@ -830,7 +830,7 @@ namespace HugoWorld_Client.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HugoWorld_Client.HL_Services.MondeDTO[] Monstres {
+        public HugoWorld_Client.HL_Services.MonstreDTO[] Monstres {
             get {
                 return this.MonstresField;
             }
@@ -1094,10 +1094,10 @@ namespace HugoWorld_Client.HL_Services {
         private string NomField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int xField;
+        private System.Nullable<int> xField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int yField;
+        private System.Nullable<int> yField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -1253,7 +1253,7 @@ namespace HugoWorld_Client.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int x {
+        public System.Nullable<int> x {
             get {
                 return this.xField;
             }
@@ -1266,7 +1266,7 @@ namespace HugoWorld_Client.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int y {
+        public System.Nullable<int> y {
             get {
                 return this.yField;
             }
@@ -1383,6 +1383,211 @@ namespace HugoWorld_Client.HL_Services {
                 if ((this.ValeurEffetField.Equals(value) != true)) {
                     this.ValeurEffetField = value;
                     this.RaisePropertyChanged("ValeurEffet");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MonstreDTO", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs")]
+    [System.SerializableAttribute()]
+    public partial class MonstreDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private HugoWorld_Client.HL_Services.TileImgDTO[] ImagesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private HugoWorld_Client.HL_Services.MondeDTO MondeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MondeIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NiveauField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NomField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private float StatDmgMaxField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private float StatDmgMinField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int StatPVField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int xField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int yField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public HugoWorld_Client.HL_Services.TileImgDTO[] Images {
+            get {
+                return this.ImagesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ImagesField, value) != true)) {
+                    this.ImagesField = value;
+                    this.RaisePropertyChanged("Images");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public HugoWorld_Client.HL_Services.MondeDTO Monde {
+            get {
+                return this.MondeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MondeField, value) != true)) {
+                    this.MondeField = value;
+                    this.RaisePropertyChanged("Monde");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MondeId {
+            get {
+                return this.MondeIdField;
+            }
+            set {
+                if ((this.MondeIdField.Equals(value) != true)) {
+                    this.MondeIdField = value;
+                    this.RaisePropertyChanged("MondeId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Niveau {
+            get {
+                return this.NiveauField;
+            }
+            set {
+                if ((this.NiveauField.Equals(value) != true)) {
+                    this.NiveauField = value;
+                    this.RaisePropertyChanged("Niveau");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nom {
+            get {
+                return this.NomField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NomField, value) != true)) {
+                    this.NomField = value;
+                    this.RaisePropertyChanged("Nom");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public float StatDmgMax {
+            get {
+                return this.StatDmgMaxField;
+            }
+            set {
+                if ((this.StatDmgMaxField.Equals(value) != true)) {
+                    this.StatDmgMaxField = value;
+                    this.RaisePropertyChanged("StatDmgMax");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public float StatDmgMin {
+            get {
+                return this.StatDmgMinField;
+            }
+            set {
+                if ((this.StatDmgMinField.Equals(value) != true)) {
+                    this.StatDmgMinField = value;
+                    this.RaisePropertyChanged("StatDmgMin");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int StatPV {
+            get {
+                return this.StatPVField;
+            }
+            set {
+                if ((this.StatPVField.Equals(value) != true)) {
+                    this.StatPVField = value;
+                    this.RaisePropertyChanged("StatPV");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int x {
+            get {
+                return this.xField;
+            }
+            set {
+                if ((this.xField.Equals(value) != true)) {
+                    this.xField = value;
+                    this.RaisePropertyChanged("x");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int y {
+            get {
+                return this.yField;
+            }
+            set {
+                if ((this.yField.Equals(value) != true)) {
+                    this.yField = value;
+                    this.RaisePropertyChanged("y");
                 }
             }
         }
@@ -1546,211 +1751,6 @@ namespace HugoWorld_Client.HL_Services {
                 if ((this.TypeObjetField.Equals(value) != true)) {
                     this.TypeObjetField = value;
                     this.RaisePropertyChanged("TypeObjet");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int x {
-            get {
-                return this.xField;
-            }
-            set {
-                if ((this.xField.Equals(value) != true)) {
-                    this.xField = value;
-                    this.RaisePropertyChanged("x");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int y {
-            get {
-                return this.yField;
-            }
-            set {
-                if ((this.yField.Equals(value) != true)) {
-                    this.yField = value;
-                    this.RaisePropertyChanged("y");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MonstreDTO", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs")]
-    [System.SerializableAttribute()]
-    public partial class MonstreDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HugoWorld_Client.HL_Services.TileImgDTO[] ImagesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HugoWorld_Client.HL_Services.MondeDTO MondeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MondeIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int NiveauField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NomField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int StatDmgMaxField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int StatDmgMinField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int StatPVField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int xField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int yField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public HugoWorld_Client.HL_Services.TileImgDTO[] Images {
-            get {
-                return this.ImagesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ImagesField, value) != true)) {
-                    this.ImagesField = value;
-                    this.RaisePropertyChanged("Images");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public HugoWorld_Client.HL_Services.MondeDTO Monde {
-            get {
-                return this.MondeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MondeField, value) != true)) {
-                    this.MondeField = value;
-                    this.RaisePropertyChanged("Monde");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MondeId {
-            get {
-                return this.MondeIdField;
-            }
-            set {
-                if ((this.MondeIdField.Equals(value) != true)) {
-                    this.MondeIdField = value;
-                    this.RaisePropertyChanged("MondeId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Niveau {
-            get {
-                return this.NiveauField;
-            }
-            set {
-                if ((this.NiveauField.Equals(value) != true)) {
-                    this.NiveauField = value;
-                    this.RaisePropertyChanged("Niveau");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Nom {
-            get {
-                return this.NomField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NomField, value) != true)) {
-                    this.NomField = value;
-                    this.RaisePropertyChanged("Nom");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int StatDmgMax {
-            get {
-                return this.StatDmgMaxField;
-            }
-            set {
-                if ((this.StatDmgMaxField.Equals(value) != true)) {
-                    this.StatDmgMaxField = value;
-                    this.RaisePropertyChanged("StatDmgMax");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int StatDmgMin {
-            get {
-                return this.StatDmgMinField;
-            }
-            set {
-                if ((this.StatDmgMinField.Equals(value) != true)) {
-                    this.StatDmgMinField = value;
-                    this.RaisePropertyChanged("StatDmgMin");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int StatPV {
-            get {
-                return this.StatPVField;
-            }
-            set {
-                if ((this.StatPVField.Equals(value) != true)) {
-                    this.StatPVField = value;
-                    this.RaisePropertyChanged("StatPV");
                 }
             }
         }
@@ -2071,6 +2071,18 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/GetHeroById", ReplyAction="http://tempuri.org/IJoueurService/GetHeroByIdResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO> GetHeroByIdAsync(int p_Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/ConvertToHerosDTO", ReplyAction="http://tempuri.org/IJoueurService/ConvertToHerosDTOResponse")]
+        HugoWorld_Client.HL_Services.HeroDTO[] ConvertToHerosDTO(TP01_Library.Models.Hero[] heroes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/ConvertToHerosDTO", ReplyAction="http://tempuri.org/IJoueurService/ConvertToHerosDTOResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO[]> ConvertToHerosDTOAsync(TP01_Library.Models.Hero[] heroes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/ConvertToClassesDTO", ReplyAction="http://tempuri.org/IJoueurService/ConvertToClassesDTOResponse")]
+        HugoWorld_Client.HL_Services.ClasseDTO[] ConvertToClassesDTO(TP01_Library.Models.Classe[] classes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/ConvertToClassesDTO", ReplyAction="http://tempuri.org/IJoueurService/ConvertToClassesDTOResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ClasseDTO[]> ConvertToClassesDTOAsync(TP01_Library.Models.Classe[] classes);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2131,6 +2143,22 @@ namespace HugoWorld_Client.HL_Services {
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO> GetHeroByIdAsync(int p_Id) {
             return base.Channel.GetHeroByIdAsync(p_Id);
         }
+        
+        public HugoWorld_Client.HL_Services.HeroDTO[] ConvertToHerosDTO(TP01_Library.Models.Hero[] heroes) {
+            return base.Channel.ConvertToHerosDTO(heroes);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO[]> ConvertToHerosDTOAsync(TP01_Library.Models.Hero[] heroes) {
+            return base.Channel.ConvertToHerosDTOAsync(heroes);
+        }
+        
+        public HugoWorld_Client.HL_Services.ClasseDTO[] ConvertToClassesDTO(TP01_Library.Models.Classe[] classes) {
+            return base.Channel.ConvertToClassesDTO(classes);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ClasseDTO[]> ConvertToClassesDTOAsync(TP01_Library.Models.Classe[] classes) {
+            return base.Channel.ConvertToClassesDTOAsync(classes);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2185,10 +2213,10 @@ namespace HugoWorld_Client.HL_Services {
     public interface IClasseService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/AddClassToDataBase", ReplyAction="http://tempuri.org/IClasseService/AddClassToDataBaseResponse")]
-        void AddClassToDataBase(int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId);
+        void AddClassToDataBase(string p_Description, string p_Name, int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/AddClassToDataBase", ReplyAction="http://tempuri.org/IClasseService/AddClassToDataBaseResponse")]
-        System.Threading.Tasks.Task AddClassToDataBaseAsync(int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId);
+        System.Threading.Tasks.Task AddClassToDataBaseAsync(string p_Description, string p_Name, int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2218,12 +2246,12 @@ namespace HugoWorld_Client.HL_Services {
                 base(binding, remoteAddress) {
         }
         
-        public void AddClassToDataBase(int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId) {
-            base.Channel.AddClassToDataBase(p_Str, p_Dex, p_Vit, p_Int, p_WId);
+        public void AddClassToDataBase(string p_Description, string p_Name, int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId) {
+            base.Channel.AddClassToDataBase(p_Description, p_Name, p_Str, p_Dex, p_Vit, p_Int, p_WId);
         }
         
-        public System.Threading.Tasks.Task AddClassToDataBaseAsync(int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId) {
-            return base.Channel.AddClassToDataBaseAsync(p_Str, p_Dex, p_Vit, p_Int, p_WId);
+        public System.Threading.Tasks.Task AddClassToDataBaseAsync(string p_Description, string p_Name, int p_Str, int p_Dex, int p_Vit, int p_Int, int p_WId) {
+            return base.Channel.AddClassToDataBaseAsync(p_Description, p_Name, p_Str, p_Dex, p_Vit, p_Int, p_WId);
         }
     }
     
@@ -2278,6 +2306,36 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/EditItemEffectById", ReplyAction="http://tempuri.org/IItemService/EditItemEffectByIdResponse")]
         System.Threading.Tasks.Task EditItemEffectByIdAsync(int p_ItemId, int p_EffetItemId, int p_ValeurEffet, int p_TypeEffet);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/ConvertToItemsDTOs", ReplyAction="http://tempuri.org/IItemService/ConvertToItemsDTOsResponse")]
+        HugoWorld_Client.HL_Services.ItemDTO[] ConvertToItemsDTOs(TP01_Library.Models.Item[] items);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/ConvertToItemsDTOs", ReplyAction="http://tempuri.org/IItemService/ConvertToItemsDTOsResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ItemDTO[]> ConvertToItemsDTOsAsync(TP01_Library.Models.Item[] items);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/ConvertToEffetItemsDTOs", ReplyAction="http://tempuri.org/IItemService/ConvertToEffetItemsDTOsResponse")]
+        HugoWorld_Client.HL_Services.EffetItemDTO[] ConvertToEffetItemsDTOs(TP01_Library.Models.EffetItem[] effetItems);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/ConvertToEffetItemsDTOs", ReplyAction="http://tempuri.org/IItemService/ConvertToEffetItemsDTOsResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.EffetItemDTO[]> ConvertToEffetItemsDTOsAsync(TP01_Library.Models.EffetItem[] effetItems);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/ConvertToInventaireHeroDTOs", ReplyAction="http://tempuri.org/IItemService/ConvertToInventaireHeroDTOsResponse")]
+        HugoWorld_Client.HL_Services.InventaireHeroDTO[] ConvertToInventaireHeroDTOs(TP01_Library.Models.InventaireHero[] inventaireHeroes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/ConvertToInventaireHeroDTOs", ReplyAction="http://tempuri.org/IItemService/ConvertToInventaireHeroDTOsResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.InventaireHeroDTO[]> ConvertToInventaireHeroDTOsAsync(TP01_Library.Models.InventaireHero[] inventaireHeroes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/ConvertToMonstresDTOs", ReplyAction="http://tempuri.org/IItemService/ConvertToMonstresDTOsResponse")]
+        HugoWorld_Client.HL_Services.MonstreDTO[] ConvertToMonstresDTOs(TP01_Library.Models.Monstre[] monstres);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/ConvertToMonstresDTOs", ReplyAction="http://tempuri.org/IItemService/ConvertToMonstresDTOsResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MonstreDTO[]> ConvertToMonstresDTOsAsync(TP01_Library.Models.Monstre[] monstres);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/ConvertToObjetMondeDTOs", ReplyAction="http://tempuri.org/IItemService/ConvertToObjetMondeDTOsResponse")]
+        HugoWorld_Client.HL_Services.ObjetMondeDTO[] ConvertToObjetMondeDTOs(TP01_Library.Models.ObjetMonde[] objetMondes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/ConvertToObjetMondeDTOs", ReplyAction="http://tempuri.org/IItemService/ConvertToObjetMondeDTOsResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ObjetMondeDTO[]> ConvertToObjetMondeDTOsAsync(TP01_Library.Models.ObjetMonde[] objetMondes);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2369,6 +2427,46 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task EditItemEffectByIdAsync(int p_ItemId, int p_EffetItemId, int p_ValeurEffet, int p_TypeEffet) {
             return base.Channel.EditItemEffectByIdAsync(p_ItemId, p_EffetItemId, p_ValeurEffet, p_TypeEffet);
+        }
+        
+        public HugoWorld_Client.HL_Services.ItemDTO[] ConvertToItemsDTOs(TP01_Library.Models.Item[] items) {
+            return base.Channel.ConvertToItemsDTOs(items);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ItemDTO[]> ConvertToItemsDTOsAsync(TP01_Library.Models.Item[] items) {
+            return base.Channel.ConvertToItemsDTOsAsync(items);
+        }
+        
+        public HugoWorld_Client.HL_Services.EffetItemDTO[] ConvertToEffetItemsDTOs(TP01_Library.Models.EffetItem[] effetItems) {
+            return base.Channel.ConvertToEffetItemsDTOs(effetItems);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.EffetItemDTO[]> ConvertToEffetItemsDTOsAsync(TP01_Library.Models.EffetItem[] effetItems) {
+            return base.Channel.ConvertToEffetItemsDTOsAsync(effetItems);
+        }
+        
+        public HugoWorld_Client.HL_Services.InventaireHeroDTO[] ConvertToInventaireHeroDTOs(TP01_Library.Models.InventaireHero[] inventaireHeroes) {
+            return base.Channel.ConvertToInventaireHeroDTOs(inventaireHeroes);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.InventaireHeroDTO[]> ConvertToInventaireHeroDTOsAsync(TP01_Library.Models.InventaireHero[] inventaireHeroes) {
+            return base.Channel.ConvertToInventaireHeroDTOsAsync(inventaireHeroes);
+        }
+        
+        public HugoWorld_Client.HL_Services.MonstreDTO[] ConvertToMonstresDTOs(TP01_Library.Models.Monstre[] monstres) {
+            return base.Channel.ConvertToMonstresDTOs(monstres);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MonstreDTO[]> ConvertToMonstresDTOsAsync(TP01_Library.Models.Monstre[] monstres) {
+            return base.Channel.ConvertToMonstresDTOsAsync(monstres);
+        }
+        
+        public HugoWorld_Client.HL_Services.ObjetMondeDTO[] ConvertToObjetMondeDTOs(TP01_Library.Models.ObjetMonde[] objetMondes) {
+            return base.Channel.ConvertToObjetMondeDTOs(objetMondes);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ObjetMondeDTO[]> ConvertToObjetMondeDTOsAsync(TP01_Library.Models.ObjetMonde[] objetMondes) {
+            return base.Channel.ConvertToObjetMondeDTOsAsync(objetMondes);
         }
     }
     

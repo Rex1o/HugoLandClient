@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="27a25390-eed7-4948-ad36-5376c500c7a5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0c4d3112-e6ac-45f3-b459-1594e15934fb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,13 +22,14 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Services.xsd" MetadataType="Schema" ID="a8df4685-9634-43ba-8db8-a4ef411a2cc4" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd3" />
-    <MetadataFile FileName="Services1.xsd" MetadataType="Schema" ID="cf057b08-48c2-4067-96e5-814125465de7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd4" />
-    <MetadataFile FileName="Services2.xsd" MetadataType="Schema" ID="6c36c776-d933-4dbd-9c41-a9e708d277b3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd2" />
-    <MetadataFile FileName="Services.disco" MetadataType="Disco" ID="463daf11-86fc-4454-8f84-7d76a962bc69" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?disco" />
-    <MetadataFile FileName="Services3.xsd" MetadataType="Schema" ID="307c97b3-e9ae-47ae-9b0b-5197b892872e" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd0" />
-    <MetadataFile FileName="HugoLandService.wsdl" MetadataType="Wsdl" ID="6366f2f8-dfab-4294-83e7-dd9084ee8adc" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?wsdl" />
-    <MetadataFile FileName="Services4.xsd" MetadataType="Schema" ID="8729bb68-1bf8-47a4-b033-1586b59412f7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd1" />
+    <MetadataFile FileName="Services.xsd" MetadataType="Schema" ID="1b01d576-6463-4c32-a2de-a4b98c0ff66d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd3" />
+    <MetadataFile FileName="Services1.xsd" MetadataType="Schema" ID="1671857b-9ba4-4aef-b012-08a20cb2d9db" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd4" />
+    <MetadataFile FileName="Services2.xsd" MetadataType="Schema" ID="c17bce38-49c8-44dd-961f-bb9ca331d89b" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd2" />
+    <MetadataFile FileName="Services3.xsd" MetadataType="Schema" ID="4ecfcf85-ab76-48a1-ba03-d03628c36197" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd5" />
+    <MetadataFile FileName="Services.disco" MetadataType="Disco" ID="e94a7788-1a72-4ded-b307-cc6a648d30ad" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?disco" />
+    <MetadataFile FileName="Services4.xsd" MetadataType="Schema" ID="6712a4a4-adef-46eb-bb69-1d2a19c22401" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd0" />
+    <MetadataFile FileName="HugoLandService.wsdl" MetadataType="Wsdl" ID="6c3a930a-a9bf-47e5-9ba7-4e157b196770" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?wsdl" />
+    <MetadataFile FileName="Services5.xsd" MetadataType="Schema" ID="f4989cbe-4a83-43f2-8e11-1100604c179d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

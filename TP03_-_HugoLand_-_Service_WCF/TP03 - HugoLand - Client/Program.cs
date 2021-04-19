@@ -14,7 +14,8 @@ namespace HugoWorld {
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ClassCreator());
+            Application.Run(new HugoWorld());
+            //Application.Run(new ClassCreator());
         }
     }
 }

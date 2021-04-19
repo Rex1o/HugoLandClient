@@ -38,8 +38,8 @@ namespace HugoWorld_WCF.Services
             tile.Images = monstre.Images.Select(x => x.Imageb64).ToList();
             tile.IsBlock = false;
             tile.Health = monstre.StatPV;
-            tile.minDMG = monstre.StatDmgMin;
-            tile.maxDMG = monstre.StatDmgMax;
+            tile.minDMG = (int)monstre.StatDmgMin;
+            tile.maxDMG = (int)monstre.StatDmgMax;
             tile.ID = monstre.Id;
             tile.Type = "Monstre";
 

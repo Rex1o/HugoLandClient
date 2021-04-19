@@ -1,9 +1,23 @@
 ﻿using System.Runtime.Serialization;
+using TP01_Library.Models;
 
 namespace HugoWorld_WCF.DTOs {
 
     [DataContract]
     public class EffetItemDTO {
+        public EffetItemDTO()
+        {
+
+        }
+
+        public EffetItemDTO(EffetItem effetItem)
+        {
+            Id = effetItem.Id;
+            ItemId = effetItem.ItemId;
+            ValeurEffet = effetItem.ValeurEffet;
+            TypeEffet = effetItem.TypeEffet;
+            Item = new ItemDTO(effetItem.Item);
+        }
 
         [DataMember]
         public int Id { get; set; }

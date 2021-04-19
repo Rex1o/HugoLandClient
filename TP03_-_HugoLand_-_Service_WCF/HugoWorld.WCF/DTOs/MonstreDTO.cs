@@ -1,10 +1,29 @@
 ﻿using System.Runtime.Serialization;
 using System.Collections.Generic;
+using TP01_Library.Models;
 
 namespace HugoWorld_WCF.DTOs {
 
     [DataContract]
     public class MonstreDTO {
+        public MonstreDTO()
+        {
+
+        }
+
+        public MonstreDTO(Monstre monstre)
+        {
+            Id = monstre.Id;
+            Nom = monstre.Nom;
+            Niveau = monstre.Niveau;
+            x = monstre.x;
+            y = monstre.y;
+            StatPV = monstre.StatPV;
+            StatDmgMin = monstre.StatDmgMin;
+            StatDmgMax = monstre.StatDmgMax;
+            MondeId = monstre.MondeId;
+            Monde = new MondeDTO(monstre.Monde);
+        }
 
         [DataMember]
         public int Id { get; set; }
@@ -25,10 +44,10 @@ namespace HugoWorld_WCF.DTOs {
         public int StatPV { get; set; }
 
         [DataMember]
-        public int StatDmgMin { get; set; }
+        public float StatDmgMin { get; set; }
 
         [DataMember]
-        public int StatDmgMax { get; set; }
+        public float StatDmgMax { get; set; }
 
         [DataMember]
         public int MondeId { get; set; }

@@ -1,49 +1,58 @@
-﻿using HugoWorld_Client.HL_Services;
+﻿using Hugoworld.Validators;
+using HugoWorld_Client.HL_Services;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using Hugoworld.Validators;
 using TP01_Library.Controllers;
 
-namespace HugoWorld.Vue
-{
-    public partial class ClassCreator : Form
-    {
-
+namespace HugoWorld.Vue {
+    public partial class ClassCreator : Form {
         private int _Strength;
         private int _Dexterity;
         private int _Vitality;
         private int _Integrity;
         private readonly ClasseDTOValidator ClasseValidator = new ClasseDTOValidator();
-        private ClassServiceClient ServiceClass = new ClassServiceClient();
-        private MondeServiceClient ServiceMonde = new MondeServiceClient();
+        private ClasseServiceClient classeService;
+        private MondeServiceClient mondeService;
 
         public ClassCreator()
         {
-            InitializeComponent();
-            this.DialogResult = DialogResult.Cancel;
-            this.StartPosition = FormStartPosition.CenterParent;
-
-            List<MondeDTO> Mondes = ServiceMonde.ListWorlds().ToList();
-            
-           
-            CmbWorld.DataSource = Mondes.Select(x => x.Id + " : " + x.Description).ToArray();
 
             _Strength = 16;
             _Dexterity = 16;
             _Vitality = 16;
             _Integrity = 16;
+
+            //Test
+            //ClasseDTO c;
+            //c = new ClasseDTO()
+            //{
+            //    NomClasse = "Test",
+            //    Description = "Test",
+            //    StatBaseStr = 16,
+            //    StatBaseDex = 16,
+            //    StatBaseVitalite = 16,
+            //    StatBaseInt = 16,
+            //    MondeId = 255
+            //};
+            //ServiceClass.AddClassToDataBase(c.StatBaseStr, c.StatBaseDex, c.StatBaseVitalite, c.StatBaseInt, c.MondeId);
+
+            InitializeComponent();
+            this.DialogResult = DialogResult.Cancel;
+            this.StartPosition = FormStartPosition.CenterParent;
+
+
+            //Initialisation du clientMonde
+            mondeService = new MondeServiceClient();
+            classeService = new ClasseServiceClient();
         }
 
         private void ClassCreator_Load(object sender, EventArgs e)
         {
-
+            CmbWorld.DataSource = mondeService.ListWorlds().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
         }
 
         private void btnAddClass_Click(object sender, EventArgs e)
@@ -54,7 +63,7 @@ namespace HugoWorld.Vue
                 string itemstr = CmbWorld.SelectedItem.ToString();
                 int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
 
-                 //Creation d'un objet
+                //Creation d'un objet
                 ClasseDTO c = new ClasseDTO()
                 {
                     NomClasse = txtName.Text,
@@ -72,10 +81,19 @@ namespace HugoWorld.Vue
                 {
                     try
                     {
-                        //Requêtes ####################### le programm crash ici #########################
-                        //ServiceClass.AddClassToDataBase(txtName.Text, txtDescription.Text, _Strength, _Dexterity, _Vitality, _Integrity, id);
+
+                        //         ####################### controllers du TP01 #########################
                         ClasseController controller = new ClasseController();
                         controller.AjouterClasse(c.MondeId,c.NomClasse,c.Description,c.StatBaseStr,c.StatBaseDex,c.StatBaseInt,c.StatBaseVitalite);
+
+						//Requêtes ####################### le programm crash ici #########################
+                        //Création du ClientClasse
+                        //ServiceClass = new ClasseServiceClient();
+                        //c.NomClasse.ToString(), c.Description.ToString(),
+                        //classeService.AddClassToDataBase(c.NomClasse, c.Description, c.StatBaseStr, c.StatBaseDex, c.StatBaseVitalite, c.StatBaseInt, c.MondeId);
+                        //classeService.AddClassToDataBase(id, txtName.Text, txtDescription.Text, _Strength, _Dexterity, _Vitality, _Integrity);
+                        //classeService.AddClassToDataBase(c);
+                        //classeService.Abort();
                     }
                     catch (Exception ex)
                     {

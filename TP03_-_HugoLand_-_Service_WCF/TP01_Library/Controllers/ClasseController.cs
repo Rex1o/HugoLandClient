@@ -26,9 +26,26 @@ namespace TP01_Library.Controllers {
         public void AjouterClasse(int p_MondeId, string p_sNomClasse, string p_sDescription, int p_iStatBaseStr,
                                 int p_iStatBaseDex, int p_iStatBaseInt, int p_iStatBaseVit)
         {
+            //using (HugoLandContext dbContext = new HugoLandContext())
+            //{
+            //    if (p_monde != null)
+            //    {
+            //        dbContext.Classes.Add(new Classe()
+            //        {
+            //            NomClasse = p_sNomClasse ?? "Noob",
+            //            Description = p_sDescription ?? "Noob",
+            //            StatBaseStr = p_iStatBaseStr,
+            //            StatBaseDex = p_iStatBaseDex,
+            //            StatBaseInt = p_iStatBaseInt,
+            //            StatBaseVitalite = p_iStatBaseVit,
+            //            Monde = p_monde,
+            //            MondeId = p_monde.Id
+            //        });
+            //        dbContext.SaveChanges();
+            //    }
+            //}
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-
                     dbContext.Classes.Add(new Classe()
                     {
                         NomClasse = p_sNomClasse,

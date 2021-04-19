@@ -19,7 +19,6 @@ namespace HugoWorld_WCF.Services {
         [OperationContract]
         void RemoveRangeById(int p_ItemId);
 
-
         // EffetItems
         [OperationContract]
         void AddItemEffectById(int p_ItemId, int p_ValeurEffet, int p_TypeEffet);

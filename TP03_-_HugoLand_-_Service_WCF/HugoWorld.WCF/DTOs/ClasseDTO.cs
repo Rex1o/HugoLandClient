@@ -9,7 +9,7 @@ namespace HugoWorld_WCF.DTOs {
     {
         public ClasseDTO()
         {
-
+            
         }
         public ClasseDTO(Classe classe)
         {

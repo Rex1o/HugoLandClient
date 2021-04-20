@@ -15,15 +15,10 @@ namespace HugoWorld {
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            try
-            {
+
                 Application.Run(new HugoWorld());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("PLEASE RECONNECT " + ex.Message, "Connection error",
-MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-            }
+
+
         }
     }
 }

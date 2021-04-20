@@ -48,7 +48,6 @@ namespace HugoWorld_WCF.Services {
             using(HugoLandContext dbContext = new HugoLandContext())
             {
                 Classe Class =  dbContext.Classes.Find(classeDTO.Id);
-                Class.MondeId = classeDTO.MondeId;
                 Class.NomClasse = classeDTO.NomClasse;
                 Class.StatBaseDex = classeDTO.StatBaseDex;
                 Class.StatBaseInt = classeDTO.StatBaseInt;

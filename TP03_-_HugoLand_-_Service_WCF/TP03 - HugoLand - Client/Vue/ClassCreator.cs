@@ -60,8 +60,8 @@ namespace HugoWorld.Vue {
                         classeService.AddClassToDataBase(c);
                         classeDTO = c;
 
-                        MessageBox.Show("Class successfully added!", "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.None,
-    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
                     }
                     catch (Exception ex)
                     {

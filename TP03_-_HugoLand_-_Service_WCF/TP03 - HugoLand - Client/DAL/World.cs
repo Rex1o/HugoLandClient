@@ -108,8 +108,8 @@ namespace HugoWorld
 
 
             int[] BotRightCorner = new int[2];
-            BotRightCorner[0] = Chunkx + 1 * 8;
-            BotRightCorner[1] = Chunky + 1 * 8;
+            BotRightCorner[0] = (Chunkx + 1) * 8;
+            BotRightCorner[1] = (Chunky + 1) * 8;
 
 
             MondeServiceClient MondeService = new MondeServiceClient();

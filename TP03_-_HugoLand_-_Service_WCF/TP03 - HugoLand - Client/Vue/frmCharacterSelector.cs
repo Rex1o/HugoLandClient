@@ -15,10 +15,11 @@ namespace HugoWorld.Vue {
         {
             connectedPlayer = j;
             InitializeComponent();
-            if (connectedPlayer.TypeUtilisateur > 0)
+            if (connectedPlayer.TypeUtilisateur == 0)
                 btnAdd.Enabled = false;
             else
             {
+                btnAdd.Enabled = true;
                 //Remplir la liste selon le user
                 btnAdd.FlatStyle = FlatStyle.Flat;
                 btnAdd.FlatAppearance.BorderSize = 0;

@@ -8,24 +8,17 @@ namespace HugoWorld_WCF.Services {
 
     public partial class HugoLandService : IMondeService {
 
-        public List<MondeDTO> ListWorlds()
+        public List<MondeDTO> GetMondeDTOs()
         {
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-                //return dbContext.Mondes
-                //    .Include(x => x.Classes)
-                //    .Include(x => x.Heros)
-                //    .Include(x => x.Items)
-                //    .Include(x => x.ObjetMondes)
-                //    .Include(x => x.Monstres)
-                //    .Select(m => new MondeDTO(m)).ToList();
-
                 List<Monde> mondes = dbContext.Mondes
                                     .Include(x => x.Classes)
                                     .Include(x => x.Heros)
                                     .Include(x => x.Items)
                                     .Include(x => x.ObjetMondes)
                                     .Include(x => x.Monstres).ToList();
+
                 List<MondeDTO> mondeDTOs = new List<MondeDTO>();
                 mondes.ForEach(m => mondeDTOs.Add(new MondeDTO(m)
                 {

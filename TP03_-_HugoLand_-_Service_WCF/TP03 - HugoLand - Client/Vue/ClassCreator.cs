@@ -1,6 +1,7 @@
 ﻿using Hugoworld.Validators;
 using HugoWorld_Client.HL_Services;
 using System;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 

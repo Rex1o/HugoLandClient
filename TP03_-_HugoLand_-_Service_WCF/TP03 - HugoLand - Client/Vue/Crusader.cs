@@ -89,7 +89,6 @@ namespace HugoWorld {
             while (menu.DialogResult != DialogResult.OK && menu.DialogResult != DialogResult.Abort)
                 menu.ShowDialog();
 
-
             if (menu.DialogResult == DialogResult.Abort)
                 this.Close();
             else

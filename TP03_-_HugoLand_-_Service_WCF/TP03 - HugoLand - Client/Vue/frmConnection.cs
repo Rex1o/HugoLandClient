@@ -6,10 +6,8 @@ using System.Windows.Forms;
 namespace HugoWorld {
 
     public partial class frmConnection : Form {
-
         //Service a utiliser
         private readonly JoueurServiceClient joueurService;
-
         private string reponse = "NewAttempt";
 
         /// <summary>
@@ -65,10 +63,10 @@ namespace HugoWorld {
         MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 this.Cursor = Cursors.Default;
-                MessageBox.Show("PLEASE RECONNECT", "Connection error",
+                MessageBox.Show("PLEASE RECONNECT " + ex.Message, "Connection error",
 MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
         }

@@ -89,24 +89,26 @@ namespace HugoWorld_WCF.Services
         {
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-                List<Monde> mondes = dbContext.Mondes
-                                    .Include(x => x.Classes)
-                                    .Include(x => x.Heros)
-                                    .Include(x => x.Items)
-                                    .Include(x => x.ObjetMondes)
-                                    .Include(x => x.Monstres).ToList();
+                #region Old
+                //List<Monde> mondes = dbContext.Mondes
+                //                    .Include(x => x.Classes)
+                //                    .Include(x => x.Heros)
+                //                    .Include(x => x.Items)
+                //                    .Include(x => x.ObjetMondes)
+                //                    .Include(x => x.Monstres).ToList();
 
-                List<MondeDTO> mondeDTOs = new List<MondeDTO>();
-                mondes.ForEach(m => mondeDTOs.Add(new MondeDTO(m)
-                {
-                    Items = ConvertToItemsDTOs(m.Items),
-                    Classes = ConvertToClassesDTO(m.Classes),
-                    Heros = ConvertToHerosDTO(m.Heros),
-                    Monstres = ConvertToMonstresDTOs(m.Monstres),
-                    ObjetMondes = ConvertToObjetMondeDTOs(m.ObjetMondes)
-                }));
+                //List<MondeDTO> mondeDTOs = new List<MondeDTO>();
+                //mondes.ForEach(m => mondeDTOs.Add(new MondeDTO(m)
+                //{
+                //    Items = ConvertToItemsDTOs(m.Items),
+                //    Classes = ConvertToClassesDTO(m.Classes),
+                //    Heros = ConvertToHerosDTO(m.Heros),
+                //    Monstres = ConvertToMonstresDTOs(m.Monstres),
+                //    ObjetMondes = ConvertToObjetMondeDTOs(m.ObjetMondes)
+                //}));
+                #endregion
 
-                return mondeDTOs;
+                return dbContext.Mondes.ToList().Select(m => new MondeDTO(m)).ToList();
             }
         }
 

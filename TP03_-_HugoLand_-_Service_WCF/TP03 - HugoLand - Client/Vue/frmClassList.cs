@@ -3,6 +3,7 @@ using HugoWorld.Vue;
 using HugoWorld_Client.HL_Services;
 using System;
 using System.Collections;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -19,11 +20,20 @@ namespace HugoWorld_Client.Vue {
             classeService = new ClasseServiceClient();
             mondeService = new MondeServiceClient();
             connectedPlayer = Outils.GetActiveUser();
-            classeDTOGridView.DataSource = classeService.GetClasseDTOs();
-            classeDTOGridView.Refresh();
+            try
+            {
+                classeDTOGridView.DataSource = classeService.GetClasseDTOs();
+                classeDTOGridView.Refresh();
 
-            mondeDTOComboBox.DataSource = mondeService.GetWorldsForSelection().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
-            mondeDTOComboBox.Refresh();
+                mondeDTOComboBox.DataSource = mondeService.GetWorldsForSelection().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
+                mondeDTOComboBox.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured while loading the classes\n" + ex.Message, "ERROR",
+MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
+
             SwitchMode();
         }
 
@@ -98,8 +108,8 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             }
             catch (Exception ex)
             {
-//                MessageBox.Show("An error occured while modifying the class to the database\n" + ex.Message, "ERROR",
-//MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("An error occured while modifying the class to the database\n" + ex.Message, "ERROR",
+MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
         }
 
@@ -158,7 +168,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             newStatBaseIntTextBox.Text = classeDTO.StatBaseInt.ToString();
             newStatBaseStrTextBox.Text = classeDTO.StatBaseStr.ToString();
             newStatBaseVitaliteTextBox.Text = classeDTO.StatBaseVitalite.ToString();
-            
+
             mondeDTOComboBox.DataSource = mondeService.GetMondeDTOs().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
             mondeDTOComboBox.Refresh();
         }

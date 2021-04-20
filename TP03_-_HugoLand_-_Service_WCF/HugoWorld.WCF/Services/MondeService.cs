@@ -32,5 +32,17 @@ namespace HugoWorld_WCF.Services {
                 return mondeDTOs;
             }
         }
+
+        public List<MondeDTO> GetWorldsForSelection()
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                return dbContext.Mondes.Select(m => new MondeDTO()
+                {
+                    Id = m.Id,
+                   Description = m.Description
+                }).ToList();
+            }
+        }
     }
 }

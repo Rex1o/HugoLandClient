@@ -31,19 +31,19 @@ namespace HugoWorld_Client.Vue
         {
             this.lblHeroCreator = new System.Windows.Forms.Label();
             this.lblStrength = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtStr = new System.Windows.Forms.TextBox();
+            this.txtDex = new System.Windows.Forms.TextBox();
             this.lblDexterity = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtVit = new System.Windows.Forms.TextBox();
             this.lblVitality = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtInt = new System.Windows.Forms.TextBox();
             this.lblIntegrity = new System.Windows.Forms.Label();
             this.cmbWorld = new System.Windows.Forms.ComboBox();
             this.cmbClasse = new System.Windows.Forms.ComboBox();
             this.lblWorld = new System.Windows.Forms.Label();
             this.lblClasse = new System.Windows.Forms.Label();
             this.btnCreateHero = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -66,21 +66,21 @@ namespace HugoWorld_Client.Vue
             this.lblStrength.TabIndex = 1;
             this.lblStrength.Text = "Strength:";
             // 
-            // textBox1
+            // txtStr
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(24, 145);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(174, 22);
-            this.textBox1.TabIndex = 2;
+            this.txtStr.Enabled = false;
+            this.txtStr.Location = new System.Drawing.Point(24, 145);
+            this.txtStr.Name = "txtStr";
+            this.txtStr.Size = new System.Drawing.Size(174, 22);
+            this.txtStr.TabIndex = 2;
             // 
-            // textBox2
+            // txtDex
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(24, 195);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(174, 22);
-            this.textBox2.TabIndex = 4;
+            this.txtDex.Enabled = false;
+            this.txtDex.Location = new System.Drawing.Point(24, 195);
+            this.txtDex.Name = "txtDex";
+            this.txtDex.Size = new System.Drawing.Size(174, 22);
+            this.txtDex.TabIndex = 4;
             // 
             // lblDexterity
             // 
@@ -91,13 +91,13 @@ namespace HugoWorld_Client.Vue
             this.lblDexterity.TabIndex = 3;
             this.lblDexterity.Text = "Dexterity:";
             // 
-            // textBox3
+            // txtVit
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(24, 250);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(174, 22);
-            this.textBox3.TabIndex = 6;
+            this.txtVit.Enabled = false;
+            this.txtVit.Location = new System.Drawing.Point(24, 250);
+            this.txtVit.Name = "txtVit";
+            this.txtVit.Size = new System.Drawing.Size(174, 22);
+            this.txtVit.TabIndex = 6;
             // 
             // lblVitality
             // 
@@ -108,13 +108,13 @@ namespace HugoWorld_Client.Vue
             this.lblVitality.TabIndex = 5;
             this.lblVitality.Text = "Vitality:";
             // 
-            // textBox4
+            // txtInt
             // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(24, 307);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(174, 22);
-            this.textBox4.TabIndex = 8;
+            this.txtInt.Enabled = false;
+            this.txtInt.Location = new System.Drawing.Point(24, 307);
+            this.txtInt.Name = "txtInt";
+            this.txtInt.Size = new System.Drawing.Size(174, 22);
+            this.txtInt.TabIndex = 8;
             // 
             // lblIntegrity
             // 
@@ -173,12 +173,12 @@ namespace HugoWorld_Client.Vue
             this.btnCreateHero.UseVisualStyleBackColor = true;
             this.btnCreateHero.Click += new System.EventHandler(this.btnCreateHero_Click);
             // 
-            // textBox5
+            // txtName
             // 
-            this.textBox5.Location = new System.Drawing.Point(24, 98);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(174, 22);
-            this.textBox5.TabIndex = 16;
+            this.txtName.Location = new System.Drawing.Point(24, 98);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(174, 22);
+            this.txtName.TabIndex = 16;
             // 
             // lblName
             // 
@@ -194,20 +194,20 @@ namespace HugoWorld_Client.Vue
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(215, 502);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.btnCreateHero);
             this.Controls.Add(this.lblClasse);
             this.Controls.Add(this.lblWorld);
             this.Controls.Add(this.cmbClasse);
             this.Controls.Add(this.cmbWorld);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtInt);
             this.Controls.Add(this.lblIntegrity);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtVit);
             this.Controls.Add(this.lblVitality);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtDex);
             this.Controls.Add(this.lblDexterity);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtStr);
             this.Controls.Add(this.lblStrength);
             this.Controls.Add(this.lblHeroCreator);
             this.Name = "frmCreateHero";
@@ -222,19 +222,19 @@ namespace HugoWorld_Client.Vue
 
         private System.Windows.Forms.Label lblHeroCreator;
         private System.Windows.Forms.Label lblStrength;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtStr;
+        private System.Windows.Forms.TextBox txtDex;
         private System.Windows.Forms.Label lblDexterity;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtVit;
         private System.Windows.Forms.Label lblVitality;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtInt;
         private System.Windows.Forms.Label lblIntegrity;
         private System.Windows.Forms.ComboBox cmbWorld;
         private System.Windows.Forms.ComboBox cmbClasse;
         private System.Windows.Forms.Label lblWorld;
         private System.Windows.Forms.Label lblClasse;
         private System.Windows.Forms.Button btnCreateHero;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblName;
     }
 }

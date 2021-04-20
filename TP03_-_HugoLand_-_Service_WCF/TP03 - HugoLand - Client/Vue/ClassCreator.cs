@@ -34,7 +34,7 @@ namespace HugoWorld.Vue {
 
         private void ClassCreator_Load(object sender, EventArgs e)
         {
-            CmbWorld.DataSource = mondeService.GetMondeDTOs().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
+            CmbWorld.DataSource = mondeService.GetWorldsForSelection().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
         }
 
         private void btnAddClass_Click(object sender, EventArgs e)

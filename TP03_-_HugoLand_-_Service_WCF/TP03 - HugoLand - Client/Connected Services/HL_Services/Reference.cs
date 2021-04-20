@@ -44,9 +44,6 @@ namespace HugoWorld_Client.HL_Services {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HugoWorld_Client.HL_Services.TileImgDTO[] ImagesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private HugoWorld_Client.HL_Services.InventaireHeroDTO[] InventaireHerosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -179,19 +176,6 @@ namespace HugoWorld_Client.HL_Services {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public HugoWorld_Client.HL_Services.TileImgDTO[] Images {
-            get {
-                return this.ImagesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ImagesField, value) != true)) {
-                    this.ImagesField = value;
-                    this.RaisePropertyChanged("Images");
                 }
             }
         }
@@ -867,67 +851,6 @@ namespace HugoWorld_Client.HL_Services {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TileImgDTO", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs")]
-    [System.SerializableAttribute()]
-    public partial class TileImgDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ImageIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string Imageb64Field;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ImageId {
-            get {
-                return this.ImageIdField;
-            }
-            set {
-                if ((this.ImageIdField.Equals(value) != true)) {
-                    this.ImageIdField = value;
-                    this.RaisePropertyChanged("ImageId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Imageb64 {
-            get {
-                return this.Imageb64Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.Imageb64Field, value) != true)) {
-                    this.Imageb64Field = value;
-                    this.RaisePropertyChanged("Imageb64");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="InventaireHeroDTO", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs")]
     [System.SerializableAttribute()]
     public partial class InventaireHeroDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -1076,9 +999,6 @@ namespace HugoWorld_Client.HL_Services {
         private System.Nullable<int> IdHeroField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HugoWorld_Client.HL_Services.TileImgDTO ImageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ImageIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1170,19 +1090,6 @@ namespace HugoWorld_Client.HL_Services {
                 if ((this.IdHeroField.Equals(value) != true)) {
                     this.IdHeroField = value;
                     this.RaisePropertyChanged("IdHero");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public HugoWorld_Client.HL_Services.TileImgDTO Image {
-            get {
-                return this.ImageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ImageField, value) != true)) {
-                    this.ImageField = value;
-                    this.RaisePropertyChanged("Image");
                 }
             }
         }
@@ -1618,9 +1525,6 @@ namespace HugoWorld_Client.HL_Services {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HugoWorld_Client.HL_Services.TileImgDTO ImageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ImageIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1673,19 +1577,6 @@ namespace HugoWorld_Client.HL_Services {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public HugoWorld_Client.HL_Services.TileImgDTO Image {
-            get {
-                return this.ImageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ImageField, value) != true)) {
-                    this.ImageField = value;
-                    this.RaisePropertyChanged("Image");
                 }
             }
         }
@@ -2096,6 +1987,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/GetMondeDTOs", ReplyAction="http://tempuri.org/IMondeService/GetMondeDTOsResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MondeDTO[]> GetMondeDTOsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/GetWorldsForSelection", ReplyAction="http://tempuri.org/IMondeService/GetWorldsForSelectionResponse")]
+        HugoWorld_Client.HL_Services.MondeDTO[] GetWorldsForSelection();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/GetWorldsForSelection", ReplyAction="http://tempuri.org/IMondeService/GetWorldsForSelectionResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MondeDTO[]> GetWorldsForSelectionAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2131,6 +2028,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MondeDTO[]> GetMondeDTOsAsync() {
             return base.Channel.GetMondeDTOsAsync();
+        }
+        
+        public HugoWorld_Client.HL_Services.MondeDTO[] GetWorldsForSelection() {
+            return base.Channel.GetWorldsForSelection();
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MondeDTO[]> GetWorldsForSelectionAsync() {
+            return base.Channel.GetWorldsForSelectionAsync();
         }
     }
     

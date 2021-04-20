@@ -25,11 +25,24 @@ namespace HugoWorld_Client.Vue
         int _TotalVitality;
         int _TotalIntegrity;
         Random  _rnd = new Random();
-        ClasseDTO[] _WorldClass;
+        List<ClasseDTO> _WorldClass = new List<ClasseDTO>();
+        ClasseDTO _SelectedClass;
 
         public frmCreateHero()
         {
             InitializeComponent();
+            cmbWorld.DataSource = mondeService.GetWorldsForSelection().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
+            string itemstr = cmbWorld.SelectedItem.ToString();
+            int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
+
+            _WorldClass = classeService.GetClassDTOFromMap(id).ToList();
+            cmbClasse.DataSource = _WorldClass.Select(x => x.Id + " : " + x.NomClasse).ToArray();
+
+            _BaseStrength = _rnd.Next(0, 21);
+            _BaseDexterity = _rnd.Next(0, 21);
+            _BaseVitality = _rnd.Next(0, 21);
+            _BaseIntegrity = _rnd.Next(0, 21);
+            UpdateStats();
         }
 
         private void btnCreateHero_Click(object sender, EventArgs e)
@@ -39,18 +52,7 @@ namespace HugoWorld_Client.Vue
 
         private void frmCreateHero_Load(object sender, EventArgs e)
         {
-            cmbWorld.DataSource = mondeService.GetMondeDTOs().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
-            string itemstr = cmbWorld.SelectedItem.ToString();
-            int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
-
-            _WorldClass = classeService.GetClassDTOFromMap(id).ToArray();
-            cmbClasse.DataSource = _WorldClass.Select(x => x.Id + " : " + x.NomClasse).ToArray();
-
-            _BaseStrength = _rnd.Next(0, 21);
-            _BaseDexterity = _rnd.Next(0, 21);
-            _BaseVitality = _rnd.Next(0, 21);
-            _BaseIntegrity = _rnd.Next(0, 21);
-            UpdateStats();
+            
         }
 
         private void cmbWorld_SelectedIndexChanged(object sender, EventArgs e)
@@ -69,8 +71,26 @@ namespace HugoWorld_Client.Vue
 
         private void UpdateStats()
         {
-            
-            //_TotalStrength = 
+            string itemstr = cmbClasse.SelectedItem.ToString();
+            int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
+            _SelectedClass = _WorldClass.FirstOrDefault(x => x.Id == id);
+            if (_SelectedClass == null)
+            {
+
+            }
+            else
+            {
+
+            _TotalStrength = _BaseStrength + _SelectedClass.StatBaseStr;
+            _TotalDexterity = _BaseDexterity + _SelectedClass.StatBaseDex;
+            _TotalVitality = _BaseVitality + _SelectedClass.StatBaseVitalite;
+            _TotalIntegrity = _BaseIntegrity + _SelectedClass.StatBaseInt;
+
+            txtStr.Text = _TotalStrength.ToString();
+            txtDex.Text = _TotalDexterity.ToString();
+            txtVit.Text = _TotalVitality.ToString();
+            txtInt.Text = _TotalIntegrity.ToString();
+            }
         }
     }
 }

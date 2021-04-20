@@ -16,7 +16,6 @@
       <xs:element minOccurs="0" name="EstConnecte" type="xs:boolean" />
       <xs:element minOccurs="0" name="Experience" type="xs:long" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfTileImg" />
       <xs:element minOccurs="0" name="InventaireHeroes" nillable="true" type="tns:ArrayOfInventaireHero" />
       <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfItem" />
       <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:Monde" />
@@ -133,7 +132,6 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="ImageId" type="xs:int" />
-      <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfTileImg" />
       <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:Monde" />
       <xs:element minOccurs="0" name="MondeId" type="xs:int" />
       <xs:element minOccurs="0" name="Niveau" type="xs:int" />
@@ -146,6 +144,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Monstre" nillable="true" type="tns:Monstre" />
+  <xs:complexType name="ArrayOfObjetMonde">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ObjetMonde" nillable="true" type="tns:ObjetMonde" />
+    </xs:sequence>
+  </xs:complexType>
   <xs:element name="ArrayOfObjetMonde" nillable="true" type="tns:ArrayOfObjetMonde" />
   <xs:complexType name="ObjetMonde">
     <xs:sequence>

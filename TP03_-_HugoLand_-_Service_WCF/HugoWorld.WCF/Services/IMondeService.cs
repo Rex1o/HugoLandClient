@@ -9,5 +9,8 @@ namespace HugoWorld_WCF.Services {
 
         [OperationContract]
         List<MondeDTO> GetMondeDTOs();
+
+        [OperationContract]
+        List<MondeDTO> GetWorldsForSelection();
     }
 }

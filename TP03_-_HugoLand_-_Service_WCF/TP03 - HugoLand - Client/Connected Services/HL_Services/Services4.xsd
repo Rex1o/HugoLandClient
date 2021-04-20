@@ -86,10 +86,22 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetWorldsForSelection">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWorldsForSelectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="GetWorldsForSelectionResult" nillable="true" type="q8:ArrayOfMondeDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddClassToDataBase">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="classeDTO" nillable="true" type="q8:ClasseDTO" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="classeDTO" nillable="true" type="q9:ClasseDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -106,14 +118,14 @@
   <xs:element name="GetClasseDTOsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="GetClasseDTOsResult" nillable="true" type="q9:ArrayOfClasseDTO" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="GetClasseDTOsResult" nillable="true" type="q10:ArrayOfClasseDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditClass">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="classeDTO" nillable="true" type="q10:ClasseDTO" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="classeDTO" nillable="true" type="q11:ClasseDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -132,119 +144,119 @@
   <xs:element name="GetClassDTOFromMapResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="GetClassDTOFromMapResult" nillable="true" type="q11:ArrayOfClasseDTO" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="GetClassDTOFromMapResult" nillable="true" type="q12:ArrayOfClasseDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConvertToItemsDTOs">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/TP01_Library.Models" minOccurs="0" name="items" nillable="true" type="q12:ArrayOfItem" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/TP01_Library.Models" minOccurs="0" name="items" nillable="true" type="q13:ArrayOfItem" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConvertToItemsDTOsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="ConvertToItemsDTOsResult" nillable="true" type="q13:ArrayOfItemDTO" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="ConvertToItemsDTOsResult" nillable="true" type="q14:ArrayOfItemDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConvertToEffetItemsDTOs">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/TP01_Library.Models" minOccurs="0" name="effetItems" nillable="true" type="q14:ArrayOfEffetItem" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/TP01_Library.Models" minOccurs="0" name="effetItems" nillable="true" type="q15:ArrayOfEffetItem" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConvertToEffetItemsDTOsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="ConvertToEffetItemsDTOsResult" nillable="true" type="q15:ArrayOfEffetItemDTO" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="ConvertToEffetItemsDTOsResult" nillable="true" type="q16:ArrayOfEffetItemDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConvertToInventaireHeroDTOs">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/TP01_Library.Models" minOccurs="0" name="inventaireHeroes" nillable="true" type="q16:ArrayOfInventaireHero" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/TP01_Library.Models" minOccurs="0" name="inventaireHeroes" nillable="true" type="q17:ArrayOfInventaireHero" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConvertToInventaireHeroDTOsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="ConvertToInventaireHeroDTOsResult" nillable="true" type="q17:ArrayOfInventaireHeroDTO" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="ConvertToInventaireHeroDTOsResult" nillable="true" type="q18:ArrayOfInventaireHeroDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConvertToMonstresDTOs">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/TP01_Library.Models" minOccurs="0" name="monstres" nillable="true" type="q18:ArrayOfMonstre" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/TP01_Library.Models" minOccurs="0" name="monstres" nillable="true" type="q19:ArrayOfMonstre" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConvertToMonstresDTOsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="ConvertToMonstresDTOsResult" nillable="true" type="q19:ArrayOfMonstreDTO" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="ConvertToMonstresDTOsResult" nillable="true" type="q20:ArrayOfMonstreDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConvertToObjetMondeDTOs">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/TP01_Library.Models" minOccurs="0" name="objetMondes" nillable="true" type="q20:ArrayOfObjetMonde" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/TP01_Library.Models" minOccurs="0" name="objetMondes" nillable="true" type="q21:ArrayOfObjetMonde" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConvertToObjetMondeDTOsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="ConvertToObjetMondeDTOsResult" nillable="true" type="q21:ArrayOfObjetMondeDTO" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="ConvertToObjetMondeDTOsResult" nillable="true" type="q22:ArrayOfObjetMondeDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="MonstreToTile">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="monstre" nillable="true" type="q22:MonstreDTO" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="monstre" nillable="true" type="q23:MonstreDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="MonstreToTileResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" minOccurs="0" name="MonstreToTileResult" nillable="true" type="q23:TileImport" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" minOccurs="0" name="MonstreToTileResult" nillable="true" type="q24:TileImport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ItemToTile">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="item" nillable="true" type="q24:ItemDTO" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="item" nillable="true" type="q25:ItemDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ItemToTileResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" minOccurs="0" name="ItemToTileResult" nillable="true" type="q25:TileImport" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" minOccurs="0" name="ItemToTileResult" nillable="true" type="q26:TileImport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ObjetMondeToTile">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="objet" nillable="true" type="q26:ObjetMondeDTO" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="objet" nillable="true" type="q27:ObjetMondeDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ObjetMondeToTileResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" minOccurs="0" name="ObjetMondeToTileResult" nillable="true" type="q27:TileImport" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" minOccurs="0" name="ObjetMondeToTileResult" nillable="true" type="q28:TileImport" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

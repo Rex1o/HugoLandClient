@@ -45,6 +45,12 @@
   <wsdl:message name="IMondeService_GetMondeDTOs_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetMondeDTOsResponse" />
   </wsdl:message>
+  <wsdl:message name="IMondeService_GetWorldsForSelection_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorldsForSelection" />
+  </wsdl:message>
+  <wsdl:message name="IMondeService_GetWorldsForSelection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWorldsForSelectionResponse" />
+  </wsdl:message>
   <wsdl:message name="IClasseService_AddClassToDataBase_InputMessage">
     <wsdl:part name="parameters" element="tns:AddClassToDataBase" />
   </wsdl:message>
@@ -143,6 +149,10 @@
     <wsdl:operation name="GetMondeDTOs">
       <wsdl:input wsaw:Action="http://tempuri.org/IMondeService/GetMondeDTOs" message="tns:IMondeService_GetMondeDTOs_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMondeService/GetMondeDTOsResponse" message="tns:IMondeService_GetMondeDTOs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorldsForSelection">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMondeService/GetWorldsForSelection" message="tns:IMondeService_GetWorldsForSelection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMondeService/GetWorldsForSelectionResponse" message="tns:IMondeService_GetWorldsForSelection_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IClasseService">
@@ -251,6 +261,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetMondeDTOs">
       <soap:operation soapAction="http://tempuri.org/IMondeService/GetMondeDTOs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorldsForSelection">
+      <soap:operation soapAction="http://tempuri.org/IMondeService/GetWorldsForSelection" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

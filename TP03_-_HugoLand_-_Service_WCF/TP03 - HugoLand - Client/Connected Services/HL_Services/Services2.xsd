@@ -16,7 +16,6 @@
       <xs:element minOccurs="0" name="EstConnecte" type="xs:boolean" />
       <xs:element minOccurs="0" name="Experience" type="xs:long" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfTileImgDTO" />
       <xs:element minOccurs="0" name="InventaireHeros" nillable="true" type="tns:ArrayOfInventaireHeroDTO" />
       <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfItemDTO" />
       <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:MondeDTO" />
@@ -59,19 +58,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CompteJoueurDTO" nillable="true" type="tns:CompteJoueurDTO" />
-  <xs:complexType name="ArrayOfTileImgDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="TileImgDTO" nillable="true" type="tns:TileImgDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfTileImgDTO" nillable="true" type="tns:ArrayOfTileImgDTO" />
-  <xs:complexType name="TileImgDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="ImageId" type="xs:int" />
-      <xs:element minOccurs="0" name="Imageb64" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="TileImgDTO" nillable="true" type="tns:TileImgDTO" />
   <xs:complexType name="ArrayOfInventaireHeroDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="InventaireHeroDTO" nillable="true" type="tns:InventaireHeroDTO" />
@@ -96,7 +82,6 @@
       <xs:element minOccurs="0" name="Hero" nillable="true" type="tns:HeroDTO" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IdHero" nillable="true" type="xs:int" />
-      <xs:element minOccurs="0" name="Image" nillable="true" type="tns:TileImgDTO" />
       <xs:element minOccurs="0" name="ImageId" type="xs:int" />
       <xs:element minOccurs="0" name="InventaireHeroDTOs" nillable="true" type="tns:ArrayOfInventaireHeroDTO" />
       <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:MondeDTO" />
@@ -181,7 +166,6 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Image" nillable="true" type="tns:TileImgDTO" />
       <xs:element minOccurs="0" name="ImageId" type="xs:int" />
       <xs:element minOccurs="0" name="IsBlock" type="xs:boolean" />
       <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:MondeDTO" />

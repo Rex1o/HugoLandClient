@@ -90,6 +90,8 @@ namespace HugoWorld {
 
             //Then Show help/Start game
             this.Enabled = true;
+            this.Show();
+
             Form help = new helpform();
             help.StartPosition = FormStartPosition.CenterScreen;
             help.Show();

@@ -10,6 +10,7 @@ namespace HugoWorld {
     public class GameState {
         public SizeF GameArea;
         public World World;
+        public MondeDTO Monde;
         public HeroDTO Hero;
         public int Attack;
         public int Armour;
@@ -44,27 +45,27 @@ namespace HugoWorld {
             GameArea = gameArea;
 
             //Load in all the tile definitions
-            readTileDefinitions(@"gamedata\tilelookups.csv");
+            readTileDefinitions(@"gamedata\NewTilesLookup.csv");
 
             //Create the sprites for the UI
             int y = 50;
-            _experienceSprite = new Sprite(this, 580, y, _tiles["her"].Bitmap, _tiles["her"].Rectangle, _tiles["her"].NumberOfFrames);
+            _experienceSprite = new Sprite(this, 580, y, _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
             _experienceSprite.ColorKey = Color.FromArgb(75, 75, 75);
-            _healthSprite = new Sprite(this, 580, y += 74, _tiles["fd1"].Bitmap, _tiles["fd1"].Rectangle, _tiles["fd1"].NumberOfFrames);
+            _healthSprite = new Sprite(this, 580, y += 74, _tiles["15"].Bitmap, _tiles["15"].Rectangle, _tiles["15"].NumberOfFrames);
             _healthSprite.ColorKey = Color.FromArgb(75, 75, 75);
-            _attackSprite = new Sprite(this, 580, y += 74, _tiles["att"].Bitmap, _tiles["att"].Rectangle, _tiles["att"].NumberOfFrames);
+            _attackSprite = new Sprite(this, 580, y += 74, _tiles["2"].Bitmap, _tiles["2"].Rectangle, _tiles["2"].NumberOfFrames);
             _attackSprite.ColorKey = Color.FromArgb(75, 75, 75);
-            _armourSprite = new Sprite(this, 580, y += 74, _tiles["arm"].Bitmap, _tiles["arm"].Rectangle, _tiles["arm"].NumberOfFrames);
+            _armourSprite = new Sprite(this, 580, y += 74, _tiles["1"].Bitmap, _tiles["1"].Rectangle, _tiles["1"].NumberOfFrames);
             _armourSprite.ColorKey = Color.FromArgb(75, 75, 75);
-            _treasureSprite = new Sprite(this, 580, y += 74, _tiles["tr2"].Bitmap, _tiles["tr2"].Rectangle, _tiles["tr2"].NumberOfFrames);
+            _treasureSprite = new Sprite(this, 580, y += 74, _tiles["65"].Bitmap, _tiles["65"].Rectangle, _tiles["65"].NumberOfFrames);
             _treasureSprite.ColorKey = Color.FromArgb(75, 75, 75);
-            _potionSprite = new Sprite(this, 580, y += 74, _tiles["pot"].Bitmap, _tiles["pot"].Rectangle, _tiles["pot"].NumberOfFrames);
+            _potionSprite = new Sprite(this, 580, y += 74, _tiles["37"].Bitmap, _tiles["37"].Rectangle, _tiles["37"].NumberOfFrames);
             _potionSprite.ColorKey = Color.FromArgb(75, 75, 75);
-            _brownKeySprite = new Sprite(this, 580, y += 74, _tiles["kbr"].Bitmap, _tiles["kbr"].Rectangle, _tiles["kbr"].NumberOfFrames);
+            _brownKeySprite = new Sprite(this, 580, y += 74, _tiles["22"].Bitmap, _tiles["22"].Rectangle, _tiles["22"].NumberOfFrames);
             _brownKeySprite.ColorKey = Color.FromArgb(75, 75, 75);
-            _greenKeySprite = new Sprite(this, 654, y, _tiles["kgr"].Bitmap, _tiles["kgr"].Rectangle, _tiles["kgr"].NumberOfFrames);
+            _greenKeySprite = new Sprite(this, 654, y, _tiles["23"].Bitmap, _tiles["23"].Rectangle, _tiles["23"].NumberOfFrames);
             _greenKeySprite.ColorKey = Color.FromArgb(75, 75, 75);
-            _redKeySprite = new Sprite(this, 728, y, _tiles["kre"].Bitmap, _tiles["kre"].Rectangle, _tiles["kre"].NumberOfFrames);
+            _redKeySprite = new Sprite(this, 728, y, _tiles["24"].Bitmap, _tiles["24"].Rectangle, _tiles["24"].NumberOfFrames);
             _redKeySprite.ColorKey = Color.FromArgb(75, 75, 75);
         }
 
@@ -137,8 +138,11 @@ namespace HugoWorld {
         {
             Sounds.Start();
 
+            //GetUserMonde
+            Monde = new MondeServiceClient().ListWorlds()[0];
+
             //Create all the main gameobjects
-            World = new World(this, _tiles, @"gamedata\map.txt");
+            World = new World(this, _tiles, Monde);
 
             //Reset the game state
             Attack = 1;
@@ -170,7 +174,7 @@ namespace HugoWorld {
                 while ((line = stream.ReadLine()) != null)
                 {
                     //separate out the elements of the
-                    string[] elements = line.Split(',');
+                    string[] elements = line.Split(';');
 
                     //And make the tile.
                     Tile tile = new Tile(elements);

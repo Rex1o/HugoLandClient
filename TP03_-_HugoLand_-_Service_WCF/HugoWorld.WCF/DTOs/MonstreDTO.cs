@@ -53,7 +53,7 @@ namespace HugoWorld_WCF.DTOs {
         public int MondeId { get; set; }
 
         [DataMember]
-        public virtual List<TileImgDTO> Images { get; set; }
+        public int ImageId { get; set; }
 
         [DataMember]
         public virtual MondeDTO Monde { get; set; }

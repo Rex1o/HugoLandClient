@@ -129,6 +129,12 @@
     <Compile Include="Vue\frmConnection.Designer.cs">
       <DependentUpon>frmConnection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vue\frmCreateHero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\frmCreateHero.Designer.cs">
+      <DependentUpon>frmCreateHero.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vue\help.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vue\frmConnection.resx">
       <DependentUpon>frmConnection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vue\frmCreateHero.resx">
+      <DependentUpon>frmCreateHero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vue\help.resx">
       <SubType>Designer</SubType>
@@ -212,9 +221,6 @@
     <None Include="Connected Services\HL_Services\Services2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\HL_Services\Services3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\HL_Services\Services4.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -222,6 +228,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Eula.rtf" />
+    <None Include="GameData\NewTilesLookup.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="GameData\TileLookups.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

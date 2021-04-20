@@ -46,6 +46,14 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
+        public List<ClasseDTO> GetClassDTOFromMap(int p_MapId)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                return dbContext.Classes.Where(x => x.MondeId == p_MapId).ToList().Select(x => new ClasseDTO(x)).ToList();
+            }
+        }
+
         public List<ClasseDTO> GetClasseDTOs()
         {
             using (HugoLandContext dbContext = new HugoLandContext())

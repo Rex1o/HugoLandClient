@@ -883,8 +883,8 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <AssociationSet Name="MonstreTileImg" Association="HugoLand.MonstreTileImg">
-            <End Role="Monstre" EntitySet="Monstres" />
-            <End Role="TileImg" EntitySet="TileImgs" />
+            <End EntitySet="Monstres" Role="Monstre" />
+            <End EntitySet="TileImgs" Role="TileImg" />
           </AssociationSet>
           <AssociationSet Name="HeroTileImg" Association="HugoLand.HeroTileImg">
             <End Role="Hero" EntitySet="Heros" />
@@ -903,8 +903,8 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
         <Association Name="MonstreTileImg">
-          <End Type="HugoLand.Monstre" Role="Monstre" Multiplicity="*" />
-          <End Type="HugoLand.TileImg" Role="TileImg" Multiplicity="*" />
+          <End Type="HugoLand.Monstre" Multiplicity="*" Role="Monstre" />
+          <End Type="HugoLand.TileImg" Multiplicity="*" Role="TileImg" />
         </Association>
         <Association Name="HeroTileImg">
           <End Type="HugoLand.Hero" Role="Hero" Multiplicity="*" />

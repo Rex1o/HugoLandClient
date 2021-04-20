@@ -12,5 +12,7 @@ namespace HugoWorld_WCF.Services {
         List<ClasseDTO> GetClasseDTOs();
         [OperationContract]
         void EditClass(ClasseDTO classeDTO);
+        [OperationContract]
+        List<ClasseDTO> GetClassDTOFromMap(int p_MapId);
     }
 }

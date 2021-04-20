@@ -167,7 +167,8 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
 
         private static void ShowErrorsMessageBox(FluentValidation.Results.ValidationResult result)
         {
-            MessageBox.Show(string.Join("\n", result.Errors.ToList()), "Errors");
+            MessageBox.Show(string.Join("\n", result.Errors.ToList()), "Errors",
+MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
         }
 
         private void UpdateUI()

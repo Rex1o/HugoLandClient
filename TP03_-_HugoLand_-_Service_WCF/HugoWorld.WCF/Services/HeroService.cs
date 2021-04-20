@@ -27,7 +27,9 @@ namespace HugoWorld_WCF.Services
                     NomHero = p_heroDTO.NomHero,
                     MondeId = p_heroDTO.MondeId
                 };
+
                 dbContext.Heros.Add(hero);
+                dbContext.CompteJoueurs.Find(p_heroDTO.CompteJoueurId).Heros.Add(hero);
                 dbContext.SaveChanges();
             }
         }

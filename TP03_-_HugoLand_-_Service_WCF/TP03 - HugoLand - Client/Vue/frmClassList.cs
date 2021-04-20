@@ -36,7 +36,7 @@ namespace HugoWorld_Client.Vue
                 {
                     SwitchMode();
                     FillEditForm(classeDTOGridView.SelectedRows[0].DataBoundItem as ClasseDTO);
-                    
+
                 }
                 else
                 {
@@ -123,23 +123,28 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult confirmation = MessageBox.Show("Please confirm", "Confirmation",
+ MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            if (confirmation == DialogResult.Yes)
             {
-                if (classeDTOGridView.SelectedRows.Count > 0)
+                try
                 {
-
-                    if (!classeService.DeleteClass(classeDTOGridView.SelectedRows[0].DataBoundItem as ClasseDTO))
+                    if (classeDTOGridView.SelectedRows.Count > 0)
                     {
-                        MessageBox.Show("Heroes are bound to this class delete them before deleting the class", "ERROR",
-MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+
+                        if (!classeService.DeleteClass(classeDTOGridView.SelectedRows[0].DataBoundItem as ClasseDTO))
+                        {
+                            MessageBox.Show("Heroes are bound to this class delete them before deleting the class", "ERROR",
+    MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                        }
+                        Init();
                     }
-                    Init();
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while modifying the class to the database\n" + ex.Message, "ERROR",
-MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occured while modifying the class to the database\n" + ex.Message, "ERROR",
+    MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                }
             }
         }
 

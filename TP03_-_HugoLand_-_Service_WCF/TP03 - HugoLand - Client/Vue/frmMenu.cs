@@ -166,9 +166,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
 
                 if (result == DialogResult.OK)
                 {
-                    MessageBox.Show("Bye!", "", MessageBoxButtons.OK, MessageBoxIcon.Information,
-    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-
                     this.DialogResult = DialogResult.Abort;
                     this.Close();
                 }

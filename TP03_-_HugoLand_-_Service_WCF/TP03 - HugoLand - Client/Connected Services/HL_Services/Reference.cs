@@ -2345,6 +2345,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/SaveHeroPos", ReplyAction="http://tempuri.org/IHeroService/SaveHeroPosResponse")]
         System.Threading.Tasks.Task SaveHeroPosAsync(int id, int x, int y);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/DeleteHeroById", ReplyAction="http://tempuri.org/IHeroService/DeleteHeroByIdResponse")]
+        bool DeleteHeroById(int p_HeroId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/DeleteHeroById", ReplyAction="http://tempuri.org/IHeroService/DeleteHeroByIdResponse")]
+        System.Threading.Tasks.Task<bool> DeleteHeroByIdAsync(int p_HeroId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2388,6 +2394,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task SaveHeroPosAsync(int id, int x, int y) {
             return base.Channel.SaveHeroPosAsync(id, x, y);
+        }
+        
+        public bool DeleteHeroById(int p_HeroId) {
+            return base.Channel.DeleteHeroById(p_HeroId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteHeroByIdAsync(int p_HeroId) {
+            return base.Channel.DeleteHeroByIdAsync(p_HeroId);
         }
     }
 }

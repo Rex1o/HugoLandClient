@@ -14,5 +14,8 @@ namespace HugoWorld_WCF.Services
 
         [OperationContract]
         void SaveHeroPos(int id, int x, int y);
+
+        [OperationContract]
+        bool DeleteHeroById(int p_HeroId);
     }
 }

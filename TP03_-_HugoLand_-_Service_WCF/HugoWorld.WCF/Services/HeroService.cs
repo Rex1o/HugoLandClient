@@ -32,6 +32,22 @@ namespace HugoWorld_WCF.Services
             }
         }
 
+        public bool DeleteHeroById(int p_HeroId)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                Hero hero = dbContext.Heros.Find(p_HeroId);
+
+                if (hero == null)
+                    return false;
+
+                dbContext.Heros.Remove(hero);
+                dbContext.SaveChanges();
+
+                return true;
+            }
+        }
+
         public void SaveHeroPos(int id, int x, int y)
         {
             using(HugoLandContext dbContext = new HugoLandContext())

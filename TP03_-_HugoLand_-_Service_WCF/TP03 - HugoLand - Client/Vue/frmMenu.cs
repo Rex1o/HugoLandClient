@@ -2,6 +2,7 @@
 using HugoWorld.Vue;
 using HugoWorld_Client.HL_Services;
 using System;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace HugoWorld_Client.Vue {
@@ -95,7 +96,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
 
             while (chSelect.DialogResult != DialogResult.OK)
                 chSelect.ShowDialog();
-
 
             currentHero = chSelect.Hero;
             this.Enabled = true;

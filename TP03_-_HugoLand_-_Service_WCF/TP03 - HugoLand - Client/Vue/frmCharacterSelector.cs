@@ -1,4 +1,5 @@
 ﻿using HugoWorld_Client.HL_Services;
+using HugoWorld_Client.Vue;
 using System;
 using System.Windows.Forms;
 
@@ -7,27 +8,42 @@ namespace HugoWorld.Vue {
     public partial class frmCharacterSelector : Form {
         public HeroDTO Hero { get; set; }
         public string ErrorMsg { get; set; }
-        private HeroDTO _selectedHero = new HeroDTO();
-        private CompteJoueurDTO _user;
+        private CompteJoueurDTO connectedPlayer;
         private readonly JoueurServiceClient joueurService;
 
         public frmCharacterSelector(CompteJoueurDTO j)
         {
-            _user = j;
+            connectedPlayer = j;
             InitializeComponent();
+            if (connectedPlayer.TypeUtilisateur > 0)
+                btnAdd.Enabled = false;
+            else
+            {
+                //Remplir la liste selon le user
+                btnAdd.FlatStyle = FlatStyle.Flat;
+                btnAdd.FlatAppearance.BorderSize = 0;
+            }
+
             herosDataGridView.DataSource = j.Heros;
             herosDataGridView.Refresh();
             joueurService = new JoueurServiceClient();
             this.StartPosition = FormStartPosition.CenterScreen;
-
-            //Remplir la liste selon le user
-            btnAdd.FlatStyle = FlatStyle.Flat;
-            btnAdd.FlatAppearance.BorderSize = 0;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //Add character
+            frmCreateHero frmCreateHero = new frmCreateHero();
+            this.Enabled = false;
+            frmCreateHero.ShowDialog();
+
+            while (frmCreateHero.DialogResult != DialogResult.OK 
+                || frmCreateHero.DialogResult != DialogResult.Cancel)
+                frmCreateHero.ShowDialog();
+
+            if (frmCreateHero.DialogResult == DialogResult.OK)
+                Hero = frmCreateHero.createdHero;
+
+            this.Enabled = true;
         }
 
         private void btnOk_Click(object sender, EventArgs e)

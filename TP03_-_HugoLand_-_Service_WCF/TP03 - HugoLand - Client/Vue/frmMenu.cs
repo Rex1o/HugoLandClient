@@ -37,6 +37,7 @@ namespace HugoWorld_Client.Vue {
         private void btnEdit_Click(object sender, System.EventArgs e)
         {
             SwitchMode(!_editMode);
+            _editMode = !_editMode;
         }
 
         private void btnConfirm_Click(object sender, System.EventArgs e)
@@ -76,6 +77,9 @@ namespace HugoWorld_Client.Vue {
                 }
 
                 joueurService.EditAccount(connectedPlayer);
+
+                MessageBox.Show("Player account successfully modified!", "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.None,
+    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
             catch (Exception ex)
             {
@@ -94,11 +98,18 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             //if there is an error with the selection
             while (chSelect.DialogResult == DialogResult.Abort)
             {
-                DialogResult r = MessageBox.Show(chSelect.ErrorMsg, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                DialogResult r = MessageBox.Show(chSelect.ErrorMsg, "Error"
+                    , MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+
                 if (r == DialogResult.Retry)
                     chSelect.ShowDialog();
                 else
+                {
+                    MessageBox.Show("Hero successfully selected!", "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.None,
+    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                     this.Close();
+                }
             }
 
             currentHero = chSelect.Hero;
@@ -111,20 +122,24 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             this.Enabled = false;
             frmClassList.ShowDialog();
 
+            while (frmClassList.DialogResult != DialogResult.OK)
+                frmClassList.ShowDialog();
+
             this.Enabled = true;
         }
 
         private void ErreurEmptyValueMsgBox()
         {
-            MessageBox.Show("Please enter something, it can't be empty!", "WARNING!", MessageBoxButtons.OK);
+            MessageBox.Show("Please enter something, it can't be empty!", "WARNING!", MessageBoxButtons.OK,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            this.Close();
+            return;
         }
-
+            
         private void FillMenu()
         {
             courrielTextBox.Text = connectedPlayer.Courriel;
@@ -146,7 +161,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 prenomTextBox.ReadOnly = false;
 
                 btnConfirm.Visible = true;
-                _editMode = false;
                 Refresh();
             }
             else // else false, readonly
@@ -157,10 +171,27 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 prenomTextBox.ReadOnly = true;
 
                 btnConfirm.Visible = false;
-                _editMode = true;
                 Refresh();
             }
         }
 
+        private void frmMenu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to quit? Unsaved progress will be lost.",
+                      "Closing the world save", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+
+                if (result == DialogResult.OK)
+                {
+                    MessageBox.Show("Bye!", "", MessageBoxButtons.OK, MessageBoxIcon.Information,
+    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+
+                    this.DialogResult = DialogResult.Abort;
+                    this.Close();
+                }
+            }
+        }
     }
 }

@@ -62,9 +62,9 @@ namespace HugoWorld {
 
         private void Crusader_Shown(object sender, EventArgs e)
         {
-            //Il dit qu'il veut voir l'autre fenêtre derrière donc j'ai mis les
+            //Il dit qu'il veut voir l'autre fenï¿½tre derriï¿½re donc j'ai mis les
             //forms dans l'event shown masi pour le character selection, il vas falloir modifier le code
-            //pcqu'il est intilialisé dans le form initialise (et ici nous somme après cette méthode)
+            //pcqu'il est intilialisï¿½ dans le form initialise (et ici nous somme aprï¿½s cette mï¿½thode)
 
             //ShowLoginForm Here
             Form Login = new frmConnection();
@@ -79,14 +79,19 @@ namespace HugoWorld {
             frmMenu menu = new frmMenu();
             menu.ShowDialog();
 
-            while (menu.DialogResult != DialogResult.OK)
+            while (menu.DialogResult != DialogResult.OK && menu.DialogResult != DialogResult.Abort)
                 menu.ShowDialog();
+
+
+            if (menu.DialogResult == DialogResult.Abort)
+                this.Close();
 
             //Loads the hero into Outils
             Outils.SetHero(menu.currentHero);
-
             //Then Show help/Start game
             this.Enabled = true;
+            this.Show();
+
             Form help = new helpform();
             help.StartPosition = FormStartPosition.CenterScreen;
             help.Show();

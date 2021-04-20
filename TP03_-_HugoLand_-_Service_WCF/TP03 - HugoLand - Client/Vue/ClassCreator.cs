@@ -18,11 +18,6 @@ namespace HugoWorld.Vue {
 
         public ClassCreator()
         {
-            //_Strength = 16;
-            //_Dexterity = 16;
-            //_Vitality = 16;
-            //_Integrity = 16;
-
             InitializeComponent();
             this.DialogResult = DialogResult.Cancel;
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -64,6 +59,9 @@ namespace HugoWorld.Vue {
                     {
                         classeService.AddClassToDataBase(c);
                         classeDTO = c;
+
+                        MessageBox.Show("Class successfully added!", "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.None,
+    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                     }
                     catch (Exception ex)
                     {

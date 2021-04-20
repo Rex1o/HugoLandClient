@@ -28,23 +28,19 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public void DeleteClass(ClasseDTO classeDTO)
+        public bool DeleteClass(ClasseDTO classeDTO)
         {
+
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-                Classe classe = new Classe()
+                if (dbContext.Heros.Any(x => x.ClasseId == classeDTO.Id))
                 {
-                    NomClasse = classeDTO.NomClasse,
-                    Description = classeDTO.Description,
-                    StatBaseStr = classeDTO.StatBaseStr,
-                    StatBaseDex = classeDTO.StatBaseDex,
-                    StatBaseInt = classeDTO.StatBaseInt,
-                    StatBaseVitalite = classeDTO.StatBaseVitalite,
-                    MondeId = classeDTO.MondeId
-                };
+                    return false;
+                }
 
-                dbContext.Entry(classe).State = EntityState.Deleted;
+                dbContext.Classes.Remove(dbContext.Classes.Find(classeDTO.Id));
                 dbContext.SaveChanges();
+                return true;
             }
         }
 
@@ -52,17 +48,15 @@ namespace HugoWorld_WCF.Services {
         {
             using(HugoLandContext dbContext = new HugoLandContext())
             {
-                Classe classe = new Classe()
-                {
-                    NomClasse = classeDTO.NomClasse,
-                    Description = classeDTO.Description,
-                    StatBaseStr = classeDTO.StatBaseStr,
-                    StatBaseDex = classeDTO.StatBaseDex,
-                    StatBaseInt = classeDTO.StatBaseInt,
-                    StatBaseVitalite = classeDTO.StatBaseVitalite
-                };
+                Classe Class =  dbContext.Classes.Find(classeDTO.Id);
+                Class.MondeId = classeDTO.MondeId;
+                Class.NomClasse = classeDTO.NomClasse;
+                Class.StatBaseDex = classeDTO.StatBaseDex;
+                Class.StatBaseInt = classeDTO.StatBaseInt;
+                Class.StatBaseStr = classeDTO.StatBaseStr;
+                Class.StatBaseVitalite = classeDTO.StatBaseVitalite;
 
-                dbContext.Entry(classe).State = EntityState.Modified;
+                dbContext.Entry(Class).State = EntityState.Modified;
                 dbContext.SaveChanges();
             }
         }

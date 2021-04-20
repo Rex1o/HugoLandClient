@@ -7,8 +7,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace HugoWorld_Client.Vue {
-    public partial class frmClassList : Form {
+namespace HugoWorld_Client.Vue
+{
+    public partial class frmClassList : Form
+    {
         private readonly ClasseServiceClient classeService;
         private readonly MondeServiceClient mondeService;
         private CompteJoueurDTO connectedPlayer;
@@ -20,19 +22,8 @@ namespace HugoWorld_Client.Vue {
             classeService = new ClasseServiceClient();
             mondeService = new MondeServiceClient();
             connectedPlayer = Outils.GetActiveUser();
-            try
-            {
-                classeDTOGridView.DataSource = classeService.GetClasseDTOs();
-                classeDTOGridView.Refresh();
 
-                mondeDTOComboBox.DataSource = mondeService.GetWorldsForSelection().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
-                mondeDTOComboBox.Refresh();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while loading the classes\n" + ex.Message, "ERROR",
-MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-            }
+            Init();
 
             SwitchMode();
         }
@@ -125,7 +116,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             classCreator.ShowDialog();
 
             if (classCreator.DialogResult == DialogResult.OK)
-                classeDTOGridView.Refresh();
+                Init();
 
             this.Enabled = true;
         }
@@ -136,8 +127,13 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             {
                 if (classeDTOGridView.SelectedRows.Count > 0)
                 {
-                    classeService.DeleteClass(classeDTOGridView.SelectedRows[0].DataBoundItem as ClasseDTO);
-                    classeDTOGridView.Refresh();
+
+                    if (!classeService.DeleteClass(classeDTOGridView.SelectedRows[0].DataBoundItem as ClasseDTO))
+                    {
+                        MessageBox.Show("Heroes are bound to this class delete them before deleting the class", "ERROR",
+MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                    Init();
                 }
             }
             catch (Exception ex)
@@ -244,6 +240,22 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             }
         }
 
+        void Init()
+        {
+            try
+            {
+                classeDTOGridView.DataSource = classeService.GetClasseDTOs();
+                classeDTOGridView.Refresh();
+
+                mondeDTOComboBox.DataSource = mondeService.GetWorldsForSelection().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
+                mondeDTOComboBox.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured while loading the classes\n" + ex.Message, "ERROR",
+MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
+        }
 
     }
 }

@@ -15,6 +15,6 @@ namespace HugoWorld_WCF.Services {
         [OperationContract]
         List<ClasseDTO> GetClassDTOFromMap(int p_MapId);
         [OperationContract]
-        void DeleteClass(ClasseDTO classeDTO);
+        bool DeleteClass(ClasseDTO classeDTO);
     }
 }

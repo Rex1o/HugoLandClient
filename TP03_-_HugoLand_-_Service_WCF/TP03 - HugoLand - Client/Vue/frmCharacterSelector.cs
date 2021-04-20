@@ -15,15 +15,10 @@ namespace HugoWorld.Vue {
         {
             connectedPlayer = j;
             InitializeComponent();
-            if (connectedPlayer.TypeUtilisateur == 0)
-                btnAdd.Enabled = false;
-            else
-            {
-                btnAdd.Enabled = true;
-                //Remplir la liste selon le user
-                btnAdd.FlatStyle = FlatStyle.Flat;
-                btnAdd.FlatAppearance.BorderSize = 0;
-            }
+
+            //Remplir la liste selon le user
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.FlatAppearance.BorderSize = 0;
 
             herosDataGridView.DataSource = j.Heros;
             herosDataGridView.Refresh();
@@ -37,7 +32,7 @@ namespace HugoWorld.Vue {
             this.Enabled = false;
             frmCreateHero.ShowDialog();
 
-            while (frmCreateHero.DialogResult != DialogResult.OK 
+            while (frmCreateHero.DialogResult != DialogResult.OK
                 && frmCreateHero.DialogResult != DialogResult.Cancel)
                 frmCreateHero.ShowDialog();
 

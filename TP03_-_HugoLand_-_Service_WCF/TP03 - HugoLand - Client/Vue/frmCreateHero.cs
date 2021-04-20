@@ -66,8 +66,7 @@ namespace HugoWorld_Client.Vue {
                 Experience = 0,
                 Niveau = 1,
                 NomHero = txtName.Text,
-                MondeId = _SelectedworldID
-
+                MondeId = _SelectedClass.MondeId
             };
 
             try

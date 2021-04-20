@@ -6,7 +6,7 @@ using TP01_Library.Models;
 namespace HugoWorld_WCF.Services {
 
     public partial class HugoLandService : IItemService {
-        
+
         public List<ItemDTO> ConvertToItemsDTOs(ICollection<Item> items)
         {
             List<Item> _items = items.ToList();

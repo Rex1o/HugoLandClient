@@ -139,24 +139,23 @@ namespace HugoWorld {
         {
             if (!(Outils.GetHero() == null))
             {
+                Sounds.Start();
 
-            Sounds.Start();
+                MondeServiceClient MondeService = new MondeServiceClient();
+                Monde = MondeService.GetWorldByHero(Outils.GetHero());
+                //Create all the main gameobjects
+                World = new World(this, _tiles, Monde);
 
-            MondeServiceClient MondeService = new MondeServiceClient();
-            Monde = MondeService.GetWorldByHero(Outils.GetHero());
-            //Create all the main gameobjects
-            World = new World(this, _tiles, Monde);
-
-            //Reset the game state
-            Attack = 1;
-            Potions = 10;
-            Armour = 1;
-            Experience = 0;
-            Level = 1;
-            _nextUpgrade = 20;
-            Health = 100;
-            Treasure = 0;
-            GameIsWon = false;
+                //Reset the game state
+                Attack = 1;
+                Potions = 10;
+                Armour = 1;
+                Experience = 0;
+                Level = 1;
+                _nextUpgrade = 20;
+                Health = 100;
+                Treasure = 0;
+                GameIsWon = false;
             }
         }
 

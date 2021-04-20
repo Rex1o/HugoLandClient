@@ -91,6 +91,5 @@ namespace HugoWorld_WCF.DTOs {
 
         [DataMember]
         public virtual List<ItemDTO> Items { get; set; }
-
     }
 }

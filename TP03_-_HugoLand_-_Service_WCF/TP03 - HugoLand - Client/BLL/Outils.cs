@@ -38,6 +38,7 @@ namespace HugoWorld.BLL {
         {
             return _activeHero;
         }
+
         public static void SetHero(HeroDTO p_hero)
         {
             _activeHero = p_hero;

@@ -2,18 +2,16 @@
 using HugoWorld.Vue;
 using HugoWorld_Client.HL_Services;
 using System;
-using System.Collections;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace HugoWorld_Client.Vue
-{
-    public partial class frmClassList : Form
-    {
+namespace HugoWorld_Client.Vue {
+
+    public partial class frmClassList : Form {
         private readonly ClasseServiceClient classeService;
         private readonly MondeServiceClient mondeService;
         private CompteJoueurDTO connectedPlayer;
+
         public frmClassList()
         {
             InitializeComponent();
@@ -36,7 +34,6 @@ namespace HugoWorld_Client.Vue
                 {
                     SwitchMode();
                     FillEditForm(classeDTOGridView.SelectedRows[0].DataBoundItem as ClasseDTO);
-
                 }
                 else
                 {
@@ -131,7 +128,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 {
                     if (classeDTOGridView.SelectedRows.Count > 0)
                     {
-
                         if (!classeService.DeleteClass(classeDTOGridView.SelectedRows[0].DataBoundItem as ClasseDTO))
                         {
                             MessageBox.Show("Heroes are bound to this class delete them before deleting the class", "ERROR",
@@ -245,7 +241,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             }
         }
 
-        void Init()
+        private void Init()
         {
             try
             {
@@ -261,6 +257,5 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
 MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
         }
-
     }
 }

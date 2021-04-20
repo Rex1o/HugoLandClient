@@ -1,18 +1,16 @@
+using HugoWorld.BLL;
+using HugoWorld_Client.HL_Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
 using System.Linq;
-using HugoWorld_Client.HL_Services;
-using HugoWorld.BLL;
+using System.Windows.Forms;
 
-namespace HugoWorld
-{
+namespace HugoWorld {
 
     //Textpop up used to display damage when monsters and players are hit
-    internal struct textPopup
-    {
+    internal struct textPopup {
         public int X;
         public int Y;
         public string Text;
@@ -25,12 +23,12 @@ namespace HugoWorld
         }
     }
 
-    public class World : GameObject
-    {
+    public class World : GameObject {
         private const string _startArea = "CurrentChunk";
 
         //private Dictionary<string, Area> _world = new Dictionary<string, Area>();
         private MondeDTO _monde;
+
         private HeroDTO _hero;
         private Area _currentArea;
         private Dictionary<string, Tile> _tiles;
@@ -59,7 +57,6 @@ namespace HugoWorld
             //Read in the map file
             //readMapfile(mapFile);
             LoadChunk();
-
 
             //Find the start point
             //_currentArea = _world[_startArea];
@@ -102,7 +99,6 @@ namespace HugoWorld
         {
             try
             {
-
                 MondeDTO w = _monde;
                 HeroDTO h = _hero;
 
@@ -137,11 +133,9 @@ namespace HugoWorld
                 TopLeftCorner[0] = Chunkx * 8;
                 TopLeftCorner[1] = Chunky * 8;
 
-
                 int[] BotRightCorner = new int[2];
                 BotRightCorner[0] = (Chunkx + 1) * 8 - 1;
                 BotRightCorner[1] = (Chunky + 1) * 8 - 1;
-
 
                 MondeServiceClient MondeService = new MondeServiceClient();
                 List<TileImport> objects = MondeService.GetChunk(TopLeftCorner, BotRightCorner, w).ToList();
@@ -158,7 +152,6 @@ namespace HugoWorld
                         area.SouthArea = "OK";
                         area.EastArea = "OK";
                         _currentArea = area;
-
                     }
                 }
                 else
@@ -168,7 +161,6 @@ namespace HugoWorld
                     _currentArea.SouthArea = null;
                     _currentArea.EastArea = null;
                 }
-
             }
             catch (Exception e)
             {
@@ -661,8 +653,7 @@ namespace HugoWorld
                                             _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY);
         }
 
-        private enum HeroDirection
-        {
+        private enum HeroDirection {
             Left,
             Right,
             Up,

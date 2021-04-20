@@ -1,11 +1,11 @@
 using HugoWorld.BLL;
 using HugoWorld_Client.HL_Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace HugoWorld_Client.Vue {
+
     public partial class frmCreateHero : Form {
         private readonly ClasseServiceClient classeService;
         private readonly MondeServiceClient mondeService;
@@ -16,6 +16,7 @@ namespace HugoWorld_Client.Vue {
         private Random _rnd = new Random();
         private ClasseDTO _SelectedClass;
         public HeroDTO createdHero { get; set; }
+
         public frmCreateHero()
         {
             InitializeComponent();
@@ -85,7 +86,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
 
         private void UpdateUI()
         {
-
             if (string.IsNullOrEmpty(cmbClasse.Text))
             {
                 btnCreateHero.Enabled = false;

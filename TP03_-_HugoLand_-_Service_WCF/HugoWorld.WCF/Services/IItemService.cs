@@ -7,6 +7,7 @@ namespace HugoWorld_WCF.Services {
 
     [ServiceContract]
     public interface IItemService {
+
         [OperationContract]
         List<ItemDTO> ConvertToItemsDTOs(ICollection<Item> items);
 

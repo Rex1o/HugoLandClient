@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 using TP01_Library.Models;
 
 namespace HugoWorld_WCF.DTOs {

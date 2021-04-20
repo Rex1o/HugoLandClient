@@ -5,19 +5,30 @@ using System;
 using System.Windows.Forms;
 
 namespace HugoWorld_Client.Vue {
+
     public partial class frmMenu : Form {
         private readonly JoueurServiceClient joueurService;
 
         private bool _editMode;
         private CompteJoueurDTO connectedPlayer;
         private HeroDTO _currentHero;
+
         public HeroDTO currentHero
         {
             get => _currentHero;
             set
             {
                 _currentHero = value;
-                btnPlay.Enabled = true;
+                if (value != null)
+                {
+                    btnPlay.Enabled = true;
+                    heroSelectedTextBox.Text = _currentHero.NomHero;
+                }
+                else
+                {
+                    btnPlay.Enabled = false;
+                    heroSelectedTextBox.Text = "";
+                }
             }
         }
 

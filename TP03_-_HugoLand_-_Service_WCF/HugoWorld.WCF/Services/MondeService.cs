@@ -1,15 +1,13 @@
 ﻿using HugoWorld_WCF.DTOs;
 using HugoWorld_WCF.Models;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using TP01_Library.Models;
 
-namespace HugoWorld_WCF.Services
-{
+namespace HugoWorld_WCF.Services {
 
-    public partial class HugoLandService : IMondeService
-    {
+    public partial class HugoLandService : IMondeService {
+
         public List<TileImport> GetChunk(int[] TopLeft, int[] BotRight, MondeDTO p_world)
         {
             int BotRightX = BotRight[0];
@@ -37,7 +35,6 @@ namespace HugoWorld_WCF.Services
                         IsBlock = ob.IsBlock
                     }).ToList())
                     objects.Add(TileImport.ObjetMondeToTile(o));
-
 
                 foreach (ItemDTO i in
                 dbcontext.Items.Where(obj => obj.x >= TopLeftX && obj.x <= BotRightX && obj.y >= TopLeftY && obj.y <= BotRightY && obj.MondeId == m.Id)
@@ -70,7 +67,6 @@ namespace HugoWorld_WCF.Services
                     }).ToList())
                     objects.Add(TileImport.MonstreToTile(o));
 
-
                 return objects;
                 //foreach (ObjetMondeDTO o in m .ObjetMondes.Where(obj => obj.x >= TopLeft[0] && obj.x <= BotRight[0] && obj.y >= TopLeft[1] && obj.y <= BotRight[1]))
                 //    objects.Add(service.ObjetMondeToTile(o));
@@ -81,8 +77,6 @@ namespace HugoWorld_WCF.Services
                 //foreach (MonstreDTO m in w.Monstres.Where(obj => obj.x >= TopLeft[0] && obj.x <= BotRight[0] && obj.y >= TopLeft[1] && obj.y <= BotRight[1]))
                 //    objects.Add(service.MonstreToTile(m));
             }
-
-
         }
 
         public List<MondeDTO> GetMondeDTOs()
@@ -90,6 +84,7 @@ namespace HugoWorld_WCF.Services
             using (HugoLandContext dbContext = new HugoLandContext())
             {
                 #region Old
+
                 //List<Monde> mondes = dbContext.Mondes
                 //                    .Include(x => x.Classes)
                 //                    .Include(x => x.Heros)
@@ -106,7 +101,8 @@ namespace HugoWorld_WCF.Services
                 //    Monstres = ConvertToMonstresDTOs(m.Monstres),
                 //    ObjetMondes = ConvertToObjetMondeDTOs(m.ObjetMondes)
                 //}));
-                #endregion
+
+                #endregion Old
 
                 return dbContext.Mondes.ToList().Select(m => new MondeDTO(m)).ToList();
             }
@@ -131,7 +127,6 @@ namespace HugoWorld_WCF.Services
                 {
                     return null;
                 }
-
             }
         }
 
@@ -146,10 +141,5 @@ namespace HugoWorld_WCF.Services
                 }).ToList();
             }
         }
-
-
-
-
-
     }
 }

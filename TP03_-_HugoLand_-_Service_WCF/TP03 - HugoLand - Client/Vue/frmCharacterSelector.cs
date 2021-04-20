@@ -4,11 +4,9 @@ using HugoWorld_Client.Vue;
 using System;
 using System.Windows.Forms;
 
-namespace HugoWorld.Vue
-{
+namespace HugoWorld.Vue {
 
-    public partial class frmCharacterSelector : Form
-    {
+    public partial class frmCharacterSelector : Form {
         public HeroDTO Hero { get; set; }
         public string ErrorMsg { get; set; }
         private CompteJoueurDTO connectedPlayer;
@@ -72,12 +70,10 @@ namespace HugoWorld.Vue
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
             DialogResult confirmation = MessageBox.Show("Please confirm", "Confirmation",
  MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             if (confirmation == DialogResult.Yes)
             {
-
                 try
                 {
                     if (herosDataGridView.SelectedRows.Count > 0)
@@ -86,7 +82,7 @@ namespace HugoWorld.Vue
                         if (heroService.DeleteHeroById(((HeroDTO)herosDataGridView.SelectedRows[0].DataBoundItem).Id))
                         {
                             this.DialogResult = DialogResult.OK;
-                            
+                            Hero = null;
                         }
                         else
                         {

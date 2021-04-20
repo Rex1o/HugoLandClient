@@ -1,10 +1,8 @@
 ﻿using HugoWorld_WCF.DTOs;
-using System.Collections.Generic;
 
 namespace HugoWorld_WCF.Models {
 
     public class TileImport {
-
         public int ID;
         public TypeTile Type;
 
@@ -17,7 +15,7 @@ namespace HugoWorld_WCF.Models {
         public int x;
         public int y;
 
-       static public TileImport ItemToTile(ItemDTO item)
+        static public TileImport ItemToTile(ItemDTO item)
         {
             TileImport tile = new TileImport();
             tile.Name = item.Nom;

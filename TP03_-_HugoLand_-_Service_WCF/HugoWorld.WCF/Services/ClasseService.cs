@@ -1,7 +1,7 @@
 ﻿using HugoWorld_WCF.DTOs;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Entity;
+using System.Linq;
 using TP01_Library.Models;
 
 namespace HugoWorld_WCF.Services {
@@ -45,9 +45,9 @@ namespace HugoWorld_WCF.Services {
 
         public void EditClass(ClasseDTO classeDTO)
         {
-            using(HugoLandContext dbContext = new HugoLandContext())
+            using (HugoLandContext dbContext = new HugoLandContext())
             {
-                Classe Class =  dbContext.Classes.Find(classeDTO.Id);
+                Classe Class = dbContext.Classes.Find(classeDTO.Id);
                 Class.NomClasse = classeDTO.NomClasse;
                 Class.StatBaseDex = classeDTO.StatBaseDex;
                 Class.StatBaseInt = classeDTO.StatBaseInt;

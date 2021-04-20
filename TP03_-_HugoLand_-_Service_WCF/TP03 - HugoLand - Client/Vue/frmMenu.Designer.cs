@@ -41,6 +41,8 @@ namespace HugoWorld_Client.Vue {
             this.btnClasses = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnPlay = new System.Windows.Forms.Button();
+            this.heroLabel = new System.Windows.Forms.Label();
+            this.heroSelectedTextBox = new System.Windows.Forms.TextBox();
             courrielLabel = new System.Windows.Forms.Label();
             nomLabel = new System.Windows.Forms.Label();
             nomJoueurLabel = new System.Windows.Forms.Label();
@@ -51,7 +53,7 @@ namespace HugoWorld_Client.Vue {
             // courrielLabel
             // 
             courrielLabel.AutoSize = true;
-            courrielLabel.Location = new System.Drawing.Point(17, 74);
+            courrielLabel.Location = new System.Drawing.Point(7, 74);
             courrielLabel.Name = "courrielLabel";
             courrielLabel.Size = new System.Drawing.Size(35, 13);
             courrielLabel.TabIndex = 1;
@@ -60,7 +62,7 @@ namespace HugoWorld_Client.Vue {
             // nomLabel
             // 
             nomLabel.AutoSize = true;
-            nomLabel.Location = new System.Drawing.Point(17, 126);
+            nomLabel.Location = new System.Drawing.Point(7, 126);
             nomLabel.Name = "nomLabel";
             nomLabel.Size = new System.Drawing.Size(58, 13);
             nomLabel.TabIndex = 3;
@@ -69,7 +71,7 @@ namespace HugoWorld_Client.Vue {
             // nomJoueurLabel
             // 
             nomJoueurLabel.AutoSize = true;
-            nomJoueurLabel.Location = new System.Drawing.Point(17, 100);
+            nomJoueurLabel.Location = new System.Drawing.Point(7, 100);
             nomJoueurLabel.Name = "nomJoueurLabel";
             nomJoueurLabel.Size = new System.Drawing.Size(68, 13);
             nomJoueurLabel.TabIndex = 5;
@@ -78,7 +80,7 @@ namespace HugoWorld_Client.Vue {
             // prenomLabel
             // 
             prenomLabel.AutoSize = true;
-            prenomLabel.Location = new System.Drawing.Point(17, 152);
+            prenomLabel.Location = new System.Drawing.Point(7, 152);
             prenomLabel.Name = "prenomLabel";
             prenomLabel.Size = new System.Drawing.Size(59, 13);
             prenomLabel.TabIndex = 7;
@@ -166,11 +168,30 @@ namespace HugoWorld_Client.Vue {
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
+            // heroLabel
+            // 
+            this.heroLabel.AutoSize = true;
+            this.heroLabel.Location = new System.Drawing.Point(7, 180);
+            this.heroLabel.Name = "heroLabel";
+            this.heroLabel.Size = new System.Drawing.Size(78, 13);
+            this.heroLabel.TabIndex = 15;
+            this.heroLabel.Text = "Selected Hero:";
+            // 
+            // heroSelectedTextBox
+            // 
+            this.heroSelectedTextBox.Location = new System.Drawing.Point(90, 177);
+            this.heroSelectedTextBox.Name = "heroSelectedTextBox";
+            this.heroSelectedTextBox.ReadOnly = true;
+            this.heroSelectedTextBox.Size = new System.Drawing.Size(100, 20);
+            this.heroSelectedTextBox.TabIndex = 16;
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(306, 209);
+            this.Controls.Add(this.heroSelectedTextBox);
+            this.Controls.Add(this.heroLabel);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClasses);
@@ -202,5 +223,7 @@ namespace HugoWorld_Client.Vue {
         private System.Windows.Forms.Button btnClasses;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnPlay;
+        private System.Windows.Forms.Label heroLabel;
+        private System.Windows.Forms.TextBox heroSelectedTextBox;
     }
 }

@@ -1,13 +1,10 @@
 ﻿using HugoWorld_WCF.DTOs;
-using System.Collections.Generic;
-using System.ServiceModel;
 using TP01_Library.Models;
 
+namespace HugoWorld_WCF.Services {
 
-namespace HugoWorld_WCF.Services
-{
-    public partial class HugoLandService : IHeroService
-    {
+    public partial class HugoLandService : IHeroService {
+
         public void AddHeroToDataBase(HeroDTO p_heroDTO)
         {
             using (HugoLandContext dbContext = new HugoLandContext())
@@ -52,7 +49,7 @@ namespace HugoWorld_WCF.Services
 
         public void SaveHeroPos(int id, int x, int y)
         {
-            using(HugoLandContext dbContext = new HugoLandContext())
+            using (HugoLandContext dbContext = new HugoLandContext())
             {
                 Hero h = dbContext.Heros.Find(id);
 

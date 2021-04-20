@@ -77,12 +77,10 @@ namespace HugoWorld {
         {
             try
             {
-
                 Name = "CurrentChunk";
 
                 foreach (TileImport t in objects.OrderBy(pos => pos.x).ThenBy(pos => pos.y))
                 {
-
                     MapTile mapT = new MapTile();
                     Map[t.x % 8, t.y % 8] = mapT;
 

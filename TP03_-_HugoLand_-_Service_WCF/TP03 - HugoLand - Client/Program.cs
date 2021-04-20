@@ -1,5 +1,3 @@
-using HugoWorld.Vue;
-using HugoWorld_Client.Vue;
 using System;
 using System.Windows.Forms;
 
@@ -16,9 +14,7 @@ namespace HugoWorld {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-                Application.Run(new HugoWorld());
-
-
+            Application.Run(new HugoWorld());
         }
     }
 }

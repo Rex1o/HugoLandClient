@@ -16,7 +16,6 @@ namespace HugoWorld_Client.Vue {
         private Random _rnd = new Random();
         private ClasseDTO _SelectedClass;
         public HeroDTO createdHero { get; set; }
-
         public frmCreateHero()
         {
             InitializeComponent();
@@ -66,7 +65,9 @@ namespace HugoWorld_Client.Vue {
                 ClasseId = _SelectedClass.Id,
                 Experience = 0,
                 Niveau = 1,
-                NomHero = txtName.Text
+                NomHero = txtName.Text,
+                MondeId = _SelectedworldID
+
             };
 
             try

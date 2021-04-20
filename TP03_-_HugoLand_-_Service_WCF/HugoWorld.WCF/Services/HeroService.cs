@@ -24,7 +24,8 @@ namespace HugoWorld_WCF.Services
                     ClasseId = p_heroDTO.ClasseId,
                     Experience = p_heroDTO.Experience,
                     Niveau = p_heroDTO.Niveau,
-                    NomHero = p_heroDTO.NomHero
+                    NomHero = p_heroDTO.NomHero,
+                    MondeId = p_heroDTO.MondeId
                 };
                 dbContext.Heros.Add(hero);
                 dbContext.SaveChanges();

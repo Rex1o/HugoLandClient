@@ -92,6 +92,7 @@ namespace HugoWorld {
             this.Enabled = true;
             this.Show();
 
+            initialize();
             Form help = new helpform();
             help.StartPosition = FormStartPosition.CenterScreen;
             help.Show();

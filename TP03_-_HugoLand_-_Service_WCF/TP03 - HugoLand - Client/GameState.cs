@@ -137,6 +137,9 @@ namespace HugoWorld {
 
         public void Initialize()
         {
+            if (!(Outils.GetHero() == null))
+            {
+
             Sounds.Start();
 
             MondeServiceClient MondeService = new MondeServiceClient();
@@ -154,6 +157,7 @@ namespace HugoWorld {
             Health = 100;
             Treasure = 0;
             GameIsWon = false;
+            }
         }
 
         //Each line contains a comma delimited tile definition that the tile constructor understands

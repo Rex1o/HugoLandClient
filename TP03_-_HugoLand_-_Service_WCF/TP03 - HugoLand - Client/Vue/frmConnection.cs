@@ -3,8 +3,7 @@ using HugoWorld_Client.HL_Services;
 using System;
 using System.Windows.Forms;
 
-namespace HugoWorld
-{
+namespace HugoWorld {
 
     public partial class frmConnection : Form {
         //Service a utiliser
@@ -54,8 +53,7 @@ namespace HugoWorld
                 {
                     try
                     {
-                        CompteJoueurDTO compte = joueurService.GetAccountByName(username);
-                        Outils.SetActiveUser(compte);
+                        Outils.SetActiveUser(joueurService.GetAccountByName(username));
                         this.Close();
                     }
                     catch

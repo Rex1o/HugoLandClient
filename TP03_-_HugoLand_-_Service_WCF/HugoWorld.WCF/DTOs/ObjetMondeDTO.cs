@@ -21,7 +21,6 @@ namespace HugoWorld_WCF.DTOs {
             ImageId = objetMonde.ImageId;
             IsBlock = objetMonde.IsBlock;
             Monde = new MondeDTO(objetMonde.Monde);
-            // TileImg?
         }
 
         [DataMember]
@@ -51,7 +50,5 @@ namespace HugoWorld_WCF.DTOs {
         [DataMember]
         public virtual MondeDTO Monde { get; set; }
 
-        [DataMember]
-        public virtual TileImgDTO Image { get; set; }
     }
 }

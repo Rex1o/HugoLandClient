@@ -438,7 +438,6 @@
           <NavigationProperty Name="InventaireHeroes" Relationship="Self.FK_BelongsToHero" FromRole="Heros" ToRole="InventaireHeroes" />
           <NavigationProperty Name="Monde" Relationship="Self.FK_Hero_Monde" FromRole="Heros" ToRole="Mondes" />
           <NavigationProperty Name="Items" Relationship="Self.FK_Item_Heros" FromRole="Heros" ToRole="Items" />
-          <NavigationProperty Name="Images" Relationship="HugoLand.HeroTileImg" FromRole="Hero" ToRole="TileImg" />
         </EntityType>
         <EntityType Name="InventaireHero">
           <Key>
@@ -467,7 +466,6 @@
           <NavigationProperty Name="Hero" Relationship="Self.FK_Item_Heros" FromRole="Items" ToRole="Heros" />
           <NavigationProperty Name="InventaireHeroes" Relationship="Self.FK_BelongsToItem" FromRole="Items" ToRole="InventaireHeroes" />
           <NavigationProperty Name="Monde" Relationship="Self.FK_Item_Monde" FromRole="Items" ToRole="Mondes" />
-          <NavigationProperty Name="TileImg" Relationship="Self.FK_TileImgItem" FromRole="Items" ToRole="TileImgs" />
         </EntityType>
         <EntityType Name="Monde">
           <Key>
@@ -497,7 +495,6 @@
           <Property Name="StatDmgMax" Type="Single" Nullable="false" />
           <Property Name="MondeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Monde" Relationship="Self.FK_Monstre_Monde" FromRole="Monstres" ToRole="Mondes" />
-          <NavigationProperty Name="Images" Relationship="HugoLand.MonstreTileImg" FromRole="Monstre" ToRole="TileImg" />
           <Property Name="ImageId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ObjetMonde">
@@ -512,7 +509,6 @@
           <Property Name="MondeId" Type="Int32" Nullable="false" />
           <Property Name="ImageId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Monde" Relationship="Self.FK_ObjetMonde_Monde" FromRole="ObjetMondes" ToRole="Mondes" />
-          <NavigationProperty Name="TileImg" Relationship="Self.FK_TileImgObjetMonde" FromRole="ObjetMondes" ToRole="TileImgs" />
           <Property Name="IsBlock" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagram">
@@ -524,17 +520,6 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="TileImg">
-          <Key>
-            <PropertyRef Name="ImageId" />
-          </Key>
-          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Imageb64" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Items" Relationship="Self.FK_TileImgItem" FromRole="TileImgs" ToRole="Items" />
-          <NavigationProperty Name="ObjetMondes" Relationship="Self.FK_TileImgObjetMonde" FromRole="TileImgs" ToRole="ObjetMondes" />
-          <NavigationProperty Name="Monstres" Relationship="HugoLand.MonstreTileImg" FromRole="TileImg" ToRole="Monstre" />
-          <NavigationProperty Name="Heroes" Relationship="HugoLand.HeroTileImg" FromRole="TileImg" ToRole="Hero" />
         </EntityType>
         <Association Name="FK_Classe_Monde">
           <End Role="Mondes" Type="Self.Monde" Multiplicity="1">
@@ -650,18 +635,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TileImgItem">
-          <End Role="TileImgs" Type="Self.TileImg" Multiplicity="1" />
-          <End Role="Items" Type="Self.Item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TileImgs">
-              <PropertyRef Name="ImageId" />
-            </Principal>
-            <Dependent Role="Items">
-              <PropertyRef Name="ImageId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Monstre_Monde">
           <End Role="Mondes" Type="Self.Monde" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -690,18 +663,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TileImgObjetMonde">
-          <End Role="TileImgs" Type="Self.TileImg" Multiplicity="1" />
-          <End Role="ObjetMondes" Type="Self.ObjetMonde" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TileImgs">
-              <PropertyRef Name="ImageId" />
-            </Principal>
-            <Dependent Role="ObjetMondes">
-              <PropertyRef Name="ImageId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="HugoLandContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Classes" EntityType="HugoLand.Classe" />
           <EntitySet Name="CompteJoueurs" EntityType="Self.CompteJoueur" />
@@ -713,7 +674,6 @@
           <EntitySet Name="Monstres" EntityType="Self.Monstre" />
           <EntitySet Name="ObjetMondes" EntityType="Self.ObjetMonde" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="TileImgs" EntityType="Self.TileImg" />
           <AssociationSet Name="FK_Classe_Monde" Association="Self.FK_Classe_Monde">
             <End Role="Mondes" EntitySet="Mondes" />
             <End Role="Classes" EntitySet="Classes" />
@@ -750,20 +710,12 @@
             <End Role="Mondes" EntitySet="Mondes" />
             <End Role="Items" EntitySet="Items" />
           </AssociationSet>
-          <AssociationSet Name="FK_TileImgItem" Association="Self.FK_TileImgItem">
-            <End Role="TileImgs" EntitySet="TileImgs" />
-            <End Role="Items" EntitySet="Items" />
-          </AssociationSet>
           <AssociationSet Name="FK_Monstre_Monde" Association="Self.FK_Monstre_Monde">
             <End Role="Mondes" EntitySet="Mondes" />
             <End Role="Monstres" EntitySet="Monstres" />
           </AssociationSet>
           <AssociationSet Name="FK_ObjetMonde_Monde" Association="Self.FK_ObjetMonde_Monde">
             <End Role="Mondes" EntitySet="Mondes" />
-            <End Role="ObjetMondes" EntitySet="ObjetMondes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TileImgObjetMonde" Association="Self.FK_TileImgObjetMonde">
-            <End Role="TileImgs" EntitySet="TileImgs" />
             <End Role="ObjetMondes" EntitySet="ObjetMondes" />
           </AssociationSet>
           <FunctionImport Name="Connexion">
@@ -810,14 +762,6 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <AssociationSet Name="MonstreTileImg" Association="HugoLand.MonstreTileImg">
-            <End EntitySet="Monstres" Role="Monstre" />
-            <End EntitySet="TileImgs" Role="TileImg" />
-          </AssociationSet>
-          <AssociationSet Name="HeroTileImg" Association="HugoLand.HeroTileImg">
-            <End Role="Hero" EntitySet="Heros" />
-            <End Role="TileImg" EntitySet="TileImgs" />
-          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -830,14 +774,6 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <Association Name="MonstreTileImg">
-          <End Type="HugoLand.Monstre" Multiplicity="*" Role="Monstre" />
-          <End Type="HugoLand.TileImg" Multiplicity="*" Role="TileImg" />
-        </Association>
-        <Association Name="HeroTileImg">
-          <End Type="HugoLand.Hero" Role="Hero" Multiplicity="*" />
-          <End Type="HugoLand.TileImg" Role="TileImg" Multiplicity="*" />
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

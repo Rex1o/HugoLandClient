@@ -28,7 +28,7 @@ namespace HugoWorld_Client.Vue
 
         private void frmCreateHero_Load(object sender, EventArgs e)
         {
-            cmbWorld.DataSource = mondeService.ListWorlds().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
+            cmbWorld.DataSource = mondeService.GetMondeDTOs().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
             string itemstr = cmbWorld.SelectedItem.ToString();
             int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
 

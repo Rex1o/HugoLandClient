@@ -111,3 +111,5 @@ Backup*/
 UpgradeLog*.XML
 WinForms/AdamsLair.WinForms.xml
 TP02 - HugoLand - Editeur de Mondes (Base)/.vs/
+*.htm
+TP03_-_HugoLand_-_Service_WCF/TP03 - HugoLand - Client/.vs/

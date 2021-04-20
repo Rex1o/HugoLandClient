@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="HugoLand.Monstre" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HugoLand.ObjetMonde" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HugoLand.sysdiagram" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HugoLand.TileImg" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <AssociationConnector Association="HugoLand.FK_Classe_Monde" ManuallyRouted="false" />
         <AssociationConnector Association="HugoLand.FK_Hero_Classe" ManuallyRouted="false" />
         <AssociationConnector Association="HugoLand.IsPartOfAccount" ManuallyRouted="false" />

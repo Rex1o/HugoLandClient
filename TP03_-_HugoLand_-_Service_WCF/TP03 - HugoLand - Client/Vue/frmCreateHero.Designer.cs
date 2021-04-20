@@ -29,6 +29,7 @@ namespace HugoWorld_Client.Vue
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblHeroCreator = new System.Windows.Forms.Label();
             this.lblStrength = new System.Windows.Forms.Label();
             this.txtStr = new System.Windows.Forms.TextBox();
@@ -38,14 +39,18 @@ namespace HugoWorld_Client.Vue
             this.lblVitality = new System.Windows.Forms.Label();
             this.txtInt = new System.Windows.Forms.TextBox();
             this.lblIntegrity = new System.Windows.Forms.Label();
-            this.cmbWorld = new System.Windows.Forms.ComboBox();
-            this.cmbClasse = new System.Windows.Forms.ComboBox();
             this.lblWorld = new System.Windows.Forms.Label();
             this.lblClasse = new System.Windows.Forms.Label();
             this.btnCreateHero = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.mondeDTOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbWorld = new System.Windows.Forms.ComboBox();
+            this.classesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbClasse = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.mondeDTOBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHeroCreator
@@ -75,7 +80,7 @@ namespace HugoWorld_Client.Vue
             this.txtStr.Location = new System.Drawing.Point(18, 118);
             this.txtStr.Margin = new System.Windows.Forms.Padding(2);
             this.txtStr.Name = "txtStr";
-            this.txtStr.Size = new System.Drawing.Size(132, 20);
+            this.txtStr.Size = new System.Drawing.Size(135, 20);
             this.txtStr.TabIndex = 2;
             // 
             // txtDex
@@ -84,7 +89,7 @@ namespace HugoWorld_Client.Vue
             this.txtDex.Location = new System.Drawing.Point(18, 158);
             this.txtDex.Margin = new System.Windows.Forms.Padding(2);
             this.txtDex.Name = "txtDex";
-            this.txtDex.Size = new System.Drawing.Size(132, 20);
+            this.txtDex.Size = new System.Drawing.Size(135, 20);
             this.txtDex.TabIndex = 4;
             // 
             // lblDexterity
@@ -103,7 +108,7 @@ namespace HugoWorld_Client.Vue
             this.txtVit.Location = new System.Drawing.Point(18, 203);
             this.txtVit.Margin = new System.Windows.Forms.Padding(2);
             this.txtVit.Name = "txtVit";
-            this.txtVit.Size = new System.Drawing.Size(132, 20);
+            this.txtVit.Size = new System.Drawing.Size(135, 20);
             this.txtVit.TabIndex = 6;
             // 
             // lblVitality
@@ -122,7 +127,7 @@ namespace HugoWorld_Client.Vue
             this.txtInt.Location = new System.Drawing.Point(18, 249);
             this.txtInt.Margin = new System.Windows.Forms.Padding(2);
             this.txtInt.Name = "txtInt";
-            this.txtInt.Size = new System.Drawing.Size(132, 20);
+            this.txtInt.Size = new System.Drawing.Size(135, 20);
             this.txtInt.TabIndex = 8;
             // 
             // lblIntegrity
@@ -134,28 +139,6 @@ namespace HugoWorld_Client.Vue
             this.lblIntegrity.Size = new System.Drawing.Size(47, 13);
             this.lblIntegrity.TabIndex = 7;
             this.lblIntegrity.Text = "Integrity:";
-            // 
-            // cmbWorld
-            // 
-            this.cmbWorld.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbWorld.FormattingEnabled = true;
-            this.cmbWorld.Location = new System.Drawing.Point(18, 292);
-            this.cmbWorld.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbWorld.Name = "cmbWorld";
-            this.cmbWorld.Size = new System.Drawing.Size(133, 21);
-            this.cmbWorld.TabIndex = 9;
-            this.cmbWorld.SelectedIndexChanged += new System.EventHandler(this.cmbWorld_SelectedIndexChanged);
-            // 
-            // cmbClasse
-            // 
-            this.cmbClasse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbClasse.FormattingEnabled = true;
-            this.cmbClasse.Location = new System.Drawing.Point(16, 332);
-            this.cmbClasse.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbClasse.Name = "cmbClasse";
-            this.cmbClasse.Size = new System.Drawing.Size(133, 21);
-            this.cmbClasse.TabIndex = 10;
-            this.cmbClasse.SelectedIndexChanged += new System.EventHandler(this.cmbClasse_SelectedIndexChanged);
             // 
             // lblWorld
             // 
@@ -193,7 +176,7 @@ namespace HugoWorld_Client.Vue
             this.txtName.Location = new System.Drawing.Point(18, 80);
             this.txtName.Margin = new System.Windows.Forms.Padding(2);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(132, 20);
+            this.txtName.Size = new System.Drawing.Size(135, 20);
             this.txtName.TabIndex = 16;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
@@ -218,19 +201,52 @@ namespace HugoWorld_Client.Vue
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // mondeDTOBindingSource
+            // 
+            this.mondeDTOBindingSource.DataSource = typeof(HugoWorld_Client.HL_Services.MondeDTO);
+            // 
+            // cmbWorld
+            // 
+            this.cmbWorld.DataSource = this.mondeDTOBindingSource;
+            this.cmbWorld.DisplayMember = "Description";
+            this.cmbWorld.FormattingEnabled = true;
+            this.cmbWorld.Location = new System.Drawing.Point(18, 294);
+            this.cmbWorld.Name = "cmbWorld";
+            this.cmbWorld.Size = new System.Drawing.Size(135, 21);
+            this.cmbWorld.TabIndex = 18;
+            this.cmbWorld.ValueMember = "Classes";
+            this.cmbWorld.SelectedValueChanged += new System.EventHandler(this.cmbWorld_SelectedValueChanged);
+            // 
+            // classesBindingSource
+            // 
+            this.classesBindingSource.DataMember = "Classes";
+            this.classesBindingSource.DataSource = this.mondeDTOBindingSource;
+            // 
+            // cmbClasse
+            // 
+            this.cmbClasse.DataSource = this.classesBindingSource;
+            this.cmbClasse.DisplayMember = "NomClasse";
+            this.cmbClasse.FormattingEnabled = true;
+            this.cmbClasse.Location = new System.Drawing.Point(17, 335);
+            this.cmbClasse.Name = "cmbClasse";
+            this.cmbClasse.Size = new System.Drawing.Size(136, 21);
+            this.cmbClasse.TabIndex = 18;
+            this.cmbClasse.ValueMember = "Description";
+            this.cmbClasse.SelectedValueChanged += new System.EventHandler(this.cmbClasse_SelectedValueChanged);
+            // 
             // frmCreateHero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(161, 408);
+            this.ClientSize = new System.Drawing.Size(168, 416);
+            this.Controls.Add(this.cmbClasse);
+            this.Controls.Add(this.cmbWorld);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.btnCreateHero);
             this.Controls.Add(this.lblClasse);
             this.Controls.Add(this.lblWorld);
-            this.Controls.Add(this.cmbClasse);
-            this.Controls.Add(this.cmbWorld);
             this.Controls.Add(this.txtInt);
             this.Controls.Add(this.lblIntegrity);
             this.Controls.Add(this.txtVit);
@@ -244,6 +260,8 @@ namespace HugoWorld_Client.Vue
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmCreateHero";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            ((System.ComponentModel.ISupportInitialize)(this.mondeDTOBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.classesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,13 +278,15 @@ namespace HugoWorld_Client.Vue
         private System.Windows.Forms.Label lblVitality;
         private System.Windows.Forms.TextBox txtInt;
         private System.Windows.Forms.Label lblIntegrity;
-        private System.Windows.Forms.ComboBox cmbWorld;
-        private System.Windows.Forms.ComboBox cmbClasse;
         private System.Windows.Forms.Label lblWorld;
         private System.Windows.Forms.Label lblClasse;
         private System.Windows.Forms.Button btnCreateHero;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.BindingSource mondeDTOBindingSource;
+        private System.Windows.Forms.ComboBox cmbWorld;
+        private System.Windows.Forms.BindingSource classesBindingSource;
+        private System.Windows.Forms.ComboBox cmbClasse;
     }
 }

@@ -95,8 +95,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             this.Enabled = false;
             chSelect.ShowDialog();
 
-            //if there is an error with the selection
-            while (chSelect.DialogResult == DialogResult.Abort)
+            while (chSelect.DialogResult == DialogResult.Cancel)
             {
                 DialogResult r = MessageBox.Show(chSelect.ErrorMsg, "Error"
                     , MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning,
@@ -105,11 +104,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 if (r == DialogResult.Retry)
                     chSelect.ShowDialog();
                 else
-                {
-                    MessageBox.Show("Hero successfully selected!", "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.None,
-    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                     this.Close();
-                }
             }
 
             currentHero = chSelect.Hero;

@@ -72,7 +72,9 @@
     <Compile Include="Models\TileImport.cs" />
     <Compile Include="Models\TypeTyle.cs" />
     <Compile Include="Services\ClasseService.cs" />
+    <Compile Include="Services\HeroService.cs" />
     <Compile Include="Services\IClasseService.cs" />
+    <Compile Include="Services\IHeroService.cs" />
     <Compile Include="Services\IItemService.cs" />
     <Compile Include="Services\IJoueurService.cs" />
     <Compile Include="Services\IMondeService.cs" />

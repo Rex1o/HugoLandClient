@@ -272,4 +272,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddHeroToDataBase">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="p_heroDTO" nillable="true" type="q29:HeroDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddHeroToDataBaseResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

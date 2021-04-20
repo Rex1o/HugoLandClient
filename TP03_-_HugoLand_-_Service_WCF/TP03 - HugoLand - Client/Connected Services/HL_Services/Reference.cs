@@ -197,7 +197,7 @@ namespace HugoWorld_Client.HL_Services {
         private int MondeIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long NiveauField;
+        private int NiveauField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NomHeroField;
@@ -374,7 +374,7 @@ namespace HugoWorld_Client.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Niveau {
+        public int Niveau {
             get {
                 return this.NiveauField;
             }
@@ -2285,6 +2285,53 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport> ObjetMondeToTileAsync(HugoWorld_Client.HL_Services.ObjetMondeDTO objet) {
             return base.Channel.ObjetMondeToTileAsync(objet);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HL_Services.IHeroService")]
+    public interface IHeroService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/AddHeroToDataBase", ReplyAction="http://tempuri.org/IHeroService/AddHeroToDataBaseResponse")]
+        void AddHeroToDataBase(HugoWorld_Client.HL_Services.HeroDTO p_heroDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/AddHeroToDataBase", ReplyAction="http://tempuri.org/IHeroService/AddHeroToDataBaseResponse")]
+        System.Threading.Tasks.Task AddHeroToDataBaseAsync(HugoWorld_Client.HL_Services.HeroDTO p_heroDTO);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IHeroServiceChannel : HugoWorld_Client.HL_Services.IHeroService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class HeroServiceClient : System.ServiceModel.ClientBase<HugoWorld_Client.HL_Services.IHeroService>, HugoWorld_Client.HL_Services.IHeroService {
+        
+        public HeroServiceClient() {
+        }
+        
+        public HeroServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public HeroServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public HeroServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public HeroServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void AddHeroToDataBase(HugoWorld_Client.HL_Services.HeroDTO p_heroDTO) {
+            base.Channel.AddHeroToDataBase(p_heroDTO);
+        }
+        
+        public System.Threading.Tasks.Task AddHeroToDataBaseAsync(HugoWorld_Client.HL_Services.HeroDTO p_heroDTO) {
+            return base.Channel.AddHeroToDataBaseAsync(p_heroDTO);
         }
     }
 }

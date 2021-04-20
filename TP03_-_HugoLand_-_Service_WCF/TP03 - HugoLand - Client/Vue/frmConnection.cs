@@ -54,20 +54,9 @@ namespace HugoWorld {
                 }
                 else if (reponse == "SUCCESS")
                 {
-                    this.Cursor = Cursors.Default;
 
                     Outils.SetActiveUser(joueurService.GetAccountByName(username));
-                    if (joueurService.GetAccountByName(username).TypeUtilisateur == 2)
-                    {
                         this.Close();
-                    }
-                    else
-                    {
-                        this.Cursor = Cursors.Default;
-                        MessageBox.Show("YOU DO NOT HAVE PERMISSIONS TO LOG IN", "Connection error",
-        MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                        reponse = "Error";
-                    }
                 }
                 else if (reponse == "INCORRECT")
                 {

@@ -7,7 +7,6 @@
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TP01_Library.Models" />
       <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" />
-      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IJoueurService_Connection_InputMessage">
@@ -63,6 +62,12 @@
   </wsdl:message>
   <wsdl:message name="IClasseService_EditClass_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditClassResponse" />
+  </wsdl:message>
+  <wsdl:message name="IClasseService_GetClassDTOFromMap_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClassDTOFromMap" />
+  </wsdl:message>
+  <wsdl:message name="IClasseService_GetClassDTOFromMap_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClassDTOFromMapResponse" />
   </wsdl:message>
   <wsdl:message name="IItemService_ConvertToItemsDTOs_InputMessage">
     <wsdl:part name="parameters" element="tns:ConvertToItemsDTOs" />
@@ -152,6 +157,10 @@
     <wsdl:operation name="EditClass">
       <wsdl:input wsaw:Action="http://tempuri.org/IClasseService/EditClass" message="tns:IClasseService_EditClass_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IClasseService/EditClassResponse" message="tns:IClasseService_EditClass_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClassDTOFromMap">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClasseService/GetClassDTOFromMap" message="tns:IClasseService_GetClassDTOFromMap_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClasseService/GetClassDTOFromMapResponse" message="tns:IClasseService_GetClassDTOFromMap_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IItemService">
@@ -272,6 +281,15 @@
     </wsdl:operation>
     <wsdl:operation name="EditClass">
       <soap:operation soapAction="http://tempuri.org/IClasseService/EditClass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClassDTOFromMap">
+      <soap:operation soapAction="http://tempuri.org/IClasseService/GetClassDTOFromMap" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

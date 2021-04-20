@@ -40,16 +40,6 @@
           <Property Name="ValeurEffet" Type="int" Nullable="false" />
           <Property Name="TypeEffet" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view '4DB-Equipe5-2021.dbo.HeroImages' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="HeroImages">
-          <Key>
-            <PropertyRef Name="HeroId" />
-            <PropertyRef Name="ImageId" />
-          </Key>
-          <Property Name="HeroId" Type="int" Nullable="false" />
-          <Property Name="ImageId" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Heros">
           <Key>
             <PropertyRef Name="Id" />
@@ -101,16 +91,6 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.HeroImages' does not have a p
           <Property Name="LimiteX" Type="int" Nullable="false" />
           <Property Name="LimiteY" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="MonstreImg">
-          <Key>
-            <PropertyRef Name="ImageId" />
-            <PropertyRef Name="MonstreId" />
-          </Key>
-          <Property Name="ImageId" Type="int" Nullable="false" />
-          <Property Name="MonstreId" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Monstres">
           <Key>
             <PropertyRef Name="Id" />
@@ -148,13 +128,6 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <EntityType Name="TileImgs">
-          <Key>
-            <PropertyRef Name="ImageId" />
-          </Key>
-          <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Imageb64" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <Association Name="FK_BelongsToHero">
           <End Role="Heros" Type="Self.Heros" Multiplicity="1" />
@@ -286,30 +259,6 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TileImgItem">
-          <End Role="TileImgs" Type="Self.TileImgs" Multiplicity="1" />
-          <End Role="Items" Type="Self.Items" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TileImgs">
-              <PropertyRef Name="ImageId" />
-            </Principal>
-            <Dependent Role="Items">
-              <PropertyRef Name="ImageId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TileImgObjetMonde">
-          <End Role="TileImgs" Type="Self.TileImgs" Multiplicity="1" />
-          <End Role="ObjetMondes" Type="Self.ObjetMondes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TileImgs">
-              <PropertyRef Name="ImageId" />
-            </Principal>
-            <Dependent Role="ObjetMondes">
-              <PropertyRef Name="ImageId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="IsPartOfAccount">
           <End Role="CompteJoueur" Type="Self.CompteJoueur" Multiplicity="1" />
           <End Role="Heros" Type="Self.Heros" Multiplicity="*" />
@@ -378,19 +327,6 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
           <EntitySet Name="Monstres" EntityType="Self.Monstres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ObjetMondes" EntityType="Self.ObjetMondes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TileImgs" EntityType="Self.TileImgs" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="HeroImages" EntityType="Self.HeroImages" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [HeroImages].[HeroId] AS [HeroId], 
-    [HeroImages].[ImageId] AS [ImageId]
-    FROM [dbo].[HeroImages] AS [HeroImages]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="MonstreImg" EntityType="Self.MonstreImg" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [MonstreImg].[ImageId] AS [ImageId], 
-    [MonstreImg].[MonstreId] AS [MonstreId]
-    FROM [dbo].[MonstreImg] AS [MonstreImg]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_BelongsToHero" Association="Self.FK_BelongsToHero">
             <End Role="Heros" EntitySet="Heros" />
             <End Role="InventaireHeroes" EntitySet="InventaireHeroes" />
@@ -429,14 +365,6 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
           </AssociationSet>
           <AssociationSet Name="FK_ObjetMonde_Monde" Association="Self.FK_ObjetMonde_Monde">
             <End Role="Mondes" EntitySet="Mondes" />
-            <End Role="ObjetMondes" EntitySet="ObjetMondes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TileImgItem" Association="Self.FK_TileImgItem">
-            <End Role="TileImgs" EntitySet="TileImgs" />
-            <End Role="Items" EntitySet="Items" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TileImgObjetMonde" Association="Self.FK_TileImgObjetMonde">
-            <End Role="TileImgs" EntitySet="TileImgs" />
             <End Role="ObjetMondes" EntitySet="ObjetMondes" />
           </AssociationSet>
           <AssociationSet Name="IsPartOfAccount" Association="Self.IsPartOfAccount">
@@ -1049,14 +977,6 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TileImgs">
-            <EntityTypeMapping TypeName="HugoLand.TileImg">
-              <MappingFragment StoreEntitySet="TileImgs">
-                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
-                <ScalarProperty Name="Imageb64" ColumnName="Imageb64" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Connexion" FunctionName="HugoLand.Store.Connexion" />
           <FunctionImportMapping FunctionImportName="CreerCompteJoueur" FunctionName="HugoLand.Store.CreerCompteJoueur" />
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="HugoLand.Store.sp_alterdiagram" />
@@ -1083,23 +1003,7 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="HugoLand.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="HugoLand.Store.sp_upgraddiagrams" />
-          <AssociationSetMapping Name="MonstreTileImg" TypeName="HugoLand.MonstreTileImg" StoreEntitySet="MonstreImg">
-            <EndProperty Name="Monstre">
-              <ScalarProperty Name="Id" ColumnName="MonstreId" />
-            </EndProperty>
-            <EndProperty Name="TileImg">
-              <ScalarProperty Name="ImageId" ColumnName="ImageId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="HeroTileImg" TypeName="HugoLand.HeroTileImg" StoreEntitySet="HeroImages">
-            <EndProperty Name="Hero">
-              <ScalarProperty Name="Id" ColumnName="HeroId" />
-            </EndProperty>
-            <EndProperty Name="TileImg">
-              <ScalarProperty Name="ImageId" ColumnName="ImageId" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

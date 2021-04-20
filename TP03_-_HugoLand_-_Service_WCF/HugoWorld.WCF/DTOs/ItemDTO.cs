@@ -24,7 +24,6 @@ namespace HugoWorld_WCF.DTOs {
             ImageId = item.ImageId;
             IdHero = item.IdHero;
             Monde = new MondeDTO(item.Monde);
-            // TileImg?
 
             if (item.Hero != null)
                 Hero = new HeroDTO(item.Hero);
@@ -62,9 +61,6 @@ namespace HugoWorld_WCF.DTOs {
 
         [DataMember]
         public virtual HeroDTO Hero { get; set; }
-
-        [DataMember]
-        public virtual TileImgDTO Image { get; set; }
 
         [DataMember]
         public virtual MondeDTO Monde { get; set; }

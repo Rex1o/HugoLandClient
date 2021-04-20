@@ -22,7 +22,7 @@ namespace TP01_Library.Controllers {
         /// <param name="p_iPositionX"></param>
         /// <param name="p_iPositionY"></param>
         /// <param name="p_sNom"></param>
-        public void AjouterMonstre(Monde p_monde, int p_iPositionX, int p_iPositionY, string p_sNom, int p_imageId, string imgData)
+        public void AjouterMonstre(Monde p_monde, int p_iPositionX, int p_iPositionY, string p_sNom, int p_imageId)
         {
             using (HugoLandContext dbContext = new HugoLandContext())
             {
@@ -43,7 +43,7 @@ namespace TP01_Library.Controllers {
                     StatDmgMin = iDmgMIN,
                     Monde = p_monde,
                     MondeId = p_monde.Id,
-                    Images = new List<TileImg>() { new TileImg() { ImageId = p_imageId, Imageb64 = imgData } }
+                    ImageId = p_imageId
                 });
                 dbContext.SaveChanges();
             }

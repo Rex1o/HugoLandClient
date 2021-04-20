@@ -8,6 +8,6 @@ namespace HugoWorld_WCF.Services {
     public interface IMondeService {
 
         [OperationContract]
-        List<MondeDTO> ListWorlds();
+        List<MondeDTO> GetMondeDTOs();
     }
 }

@@ -24,6 +24,5 @@ namespace TP01_Library.Models
         public bool IsBlock { get; set; }
     
         public virtual Monde Monde { get; set; }
-        public virtual TileImg TileImg { get; set; }
     }
 }

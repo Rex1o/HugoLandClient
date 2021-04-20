@@ -95,7 +95,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="DAL\CTileLibrary.cs" />
     <Compile Include="Validators\ClasseDTOValidator.cs" />
     <Compile Include="Vue\ClassCreator.cs">
       <SubType>Form</SubType>
@@ -116,6 +115,12 @@
     </Compile>
     <Compile Include="Vue\frmCharacterSelector.Designer.cs">
       <DependentUpon>frmCharacterSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\frmClassList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\frmClassList.Designer.cs">
+      <DependentUpon>frmClassList.cs</DependentUpon>
     </Compile>
     <Compile Include="Vue\frmConnection.cs">
       <SubType>Form</SubType>
@@ -147,6 +152,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vue\frmCharacterSelector.resx">
       <DependentUpon>frmCharacterSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vue\frmClassList.aa.resx">
+      <DependentUpon>frmClassList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vue\frmClassList.resx">
+      <DependentUpon>frmClassList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vue\frmConnection.resx">
       <DependentUpon>frmConnection.cs</DependentUpon>

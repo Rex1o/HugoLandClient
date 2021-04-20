@@ -139,7 +139,7 @@ namespace HugoWorld {
             Sounds.Start();
 
             //GetUserMonde
-            Monde = new MondeServiceClient().ListWorlds()[0];
+            Monde = new MondeServiceClient().GetMondeDTOs()[3];
 
             //Create all the main gameobjects
             World = new World(this, _tiles, Monde);

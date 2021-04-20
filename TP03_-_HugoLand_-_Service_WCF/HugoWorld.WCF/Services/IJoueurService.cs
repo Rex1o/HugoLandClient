@@ -18,9 +18,6 @@ namespace HugoWorld_WCF.Services {
         CompteJoueurDTO GetAccountByName(string p_Username);
 
         [OperationContract]
-        HeroDTO GetHeroById(int p_Id);
-
-        [OperationContract]
         List<HeroDTO> ConvertToHerosDTO(ICollection<Hero> heroes);
 
         [OperationContract]

@@ -11,5 +11,8 @@ namespace HugoWorld_WCF.Services
     {
         [OperationContract]
         void AddHeroToDataBase(HeroDTO p_heroDTO);
+
+        [OperationContract]
+        void SaveHeroPos(int id, int x, int y);
     }
 }

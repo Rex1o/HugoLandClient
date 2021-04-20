@@ -2325,6 +2325,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/AddHeroToDataBase", ReplyAction="http://tempuri.org/IHeroService/AddHeroToDataBaseResponse")]
         System.Threading.Tasks.Task AddHeroToDataBaseAsync(HugoWorld_Client.HL_Services.HeroDTO p_heroDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/SaveHeroPos", ReplyAction="http://tempuri.org/IHeroService/SaveHeroPosResponse")]
+        void SaveHeroPos(int id, int x, int y);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/SaveHeroPos", ReplyAction="http://tempuri.org/IHeroService/SaveHeroPosResponse")]
+        System.Threading.Tasks.Task SaveHeroPosAsync(int id, int x, int y);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2360,6 +2366,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task AddHeroToDataBaseAsync(HugoWorld_Client.HL_Services.HeroDTO p_heroDTO) {
             return base.Channel.AddHeroToDataBaseAsync(p_heroDTO);
+        }
+        
+        public void SaveHeroPos(int id, int x, int y) {
+            base.Channel.SaveHeroPos(id, x, y);
+        }
+        
+        public System.Threading.Tasks.Task SaveHeroPosAsync(int id, int x, int y) {
+            return base.Channel.SaveHeroPosAsync(id, x, y);
         }
     }
 }

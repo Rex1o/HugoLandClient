@@ -30,5 +30,17 @@ namespace HugoWorld_WCF.Services
                 dbContext.SaveChanges();
             }
         }
+
+        public void SaveHeroPos(int id, int x, int y)
+        {
+            using(HugoLandContext dbContext = new HugoLandContext())
+            {
+                Hero h = dbContext.Heros.Find(id);
+
+                h.x = x;
+                h.y = y;
+                dbContext.SaveChanges();
+            }
+        }
     }
 }

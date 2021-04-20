@@ -1,4 +1,4 @@
-﻿using HugoWorld.BLL;
+using HugoWorld.BLL;
 using HugoWorld_Client.HL_Services;
 using System;
 using System.Collections.Generic;
@@ -67,7 +67,6 @@ namespace HugoWorld_Client.Vue {
                 Niveau = 1,
                 NomHero = txtName.Text,
                 MondeId = _SelectedClass.MondeId
-
             };
 
             try

@@ -10,9 +10,11 @@
    <TypeUISetting>
       <PropertyUISettings>
          <PropertyUISetting Name="Id">
-            <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+            <ControlSettings>
+               <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
                   <BindableControlInfo Name="[None]" Type="Microsoft.VSDesigner.Data.BindManager.NoneControlPlaceHolder" />
-               </ControlSetting></ControlSettings>
+               </ControlSetting>
+            </ControlSettings>
          </PropertyUISetting>
          <PropertyUISetting Name="Salt">
             <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -20,9 +22,11 @@
                </ControlSetting></ControlSettings>
          </PropertyUISetting>
          <PropertyUISetting Name="TypeUtilisateur">
-            <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+            <ControlSettings>
+               <ControlSetting ArtifactName="Microsoft:System.Windows.Forms:Form">
                   <BindableControlInfo Name="[None]" Type="Microsoft.VSDesigner.Data.BindManager.NoneControlPlaceHolder" />
-               </ControlSetting></ControlSettings>
+               </ControlSetting>
+            </ControlSettings>
          </PropertyUISetting>
       </PropertyUISettings>
    </TypeUISetting>

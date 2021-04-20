@@ -330,33 +330,6 @@
   <data name="&gt;&gt;editStatBaseVitaliteLabel.ZOrder" xml:space="preserve">
     <value>21</value>
   </data>
-  <metadata name="MondeId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="classeDTOBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="classeDTOGridView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 78</value>
-  </data>
-  <data name="classeDTOGridView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 343</value>
-  </data>
-  <data name="classeDTOGridView.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;classeDTOGridView.Name" xml:space="preserve">
-    <value>classeDTOGridView</value>
-  </data>
-  <data name="&gt;&gt;classeDTOGridView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;classeDTOGridView.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;classeDTOGridView.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
   <data name="dataGridViewTextBoxColumn2.HeaderText" xml:space="preserve">
     <value>Id</value>
   </data>
@@ -396,6 +369,27 @@
   <metadata name="classeDTOBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="classeDTOGridView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>29, 78</value>
+  </data>
+  <data name="classeDTOGridView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>738, 343</value>
+  </data>
+  <data name="classeDTOGridView.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;classeDTOGridView.Name" xml:space="preserve">
+    <value>classeDTOGridView</value>
+  </data>
+  <data name="&gt;&gt;classeDTOGridView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;classeDTOGridView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;classeDTOGridView.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
   <data name="newDescriptionTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>374, 170</value>
   </data>

@@ -39,8 +39,6 @@ namespace HugoWorld_Client.Vue {
             this.prenomTextBox = new System.Windows.Forms.TextBox();
             this.btnHeroes = new System.Windows.Forms.Button();
             this.btnClasses = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnConfirm = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnPlay = new System.Windows.Forms.Button();
             courrielLabel = new System.Windows.Forms.Label();
@@ -147,26 +145,6 @@ namespace HugoWorld_Client.Vue {
             this.btnClasses.Visible = false;
             this.btnClasses.Click += new System.EventHandler(this.btnClasses_Click);
             // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(20, 175);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 11;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnConfirm
-            // 
-            this.btnConfirm.Location = new System.Drawing.Point(115, 175);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(75, 23);
-            this.btnConfirm.TabIndex = 12;
-            this.btnConfirm.Text = "Confirm";
-            this.btnConfirm.UseVisualStyleBackColor = true;
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -195,8 +173,6 @@ namespace HugoWorld_Client.Vue {
             this.ClientSize = new System.Drawing.Size(306, 209);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnConfirm);
-            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnClasses);
             this.Controls.Add(this.btnHeroes);
             this.Controls.Add(courrielLabel);
@@ -224,8 +200,6 @@ namespace HugoWorld_Client.Vue {
         private System.Windows.Forms.TextBox prenomTextBox;
         private System.Windows.Forms.Button btnHeroes;
         private System.Windows.Forms.Button btnClasses;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnPlay;
     }

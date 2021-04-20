@@ -2,7 +2,6 @@
 using HugoWorld.Vue;
 using HugoWorld_Client.HL_Services;
 using System;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace HugoWorld_Client.Vue {
@@ -25,66 +24,18 @@ namespace HugoWorld_Client.Vue {
         public frmMenu()
         {
             InitializeComponent();
-            btnConfirm.Visible = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             joueurService = new JoueurServiceClient();
             _editMode = false;
             connectedPlayer = Outils.GetActiveUser();
             FillMenu();
+            courrielTextBox.ReadOnly = false;
+            nomJoueurTextBox.ReadOnly = false;
+            nomTextBox.ReadOnly = false;
+            prenomTextBox.ReadOnly = false;
 
             if (connectedPlayer.TypeUtilisateur > 0)
                 btnClasses.Visible = true;
-        }
-
-        private void btnEdit_Click(object sender, System.EventArgs e)
-        {
-            SwitchMode(!_editMode);
-            _editMode = !_editMode;
-        }
-
-        private void btnConfirm_Click(object sender, System.EventArgs e)
-        {
-            try
-            {
-                if (!string.IsNullOrWhiteSpace(courrielTextBox.Text))
-                    connectedPlayer.Courriel = courrielTextBox.Text;
-                else
-                {
-                    ErreurEmptyValueMsgBox();
-                    return;
-                }
-
-                if (!string.IsNullOrWhiteSpace(nomJoueurTextBox.Text))
-                    connectedPlayer.NomJoueur = nomJoueurTextBox.Text;
-                else
-                {
-                    ErreurEmptyValueMsgBox();
-                    return;
-                }
-
-                if (!string.IsNullOrWhiteSpace(nomTextBox.Text))
-                    connectedPlayer.Nom = nomTextBox.Text;
-                else
-                {
-                    ErreurEmptyValueMsgBox();
-                    return;
-                }
-
-                if (!string.IsNullOrWhiteSpace(prenomTextBox.Text))
-                    connectedPlayer.Prenom = prenomTextBox.Text;
-                else
-                {
-                    ErreurEmptyValueMsgBox();
-                    return;
-                }
-
-                joueurService.EditAccount(connectedPlayer);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while modifying the class to the database\n" + ex.Message, "ERROR",
-MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-            }
         }
 
         private void btnHeroes_Click(object sender, EventArgs e)
@@ -109,12 +60,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             this.Enabled = true;
         }
 
-        private void ErreurEmptyValueMsgBox()
-        {
-            MessageBox.Show("Please enter something, it can't be empty!", "WARNING!", MessageBoxButtons.OK,
-                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-        }
-
         private void btnPlay_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
@@ -129,31 +74,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             prenomTextBox.Text = connectedPlayer.Prenom;
 
             Refresh();
-        }
-
-        private void SwitchMode(bool mode)
-        {
-            // if true, edit mode
-            if (mode)
-            {
-                courrielTextBox.ReadOnly = false;
-                nomJoueurTextBox.ReadOnly = false;
-                nomTextBox.ReadOnly = false;
-                prenomTextBox.ReadOnly = false;
-
-                btnConfirm.Visible = true;
-                Refresh();
-            }
-            else // else false, readonly
-            {
-                courrielTextBox.ReadOnly = true;
-                nomJoueurTextBox.ReadOnly = true;
-                nomTextBox.ReadOnly = true;
-                prenomTextBox.ReadOnly = true;
-
-                btnConfirm.Visible = false;
-                Refresh();
-            }
         }
 
         private void frmMenu_FormClosed(object sender, FormClosedEventArgs e)

@@ -82,8 +82,8 @@ namespace HugoWorld {
             while (menu.DialogResult != DialogResult.OK)
                 menu.ShowDialog();
 
-            //Loads the hero into the game
-            _gameState.LoadHero(menu.currentHero);
+            //Loads the hero into Outils
+            Outils.SetHero(menu.currentHero);
 
             //Then Show help/Start game
             this.Enabled = true;

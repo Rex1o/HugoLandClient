@@ -1,3 +1,4 @@
+using HugoWorld.BLL;
 using HugoWorld_Client.HL_Services;
 using System;
 using System.Collections.Generic;
@@ -138,9 +139,8 @@ namespace HugoWorld {
         {
             Sounds.Start();
 
-            //GetUserMonde
-            Monde = new MondeServiceClient().GetMondeDTOs()[3];
-
+            MondeServiceClient MondeService = new MondeServiceClient();
+            Monde = MondeService.GetWorldByHero(Outils.GetHero());
             //Create all the main gameobjects
             World = new World(this, _tiles, Monde);
 
@@ -154,15 +154,6 @@ namespace HugoWorld {
             Health = 100;
             Treasure = 0;
             GameIsWon = false;
-        }
-
-        /// <summary>
-        /// Loads hero stats
-        /// </summary>
-        /// <param name="h"></param>
-        public void LoadHero(HeroDTO h)
-        {
-            Hero = h;
         }
 
         //Each line contains a comma delimited tile definition that the tile constructor understands

@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Linq;
 using HugoWorld_Client.HL_Services;
+using HugoWorld.BLL;
 
 namespace HugoWorld
 {
@@ -26,7 +27,7 @@ namespace HugoWorld
 
     public class World : GameObject
     {
-        private const string _startArea = "0";
+        private const string _startArea = "CurrentChunk";
 
         private Dictionary<string, Area> _world = new Dictionary<string, Area>();
         private Area _currentArea;
@@ -53,7 +54,7 @@ namespace HugoWorld
 
             //Read in the map file
             //readMapfile(mapFile);
-            LoadWorld(monde);
+            LoadChunk(monde,Outils.GetHero());
 
 
             //Find the start point
@@ -81,46 +82,48 @@ namespace HugoWorld
             }
         }
 
-        private void LoadWorld(MondeDTO w)
+        private void LoadChunk(MondeDTO w, HeroDTO h)
         {
-            int x = 0;
-            int y = 0;
-            int AreaCount = 0;
+            //World size
+            int x_size = w.LimiteX;
+            int y_size = w.LimiteY;
 
-            while (x < w.LimiteX)
-            {
-                while (y < w.LimiteY)
-                {
-                    List<TileImport> objects = new List<TileImport>();
-                    TileImgServiceClient service = new TileImgServiceClient();
-                    int[] connection = new int[4];
+            //Player Position
+            int p_x = h.x;
+            int p_y = h.y;
+
+            //Chunk position
+            int Chunkx = (p_y / 8);
+            int Chunky = (p_x / 8);
+
+            //Player position in chunk
+            int Chunkpx = (x_size % h.x);
+            int Chunkpy = (y_size % h.y);
+
+            //x = [0]
+            //y = [1]
+            int[] TopLeftCorner = new int[2];
+            TopLeftCorner[0] = Chunkx * 8;
+            TopLeftCorner[1] = Chunky * 8;
 
 
-                    foreach (ObjetMondeDTO o in w.ObjetMondes.Where(obj => obj.x >= x && obj.x <= x + 7 && obj.y >= y && obj.y <= y + 7))
-                        objects.Add(service.ObjetMondeToTile(o));
-
-                    foreach (ItemDTO i in w.Items.Where(obj => obj.x >= x && obj.x <= x + 7 && obj.y >= y && obj.y <= y + 7))
-                        objects.Add(service.ItemToTile(i));
-
-                    foreach (MonstreDTO m in w.Monstres.Where(obj => obj.x >= x && obj.x <= x + 7 && obj.y >= y && obj.y <= y + 7))
-                        objects.Add(service.MonstreToTile(m));
+            int[] BotRightCorner = new int[2];
+            BotRightCorner[0] = Chunkx + 1 * 8;
+            BotRightCorner[1] = Chunky + 1 * 8;
 
 
-                    Area area = new Area(AreaCount, _tiles, objects);
-                    _world.Add(area.Name, area);
+            MondeServiceClient MondeService = new MondeServiceClient();
+            List<TileImport> objects = MondeService.GetChunk(TopLeftCorner, BotRightCorner,w).ToList();
 
-                    AreaCount++;
-                    y += 8;
-                }
-                x += 8;
-            }
+            Area area = new Area(_tiles, objects);
+            _world.Add(area.Name, area);
 
             DefineSurroundingsMap();
         }
 
         private void DefineSurroundingsMap()
         {
-            foreach(Area a in _world.Values)
+            foreach (Area a in _world.Values)
             {
                 Area temp = _world.Values.FirstOrDefault(area => area.Map[0, 0]?.GlobalX == a.Map[0, 0]?.GlobalX - 8);
                 a.WestArea = temp?.Name ?? "-";

@@ -73,9 +73,9 @@ namespace HugoWorld {
             }
         }
 
-        public Area(int AreaCount, Dictionary<string, Tile> tiles, List<TileImport> objects)
+        public Area(Dictionary<string, Tile> tiles, List<TileImport> objects)
         {
-            Name = AreaCount.ToString();
+            Name = "CurrentChunk";
 
             foreach (TileImport t in objects.OrderBy(pos => pos.x).ThenBy(pos => pos.y))
             {

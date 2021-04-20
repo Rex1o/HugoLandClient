@@ -1975,6 +1975,18 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/GetWorldsForSelection", ReplyAction="http://tempuri.org/IMondeService/GetWorldsForSelectionResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MondeDTO[]> GetWorldsForSelectionAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/GetWorldByHero", ReplyAction="http://tempuri.org/IMondeService/GetWorldByHeroResponse")]
+        HugoWorld_Client.HL_Services.MondeDTO GetWorldByHero(HugoWorld_Client.HL_Services.HeroDTO p_Hero);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/GetWorldByHero", ReplyAction="http://tempuri.org/IMondeService/GetWorldByHeroResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MondeDTO> GetWorldByHeroAsync(HugoWorld_Client.HL_Services.HeroDTO p_Hero);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/GetChunk", ReplyAction="http://tempuri.org/IMondeService/GetChunkResponse")]
+        HugoWorld_Client.HL_Services.TileImport[] GetChunk(int[] TopLeft, int[] BotRight, HugoWorld_Client.HL_Services.MondeDTO p_world);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/GetChunk", ReplyAction="http://tempuri.org/IMondeService/GetChunkResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport[]> GetChunkAsync(int[] TopLeft, int[] BotRight, HugoWorld_Client.HL_Services.MondeDTO p_world);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2018,6 +2030,22 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MondeDTO[]> GetWorldsForSelectionAsync() {
             return base.Channel.GetWorldsForSelectionAsync();
+        }
+        
+        public HugoWorld_Client.HL_Services.MondeDTO GetWorldByHero(HugoWorld_Client.HL_Services.HeroDTO p_Hero) {
+            return base.Channel.GetWorldByHero(p_Hero);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MondeDTO> GetWorldByHeroAsync(HugoWorld_Client.HL_Services.HeroDTO p_Hero) {
+            return base.Channel.GetWorldByHeroAsync(p_Hero);
+        }
+        
+        public HugoWorld_Client.HL_Services.TileImport[] GetChunk(int[] TopLeft, int[] BotRight, HugoWorld_Client.HL_Services.MondeDTO p_world) {
+            return base.Channel.GetChunk(TopLeft, BotRight, p_world);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport[]> GetChunkAsync(int[] TopLeft, int[] BotRight, HugoWorld_Client.HL_Services.MondeDTO p_world) {
+            return base.Channel.GetChunkAsync(TopLeft, BotRight, p_world);
         }
     }
     

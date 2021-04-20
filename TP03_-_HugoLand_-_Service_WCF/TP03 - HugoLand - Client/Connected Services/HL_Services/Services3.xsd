@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfTileImport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TileImport" nillable="true" type="tns:TileImport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTileImport" nillable="true" type="tns:ArrayOfTileImport" />
+  <xs:complexType name="TileImport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Health" type="xs:int" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="tns:TypeTile" />
+      <xs:element minOccurs="0" name="maxDMG" type="xs:int" />
+      <xs:element minOccurs="0" name="minDMG" type="xs:int" />
+      <xs:element minOccurs="0" name="tileID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="x" type="xs:int" />
+      <xs:element minOccurs="0" name="y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TileImport" nillable="true" type="tns:TileImport" />
+  <xs:simpleType name="TypeTile">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ObjetMonde" />
+      <xs:enumeration value="Monstre" />
+      <xs:enumeration value="Item" />
+      <xs:enumeration value="ClasseHero" />
+      <xs:enumeration value="Tile" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TypeTile" nillable="true" type="tns:TypeTile" />
+</xs:schema>

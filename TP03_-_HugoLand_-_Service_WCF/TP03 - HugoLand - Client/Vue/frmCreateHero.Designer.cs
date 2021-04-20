@@ -179,6 +179,7 @@ namespace HugoWorld_Client.Vue
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(174, 22);
             this.txtName.TabIndex = 16;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // lblName
             // 

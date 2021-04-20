@@ -123,6 +123,12 @@
   <wsdl:message name="ITileImgService_ObjetMondeToTile_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObjetMondeToTileResponse" />
   </wsdl:message>
+  <wsdl:message name="IHeroService_AddHeroToDataBase_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddHeroToDataBase" />
+  </wsdl:message>
+  <wsdl:message name="IHeroService_AddHeroToDataBase_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddHeroToDataBaseResponse" />
+  </wsdl:message>
   <wsdl:portType name="IJoueurService">
     <wsdl:operation name="Connection">
       <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/Connection" message="tns:IJoueurService_Connection_InputMessage" />
@@ -207,6 +213,12 @@
     <wsdl:operation name="ObjetMondeToTile">
       <wsdl:input wsaw:Action="http://tempuri.org/ITileImgService/ObjetMondeToTile" message="tns:ITileImgService_ObjetMondeToTile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITileImgService/ObjetMondeToTileResponse" message="tns:ITileImgService_ObjetMondeToTile_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IHeroService">
+    <wsdl:operation name="AddHeroToDataBase">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/AddHeroToDataBase" message="tns:IHeroService_AddHeroToDataBase_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroService/AddHeroToDataBaseResponse" message="tns:IHeroService_AddHeroToDataBase_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IJoueurService" type="tns:IJoueurService">
@@ -395,6 +407,18 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IHeroService" type="tns:IHeroService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddHeroToDataBase">
+      <soap:operation soapAction="http://tempuri.org/IHeroService/AddHeroToDataBase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="HugoLandService">
     <wsdl:port name="BasicHttpBinding_IJoueurService" binding="tns:BasicHttpBinding_IJoueurService">
       <soap:address location="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" />
@@ -409,6 +433,9 @@
       <soap:address location="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" />
     </wsdl:port>
     <wsdl:port name="BasicHttpBinding_ITileImgService" binding="tns:BasicHttpBinding_ITileImgService">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IHeroService" binding="tns:BasicHttpBinding_IHeroService">
       <soap:address location="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" />
     </wsdl:port>
   </wsdl:service>

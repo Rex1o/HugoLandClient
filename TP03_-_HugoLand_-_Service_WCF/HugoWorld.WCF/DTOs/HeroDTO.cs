@@ -42,7 +42,7 @@ namespace HugoWorld_WCF.DTOs {
         public int CompteJoueurId { get; set; }
 
         [DataMember]
-        public long Niveau { get; set; }
+        public int Niveau { get; set; }
 
         [DataMember]
         public long Experience { get; set; }

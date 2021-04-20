@@ -20,7 +20,7 @@
       <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfItemDTO" />
       <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:MondeDTO" />
       <xs:element minOccurs="0" name="MondeId" type="xs:int" />
-      <xs:element minOccurs="0" name="Niveau" type="xs:long" />
+      <xs:element minOccurs="0" name="Niveau" type="xs:int" />
       <xs:element minOccurs="0" name="NomHero" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="StatDex" type="xs:int" />
       <xs:element minOccurs="0" name="StatInt" type="xs:int" />

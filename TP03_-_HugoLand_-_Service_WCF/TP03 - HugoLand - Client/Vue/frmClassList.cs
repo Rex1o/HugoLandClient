@@ -36,6 +36,7 @@ namespace HugoWorld_Client.Vue
                 {
                     SwitchMode();
                     FillEditForm(classeDTOGridView.SelectedRows[0].DataBoundItem as ClasseDTO);
+                    
                 }
                 else
                 {
@@ -58,22 +59,22 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             int str = 0;
             int vit = 0;
 
-            if (int.TryParse(newStatBaseDexTextBox.Text, out dex))
+            if (!int.TryParse(newStatBaseDexTextBox.Text, out dex))
             {
                 ErreurIntegerMsgBox();
                 return;
             }
-            else if (int.TryParse(newStatBaseIntTextBox.Text, out intel))
+            else if (!int.TryParse(newStatBaseIntTextBox.Text, out intel))
             {
                 ErreurIntegerMsgBox();
                 return;
             }
-            else if (int.TryParse(newStatBaseStrTextBox.Text, out str))
+            else if (!int.TryParse(newStatBaseStrTextBox.Text, out str))
             {
                 ErreurIntegerMsgBox();
                 return;
             }
-            else if (int.TryParse(newStatBaseVitaliteTextBox.Text, out vit))
+            else if (!int.TryParse(newStatBaseVitaliteTextBox.Text, out vit))
             {
                 ErreurIntegerMsgBox();
                 return;
@@ -87,14 +88,14 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 StatBaseDex = dex,
                 StatBaseInt = intel,
                 StatBaseStr = str,
-                StatBaseVitalite = vit,
-                MondeId = ((MondeDTO)mondeDTOComboBox.SelectedItem).Id
+                StatBaseVitalite = vit
             };
 
             try
             {
                 classeService.EditClass(classeDTO);
                 SwitchMode();
+                Init();
             }
             catch (Exception ex)
             {
@@ -150,7 +151,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
 
         private void ErreurIntegerMsgBox()
         {
-            MessageBox.Show("Please enter a number!", "WARNING!", MessageBoxButtons.OK, MessageBoxIcon.Warning,
+            MessageBox.Show("Stats must be numbers!", "WARNING!", MessageBoxButtons.OK, MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
         }
 

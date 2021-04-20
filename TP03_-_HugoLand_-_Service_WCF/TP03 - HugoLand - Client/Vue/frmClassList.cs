@@ -103,7 +103,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             try
             {
                 classeService.EditClass(classeDTO);
-
                 SwitchMode();
             }
             catch (Exception ex)

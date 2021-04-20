@@ -33,7 +33,7 @@ namespace HugoWorld.Vue {
             frmCreateHero.ShowDialog();
 
             while (frmCreateHero.DialogResult != DialogResult.OK
-                && frmCreateHero.DialogResult != DialogResult.Cancel)
+                || frmCreateHero.DialogResult != DialogResult.Cancel)
                 frmCreateHero.ShowDialog();
 
             if (frmCreateHero.DialogResult == DialogResult.OK)

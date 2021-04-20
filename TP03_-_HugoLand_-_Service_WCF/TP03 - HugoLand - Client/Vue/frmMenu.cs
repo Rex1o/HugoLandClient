@@ -24,6 +24,7 @@ namespace HugoWorld_Client.Vue {
         public frmMenu()
         {
             InitializeComponent();
+            btnConfirm.Visible = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             joueurService = new JoueurServiceClient();
             _editMode = false;
@@ -77,9 +78,6 @@ namespace HugoWorld_Client.Vue {
                 }
 
                 joueurService.EditAccount(connectedPlayer);
-
-                MessageBox.Show("Player account successfully modified!", "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.None,
-    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
             catch (Exception ex)
             {
@@ -95,17 +93,9 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             this.Enabled = false;
             chSelect.ShowDialog();
 
-            while (chSelect.DialogResult == DialogResult.Cancel)
-            {
-                DialogResult r = MessageBox.Show(chSelect.ErrorMsg, "Error"
-                    , MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning,
-                    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            while (chSelect.DialogResult != DialogResult.OK)
+                chSelect.ShowDialog();
 
-                if (r == DialogResult.Retry)
-                    chSelect.ShowDialog();
-                else
-                    this.Close();
-            }
 
             currentHero = chSelect.Hero;
             this.Enabled = true;
@@ -134,7 +124,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             this.DialogResult = DialogResult.OK;
             return;
         }
-            
+
         private void FillMenu()
         {
             courrielTextBox.Text = connectedPlayer.Courriel;

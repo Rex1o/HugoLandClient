@@ -5,11 +5,9 @@ using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace HugoWorld
-{
+namespace HugoWorld {
 
-    public partial class HugoWorld : Form
-    {
+    public partial class HugoWorld : Form {
         private Stopwatch _timer = new Stopwatch();
         private double _lastTime;
         private long _frameCounter;
@@ -94,19 +92,21 @@ namespace HugoWorld
 
             if (menu.DialogResult == DialogResult.Abort)
                 this.Close();
+            else
+            {
+                //Loads the hero into Outils
+                Outils.SetHero(menu.currentHero);
+                //Then Show help/Start game
+                this.Enabled = true;
+                this.Show();
 
-            //Loads the hero into Outils
-            Outils.SetHero(menu.currentHero);
-            //Then Show help/Start game
-            this.Enabled = true;
-            this.Show();
-
-            connected = true;
-            initialize();
-            Form help = new helpform();
-            help.StartPosition = FormStartPosition.CenterScreen;
-            help.Show();
-            help.Focus();
+                connected = true;
+                initialize();
+                Form help = new helpform();
+                help.StartPosition = FormStartPosition.CenterScreen;
+                help.Show();
+                help.Focus();
+            }
         }
     }
 }

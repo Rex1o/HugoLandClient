@@ -122,16 +122,16 @@ namespace HugoWorld
         {
             foreach(Area a in _world.Values)
             {
-                Area temp = _world.Values.FirstOrDefault(area => area.Map[0, 0].GlobalX == a.Map[0, 0].GlobalX - 8);
+                Area temp = _world.Values.FirstOrDefault(area => area.Map[0, 0]?.GlobalX == a.Map[0, 0]?.GlobalX - 8);
                 a.WestArea = temp?.Name ?? "-";
 
-                temp = _world.Values.FirstOrDefault(area => area.Map[0, 0].GlobalX == a.Map[0, 0].GlobalX + 8);
+                temp = _world.Values.FirstOrDefault(area => area.Map[0, 0]?.GlobalX == a.Map[0, 0]?.GlobalX + 8);
                 a.EastArea = temp?.Name ?? "-";
 
-                temp = _world.Values.FirstOrDefault(area => area.Map[0, 0].GlobalY == a.Map[0, 0].GlobalY - 8);
+                temp = _world.Values.FirstOrDefault(area => area.Map[0, 0]?.GlobalY == a.Map[0, 0]?.GlobalY - 8);
                 a.NorthArea = temp?.Name ?? "-";
 
-                temp = _world.Values.FirstOrDefault(area => area.Map[0, 0].GlobalY == a.Map[0, 0].GlobalY + 8);
+                temp = _world.Values.FirstOrDefault(area => area.Map[0, 0]?.GlobalY == a.Map[0, 0]?.GlobalY + 8);
                 a.SouthArea = temp?.Name ?? "-";
             }
         }

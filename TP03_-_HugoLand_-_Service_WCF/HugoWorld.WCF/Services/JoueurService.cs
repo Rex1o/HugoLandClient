@@ -71,5 +71,20 @@ namespace HugoWorld_WCF.Services {
             _classes.ForEach(s => classeDTOs.Add(new ClasseDTO(s)));
             return classeDTOs;
         }
+
+        public async void EditAccount(CompteJoueurDTO compteJoueurDTO)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                CompteJoueur compteJoueur = dbContext.CompteJoueurs.Find(compteJoueurDTO.Id);
+                compteJoueur.Courriel = compteJoueurDTO.Courriel;
+                compteJoueur.NomJoueur = compteJoueurDTO.NomJoueur;
+                compteJoueur.Nom = compteJoueurDTO.Nom;
+                compteJoueur.Prenom = compteJoueurDTO.Prenom;
+
+                dbContext.Entry(compteJoueur).State = EntityState.Modified;
+                await dbContext.SaveChangesAsync();
+            }
+        }
     }
 }

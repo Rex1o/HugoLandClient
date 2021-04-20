@@ -90,10 +90,13 @@ namespace HugoWorld {
                 else
                     mapT.Tile = tiles[t.tileID];
 
-                mapT.SetSprite(t.x % 8, t.y % 8);
-                if (mapT.ObjectTile.IsTransparent)
+                if (mapT.Tile != null)
                 {
-                    mapT.ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
+                    mapT.SetSprite(t.x % 8, t.y % 8);
+                    if (mapT.ObjectTile?.IsTransparent ?? false)
+                    {
+                        mapT.ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
+                    }
                 }
 
                 mapT.GlobalX = t.x;
@@ -108,14 +111,17 @@ namespace HugoWorld {
             //Update all the map tiles and any objects
             foreach (MapTile mapTile in Map)
             {
-                mapTile.Sprite.Update(gameTime, elapsedTime);
-                if (mapTile.ObjectSprite != null)
+                if (mapTile?.Tile != null)
                 {
-                    if (mapTile.ObjectSprite.NumberOfFrames > 1)
+                    mapTile.Sprite.Update(gameTime, elapsedTime);
+                    if (mapTile.ObjectSprite != null)
                     {
-                        mapTile.ObjectSprite.CurrentFrame = (int)((gameTime * 8.0) % (double)mapTile.ObjectSprite.NumberOfFrames);
+                        if (mapTile.ObjectSprite.NumberOfFrames > 1)
+                        {
+                            mapTile.ObjectSprite.CurrentFrame = (int)((gameTime * 8.0) % (double)mapTile.ObjectSprite.NumberOfFrames);
+                        }
+                        mapTile.ObjectSprite.Update(gameTime, elapsedTime);
                     }
-                    mapTile.ObjectSprite.Update(gameTime, elapsedTime);
                 }
             }
         }
@@ -125,8 +131,8 @@ namespace HugoWorld {
             //And draw the map and any objects
             foreach (MapTile mapTile in Map)
             {
-                mapTile.Sprite.Draw(graphics);
-                if (mapTile.ObjectSprite != null)
+                mapTile?.Sprite?.Draw(graphics);
+                if (mapTile?.ObjectSprite != null)
                 {
                     mapTile.ObjectSprite.Draw(graphics);
                 }

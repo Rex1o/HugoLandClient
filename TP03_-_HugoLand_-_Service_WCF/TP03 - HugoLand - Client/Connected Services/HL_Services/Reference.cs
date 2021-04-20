@@ -15,6 +15,147 @@ namespace HugoWorld_Client.HL_Services {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CompteJoueurDTO", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs")]
+    [System.SerializableAttribute()]
+    public partial class CompteJoueurDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CourrielField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private HugoWorld_Client.HL_Services.HeroDTO[] HerosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NomField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NomJoueurField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PrenomField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TypeUtilisateurField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Courriel {
+            get {
+                return this.CourrielField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CourrielField, value) != true)) {
+                    this.CourrielField = value;
+                    this.RaisePropertyChanged("Courriel");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public HugoWorld_Client.HL_Services.HeroDTO[] Heros {
+            get {
+                return this.HerosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.HerosField, value) != true)) {
+                    this.HerosField = value;
+                    this.RaisePropertyChanged("Heros");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nom {
+            get {
+                return this.NomField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NomField, value) != true)) {
+                    this.NomField = value;
+                    this.RaisePropertyChanged("Nom");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NomJoueur {
+            get {
+                return this.NomJoueurField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NomJoueurField, value) != true)) {
+                    this.NomJoueurField = value;
+                    this.RaisePropertyChanged("NomJoueur");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Prenom {
+            get {
+                return this.PrenomField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PrenomField, value) != true)) {
+                    this.PrenomField = value;
+                    this.RaisePropertyChanged("Prenom");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TypeUtilisateur {
+            get {
+                return this.TypeUtilisateurField;
+            }
+            set {
+                if ((this.TypeUtilisateurField.Equals(value) != true)) {
+                    this.TypeUtilisateurField = value;
+                    this.RaisePropertyChanged("TypeUtilisateur");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="HeroDTO", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs")]
     [System.SerializableAttribute()]
     public partial class HeroDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -489,179 +630,6 @@ namespace HugoWorld_Client.HL_Services {
                 if ((this.StatBaseVitaliteField.Equals(value) != true)) {
                     this.StatBaseVitaliteField = value;
                     this.RaisePropertyChanged("StatBaseVitalite");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CompteJoueurDTO", Namespace="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs")]
-    [System.SerializableAttribute()]
-    public partial class CompteJoueurDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CourrielField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HugoWorld_Client.HL_Services.HeroDTO[] HerosField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] MotDePasseHashField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NomField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NomJoueurField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PrenomField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid SaltField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int TypeUtilisateurField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Courriel {
-            get {
-                return this.CourrielField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CourrielField, value) != true)) {
-                    this.CourrielField = value;
-                    this.RaisePropertyChanged("Courriel");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public HugoWorld_Client.HL_Services.HeroDTO[] Heros {
-            get {
-                return this.HerosField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HerosField, value) != true)) {
-                    this.HerosField = value;
-                    this.RaisePropertyChanged("Heros");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] MotDePasseHash {
-            get {
-                return this.MotDePasseHashField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MotDePasseHashField, value) != true)) {
-                    this.MotDePasseHashField = value;
-                    this.RaisePropertyChanged("MotDePasseHash");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Nom {
-            get {
-                return this.NomField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NomField, value) != true)) {
-                    this.NomField = value;
-                    this.RaisePropertyChanged("Nom");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string NomJoueur {
-            get {
-                return this.NomJoueurField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NomJoueurField, value) != true)) {
-                    this.NomJoueurField = value;
-                    this.RaisePropertyChanged("NomJoueur");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Prenom {
-            get {
-                return this.PrenomField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PrenomField, value) != true)) {
-                    this.PrenomField = value;
-                    this.RaisePropertyChanged("Prenom");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid Salt {
-            get {
-                return this.SaltField;
-            }
-            set {
-                if ((this.SaltField.Equals(value) != true)) {
-                    this.SaltField = value;
-                    this.RaisePropertyChanged("Salt");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TypeUtilisateur {
-            get {
-                return this.TypeUtilisateurField;
-            }
-            set {
-                if ((this.TypeUtilisateurField.Equals(value) != true)) {
-                    this.TypeUtilisateurField = value;
-                    this.RaisePropertyChanged("TypeUtilisateur");
                 }
             }
         }
@@ -1885,6 +1853,12 @@ namespace HugoWorld_Client.HL_Services {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/Connection", ReplyAction="http://tempuri.org/IJoueurService/ConnectionResponse")]
         System.Threading.Tasks.Task<string> ConnectionAsync(string p_Username, string p_Password);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/EditAccount", ReplyAction="http://tempuri.org/IJoueurService/EditAccountResponse")]
+        void EditAccount(HugoWorld_Client.HL_Services.CompteJoueurDTO compteJoueurDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/EditAccount", ReplyAction="http://tempuri.org/IJoueurService/EditAccountResponse")]
+        System.Threading.Tasks.Task EditAccountAsync(HugoWorld_Client.HL_Services.CompteJoueurDTO compteJoueurDTO);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IJoueurService/GetHeroesByAccountId", ReplyAction="http://tempuri.org/IJoueurService/GetHeroesByAccountIdResponse")]
         HugoWorld_Client.HL_Services.HeroDTO[] GetHeroesByAccountId(int p_Id);
         
@@ -1943,6 +1917,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<string> ConnectionAsync(string p_Username, string p_Password) {
             return base.Channel.ConnectionAsync(p_Username, p_Password);
+        }
+        
+        public void EditAccount(HugoWorld_Client.HL_Services.CompteJoueurDTO compteJoueurDTO) {
+            base.Channel.EditAccount(compteJoueurDTO);
+        }
+        
+        public System.Threading.Tasks.Task EditAccountAsync(HugoWorld_Client.HL_Services.CompteJoueurDTO compteJoueurDTO) {
+            return base.Channel.EditAccountAsync(compteJoueurDTO);
         }
         
         public HugoWorld_Client.HL_Services.HeroDTO[] GetHeroesByAccountId(int p_Id) {

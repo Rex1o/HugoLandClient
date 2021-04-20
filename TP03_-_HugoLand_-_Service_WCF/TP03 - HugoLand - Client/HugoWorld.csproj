@@ -134,6 +134,12 @@
     <Compile Include="Vue\frmCreateHero.Designer.cs">
       <DependentUpon>frmCreateHero.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vue\frmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vue\frmMenu.Designer.cs">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vue\help.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vue\frmCreateHero.resx">
       <DependentUpon>frmCreateHero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vue\frmMenu.resx">
+      <DependentUpon>frmMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vue\help.resx">
       <SubType>Designer</SubType>

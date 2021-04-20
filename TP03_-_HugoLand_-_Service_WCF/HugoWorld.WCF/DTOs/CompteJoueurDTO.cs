@@ -21,8 +21,6 @@ namespace HugoWorld_WCF.DTOs {
             Nom = compteJoueur.Nom;
             Courriel = compteJoueur.Courriel;
             TypeUtilisateur = compteJoueur.TypeUtilisateur;
-            MotDePasseHash = compteJoueur.MotDePasseHash;
-            Salt = compteJoueur.Salt;
         }
 
         [DataMember]
@@ -42,14 +40,6 @@ namespace HugoWorld_WCF.DTOs {
 
         [DataMember]
         public int TypeUtilisateur { get; set; }
-
-        // Utiles (?)
-
-        [DataMember]
-        public byte[] MotDePasseHash { get; set; }
-
-        [DataMember]
-        public System.Guid Salt { get; set; }
 
         [DataMember]
         public virtual List<HeroDTO> Heros { get; set; }

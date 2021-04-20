@@ -12,6 +12,9 @@ namespace HugoWorld_WCF.Services {
         string Connection(string p_Username, string p_Password);
 
         [OperationContract]
+        void EditAccount(CompteJoueurDTO compteJoueurDTO);
+
+        [OperationContract]
         List<HeroDTO> GetHeroesByAccountId(int p_Id);
 
         [OperationContract]

@@ -15,6 +15,12 @@
   <wsdl:message name="IJoueurService_Connection_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConnectionResponse" />
   </wsdl:message>
+  <wsdl:message name="IJoueurService_EditAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditAccount" />
+  </wsdl:message>
+  <wsdl:message name="IJoueurService_EditAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditAccountResponse" />
+  </wsdl:message>
   <wsdl:message name="IJoueurService_GetHeroesByAccountId_InputMessage">
     <wsdl:part name="parameters" element="tns:GetHeroesByAccountId" />
   </wsdl:message>
@@ -128,6 +134,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/Connection" message="tns:IJoueurService_Connection_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IJoueurService/ConnectionResponse" message="tns:IJoueurService_Connection_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="EditAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/EditAccount" message="tns:IJoueurService_EditAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJoueurService/EditAccountResponse" message="tns:IJoueurService_EditAccount_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetHeroesByAccountId">
       <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/GetHeroesByAccountId" message="tns:IJoueurService_GetHeroesByAccountId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IJoueurService/GetHeroesByAccountIdResponse" message="tns:IJoueurService_GetHeroesByAccountId_OutputMessage" />
@@ -213,6 +223,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Connection">
       <soap:operation soapAction="http://tempuri.org/IJoueurService/Connection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditAccount">
+      <soap:operation soapAction="http://tempuri.org/IJoueurService/EditAccount" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

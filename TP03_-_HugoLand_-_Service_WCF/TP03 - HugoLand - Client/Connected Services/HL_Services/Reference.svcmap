@@ -22,13 +22,13 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Services.xsd" MetadataType="Schema" ID="27846501-ae28-41eb-bc4b-d030dd978088" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd3" />
     <MetadataFile FileName="Services1.xsd" MetadataType="Schema" ID="c8c6c8c2-501a-47d3-b733-983a9fc3f300" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd4" />
     <MetadataFile FileName="Services2.xsd" MetadataType="Schema" ID="b1076ce0-f9aa-408e-89de-2741b380b26f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd2" />
     <MetadataFile FileName="Services.disco" MetadataType="Disco" ID="87becd79-c791-4cd4-baab-bffb6fe44490" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?disco" />
     <MetadataFile FileName="Services4.xsd" MetadataType="Schema" ID="cf562b34-30e9-4a56-8023-eb8f83ad02c0" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd0" />
-    <MetadataFile FileName="HugoLandService.wsdl" MetadataType="Wsdl" ID="c3215686-fb5b-4baf-88f7-4eded9566a21" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?wsdl" />
     <MetadataFile FileName="Services5.xsd" MetadataType="Schema" ID="54f241e9-3133-4c3d-a2a3-490ef8848616" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd1" />
+    <MetadataFile FileName="HugoLandService.wsdl" MetadataType="Wsdl" ID="c3215686-fb5b-4baf-88f7-4eded9566a21" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?wsdl" />
+    <MetadataFile FileName="Services.xsd" MetadataType="Schema" ID="27846501-ae28-41eb-bc4b-d030dd978088" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

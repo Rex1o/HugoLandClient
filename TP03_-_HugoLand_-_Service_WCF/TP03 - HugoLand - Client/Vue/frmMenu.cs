@@ -29,10 +29,6 @@ namespace HugoWorld_Client.Vue {
             _editMode = false;
             connectedPlayer = Outils.GetActiveUser();
             FillMenu();
-            courrielTextBox.ReadOnly = false;
-            nomJoueurTextBox.ReadOnly = false;
-            nomTextBox.ReadOnly = false;
-            prenomTextBox.ReadOnly = false;
 
             if (connectedPlayer.TypeUtilisateur > 0)
                 btnClasses.Visible = true;

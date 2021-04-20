@@ -200,9 +200,6 @@
     <None Include="Connected Services\HL_Services\Services2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\HL_Services\Services3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\HL_Services\Services4.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -210,6 +207,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Eula.rtf" />
+    <None Include="GameData\NewTilesLookup.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="GameData\TileLookups.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

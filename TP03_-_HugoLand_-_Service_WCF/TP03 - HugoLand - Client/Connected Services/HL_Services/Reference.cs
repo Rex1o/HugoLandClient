@@ -1410,7 +1410,7 @@ namespace HugoWorld_Client.HL_Services {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HugoWorld_Client.HL_Services.TileImgDTO[] ImagesField;
+        private int ImageIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private HugoWorld_Client.HL_Services.MondeDTO MondeField;
@@ -1463,14 +1463,14 @@ namespace HugoWorld_Client.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public HugoWorld_Client.HL_Services.TileImgDTO[] Images {
+        public int ImageId {
             get {
-                return this.ImagesField;
+                return this.ImageIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.ImagesField, value) != true)) {
-                    this.ImagesField = value;
-                    this.RaisePropertyChanged("Images");
+                if ((this.ImageIdField.Equals(value) != true)) {
+                    this.ImageIdField = value;
+                    this.RaisePropertyChanged("ImageId");
                 }
             }
         }
@@ -1801,46 +1801,25 @@ namespace HugoWorld_Client.HL_Services {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CategoryField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ColorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int HealthField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] ImagesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsBlockField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsTransparentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int NumberOfFramesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ShortcutField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private HugoWorld_Client.HL_Services.TypeTile TypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string color1Field;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int maxDMGField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int minDMGField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string tileIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int xField;
@@ -1855,32 +1834,6 @@ namespace HugoWorld_Client.HL_Services {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Category {
-            get {
-                return this.CategoryField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
-                    this.CategoryField = value;
-                    this.RaisePropertyChanged("Category");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Color {
-            get {
-                return this.ColorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ColorField, value) != true)) {
-                    this.ColorField = value;
-                    this.RaisePropertyChanged("Color");
-                }
             }
         }
         
@@ -1911,45 +1864,6 @@ namespace HugoWorld_Client.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] Images {
-            get {
-                return this.ImagesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ImagesField, value) != true)) {
-                    this.ImagesField = value;
-                    this.RaisePropertyChanged("Images");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsBlock {
-            get {
-                return this.IsBlockField;
-            }
-            set {
-                if ((this.IsBlockField.Equals(value) != true)) {
-                    this.IsBlockField = value;
-                    this.RaisePropertyChanged("IsBlock");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsTransparent {
-            get {
-                return this.IsTransparentField;
-            }
-            set {
-                if ((this.IsTransparentField.Equals(value) != true)) {
-                    this.IsTransparentField = value;
-                    this.RaisePropertyChanged("IsTransparent");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Name {
             get {
                 return this.NameField;
@@ -1963,32 +1877,6 @@ namespace HugoWorld_Client.HL_Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int NumberOfFrames {
-            get {
-                return this.NumberOfFramesField;
-            }
-            set {
-                if ((this.NumberOfFramesField.Equals(value) != true)) {
-                    this.NumberOfFramesField = value;
-                    this.RaisePropertyChanged("NumberOfFrames");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Shortcut {
-            get {
-                return this.ShortcutField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ShortcutField, value) != true)) {
-                    this.ShortcutField = value;
-                    this.RaisePropertyChanged("Shortcut");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public HugoWorld_Client.HL_Services.TypeTile Type {
             get {
                 return this.TypeField;
@@ -1997,19 +1885,6 @@ namespace HugoWorld_Client.HL_Services {
                 if ((this.TypeField.Equals(value) != true)) {
                     this.TypeField = value;
                     this.RaisePropertyChanged("Type");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(Name="color")]
-        public string color1 {
-            get {
-                return this.color1Field;
-            }
-            set {
-                if ((object.ReferenceEquals(this.color1Field, value) != true)) {
-                    this.color1Field = value;
-                    this.RaisePropertyChanged("color1");
                 }
             }
         }
@@ -2036,6 +1911,19 @@ namespace HugoWorld_Client.HL_Services {
                 if ((this.minDMGField.Equals(value) != true)) {
                     this.minDMGField = value;
                     this.RaisePropertyChanged("minDMG");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string tileID {
+            get {
+                return this.tileIDField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.tileIDField, value) != true)) {
+                    this.tileIDField = value;
+                    this.RaisePropertyChanged("tileID");
                 }
             }
         }

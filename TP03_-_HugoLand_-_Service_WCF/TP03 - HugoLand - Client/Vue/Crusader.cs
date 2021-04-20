@@ -74,6 +74,7 @@ namespace HugoWorld {
             while (Login.DialogResult != DialogResult.OK)
                 Login.ShowDialog();
 
+
             //Show Character Selector/Creator Here
             frmCharacterSelector chSelect = new frmCharacterSelector(Outils.GetActiveUser());
             chSelect.ShowDialog();

@@ -29,6 +29,7 @@ namespace TP01_Library.Models
         public float StatDmgMin { get; set; }
         public float StatDmgMax { get; set; }
         public int MondeId { get; set; }
+        public int ImageId { get; set; }
     
         public virtual Monde Monde { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

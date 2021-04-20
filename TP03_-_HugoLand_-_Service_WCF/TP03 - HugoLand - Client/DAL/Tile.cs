@@ -44,7 +44,7 @@ namespace HugoWorld {
                 Rectangle = new Rectangle((Convert.ToInt32(tileData[4]) - 1) * TileSizeX,
                                           (Convert.ToInt32(tileData[5]) - 1) * TileSizeY,
                                           TileSizeX * NumberOfFrames, TileSizeY);
-                Shortcut = tileData[2].ToLower();
+                Shortcut = tileData[1].ToLower();
 
                 X_Image = (Convert.ToInt32(tileData[4]) - 1);
                 Y_Image = (Convert.ToInt32(tileData[5]) - 1);

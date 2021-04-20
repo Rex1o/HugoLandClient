@@ -158,7 +158,7 @@
   <xs:complexType name="MonstreDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfTileImgDTO" />
+      <xs:element minOccurs="0" name="ImageId" type="xs:int" />
       <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:MondeDTO" />
       <xs:element minOccurs="0" name="MondeId" type="xs:int" />
       <xs:element minOccurs="0" name="Niveau" type="xs:int" />

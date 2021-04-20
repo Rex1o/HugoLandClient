@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace HugoWorld {
 
@@ -72,32 +73,33 @@ namespace HugoWorld {
             }
         }
 
-        public Area(int AreaCount, Dictionary<string, Tile> tiles, List<TileImport> objects, int[] connection)
+        public Area(int AreaCount, Dictionary<string, Tile> tiles, List<TileImport> objects)
         {
             Name = AreaCount.ToString();
 
-            NorthArea = connection[0].ToString();
-            EastArea = connection[1].ToString();
-            SouthArea = connection[2].ToString();
-            WestArea = connection[3].ToString();
-
-            foreach (TileImport t in objects)
+            foreach (TileImport t in objects.OrderBy(pos => pos.x).ThenBy(pos => pos.y))
             {
+
                 MapTile mapT = new MapTile();
-                Map[t.x, t.y] = mapT;
+                Map[t.x & 8, t.y % 8] = mapT;
 
                 if (t.Type == TypeTile.Item || t.Type == TypeTile.Monstre)
                 {
-                    mapT.ObjectTile = tiles[t.Name];
+                    mapT.ObjectTile = tiles[t.tileID];
                 }
                 else
-                    mapT.Tile = tiles[t.Name];
+                    mapT.Tile = tiles[t.tileID];
 
-                mapT.SetSprite(t.x, t.y);
+                mapT.SetSprite(t.x % 8, t.y % 8);
                 if (mapT.ObjectTile.IsTransparent)
                 {
                     mapT.ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
                 }
+
+                mapT.GlobalX = t.x;
+                mapT.GlobalY = t.y;
+
+                mapT.TileImport = t;
             }
         }
 

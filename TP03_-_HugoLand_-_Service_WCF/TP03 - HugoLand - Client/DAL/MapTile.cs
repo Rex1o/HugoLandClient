@@ -1,4 +1,5 @@
 using System.Drawing;
+using HugoWorld_Client.HL_Services;
 
 namespace HugoWorld {
 
@@ -10,9 +11,12 @@ namespace HugoWorld {
     /// </summary>
     public class MapTile {
         public Tile Tile;
+        public TileImport TileImport;
         public Sprite Sprite;
         public Sprite ObjectSprite;
         public Tile ObjectTile;
+        public int GlobalX;
+        public int GlobalY;
         public int ObjectHealth; //A copy of the health of the tile so we remember how damage monsters are
 
         public void SetSprite(int x, int y)

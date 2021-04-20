@@ -124,6 +124,7 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
           <Property Name="StatDmgMin" Type="real" Nullable="false" />
           <Property Name="StatDmgMax" Type="real" Nullable="false" />
           <Property Name="MondeId" Type="int" Nullable="false" />
+          <Property Name="ImageId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ObjetMondes">
           <Key>
@@ -569,6 +570,7 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
           <Property Name="MondeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Monde" Relationship="Self.FK_Monstre_Monde" FromRole="Monstres" ToRole="Mondes" />
           <NavigationProperty Name="Images" Relationship="HugoLand.MonstreTileImg" FromRole="Monstre" ToRole="TileImg" />
+          <Property Name="ImageId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ObjetMonde">
           <Key>
@@ -881,8 +883,8 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <AssociationSet Name="MonstreTileImg" Association="HugoLand.MonstreTileImg">
-            <End Role="Monstre" EntitySet="Monstres" />
-            <End Role="TileImg" EntitySet="TileImgs" />
+            <End EntitySet="Monstres" Role="Monstre" />
+            <End EntitySet="TileImgs" Role="TileImg" />
           </AssociationSet>
           <AssociationSet Name="HeroTileImg" Association="HugoLand.HeroTileImg">
             <End Role="Hero" EntitySet="Heros" />
@@ -901,8 +903,8 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
         <Association Name="MonstreTileImg">
-          <End Type="HugoLand.Monstre" Role="Monstre" Multiplicity="*" />
-          <End Type="HugoLand.TileImg" Role="TileImg" Multiplicity="*" />
+          <End Type="HugoLand.Monstre" Multiplicity="*" Role="Monstre" />
+          <End Type="HugoLand.TileImg" Multiplicity="*" Role="TileImg" />
         </Association>
         <Association Name="HeroTileImg">
           <End Type="HugoLand.Hero" Role="Hero" Multiplicity="*" />
@@ -1009,6 +1011,7 @@ warning 6002: The table/view '4DB-Equipe5-2021.dbo.MonstreImg' does not have a p
           <EntitySetMapping Name="Monstres">
             <EntityTypeMapping TypeName="HugoLand.Monstre">
               <MappingFragment StoreEntitySet="Monstres">
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="Niveau" ColumnName="Niveau" />

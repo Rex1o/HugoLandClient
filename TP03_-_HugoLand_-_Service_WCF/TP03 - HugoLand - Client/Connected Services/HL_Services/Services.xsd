@@ -144,6 +144,7 @@
   <xs:complexType name="Monstre">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ImageId" type="xs:int" />
       <xs:element minOccurs="0" name="Images" nillable="true" type="tns:ArrayOfTileImg" />
       <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:Monde" />
       <xs:element minOccurs="0" name="MondeId" type="xs:int" />

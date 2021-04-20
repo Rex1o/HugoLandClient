@@ -25,7 +25,6 @@
     <MetadataFile FileName="Services.xsd" MetadataType="Schema" ID="27846501-ae28-41eb-bc4b-d030dd978088" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd3" />
     <MetadataFile FileName="Services1.xsd" MetadataType="Schema" ID="c8c6c8c2-501a-47d3-b733-983a9fc3f300" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd4" />
     <MetadataFile FileName="Services2.xsd" MetadataType="Schema" ID="b1076ce0-f9aa-408e-89de-2741b380b26f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd2" />
-    <MetadataFile FileName="Services3.xsd" MetadataType="Schema" ID="2ab54569-6360-4b31-b031-7c4ca5ed95a2" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd5" />
     <MetadataFile FileName="Services.disco" MetadataType="Disco" ID="87becd79-c791-4cd4-baab-bffb6fe44490" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?disco" />
     <MetadataFile FileName="Services4.xsd" MetadataType="Schema" ID="cf562b34-30e9-4a56-8023-eb8f83ad02c0" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?xsd=xsd0" />
     <MetadataFile FileName="HugoLandService.wsdl" MetadataType="Wsdl" ID="c3215686-fb5b-4baf-88f7-4eded9566a21" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/HugoWorld_WCF/Services?wsdl" />

@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Linq;
+using HugoWorld_Client.HL_Services;
 
-namespace HugoWorld {
+namespace HugoWorld
+{
 
     //Textpop up used to display damage when monsters and players are hit
-    internal struct textPopup {
+    internal struct textPopup
+    {
         public int X;
         public int Y;
         public string Text;
@@ -20,8 +24,9 @@ namespace HugoWorld {
         }
     }
 
-    public class World : GameObject {
-        private const string _startArea = "start";
+    public class World : GameObject
+    {
+        private const string _startArea = "0";
 
         private Dictionary<string, Area> _world = new Dictionary<string, Area>();
         private Area _currentArea;
@@ -41,13 +46,15 @@ namespace HugoWorld {
         private static Brush _blackBrush = new SolidBrush(Color.Red);
         private static Random _random = new Random();
 
-        public World(GameState gameState, Dictionary<string, Tile> tiles, string mapFile)
+        public World(GameState gameState, Dictionary<string, Tile> tiles, MondeDTO monde)
         {
             _gameState = gameState;
             _tiles = tiles;
 
             //Read in the map file
-            readMapfile(mapFile);
+            //readMapfile(mapFile);
+            LoadWorld(monde);
+
 
             //Find the start point
             _currentArea = _world[_startArea];
@@ -56,7 +63,7 @@ namespace HugoWorld {
             _heroPosition = new Point(3, 3);
             _heroSprite = new Sprite(null, _heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
                                             _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
-                                            _tiles["her"].Bitmap, _tiles["her"].Rectangle, _tiles["her"].NumberOfFrames);
+                                            _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
             _heroSprite.Flip = true;
             _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
         }
@@ -74,7 +81,7 @@ namespace HugoWorld {
             }
         }
 
-        private void LoadWorld(HugoWorld_Client.HL_Services.MondeDTO w)
+        private void LoadWorld(MondeDTO w)
         {
             int x = 0;
             int y = 0;
@@ -84,9 +91,48 @@ namespace HugoWorld {
             {
                 while (y < w.LimiteY)
                 {
+                    List<TileImport> objects = new List<TileImport>();
+                    TileImgServiceClient service = new TileImgServiceClient();
+                    int[] connection = new int[4];
+
+
+                    foreach (ObjetMondeDTO o in w.ObjetMondes.Where(obj => obj.x >= x && obj.x <= x + 7 && obj.y >= y && obj.y <= y + 7))
+                        objects.Add(service.ObjetMondeToTile(o));
+
+                    foreach (ItemDTO i in w.Items.Where(obj => obj.x >= x && obj.x <= x + 7 && obj.y >= y && obj.y <= y + 7))
+                        objects.Add(service.ItemToTile(i));
+
+                    foreach (MonstreDTO m in w.Monstres.Where(obj => obj.x >= x && obj.x <= x + 7 && obj.y >= y && obj.y <= y + 7))
+                        objects.Add(service.MonstreToTile(m));
+
+
+                    Area area = new Area(AreaCount, _tiles, objects);
+                    _world.Add(area.Name, area);
+
+                    AreaCount++;
                     y += 8;
                 }
                 x += 8;
+            }
+
+            DefineSurroundingsMap();
+        }
+
+        private void DefineSurroundingsMap()
+        {
+            foreach(Area a in _world.Values)
+            {
+                Area temp = _world.Values.FirstOrDefault(area => area.Map[0, 0].GlobalX == a.Map[0, 0].GlobalX - 8);
+                a.WestArea = temp?.Name ?? "-";
+
+                temp = _world.Values.FirstOrDefault(area => area.Map[0, 0].GlobalX == a.Map[0, 0].GlobalX + 8);
+                a.EastArea = temp?.Name ?? "-";
+
+                temp = _world.Values.FirstOrDefault(area => area.Map[0, 0].GlobalY == a.Map[0, 0].GlobalY - 8);
+                a.NorthArea = temp?.Name ?? "-";
+
+                temp = _world.Values.FirstOrDefault(area => area.Map[0, 0].GlobalY == a.Map[0, 0].GlobalY + 8);
+                a.SouthArea = temp?.Name ?? "-";
             }
         }
 
@@ -410,7 +456,7 @@ namespace HugoWorld {
                         _gameState.Health = 0;
                         _heroSprite = new Sprite(null, _heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
                                 _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
-                                _tiles["bon"].Bitmap, _tiles["bon"].Rectangle, _tiles["bon"].NumberOfFrames);
+                                _tiles["3"].Bitmap, _tiles["3"].Rectangle, _tiles["3"].NumberOfFrames);
                         _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
                     }
                 }
@@ -462,7 +508,7 @@ namespace HugoWorld {
                 _gameState.Experience += mapTile.ObjectTile.Health;
 
                 //Remove the monster and replace with bones
-                mapTile.ObjectTile = _tiles["bon"];
+                mapTile.ObjectTile = _tiles["3"];
                 mapTile.SetObjectSprite(x, y);
                 returnValue = true; //monster is dead
             }
@@ -481,21 +527,21 @@ namespace HugoWorld {
                 if (mapTile.Tile.Color == "brown" && _gameState.HasBrownKey)
                 {
                     //Open the door
-                    mapTile.Tile = _tiles["E"];
+                    mapTile.Tile = _tiles["10"];
                     mapTile.SetSprite(x, y);
                 }
 
                 if (mapTile.Tile.Color == "red" && _gameState.HasRedKey)
                 {
                     //Open the door
-                    mapTile.Tile = _tiles["I"];
+                    mapTile.Tile = _tiles["14"];
                     mapTile.SetSprite(x, y);
                 }
 
                 if (mapTile.Tile.Color == "green" && _gameState.HasGreenKey)
                 {
                     //Open the door
-                    mapTile.Tile = _tiles["G"];
+                    mapTile.Tile = _tiles["12"];
                     mapTile.SetSprite(x, y);
                 }
             }
@@ -508,7 +554,8 @@ namespace HugoWorld {
                                             _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY);
         }
 
-        private enum HeroDirection {
+        private enum HeroDirection
+        {
             Left,
             Right,
             Up,

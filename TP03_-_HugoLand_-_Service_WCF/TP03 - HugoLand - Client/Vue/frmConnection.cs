@@ -3,9 +3,11 @@ using HugoWorld_Client.HL_Services;
 using System;
 using System.Windows.Forms;
 
-namespace HugoWorld {
+namespace HugoWorld
+{
 
-    public partial class frmConnection : Form {
+    public partial class frmConnection : Form
+    {
 
         //Service a utiliser
         private readonly JoueurServiceClient joueurService;
@@ -42,34 +44,47 @@ namespace HugoWorld {
             string password = txt_password.Text;
 
             this.Cursor = Cursors.WaitCursor;
+
+            
+
+
             try
             {
                 reponse = joueurService.Connection(username, password);
-
-                if (reponse == "INVALIDE")
-                {
-                    this.Cursor = Cursors.Default;
-                    MessageBox.Show("USERNAME IS INVALID", "Connection error",
-        MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                }
-                else if (reponse == "SUCCESS")
-                {
-
-                    Outils.SetActiveUser(joueurService.GetAccountByName(username));
-                        this.Close();
-                }
-                else if (reponse == "INCORRECT")
-                {
-                    this.Cursor = Cursors.Default;
-                    MessageBox.Show("PASSWORD IS INVALID", "Connection error",
-        MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                }
             }
             catch
             {
                 this.Cursor = Cursors.Default;
-                MessageBox.Show("PLEASE RECONNECT", "Connection error",
+                MessageBox.Show("Services Are Not Accessible ", "Connection error",
 MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
+
+            if (reponse == "INVALIDE")
+            {
+                this.Cursor = Cursors.Default;
+                MessageBox.Show("USERNAME IS INVALID", "Connection error",
+    MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
+            else if (reponse == "SUCCESS")
+            {
+                try
+                {
+                    CompteJoueurDTO compte = joueurService.GetAccountByName(username);
+                    Outils.SetActiveUser(compte);
+                    this.Close();
+                }
+                catch
+                {
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show("Services Are Not Accessible ", "Connection error",
+    MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                }
+            }
+            else if (reponse == "INCORRECT")
+            {
+                this.Cursor = Cursors.Default;
+                MessageBox.Show("PASSWORD IS INVALID", "Connection error",
+    MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
         }
 

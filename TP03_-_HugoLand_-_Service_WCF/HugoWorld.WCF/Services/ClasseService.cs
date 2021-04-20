@@ -30,6 +30,14 @@ namespace HugoWorld_WCF.Services {
             //classeController.AjouterClasse(classeDTO.MondeId, classeDTO.NomClasse, classeDTO.Description, classeDTO.StatBaseStr, classeDTO.StatBaseDex, classeDTO.StatBaseInt, classeDTO.StatBaseVitalite);
         }
 
+        public List<ClasseDTO> GetClassDTOFromMap(int p_MapId)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                return dbContext.Classes.Where(x => x.MondeId == p_MapId).ToList().Select(x => new ClasseDTO(x)).ToList();
+            }
+        }
+
         public List<ClasseDTO> GetClasseDTOs()
         {
             using (HugoLandContext dbContext = new HugoLandContext())

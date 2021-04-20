@@ -2076,6 +2076,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/GetClassDTOFromMap", ReplyAction="http://tempuri.org/IClasseService/GetClassDTOFromMapResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ClasseDTO[]> GetClassDTOFromMapAsync(int p_MapId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/DeleteClass", ReplyAction="http://tempuri.org/IClasseService/DeleteClassResponse")]
+        void DeleteClass(HugoWorld_Client.HL_Services.ClasseDTO classeDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/DeleteClass", ReplyAction="http://tempuri.org/IClasseService/DeleteClassResponse")]
+        System.Threading.Tasks.Task DeleteClassAsync(HugoWorld_Client.HL_Services.ClasseDTO classeDTO);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2135,6 +2141,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ClasseDTO[]> GetClassDTOFromMapAsync(int p_MapId) {
             return base.Channel.GetClassDTOFromMapAsync(p_MapId);
+        }
+        
+        public void DeleteClass(HugoWorld_Client.HL_Services.ClasseDTO classeDTO) {
+            base.Channel.DeleteClass(classeDTO);
+        }
+        
+        public System.Threading.Tasks.Task DeleteClassAsync(HugoWorld_Client.HL_Services.ClasseDTO classeDTO) {
+            return base.Channel.DeleteClassAsync(classeDTO);
         }
     }
     

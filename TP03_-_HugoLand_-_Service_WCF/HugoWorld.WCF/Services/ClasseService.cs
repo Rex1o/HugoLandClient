@@ -8,7 +8,7 @@ namespace HugoWorld_WCF.Services {
 
     public partial class HugoLandService : IClasseService {
 
-        public async void AddClassToDataBase(ClasseDTO classeDTO)
+        public void AddClassToDataBase(ClasseDTO classeDTO)
         {
             using (HugoLandContext dbContext = new HugoLandContext())
             {
@@ -22,12 +22,33 @@ namespace HugoWorld_WCF.Services {
                     StatBaseVitalite = classeDTO.StatBaseVitalite,
                     MondeId = classeDTO.MondeId
                 };
+
                 dbContext.Entry(classe).State = EntityState.Added;
-                await dbContext.SaveChangesAsync();
+                dbContext.SaveChanges();
             }
         }
 
-        public async void EditClass(ClasseDTO classeDTO)
+        public void DeleteClass(ClasseDTO classeDTO)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                Classe classe = new Classe()
+                {
+                    NomClasse = classeDTO.NomClasse,
+                    Description = classeDTO.Description,
+                    StatBaseStr = classeDTO.StatBaseStr,
+                    StatBaseDex = classeDTO.StatBaseDex,
+                    StatBaseInt = classeDTO.StatBaseInt,
+                    StatBaseVitalite = classeDTO.StatBaseVitalite,
+                    MondeId = classeDTO.MondeId
+                };
+
+                dbContext.Entry(classe).State = EntityState.Deleted;
+                dbContext.SaveChanges();
+            }
+        }
+
+        public void EditClass(ClasseDTO classeDTO)
         {
             using(HugoLandContext dbContext = new HugoLandContext())
             {
@@ -42,7 +63,7 @@ namespace HugoWorld_WCF.Services {
                 };
 
                 dbContext.Entry(classe).State = EntityState.Modified;
-                await dbContext.SaveChangesAsync();
+                dbContext.SaveChanges();
             }
         }
 

@@ -94,14 +94,12 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             {
                 classeService.EditClass(classeDTO);
 
-                MessageBox.Show("Class successfully modified!", "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.None,
-                    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 SwitchMode();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occured while modifying the class to the database\n" + ex.Message, "ERROR",
-MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+//                MessageBox.Show("An error occured while modifying the class to the database\n" + ex.Message, "ERROR",
+//MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
         }
 
@@ -120,6 +118,23 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 classCreator.ShowDialog();
 
             this.Enabled = true;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (classeDTOGridView.SelectedRows.Count > 0)
+                {
+                    classeService.DeleteClass(classeDTOGridView.SelectedRows[0].DataBoundItem as ClasseDTO);
+                    classeDTOGridView.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occured while modifying the class to the database\n" + ex.Message, "ERROR",
+MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -218,6 +233,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 Refresh();
             }
         }
+
 
     }
 }

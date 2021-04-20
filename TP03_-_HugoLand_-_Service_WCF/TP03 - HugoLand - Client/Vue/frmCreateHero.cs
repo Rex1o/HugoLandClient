@@ -1,4 +1,4 @@
-﻿using HugoWorld.BLL;
+using HugoWorld.BLL;
 using HugoWorld_Client.HL_Services;
 using System;
 using System.Collections.Generic;
@@ -10,14 +10,12 @@ namespace HugoWorld_Client.Vue {
         private readonly ClasseServiceClient classeService;
         private readonly MondeServiceClient mondeService;
         private readonly HeroServiceClient heroService;
-        private int _BaseStrength,_BaseDexterity, _BaseVitality, _BaseIntegrity;
+        private int _BaseStrength, _BaseDexterity, _BaseVitality, _BaseIntegrity;
         private int _TotalStrength, _TotalDexterity, _TotalVitality, _TotalIntegrity;
 
         private Random _rnd = new Random();
-        private List<ClasseDTO> _WorldClass = new List<ClasseDTO>();
         private ClasseDTO _SelectedClass;
         public HeroDTO createdHero { get; set; }
-        
         public frmCreateHero()
         {
             InitializeComponent();
@@ -25,18 +23,30 @@ namespace HugoWorld_Client.Vue {
             mondeService = new MondeServiceClient();
             heroService = new HeroServiceClient();
 
-            cmbWorld.DataSource = mondeService.GetWorldsForSelection().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
-            string itemstr = cmbWorld.SelectedItem.ToString();
-            int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
-
-            _WorldClass = classeService.GetClassDTOFromMap(id).ToList();
-            cmbClasse.DataSource = _WorldClass.Select(x => x.Id + " : " + x.NomClasse).ToArray();
+            cmbWorld.DataSource = mondeService.GetWorldsForSelection().ToList();
 
             _BaseStrength = _rnd.Next(0, 21);
             _BaseDexterity = _rnd.Next(0, 21);
             _BaseVitality = _rnd.Next(0, 21);
             _BaseIntegrity = _rnd.Next(0, 21);
             UpdateUI();
+        }
+
+        private void cmbClasse_SelectedValueChanged(object sender, EventArgs e)
+        {
+            UpdateUI();
+        }
+
+        private void cmbWorld_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmbWorld.SelectedItem != null)
+            {
+                var item = cmbWorld.SelectedItem as MondeDTO;
+
+                cmbClasse.DataSource = classeService.GetClassDTOFromMap(item.Id).ToList();
+
+                UpdateUI();
+            }
         }
 
         private void btnCreateHero_Click(object sender, EventArgs e)
@@ -55,15 +65,13 @@ namespace HugoWorld_Client.Vue {
                 ClasseId = _SelectedClass.Id,
                 Experience = 0,
                 Niveau = 1,
-                NomHero = txtName.Text
+                NomHero = txtName.Text,
+                MondeId = _SelectedClass.MondeId
             };
 
             try
             {
                 heroService.AddHeroToDataBase(newHero);
-
-                MessageBox.Show("Hero successfully added!", "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.None,
-    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -75,20 +83,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             }
         }
 
-        private void cmbWorld_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string itemstr = cmbWorld.SelectedItem.ToString();
-            int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
-
-            cmbClasse.DataSource = classeService.GetClassDTOFromMap(id).ToList().Select(x => x.Id + " : " + x.NomClasse).ToArray();
-            UpdateUI();
-        }
-
-        private void cmbClasse_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            UpdateUI();
-        }
-
         private void UpdateUI()
         {
 
@@ -98,10 +92,8 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             }
             else
             {
-                string itemstr = cmbClasse.SelectedItem.ToString();
-                int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
-                _SelectedClass = _WorldClass.FirstOrDefault(x => x.Id == id);
-                if (!(_SelectedClass == null))
+                _SelectedClass = cmbClasse.SelectedItem as ClasseDTO;
+                if (_SelectedClass != null)
                 {
                     _TotalStrength = _BaseStrength + _SelectedClass.StatBaseStr;
                     _TotalDexterity = _BaseDexterity + _SelectedClass.StatBaseDex;
@@ -112,14 +104,11 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                     txtDex.Text = _TotalDexterity.ToString();
                     txtVit.Text = _TotalVitality.ToString();
                     txtInt.Text = _TotalIntegrity.ToString();
+
                     if (string.IsNullOrEmpty(txtName.Text))
-                    {
                         btnCreateHero.Enabled = false;
-                    }
                     else
-                    {
                         btnCreateHero.Enabled = true;
-                    }
                 }
             }
         }

@@ -9,6 +9,8 @@ namespace HugoWorld_WCF.Services {
         [OperationContract]
         void AddClassToDataBase(ClasseDTO classeDTO);
         [OperationContract]
-        List<ClasseDTO> GetClasseDTOs(); 
+        List<ClasseDTO> GetClasseDTOs();
+        [OperationContract]
+        List<ClasseDTO> GetClassDTOFromMap(int p_MapId);
     }
 }

@@ -64,6 +64,12 @@
   <wsdl:message name="IClasseService_GetClasseDTOs_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetClasseDTOsResponse" />
   </wsdl:message>
+  <wsdl:message name="IClasseService_GetClassDTOFromMap_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClassDTOFromMap" />
+  </wsdl:message>
+  <wsdl:message name="IClasseService_GetClassDTOFromMap_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClassDTOFromMapResponse" />
+  </wsdl:message>
   <wsdl:message name="IItemService_AddItem_InputMessage">
     <wsdl:part name="parameters" element="tns:AddItem" />
   </wsdl:message>
@@ -200,6 +206,10 @@
     <wsdl:operation name="GetClasseDTOs">
       <wsdl:input wsaw:Action="http://tempuri.org/IClasseService/GetClasseDTOs" message="tns:IClasseService_GetClasseDTOs_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IClasseService/GetClasseDTOsResponse" message="tns:IClasseService_GetClasseDTOs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClassDTOFromMap">
+      <wsdl:input wsaw:Action="http://tempuri.org/IClasseService/GetClassDTOFromMap" message="tns:IClasseService_GetClassDTOFromMap_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IClasseService/GetClassDTOFromMapResponse" message="tns:IClasseService_GetClassDTOFromMap_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IItemService">
@@ -352,6 +362,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetClasseDTOs">
       <soap:operation soapAction="http://tempuri.org/IClasseService/GetClasseDTOs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClassDTOFromMap">
+      <soap:operation soapAction="http://tempuri.org/IClasseService/GetClassDTOFromMap" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

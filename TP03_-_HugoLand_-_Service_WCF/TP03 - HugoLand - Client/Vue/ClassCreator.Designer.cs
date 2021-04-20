@@ -52,7 +52,7 @@ namespace HugoWorld.Vue
             this.lblBaseForce.AutoSize = true;
             this.lblBaseForce.Location = new System.Drawing.Point(9, 187);
             this.lblBaseForce.Name = "lblBaseForce";
-            this.lblBaseForce.Size = new System.Drawing.Size(128, 21);
+            this.lblBaseForce.Size = new System.Drawing.Size(102, 17);
             this.lblBaseForce.TabIndex = 0;
             this.lblBaseForce.Text = "Base Strength:";
             // 
@@ -195,7 +195,7 @@ namespace HugoWorld.Vue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 489);
+            this.ClientSize = new System.Drawing.Size(276, 489);
             this.Controls.Add(this.btnAddClass);
             this.Controls.Add(this.lblWorld);
             this.Controls.Add(this.CmbWorld);

@@ -2275,6 +2275,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/GetClasseDTOs", ReplyAction="http://tempuri.org/IClasseService/GetClasseDTOsResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ClasseDTO[]> GetClasseDTOsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/GetClassDTOFromMap", ReplyAction="http://tempuri.org/IClasseService/GetClassDTOFromMapResponse")]
+        HugoWorld_Client.HL_Services.ClasseDTO[] GetClassDTOFromMap(int p_MapId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IClasseService/GetClassDTOFromMap", ReplyAction="http://tempuri.org/IClasseService/GetClassDTOFromMapResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ClasseDTO[]> GetClassDTOFromMapAsync(int p_MapId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2318,6 +2324,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ClasseDTO[]> GetClasseDTOsAsync() {
             return base.Channel.GetClasseDTOsAsync();
+        }
+        
+        public HugoWorld_Client.HL_Services.ClasseDTO[] GetClassDTOFromMap(int p_MapId) {
+            return base.Channel.GetClassDTOFromMap(p_MapId);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ClasseDTO[]> GetClassDTOFromMapAsync(int p_MapId) {
+            return base.Channel.GetClassDTOFromMapAsync(p_MapId);
         }
     }
     

@@ -1,4 +1,4 @@
-﻿using HugoWorld.BLL;
+using HugoWorld.BLL;
 using HugoWorld_Client.HL_Services;
 using System;
 using System.Collections.Generic;

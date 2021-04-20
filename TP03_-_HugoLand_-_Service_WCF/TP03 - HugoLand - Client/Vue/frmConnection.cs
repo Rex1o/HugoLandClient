@@ -3,7 +3,8 @@ using HugoWorld_Client.HL_Services;
 using System;
 using System.Windows.Forms;
 
-namespace HugoWorld {
+namespace HugoWorld
+{
 
     public partial class frmConnection : Form {
         //Service a utiliser
@@ -43,7 +44,6 @@ namespace HugoWorld {
             try
             {
                 reponse = joueurService.Connection(username, password);
-
                 if (reponse == "INVALIDE")
                 {
                     this.Cursor = Cursors.Default;
@@ -52,9 +52,18 @@ namespace HugoWorld {
                 }
                 else if (reponse == "SUCCESS")
                 {
-
-                    Outils.SetActiveUser(joueurService.GetAccountByName(username));
+                    try
+                    {
+                        CompteJoueurDTO compte = joueurService.GetAccountByName(username);
+                        Outils.SetActiveUser(compte);
                         this.Close();
+                    }
+                    catch
+                    {
+                        this.Cursor = Cursors.Default;
+                        MessageBox.Show("Services Are Not Accessible ", "Connection error",
+        MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                    }
                 }
                 else if (reponse == "INCORRECT")
                 {

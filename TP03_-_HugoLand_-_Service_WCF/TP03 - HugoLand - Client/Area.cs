@@ -75,34 +75,44 @@ namespace HugoWorld {
 
         public Area(Dictionary<string, Tile> tiles, List<TileImport> objects)
         {
-            Name = "CurrentChunk";
-
-            foreach (TileImport t in objects.OrderBy(pos => pos.x).ThenBy(pos => pos.y))
+            try
             {
 
-                MapTile mapT = new MapTile();
-                Map[t.x & 8, t.y % 8] = mapT;
+                Name = "CurrentChunk";
 
-                if (t.Type == TypeTile.Item || t.Type == TypeTile.Monstre)
+                foreach (TileImport t in objects.OrderBy(pos => pos.x).ThenBy(pos => pos.y))
                 {
-                    mapT.ObjectTile = tiles[t.tileID];
-                }
-                else
-                    mapT.Tile = tiles[t.tileID];
 
-                if (mapT.Tile != null)
-                {
-                    mapT.SetSprite(t.x % 8, t.y % 8);
-                    if (mapT.ObjectTile?.IsTransparent ?? false)
+                    MapTile mapT = new MapTile();
+                    Map[t.x % 8, t.y % 8] = mapT;
+
+                    if (t.Type == TypeTile.Item || t.Type == TypeTile.Monstre)
                     {
-                        mapT.ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
+                        mapT.ObjectTile = tiles[t.tileID];
+                        mapT.SetObjectSprite(t.x % 8, t.y % 8);
+                        mapT.Tile = tiles["17"];
                     }
+                    else
+                        mapT.Tile = tiles[t.tileID];
+
+                    if (mapT.Tile != null)
+                    {
+                        mapT.SetSprite(t.x % 8, t.y % 8);
+                        if (mapT.ObjectTile?.IsTransparent ?? false)
+                        {
+                            mapT.ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
+                        }
+                    }
+
+                    mapT.GlobalX = t.x;
+                    mapT.GlobalY = t.y;
+
+                    mapT.TileImport = t;
                 }
-
-                mapT.GlobalX = t.x;
-                mapT.GlobalY = t.y;
-
-                mapT.TileImport = t;
+            }
+            catch (Exception e)
+            {
+                Name = null;
             }
         }
 

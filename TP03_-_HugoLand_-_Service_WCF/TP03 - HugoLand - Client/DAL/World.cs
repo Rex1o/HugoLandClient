@@ -29,7 +29,9 @@ namespace HugoWorld
     {
         private const string _startArea = "CurrentChunk";
 
-        private Dictionary<string, Area> _world = new Dictionary<string, Area>();
+        //private Dictionary<string, Area> _world = new Dictionary<string, Area>();
+        private MondeDTO _monde;
+        private HeroDTO _hero;
         private Area _currentArea;
         private Dictionary<string, Tile> _tiles;
         private Point _heroPosition;
@@ -51,17 +53,21 @@ namespace HugoWorld
         {
             _gameState = gameState;
             _tiles = tiles;
+            _monde = monde;
+            _hero = Outils.GetHero();
 
             //Read in the map file
             //readMapfile(mapFile);
-            LoadChunk(monde,Outils.GetHero());
+            LoadChunk();
 
 
             //Find the start point
-            _currentArea = _world[_startArea];
-
+            //_currentArea = _world[_startArea];
+            HeroDTO h = Outils.GetHero();
             //Create and position the hero character
-            _heroPosition = new Point(3, 3);
+
+            int[] pos = GetHeroPosInChunk();
+            _heroPosition = new Point(pos[0], pos[1]);
             _heroSprite = new Sprite(null, _heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
                                             _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
                                             _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
@@ -77,28 +83,50 @@ namespace HugoWorld
                 {
                     //Each area constructor will consume just one area
                     Area area = new Area(stream, _tiles);
-                    _world.Add(area.Name, area);
+                    //_world.Add(area.Name, area);
                 }
             }
         }
 
-        private void LoadChunk(MondeDTO w, HeroDTO h)
+        private int[] GetHeroPosInChunk()
         {
+            int[] pos = new int[2];
+
+            pos[0] = _hero.x == 0 ? 0 : _hero.x % 8;
+            pos[1] = _hero.y == 0 ? 0 : _hero.y % 8;
+
+            return pos;
+        }
+
+        private void LoadChunk(int p_posx = -1, int p_posy = -1)
+        {
+            MondeDTO w = _monde;
+            HeroDTO h = _hero;
+
             //World size
             int x_size = w.LimiteX;
             int y_size = w.LimiteY;
 
+            int p_x, p_y;
+
             //Player Position
-            int p_x = h.x;
-            int p_y = h.y;
+            if (p_posx < 0)
+                p_x = h.x;
+            else
+                p_x = p_posx;
+
+            if (p_posy < 0)
+                p_y = h.y;
+            else
+                p_y = p_posy;
 
             //Chunk position
-            int Chunkx = (p_y / 8);
-            int Chunky = (p_x / 8);
+            int Chunkx = (p_x / 8);
+            int Chunky = (p_y / 8);
 
             //Player position in chunk
-            int Chunkpx = (x_size % h.x);
-            int Chunkpy = (y_size % h.y);
+            int Chunkpx = h.x == 0 ? 0 : (x_size % h.x);
+            int Chunkpy = h.y == 0 ? 0 : (y_size % h.y);
 
             //x = [0]
             //y = [1]
@@ -108,36 +136,57 @@ namespace HugoWorld
 
 
             int[] BotRightCorner = new int[2];
-            BotRightCorner[0] = (Chunkx + 1) * 8;
-            BotRightCorner[1] = (Chunky + 1) * 8;
+            BotRightCorner[0] = (Chunkx + 1) * 8 - 1;
+            BotRightCorner[1] = (Chunky + 1) * 8 - 1;
 
 
             MondeServiceClient MondeService = new MondeServiceClient();
-            List<TileImport> objects = MondeService.GetChunk(TopLeftCorner, BotRightCorner,w).ToList();
+            List<TileImport> objects = MondeService.GetChunk(TopLeftCorner, BotRightCorner, w).ToList();
 
             Area area = new Area(_tiles, objects);
-            _world.Add(area.Name, area);
-
-            DefineSurroundingsMap();
-        }
-
-        private void DefineSurroundingsMap()
-        {
-            foreach (Area a in _world.Values)
+            if (_currentArea == null)
+                _currentArea = area;
+            else if (_currentArea.Map[0, 0].GlobalX != area.Map[0, 0].GlobalX || _currentArea.Map[0, 0].GlobalY != area.Map[0, 0].GlobalY)
             {
-                Area temp = _world.Values.FirstOrDefault(area => area.Map[0, 0]?.GlobalX == a.Map[0, 0]?.GlobalX - 8);
-                a.WestArea = temp?.Name ?? "-";
+                if (area != null && area.Name != null)
+                {
+                    area.NorthArea = "OK";
+                    area.WestArea = "OK";
+                    area.SouthArea = "OK";
+                    area.EastArea = "OK";
+                    _currentArea = area;
 
-                temp = _world.Values.FirstOrDefault(area => area.Map[0, 0]?.GlobalX == a.Map[0, 0]?.GlobalX + 8);
-                a.EastArea = temp?.Name ?? "-";
-
-                temp = _world.Values.FirstOrDefault(area => area.Map[0, 0]?.GlobalY == a.Map[0, 0]?.GlobalY - 8);
-                a.NorthArea = temp?.Name ?? "-";
-
-                temp = _world.Values.FirstOrDefault(area => area.Map[0, 0]?.GlobalY == a.Map[0, 0]?.GlobalY + 8);
-                a.SouthArea = temp?.Name ?? "-";
+                }
             }
+            else
+            {
+                _currentArea.NorthArea = null;
+                _currentArea.WestArea = null;
+                _currentArea.SouthArea = null;
+                _currentArea.EastArea = null;
+            }
+            //_world.Add(area.Name, area);
+
+            //DefineSurroundingsMap();
         }
+
+        //private void DefineSurroundingsMap()
+        //{
+        //    foreach (Area a in _world.Values)
+        //    {
+        //        Area temp = _world.Values.FirstOrDefault(area => area.Map[0, 0]?.GlobalX == a.Map[0, 0]?.GlobalX - 8);
+        //        a.WestArea = temp?.Name ?? "-";
+
+        //        temp = _world.Values.FirstOrDefault(area => area.Map[0, 0]?.GlobalX == a.Map[0, 0]?.GlobalX + 8);
+        //        a.EastArea = temp?.Name ?? "-";
+
+        //        temp = _world.Values.FirstOrDefault(area => area.Map[0, 0]?.GlobalY == a.Map[0, 0]?.GlobalY - 8);
+        //        a.NorthArea = temp?.Name ?? "-";
+
+        //        temp = _world.Values.FirstOrDefault(area => area.Map[0, 0]?.GlobalY == a.Map[0, 0]?.GlobalY + 8);
+        //        a.SouthArea = temp?.Name ?? "-";
+        //    }
+        //}
 
         public override void Update(double gameTime, double elapsedTime)
         {
@@ -278,6 +327,12 @@ namespace HugoWorld
             }
         }
 
+        private void SaveHeroPos()
+        {
+            HeroServiceClient service = new HeroServiceClient();
+            service.SaveHeroPos(_hero.Id, _hero.x, _hero.y);
+        }
+
         /// <summary>
         /// Gestion du déplacement du héro
         /// </summary>
@@ -301,16 +356,25 @@ namespace HugoWorld
                                 _heroSpriteAnimating = true;
                                 _direction = HeroDirection.Right;
                                 _heroPosition.X++;
+                                //SetDB pos
+                                _hero.x++;
+                                SaveHeroPos();
                                 setDestination();
                             }
                         }
                         else if (_currentArea.EastArea != "-")
                         {
                             //Edge of map - move to next area
-                            _currentArea = _world[_currentArea.EastArea];
-                            _heroPosition.X = 0;
-                            setDestination();
-                            _heroSprite.Location = _heroDestination;
+                            LoadChunk(_hero.x + 1);
+                            //_currentArea = _world[_currentArea.EastArea];
+                            if (_currentArea.EastArea == "OK")
+                            {
+                                _heroPosition.X = 0;
+                                _hero.x++;
+                                SaveHeroPos();
+                                setDestination();
+                                _heroSprite.Location = _heroDestination;
+                            }
                         }
                         break;
 
@@ -326,15 +390,23 @@ namespace HugoWorld
                                 _heroSpriteAnimating = true;
                                 _direction = HeroDirection.Left;
                                 _heroPosition.X--;
+                                _hero.x--;
+                                SaveHeroPos();
                                 setDestination();
                             }
                         }
                         else if (_currentArea.WestArea != "-")
                         {
-                            _currentArea = _world[_currentArea.WestArea];
-                            _heroPosition.X = Area.MapSizeX - 1;
-                            setDestination();
-                            _heroSprite.Location = _heroDestination;
+                            LoadChunk(_hero.x - 1);
+                            //_currentArea = _world[_currentArea.WestArea];
+                            if (_currentArea.WestArea == "OK")
+                            {
+                                _heroPosition.X = Area.MapSizeX - 1;
+                                _hero.x--;
+                                SaveHeroPos();
+                                setDestination();
+                                _heroSprite.Location = _heroDestination;
+                            }
                         }
                         break;
 
@@ -349,16 +421,24 @@ namespace HugoWorld
                                 _heroSpriteAnimating = true;
                                 _direction = HeroDirection.Up;
                                 _heroPosition.Y--;
+                                _hero.y--;
+                                SaveHeroPos();
                                 setDestination();
                             }
                         }
                         else if (_currentArea.NorthArea != "-")
                         {
                             //Edge of map - move to next area
-                            _currentArea = _world[_currentArea.NorthArea];
-                            _heroPosition.Y = Area.MapSizeY - 1;
-                            setDestination();
-                            _heroSprite.Location = _heroDestination;
+                            LoadChunk(-1, _hero.y - 1);
+                            if (_currentArea.NorthArea == "OK")
+                            {
+                                //_currentArea = _world[_currentArea.NorthArea];
+                                _heroPosition.Y = Area.MapSizeY - 1;
+                                _hero.y--;
+                                SaveHeroPos();
+                                setDestination();
+                                _heroSprite.Location = _heroDestination;
+                            }
                         }
                         break;
 
@@ -373,16 +453,24 @@ namespace HugoWorld
                                 _heroSpriteAnimating = true;
                                 _direction = HeroDirection.Down;
                                 _heroPosition.Y++;
+                                _hero.y++;
+                                SaveHeroPos();
                                 setDestination();
                             }
                         }
                         else if (_currentArea.SouthArea != "-")
                         {
                             //Edge of map - move to next area
-                            _currentArea = _world[_currentArea.SouthArea];
-                            _heroPosition.Y = 0;
-                            setDestination();
-                            _heroSprite.Location = _heroDestination;
+                            LoadChunk(-1, _hero.y + 1);
+                            if (_currentArea.SouthArea == "OK")
+                            {
+                                //_currentArea = _world[_currentArea.SouthArea];
+                                _heroPosition.Y = 0;
+                                _hero.y++;
+                                SaveHeroPos();
+                                setDestination();
+                                _heroSprite.Location = _heroDestination;
+                            }
                         }
                         break;
 

@@ -143,6 +143,7 @@ namespace HugoWorld_Client.Vue
             this.cmbClasse.Name = "cmbClasse";
             this.cmbClasse.Size = new System.Drawing.Size(176, 24);
             this.cmbClasse.TabIndex = 10;
+            this.cmbClasse.SelectedIndexChanged += new System.EventHandler(this.cmbClasse_SelectedIndexChanged);
             // 
             // lblWorld
             // 

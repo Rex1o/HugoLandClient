@@ -94,10 +94,9 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             this.Enabled = false;
             chSelect.ShowDialog();
 
-            while (chSelect.DialogResult != DialogResult.OK)
-                chSelect.ShowDialog();
+            if (chSelect.DialogResult == DialogResult.OK)
+                currentHero = chSelect.Hero;
 
-            currentHero = chSelect.Hero;
             this.Enabled = true;
         }
 
@@ -106,9 +105,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             frmClassList frmClassList = new frmClassList();
             this.Enabled = false;
             frmClassList.ShowDialog();
-
-            while (frmClassList.DialogResult != DialogResult.OK)
-                frmClassList.ShowDialog();
 
             this.Enabled = true;
         }

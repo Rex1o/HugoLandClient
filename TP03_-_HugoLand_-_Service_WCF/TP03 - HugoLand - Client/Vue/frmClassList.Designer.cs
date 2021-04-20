@@ -118,6 +118,7 @@ namespace HugoWorld_Client.Vue {
             this.MondeId});
             this.classeDTOGridView.DataSource = this.classeDTOBindingSource;
             resources.ApplyResources(this.classeDTOGridView, "classeDTOGridView");
+            this.classeDTOGridView.MultiSelect = false;
             this.classeDTOGridView.Name = "classeDTOGridView";
             this.classeDTOGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             // 

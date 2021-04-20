@@ -131,6 +131,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.herosDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.herosDataGridView.Location = new System.Drawing.Point(28, 79);
+            this.herosDataGridView.MultiSelect = false;
             this.herosDataGridView.Name = "herosDataGridView";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;

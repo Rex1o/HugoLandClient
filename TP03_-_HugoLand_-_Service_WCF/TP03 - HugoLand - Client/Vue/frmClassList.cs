@@ -124,8 +124,8 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             this.Enabled = false;
             classCreator.ShowDialog();
 
-            while (classCreator.DialogResult != DialogResult.OK)
-                classCreator.ShowDialog();
+            if (classCreator.DialogResult == DialogResult.OK)
+                classeDTOGridView.Refresh();
 
             this.Enabled = true;
         }

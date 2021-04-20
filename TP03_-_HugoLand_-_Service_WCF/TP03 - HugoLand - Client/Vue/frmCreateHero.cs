@@ -17,6 +17,7 @@ namespace HugoWorld_Client.Vue {
         private List<ClasseDTO> _WorldClass = new List<ClasseDTO>();
         private ClasseDTO _SelectedClass;
         public HeroDTO createdHero { get; set; }
+        private int _SelectedworldID;
         
         public frmCreateHero()
         {
@@ -28,7 +29,7 @@ namespace HugoWorld_Client.Vue {
             cmbWorld.DataSource = mondeService.GetWorldsForSelection().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
             string itemstr = cmbWorld.SelectedItem.ToString();
             int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
-
+            _SelectedworldID = id;
             _WorldClass = classeService.GetClassDTOFromMap(id).ToList();
             cmbClasse.DataSource = _WorldClass.Select(x => x.Id + " : " + x.NomClasse).ToArray();
 
@@ -55,7 +56,9 @@ namespace HugoWorld_Client.Vue {
                 ClasseId = _SelectedClass.Id,
                 Experience = 0,
                 Niveau = 1,
-                NomHero = txtName.Text
+                NomHero = txtName.Text,
+                MondeId = _SelectedworldID
+
             };
 
             try
@@ -79,8 +82,10 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
         {
             string itemstr = cmbWorld.SelectedItem.ToString();
             int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
+            _SelectedworldID = id;
+            _WorldClass = classeService.GetClassDTOFromMap(id).ToList();
 
-            cmbClasse.DataSource = classeService.GetClassDTOFromMap(id).ToList().Select(x => x.Id + " : " + x.NomClasse).ToArray();
+            cmbClasse.DataSource = _WorldClass.Select(x => x.Id + " : " + x.NomClasse).ToList();
             UpdateUI();
         }
 
@@ -101,7 +106,8 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 string itemstr = cmbClasse.SelectedItem.ToString();
                 int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
                 _SelectedClass = _WorldClass.FirstOrDefault(x => x.Id == id);
-                if (!(_SelectedClass == null))
+
+                if (_SelectedClass != null)
                 {
                     _TotalStrength = _BaseStrength + _SelectedClass.StatBaseStr;
                     _TotalDexterity = _BaseDexterity + _SelectedClass.StatBaseDex;

@@ -1,38 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using HugoWorld.BLL;
 using HugoWorld_Client.HL_Services;
-using System.Drawing;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using HugoWorld.BLL;
 
-namespace HugoWorld_Client.Vue
-{
-    public partial class frmCreateHero : Form
-    {
-        private ClasseServiceClient classeService = new ClasseServiceClient();
-        private MondeServiceClient mondeService = new MondeServiceClient();
-        private HeroServiceClient heroService = new HeroServiceClient();
-        int _BaseStrength;
-        int _BaseDexterity;
-        int _BaseVitality;
-        int _BaseIntegrity;
+namespace HugoWorld_Client.Vue {
+    public partial class frmCreateHero : Form {
+        private readonly ClasseServiceClient classeService;
+        private readonly MondeServiceClient mondeService;
+        private readonly HeroServiceClient heroService;
+        private int _BaseStrength,_BaseDexterity, _BaseVitality, _BaseIntegrity;
+        private int _TotalStrength, _TotalDexterity, _TotalVitality, _TotalIntegrity;
 
-        int _TotalStrength;
-        int _TotalDexterity;
-        int _TotalVitality;
-        int _TotalIntegrity;
-        Random _rnd = new Random();
-        List<ClasseDTO> _WorldClass = new List<ClasseDTO>();
-        ClasseDTO _SelectedClass;
-
+        private Random _rnd = new Random();
+        private List<ClasseDTO> _WorldClass = new List<ClasseDTO>();
+        private ClasseDTO _SelectedClass;
+        public HeroDTO createdHero { get; set; }
+        
         public frmCreateHero()
         {
             InitializeComponent();
+            classeService = new ClasseServiceClient();
+            mondeService = new MondeServiceClient();
+            heroService = new HeroServiceClient();
+
             cmbWorld.DataSource = mondeService.GetWorldsForSelection().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
             string itemstr = cmbWorld.SelectedItem.ToString();
             int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
@@ -69,18 +61,18 @@ namespace HugoWorld_Client.Vue
             try
             {
                 heroService.AddHeroToDataBase(newHero);
+
+                MessageBox.Show("Hero successfully added!", "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.None,
+    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occured while adding the class to the database\n" + ex.Message, "ERROR",
 MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             }
-
-        }
-
-        private void frmCreateHero_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void cmbWorld_SelectedIndexChanged(object sender, EventArgs e)
@@ -106,8 +98,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             }
             else
             {
-
-
                 string itemstr = cmbClasse.SelectedItem.ToString();
                 int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
                 _SelectedClass = _WorldClass.FirstOrDefault(x => x.Id == id);
@@ -137,6 +127,12 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
         private void txtName_TextChanged(object sender, EventArgs e)
         {
             UpdateUI();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

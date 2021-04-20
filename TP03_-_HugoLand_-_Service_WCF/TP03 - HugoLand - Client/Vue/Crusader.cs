@@ -79,8 +79,11 @@ namespace HugoWorld {
             frmMenu menu = new frmMenu();
             menu.ShowDialog();
 
-            while (menu.DialogResult != DialogResult.OK)
+            while (menu.DialogResult != DialogResult.OK && menu.DialogResult != DialogResult.Abort)
                 menu.ShowDialog();
+
+            if (menu.DialogResult == DialogResult.Abort)
+                this.Close();
 
             //Loads the hero into the game
             _gameState.LoadHero(menu.currentHero);

@@ -208,6 +208,7 @@ namespace HugoWorld_Client.Vue {
             this.Controls.Add(prenomLabel);
             this.Controls.Add(this.prenomTextBox);
             this.Name = "frmMenu";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMenu_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.compteJoueurDTOBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

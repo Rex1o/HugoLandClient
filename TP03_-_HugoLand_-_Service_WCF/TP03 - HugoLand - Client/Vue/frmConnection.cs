@@ -59,6 +59,8 @@ namespace HugoWorld {
                     Outils.SetActiveUser(joueurService.GetAccountByName(username));
                     if (joueurService.GetAccountByName(username).TypeUtilisateur == 2)
                     {
+                        MessageBox.Show("CONNECTION SUCCESSFUL!", "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.None,
+    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                         this.Close();
                     }
                     else

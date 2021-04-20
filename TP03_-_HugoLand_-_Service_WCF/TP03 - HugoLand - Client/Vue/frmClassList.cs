@@ -11,45 +11,20 @@ namespace HugoWorld_Client.Vue {
         private readonly ClasseServiceClient classeService;
         private readonly MondeServiceClient mondeService;
         private CompteJoueurDTO connectedPlayer;
-        public ClasseDTO selectedClass { get; set; }
         public frmClassList()
         {
             InitializeComponent();
-            JoueurServiceClient joueurService = new JoueurServiceClient();
-            connectedPlayer = joueurService.GetAccountByName("SysAdmin");
 
             this.StartPosition = FormStartPosition.CenterScreen;
             classeService = new ClasseServiceClient();
             mondeService = new MondeServiceClient();
-            //connectedPlayer = Outils.GetActiveUser();
+            connectedPlayer = Outils.GetActiveUser();
             classeDTOGridView.DataSource = classeService.GetClasseDTOs();
             classeDTOGridView.Refresh();
 
-            mondeDTOComboBox.DataSource = mondeService.GetMondeDTOs().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
+            mondeDTOComboBox.DataSource = mondeService.GetWorldsForSelection().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
             mondeDTOComboBox.Refresh();
             SwitchMode();
-        }
-
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (classeDTOGridView.SelectedRows.Count > 0)
-                {
-                    selectedClass = classeDTOGridView.SelectedRows[0].DataBoundItem as ClasseDTO;
-                    selectedClass.MondeId = ((MondeDTO)mondeDTOComboBox.SelectedItem).Id;
-                }
-                else
-                {
-                    MessageBox.Show("Please choose a character!",
-                        "WARNING!", MessageBoxButtons.OK);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while modifying the class to the database\n" + ex.Message, "ERROR",
-MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-            }
         }
 
         private void btnEditClass_Click(object sender, EventArgs e)
@@ -64,7 +39,8 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 else
                 {
                     MessageBox.Show("Please choose a character!",
-                        "WARNING!", MessageBoxButtons.OK);
+                        "WARNING!", MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 }
             }
             catch (Exception ex)
@@ -118,7 +94,8 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             {
                 classeService.EditClass(classeDTO);
 
-                MessageBox.Show("Class successfull modified!", "SUCCESS", MessageBoxButtons.OK);
+                MessageBox.Show("Class successfully modified!", "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.None,
+                    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 SwitchMode();
             }
             catch (Exception ex)
@@ -132,22 +109,29 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
         {
             SwitchMode();
         }
+
         private void btnCreate_Click(object sender, EventArgs e)
         {
             ClassCreator classCreator = new ClassCreator();
             this.Enabled = false;
             classCreator.ShowDialog();
 
-            selectedClass = classCreator.classeDTO;
+            while (classCreator.DialogResult != DialogResult.OK)
+                classCreator.ShowDialog();
 
             this.Enabled = true;
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void ErreurIntegerMsgBox()
         {
-            MessageBox.Show("Please enter a number!", "WARNING!", MessageBoxButtons.OK);
+            MessageBox.Show("Please enter a number!", "WARNING!", MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
         }
 
         private void FillEditForm(ClasseDTO classeDTO)
@@ -190,7 +174,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 editMondeLabel.Visible = true;
                 mondeDTOComboBox.Visible = true;
 
-                btnSelect.Visible = false;
                 btnEditClass.Visible = false;
                 btnDelete.Visible = false;
                 btnCreate.Visible = false;
@@ -223,7 +206,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 btnCancel.Visible = false;
                 btnConfirm.Visible = false;
 
-                btnSelect.Visible = true;
                 classeDTOGridView.Visible = true;
 
                 if (connectedPlayer.TypeUtilisateur > 0)
@@ -236,7 +218,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 Refresh();
             }
         }
-
 
     }
 }

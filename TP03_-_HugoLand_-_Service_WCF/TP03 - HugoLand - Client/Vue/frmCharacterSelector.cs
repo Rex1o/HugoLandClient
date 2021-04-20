@@ -10,6 +10,7 @@ namespace HugoWorld.Vue {
         public string ErrorMsg { get; set; }
         private CompteJoueurDTO connectedPlayer;
         private readonly JoueurServiceClient joueurService;
+        private readonly HeroServiceClient heroService;
 
         public frmCharacterSelector(CompteJoueurDTO j)
         {
@@ -23,6 +24,7 @@ namespace HugoWorld.Vue {
             herosDataGridView.DataSource = j.Heros;
             herosDataGridView.Refresh();
             joueurService = new JoueurServiceClient();
+            heroService = new HeroServiceClient();
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -48,6 +50,39 @@ namespace HugoWorld.Vue {
                     Hero = herosDataGridView.SelectedRows[0].DataBoundItem as HeroDTO;
                     this.DialogResult = DialogResult.OK;
                     this.Close();
+                }
+                else
+                {
+                    this.DialogResult = DialogResult.Cancel;
+                    this.ErrorMsg = "Please a choose a character!";
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.DialogResult = DialogResult.Abort;
+                this.ErrorMsg = ex.Message;
+                this.Close();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (herosDataGridView.SelectedRows.Count > 0)
+                {
+                    //Start game with selected hero
+                    if (!heroService.DeleteHeroById(((HeroDTO)herosDataGridView.SelectedRows[0].DataBoundItem).Id)){
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    else
+                    {
+                        this.DialogResult = DialogResult.Abort;
+                        this.ErrorMsg = "There's been an error while deleting your hero!";
+                        this.Close();
+                    }
                 }
                 else
                 {

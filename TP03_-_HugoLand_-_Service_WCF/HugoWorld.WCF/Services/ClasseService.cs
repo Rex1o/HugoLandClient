@@ -30,7 +30,6 @@ namespace HugoWorld_WCF.Services {
 
         public bool DeleteClass(ClasseDTO classeDTO)
         {
-
             using (HugoLandContext dbContext = new HugoLandContext())
             {
                 if (dbContext.Heros.Any(x => x.ClasseId == classeDTO.Id))

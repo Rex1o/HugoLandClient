@@ -100,70 +100,79 @@ namespace HugoWorld
 
         private void LoadChunk(int p_posx = -1, int p_posy = -1)
         {
-            MondeDTO w = _monde;
-            HeroDTO h = _hero;
-
-            //World size
-            int x_size = w.LimiteX;
-            int y_size = w.LimiteY;
-
-            int p_x, p_y;
-
-            //Player Position
-            if (p_posx < 0)
-                p_x = h.x;
-            else
-                p_x = p_posx;
-
-            if (p_posy < 0)
-                p_y = h.y;
-            else
-                p_y = p_posy;
-
-            //Chunk position
-            int Chunkx = (p_x / 8);
-            int Chunky = (p_y / 8);
-
-            //Player position in chunk
-            int Chunkpx = h.x == 0 ? 0 : (x_size % h.x);
-            int Chunkpy = h.y == 0 ? 0 : (y_size % h.y);
-
-            //x = [0]
-            //y = [1]
-            int[] TopLeftCorner = new int[2];
-            TopLeftCorner[0] = Chunkx * 8;
-            TopLeftCorner[1] = Chunky * 8;
-
-
-            int[] BotRightCorner = new int[2];
-            BotRightCorner[0] = (Chunkx + 1) * 8 - 1;
-            BotRightCorner[1] = (Chunky + 1) * 8 - 1;
-
-
-            MondeServiceClient MondeService = new MondeServiceClient();
-            List<TileImport> objects = MondeService.GetChunk(TopLeftCorner, BotRightCorner, w).ToList();
-
-            Area area = new Area(_tiles, objects);
-            if (_currentArea == null)
-                _currentArea = area;
-            else if (_currentArea.Map[0, 0].GlobalX != area.Map[0, 0].GlobalX || _currentArea.Map[0, 0].GlobalY != area.Map[0, 0].GlobalY)
+            try
             {
-                if (area != null && area.Name != null)
-                {
-                    area.NorthArea = "OK";
-                    area.WestArea = "OK";
-                    area.SouthArea = "OK";
-                    area.EastArea = "OK";
+
+                MondeDTO w = _monde;
+                HeroDTO h = _hero;
+
+                //World size
+                int x_size = w.LimiteX;
+                int y_size = w.LimiteY;
+
+                int p_x, p_y;
+
+                //Player Position
+                if (p_posx < 0)
+                    p_x = h.x;
+                else
+                    p_x = p_posx;
+
+                if (p_posy < 0)
+                    p_y = h.y;
+                else
+                    p_y = p_posy;
+
+                //Chunk position
+                int Chunkx = (p_x / 8);
+                int Chunky = (p_y / 8);
+
+                //Player position in chunk
+                int Chunkpx = h.x == 0 ? 0 : (x_size % h.x);
+                int Chunkpy = h.y == 0 ? 0 : (y_size % h.y);
+
+                //x = [0]
+                //y = [1]
+                int[] TopLeftCorner = new int[2];
+                TopLeftCorner[0] = Chunkx * 8;
+                TopLeftCorner[1] = Chunky * 8;
+
+
+                int[] BotRightCorner = new int[2];
+                BotRightCorner[0] = (Chunkx + 1) * 8 - 1;
+                BotRightCorner[1] = (Chunky + 1) * 8 - 1;
+
+
+                MondeServiceClient MondeService = new MondeServiceClient();
+                List<TileImport> objects = MondeService.GetChunk(TopLeftCorner, BotRightCorner, w).ToList();
+
+                Area area = new Area(_tiles, objects);
+                if (_currentArea == null)
                     _currentArea = area;
+                else if (_currentArea.Map[0, 0].GlobalX != area.Map[0, 0].GlobalX || _currentArea.Map[0, 0].GlobalY != area.Map[0, 0].GlobalY)
+                {
+                    if (area != null && area.Name != null)
+                    {
+                        area.NorthArea = "OK";
+                        area.WestArea = "OK";
+                        area.SouthArea = "OK";
+                        area.EastArea = "OK";
+                        _currentArea = area;
 
+                    }
                 }
+                else
+                {
+                    _currentArea.NorthArea = null;
+                    _currentArea.WestArea = null;
+                    _currentArea.SouthArea = null;
+                    _currentArea.EastArea = null;
+                }
+
             }
-            else
+            catch (Exception e)
             {
-                _currentArea.NorthArea = null;
-                _currentArea.WestArea = null;
-                _currentArea.SouthArea = null;
-                _currentArea.EastArea = null;
+                MessageBox.Show("Vérifiez la connection au VPN!");
             }
             //_world.Add(area.Name, area);
 
@@ -329,8 +338,15 @@ namespace HugoWorld
 
         private void SaveHeroPos()
         {
-            HeroServiceClient service = new HeroServiceClient();
-            service.SaveHeroPos(_hero.Id, _hero.x, _hero.y);
+            try
+            {
+                HeroServiceClient service = new HeroServiceClient();
+                service.SaveHeroPos(_hero.Id, _hero.x, _hero.y);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Vérifiez la connection au VPN!");
+            }
         }
 
         /// <summary>

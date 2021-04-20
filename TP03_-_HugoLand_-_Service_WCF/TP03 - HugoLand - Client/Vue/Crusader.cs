@@ -5,13 +5,16 @@ using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace HugoWorld {
+namespace HugoWorld
+{
 
-    public partial class HugoWorld : Form {
+    public partial class HugoWorld : Form
+    {
         private Stopwatch _timer = new Stopwatch();
         private double _lastTime;
         private long _frameCounter;
         private GameState _gameState;
+        private bool connected = false;
 
         public HugoWorld()
         {
@@ -31,10 +34,13 @@ namespace HugoWorld {
         {
             _gameState.Initialize();
 
-            //Initialise and start the timer
-            _lastTime = 0.0;
-            _timer.Reset();
-            _timer.Start();
+            if (connected)
+            {
+                //Initialise and start the timer
+                _lastTime = 0.0;
+                _timer.Reset();
+                _timer.Start();
+            }
         }
 
         private void Crusader_Paint(object sender, PaintEventArgs e)
@@ -45,11 +51,14 @@ namespace HugoWorld {
             _lastTime = gameTime;
             _frameCounter++;
 
-            //Perform any animation and updates
-            _gameState.Update(gameTime, elapsedTime);
+            if (connected)
+            {
+                //Perform any animation and updates
+                _gameState.Update(gameTime, elapsedTime);
 
-            //Draw everything
-            _gameState.Draw(e.Graphics);
+                //Draw everything
+                _gameState.Draw(e.Graphics);
+            }
 
             //Force the next Paint()
             this.Invalidate();
@@ -92,6 +101,7 @@ namespace HugoWorld {
             this.Enabled = true;
             this.Show();
 
+            connected = true;
             initialize();
             Form help = new helpform();
             help.StartPosition = FormStartPosition.CenterScreen;

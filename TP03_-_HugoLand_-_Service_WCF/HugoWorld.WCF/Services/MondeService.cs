@@ -12,7 +12,11 @@ namespace HugoWorld_WCF.Services
     {
         public List<TileImport> GetChunk(int[] TopLeft, int[] BotRight, MondeDTO p_world)
         {
+            int BotRightX = BotRight[0];
+            int BotRightY = BotRight[1];
 
+            int TopLeftX = TopLeft[0];
+            int TopLeftY = TopLeft[1];
 
             List<TileImport> objects = new List<TileImport>();
 
@@ -21,7 +25,7 @@ namespace HugoWorld_WCF.Services
                 Monde m = dbcontext.Mondes.Find(p_world.Id);
 
                 foreach (ObjetMondeDTO o in
-                dbcontext.ObjetMondes.Where(obj => obj.x >= TopLeft[0] && obj.x <= BotRight[0] && obj.y >= TopLeft[1] && obj.y <= BotRight[1] && obj.MondeId == m.Id)
+                dbcontext.ObjetMondes.Where(obj => obj.x >= TopLeftX && obj.x <= BotRightX && obj.y >= TopLeftY && obj.y <= BotRightY && obj.MondeId == m.Id)
                     .Select(ob => new ObjetMondeDTO()
                     {
                         Id = ob.Id,
@@ -36,7 +40,7 @@ namespace HugoWorld_WCF.Services
 
 
                 foreach (ItemDTO i in
-                dbcontext.Items.Where(obj => obj.x >= TopLeft[0] && obj.x <= BotRight[0] && obj.y >= TopLeft[1] && obj.y <= BotRight[1] && obj.MondeId == m.Id)
+                dbcontext.Items.Where(obj => obj.x >= TopLeftX && obj.x <= BotRightX && obj.y >= TopLeftY && obj.y <= BotRightY && obj.MondeId == m.Id)
                 .Select(it => new ItemDTO()
                 {
                     Id = it.Id,
@@ -51,7 +55,7 @@ namespace HugoWorld_WCF.Services
                     objects.Add(TileImport.ItemToTile(i));
 
                 foreach (MonstreDTO o in
-                dbcontext.Monstres.Where(obj => obj.x >= TopLeft[0] && obj.x <= BotRight[0] && obj.y >= TopLeft[1] && obj.y <= BotRight[1] && obj.MondeId == m.Id)
+                dbcontext.Monstres.Where(obj => obj.x >= TopLeftX && obj.x <= BotRightX && obj.y >= TopLeftY && obj.y <= BotRightY && obj.MondeId == m.Id)
                     .Select(mo => new MonstreDTO()
                     {
                         Id = mo.Id,

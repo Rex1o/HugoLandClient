@@ -289,8 +289,8 @@ namespace HugoWorld_Client.Vue {
             // 
             this.mondeDTOComboBox.DataSource = this.mondeDTOBindingSource;
             this.mondeDTOComboBox.DisplayMember = "Description";
-            this.mondeDTOComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.mondeDTOComboBox, "mondeDTOComboBox");
+            this.mondeDTOComboBox.FormattingEnabled = true;
             this.mondeDTOComboBox.Name = "mondeDTOComboBox";
             this.mondeDTOComboBox.ValueMember = "Classes";
             // 

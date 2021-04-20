@@ -78,7 +78,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             }
         }
 
-        private void frmConnection_FormClosed(object sender, FormClosedEventArgs e)
+        private void frmConnection_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (reponse != "SUCCESS")
             {

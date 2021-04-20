@@ -80,7 +80,15 @@ namespace HugoWorld {
             Login.ShowDialog();
 
             while (Login.DialogResult != DialogResult.OK)
-                Login.ShowDialog();
+            {
+                if (Login.DialogResult == DialogResult.No)
+                {
+                    this.Close();
+                    Application.Exit();
+                }
+                else
+                    Login.ShowDialog();
+            }
 
             // Show MainMenu
             frmMenu menu = new frmMenu();
@@ -90,7 +98,10 @@ namespace HugoWorld {
                 menu.ShowDialog();
 
             if (menu.DialogResult == DialogResult.Abort)
+            {
+                Application.Exit();
                 this.Close();
+            }
             else
             {
                 //Loads the hero into Outils

@@ -33,6 +33,15 @@ namespace HugoWorld_Client.Vue {
             UpdateUI();
         }
 
+        private void btnReroll_Click(object sender, EventArgs e)
+        {
+            _BaseStrength = _rnd.Next(0, 21);
+            _BaseDexterity = _rnd.Next(0, 21);
+            _BaseVitality = _rnd.Next(0, 21);
+            _BaseIntegrity = _rnd.Next(0, 21);
+            UpdateUI();
+        }
+
         private void cmbClasse_SelectedValueChanged(object sender, EventArgs e)
         {
             UpdateUI();
@@ -105,7 +114,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                     txtVit.Text = _TotalVitality.ToString();
                     txtInt.Text = _TotalIntegrity.ToString();
 
-                    if (string.IsNullOrEmpty(txtName.Text))
+                    if (string.IsNullOrEmpty(txtName.Text.Trim()))
                         btnCreateHero.Enabled = false;
                     else
                         btnCreateHero.Enabled = true;

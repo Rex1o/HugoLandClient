@@ -87,9 +87,8 @@ namespace HugoWorld_Client.Vue {
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                DialogResult result = MessageBox.Show("Are you sure you want to quit? Unsaved progress will be lost.",
-                      "Closing the world save", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning,
-                        MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                DialogResult result = Outils.ShowInfoMessage("Are you sure you want to quit? Unsaved progress will be lost.",
+                      "Closing the world save", MessageBoxButtons.OKCancel);
 
                 if (result == DialogResult.OK)
                 {

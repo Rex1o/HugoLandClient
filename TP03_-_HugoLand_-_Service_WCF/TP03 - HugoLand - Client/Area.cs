@@ -83,7 +83,7 @@ namespace HugoWorld {
                 {
                     MapTile mapT = new MapTile();
                     Map[t.x % 8, t.y % 8] = mapT;
-
+                    
                     if (t.Type == TypeTile.Item || t.Type == TypeTile.Monstre)
                     {
                         mapT.ObjectTile = tiles[t.tileID];

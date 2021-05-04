@@ -13,8 +13,7 @@ namespace HugoWorld.Vue {
         private readonly JoueurServiceClient joueurService;
         private readonly HeroServiceClient heroService;
 
-        public frmCharacterSelector(CompteJoueurDTO j)
-        {
+        public frmCharacterSelector(CompteJoueurDTO j) {
             connectedPlayer = j;
             InitializeComponent();
 
@@ -29,8 +28,7 @@ namespace HugoWorld.Vue {
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
+        private void btnAdd_Click(object sender, EventArgs e) {
             frmCreateHero frmCreateHero = new frmCreateHero();
             this.Enabled = false;
             frmCreateHero.ShowDialog();
@@ -42,64 +40,45 @@ namespace HugoWorld.Vue {
             RefreshData();
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (herosDataGridView.SelectedRows.Count > 0)
-                {
+        private void btnOk_Click(object sender, EventArgs e) {
+            try {
+                if (herosDataGridView.SelectedRows.Count > 0) {
                     //Start game with selected hero
                     Hero = herosDataGridView.SelectedRows[0].DataBoundItem as HeroDTO;
                     this.DialogResult = DialogResult.OK;
                     this.Close();
-                }
-                else
-                {
+                } else {
                     this.DialogResult = DialogResult.Cancel;
                     this.ErrorMsg = "Please a choose a character!";
                     this.Close();
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 this.DialogResult = DialogResult.Abort;
                 this.ErrorMsg = ex.Message;
                 this.Close();
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            DialogResult confirmation = MessageBox.Show("Please confirm", "Confirmation",
- MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-            if (confirmation == DialogResult.Yes)
-            {
-                try
-                {
-                    if (herosDataGridView.SelectedRows.Count > 0)
-                    {
+        private void btnDelete_Click(object sender, EventArgs e) {
+            DialogResult confirmation = Outils.ShowInfoMessage("Please confirm", "Confirmation", MessageBoxButtons.YesNo);
+            if (confirmation == DialogResult.Yes) {
+                try {
+                    if (herosDataGridView.SelectedRows.Count > 0) {
                         //Start game with selected hero
-                        if (heroService.DeleteHeroById(((HeroDTO)herosDataGridView.SelectedRows[0].DataBoundItem).Id))
-                        {
+                        if (heroService.DeleteHeroById(((HeroDTO)herosDataGridView.SelectedRows[0].DataBoundItem).Id)) {
                             this.DialogResult = DialogResult.OK;
                             Hero = null;
-                        }
-                        else
-                        {
+                        } else {
                             this.DialogResult = DialogResult.Abort;
                             this.ErrorMsg = "There's been an error while deleting your hero!";
                             this.Close();
                         }
-                    }
-                    else
-                    {
+                    } else {
                         this.DialogResult = DialogResult.Cancel;
                         this.ErrorMsg = "Please a choose a character!";
                     }
                     RefreshData();
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     this.DialogResult = DialogResult.Abort;
                     this.ErrorMsg = ex.Message;
                     this.Close();
@@ -107,8 +86,7 @@ namespace HugoWorld.Vue {
             }
         }
 
-        private void RefreshData()
-        {
+        private void RefreshData() {
             Outils.SetActiveUser(joueurService.GetAccountByName(connectedPlayer.NomJoueur));
             connectedPlayer = Outils.GetActiveUser();
             herosDataGridView.DataSource = connectedPlayer.Heros;

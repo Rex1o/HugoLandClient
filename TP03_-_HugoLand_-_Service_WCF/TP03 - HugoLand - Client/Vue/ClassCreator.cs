@@ -1,4 +1,6 @@
-﻿using Hugoworld.Validators;
+﻿using FluentValidation.Results;
+using Hugoworld.Validators;
+using HugoWorld.BLL;
 using HugoWorld_Client.HL_Services;
 using System;
 using System.Linq;
@@ -16,8 +18,7 @@ namespace HugoWorld.Vue {
         private MondeServiceClient mondeService;
         public ClasseDTO classeDTO { get; set; }
 
-        public ClassCreator()
-        {
+        public ClassCreator() {
             InitializeComponent();
             this.DialogResult = DialogResult.Cancel;
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -27,21 +28,17 @@ namespace HugoWorld.Vue {
             classeService = new ClasseServiceClient();
         }
 
-        private void ClassCreator_Load(object sender, EventArgs e)
-        {
+        private void ClassCreator_Load(object sender, EventArgs e) {
             CmbWorld.DataSource = mondeService.GetWorldsForSelection().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
         }
 
-        private void btnAddClass_Click(object sender, EventArgs e)
-        {
-            if (ValidateInput())
-            {
+        private void btnAddClass_Click(object sender, EventArgs e) {
+            if (ValidateInput()) {
                 string itemstr = CmbWorld.SelectedItem.ToString();
                 int id = Int32.Parse(itemstr.Substring(0, itemstr.IndexOf(":")));
 
                 //Creation d'un objet
-                ClasseDTO c = new ClasseDTO()
-                {
+                ClasseDTO c = new ClasseDTO() {
                     NomClasse = txtName.Text,
                     Description = txtDescription.Text,
                     StatBaseStr = _Strength,
@@ -51,128 +48,95 @@ namespace HugoWorld.Vue {
                     MondeId = id
                 };
 
-                var result = ClasseValidator.Validate(c);
+                ValidationResult result = ClasseValidator.Validate(c);
 
-                if (result.IsValid)
-                {
-                    try
-                    {
+                if (result.IsValid) {
+                    try {
                         classeService.AddClassToDataBase(c);
                         classeDTO = c;
 
                         this.DialogResult = DialogResult.OK;
                         this.Close();
+                    } catch (Exception) {
+                        Outils.ShowErrorMessage("An error occured while adding the class to the database\n", "ERROR");
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("An error occured while adding the class to the database\n" + ex.Message, "ERROR",
-MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                    }
+                } else {
+                    Outils.ShowErrorMessage(string.Join("\n", result.Errors.ToList()), "Errors");
                 }
-                else
-                {
-                    ShowErrorsMessageBox(result);
-                }
-            }
-            else
-            {
+            } else {
                 MessageBox.Show("Please enter valid informations.");
             }
         }
 
-        private void txtBaseForce_TextChanged(object sender, EventArgs e)
-        {
+        #region UI Methods
+
+        private void txtBaseForce_TextChanged(object sender, EventArgs e) {
             UpdateUI();
         }
 
-        private void txtBaseDexterity_TextChanged(object sender, EventArgs e)
-        {
+        private void txtBaseDexterity_TextChanged(object sender, EventArgs e) {
             UpdateUI();
         }
 
-        private void txtBaseVitality_TextChanged(object sender, EventArgs e)
-        {
+        private void txtBaseVitality_TextChanged(object sender, EventArgs e) {
             UpdateUI();
         }
 
-        private void txtBaseIntegrity_TextChanged(object sender, EventArgs e)
-        {
+        private void txtBaseIntegrity_TextChanged(object sender, EventArgs e) {
             UpdateUI();
         }
 
-        private bool ValidateInput()
-        {
-            String strValue = txtBaseForce.Text.Trim();
+        private bool ValidateInput() {
+            string strValue = txtBaseForce.Text.Trim();
             int nValue;
 
-            if (int.TryParse(strValue, out nValue))
-            {
-                if (nValue < 1)
-                {
+            if (int.TryParse(strValue, out nValue)) {
+                if (nValue < 1) {
                     return false;
                 }
 
                 _Strength = nValue;
-            }
-            else
-            {
+            } else {
                 return false;
             }
 
             strValue = txtBaseDexterity.Text.Trim();
-            if (int.TryParse(strValue, out nValue))
-            {
-                if (nValue < 1)
-                {
+            if (int.TryParse(strValue, out nValue)) {
+                if (nValue < 1) {
                     return false;
                 }
                 _Dexterity = nValue;
-            }
-            else
-            {
+            } else {
                 return false;
             }
 
             strValue = txtBaseVitality.Text.Trim();
-            if (int.TryParse(strValue, out nValue))
-            {
-                if (nValue < 1)
-                {
+            if (int.TryParse(strValue, out nValue)) {
+                if (nValue < 1) {
                     return false;
                 }
                 _Vitality = nValue;
-            }
-            else
-            {
+            } else {
                 return false;
             }
 
             strValue = txtBaseIntegrity.Text.Trim();
-            if (int.TryParse(strValue, out nValue))
-            {
-                if (nValue < 1)
-                {
+            if (int.TryParse(strValue, out nValue)) {
+                if (nValue < 1) {
                     return false;
                 }
                 _Integrity = nValue;
-            }
-            else
-            {
+            } else {
                 return false;
             }
 
             return true;
         }
 
-        private static void ShowErrorsMessageBox(FluentValidation.Results.ValidationResult result)
-        {
-            MessageBox.Show(string.Join("\n", result.Errors.ToList()), "Errors",
-MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-        }
-
-        private void UpdateUI()
-        {
+        private void UpdateUI() {
             btnAddClass.Enabled = ValidateInput();
         }
+
+        #endregion
     }
 }

@@ -21,19 +21,27 @@ namespace Hugoworld.Validators {
 
             RuleFor(c => c.StatBaseStr)
                 .NotEmpty()
-                .WithMessage("Please provide a base strenght");
+                .WithMessage("Please provide a base strength")
+                .GreaterThan(0)
+                .WithMessage("Please insert value higher than 0");
 
             RuleFor(c => c.StatBaseDex)
                 .NotEmpty()
-                .WithMessage("Please provide a base dexterity");
+                .WithMessage("Please provide a base dexterity")
+                .GreaterThan(0)
+                .WithMessage("Please insert value higher than 0");
 
             RuleFor(c => c.StatBaseVitalite)
                 .NotEmpty()
-                .WithMessage("Please provide a base vitality");
+                .WithMessage("Please provide a base vitality")
+                .GreaterThan(0)
+                .WithMessage("Please insert value higher than 0");
 
             RuleFor(c => c.StatBaseInt)
-            .NotEmpty()
-            .WithMessage("Please provide a base integrity");
+                .NotEmpty()
+                .WithMessage("Please provide a base integrity")
+                .GreaterThan(0)
+                .WithMessage("Please insert value higher than 0");
 
             RuleFor(c => c.MondeId)
                 .NotEmpty()

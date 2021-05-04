@@ -1,4 +1,6 @@
-﻿using HugoWorld.BLL;
+﻿using FluentValidation.Results;
+using Hugoworld.Validators;
+using HugoWorld.BLL;
 using HugoWorld.Vue;
 using HugoWorld_Client.HL_Services;
 using System;
@@ -8,106 +10,80 @@ using System.Windows.Forms;
 namespace HugoWorld_Client.Vue {
 
     public partial class frmClassList : Form {
+        private int _Strength;
+        private int _Dexterity;
+        private int _Vitality;
+        private int _Intelligence;
+
         private readonly ClasseServiceClient classeService;
         private readonly MondeServiceClient mondeService;
+        private readonly ClasseDTOValidator classeValidator;
         private CompteJoueurDTO connectedPlayer;
 
-        public frmClassList()
-        {
+        public frmClassList() {
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.CenterScreen;
             classeService = new ClasseServiceClient();
             mondeService = new MondeServiceClient();
+            classeValidator = new ClasseDTOValidator();
             connectedPlayer = Outils.GetActiveUser();
 
             Init();
-
             SwitchMode();
         }
 
-        private void btnEditClass_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (classeDTOGridView.SelectedRows.Count > 0)
-                {
+        private void btnEditClass_Click(object sender, EventArgs e) {
+            try {
+                if (classeDTOGridView.SelectedRows.Count > 0) {
                     SwitchMode();
                     FillEditForm(classeDTOGridView.SelectedRows[0].DataBoundItem as ClasseDTO);
+                } else {
+                    Outils.ShowErrorMessage("Please choose a character!", "WARNING!");
                 }
-                else
-                {
-                    MessageBox.Show("Please choose a character!",
-                        "WARNING!", MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while modifying the class to the database\n" + ex.Message, "ERROR",
-MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            } catch (Exception) {
+                Outils.ShowErrorMessage("An error occured while modifying the class to the database", "ERROR");
             }
         }
 
-        private void btnConfirm_Click(object sender, EventArgs e)
-        {
-            int dex = 0;
-            int intel = 0;
-            int str = 0;
-            int vit = 0;
+        private void btnConfirm_Click(object sender, EventArgs e) {
 
-            if (!int.TryParse(newStatBaseDexTextBox.Text, out dex))
-            {
-                ErreurIntegerMsgBox();
-                return;
-            }
-            else if (!int.TryParse(newStatBaseIntTextBox.Text, out intel))
-            {
-                ErreurIntegerMsgBox();
-                return;
-            }
-            else if (!int.TryParse(newStatBaseStrTextBox.Text, out str))
-            {
-                ErreurIntegerMsgBox();
-                return;
-            }
-            else if (!int.TryParse(newStatBaseVitaliteTextBox.Text, out vit))
-            {
-                ErreurIntegerMsgBox();
-                return;
+            if (ValidateInput()) {
+
+                ClasseDTO classeDTO = new ClasseDTO() {
+                    Id = int.Parse(newIdLabel.Text),
+                    NomClasse = newNomClasseTextBox.Text,
+                    Description = newDescriptionTextBox.Text,
+                    StatBaseDex = _Dexterity,
+                    StatBaseInt = _Intelligence,
+                    StatBaseStr = _Strength,
+                    StatBaseVitalite = _Vitality
+                };
+
+                ValidationResult result = classeValidator.Validate(classeDTO);
+
+                if (result.IsValid) {
+                    try {
+                        classeService.EditClass(classeDTO);
+                        SwitchMode();
+                        Init();
+                    } catch (Exception) {
+                        Outils.ShowErrorMessage("An error occured while modifying the class to the database", "ERROR");
+                    }
+                } else {
+                    Outils.ShowErrorMessage(string.Join("\n", result.Errors.ToList()), "Errors");
+                }
+            } else {
+                Outils.ShowErrorMessage("Please enter valid informations.", "Errors");
             }
 
-            ClasseDTO classeDTO = new ClasseDTO()
-            {
-                Id = int.Parse(newIdLabel.Text),
-                NomClasse = newNomClasseTextBox.Text,
-                Description = newDescriptionTextBox.Text,
-                StatBaseDex = dex,
-                StatBaseInt = intel,
-                StatBaseStr = str,
-                StatBaseVitalite = vit
-            };
-
-            try
-            {
-                classeService.EditClass(classeDTO);
-                SwitchMode();
-                Init();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while modifying the class to the database\n" + ex.Message, "ERROR",
-MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-            }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
+        private void btnCancel_Click(object sender, EventArgs e) {
             SwitchMode();
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
+        private void btnCreate_Click(object sender, EventArgs e) {
             ClassCreator classCreator = new ClassCreator();
             this.Enabled = false;
             classCreator.ShowDialog();
@@ -118,46 +94,29 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             this.Enabled = true;
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            DialogResult confirmation = MessageBox.Show("Please confirm", "Confirmation",
- MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-            if (confirmation == DialogResult.Yes)
-            {
-                try
-                {
-                    if (classeDTOGridView.SelectedRows.Count > 0)
-                    {
-                        if (!classeService.DeleteClass(classeDTOGridView.SelectedRows[0].DataBoundItem as ClasseDTO))
-                        {
-                            MessageBox.Show("Heroes are bound to this class delete them before deleting the class", "ERROR",
-    MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+        private void btnDelete_Click(object sender, EventArgs e) {
+            DialogResult confirmation = Outils.ShowInfoMessage("Please confirm", "Confirmation", MessageBoxButtons.YesNo);
+
+            if (confirmation == DialogResult.Yes) {
+                try {
+                    if (classeDTOGridView.SelectedRows.Count > 0) {
+                        if (!classeService.DeleteClass(classeDTOGridView.SelectedRows[0].DataBoundItem as ClasseDTO)) {
+                            Outils.ShowErrorMessage("Heroes are bound to this class delete them before deleting the class", "ERROR");
                         }
                         Init();
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occured while modifying the class to the database\n" + ex.Message, "ERROR",
-    MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                } catch (Exception) {
+                    Outils.ShowErrorMessage("An error occured while modifying the class to the database", "ERROR");
                 }
             }
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
+        private void btnExit_Click(object sender, EventArgs e) {
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
-        private void ErreurIntegerMsgBox()
-        {
-            MessageBox.Show("Stats must be numbers!", "WARNING!", MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                    MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-        }
-
-        private void FillEditForm(ClasseDTO classeDTO)
-        {
+        private void FillEditForm(ClasseDTO classeDTO) {
             newIdLabel.Text = classeDTO.Id.ToString();
             newNomClasseTextBox.Text = classeDTO.NomClasse;
             newDescriptionTextBox.Text = classeDTO.Description;
@@ -170,10 +129,72 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             mondeDTOComboBox.Refresh();
         }
 
-        private void SwitchMode()
-        {
-            if (classeDTOGridView.Visible)
-            {
+        private void Init() {
+            try {
+                classeDTOGridView.DataSource = classeService.GetClasseDTOs();
+                classeDTOGridView.Refresh();
+
+                mondeDTOComboBox.DataSource = mondeService
+                    .GetWorldsForSelection()
+                    .ToList().Select(x => x.Id + " : " + x.Description).ToArray();
+
+                mondeDTOComboBox.Refresh();
+            } catch (Exception) {
+                Outils.ShowErrorMessage("An error occured while loading the classes", "ERROR");
+            }
+        }
+
+        #region UI Methods
+
+        private bool ValidateInput() {
+            string strValue = newStatBaseStrTextBox.Text.Trim();
+            int nValue;
+
+            if (int.TryParse(strValue, out nValue)) {
+                if (nValue < 1) {
+                    return false;
+                }
+
+                _Strength = nValue;
+            } else {
+                return false;
+            }
+
+            strValue = newStatBaseDexTextBox.Text.Trim();
+            if (int.TryParse(strValue, out nValue)) {
+                if (nValue < 1) {
+                    return false;
+                }
+                _Dexterity = nValue;
+            } else {
+                return false;
+            }
+
+            strValue = newStatBaseVitaliteTextBox.Text.Trim();
+            if (int.TryParse(strValue, out nValue)) {
+                if (nValue < 1) {
+                    return false;
+                }
+                _Vitality = nValue;
+            } else {
+                return false;
+            }
+
+            strValue = newStatBaseIntTextBox.Text.Trim();
+            if (int.TryParse(strValue, out nValue)) {
+                if (nValue < 1) {
+                    return false;
+                }
+                _Intelligence = nValue;
+            } else {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void SwitchMode() {
+            if (classeDTOGridView.Visible) {
                 // change pour modif
                 titleLabel.Text = "Class Editor";
 
@@ -201,9 +222,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
                 btnCreate.Visible = false;
                 classeDTOGridView.Visible = false;
                 Refresh();
-            }
-            else
-            {
+            } else {
                 // change pour lister
                 titleLabel.Text = "Class Selector";
 
@@ -230,8 +249,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
 
                 classeDTOGridView.Visible = true;
 
-                if (connectedPlayer.TypeUtilisateur > 0)
-                {
+                if (connectedPlayer.TypeUtilisateur > 0) {
                     btnEditClass.Visible = true;
                     btnDelete.Visible = true;
                     btnCreate.Visible = true;
@@ -241,21 +259,6 @@ MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, M
             }
         }
 
-        private void Init()
-        {
-            try
-            {
-                classeDTOGridView.DataSource = classeService.GetClasseDTOs();
-                classeDTOGridView.Refresh();
-
-                mondeDTOComboBox.DataSource = mondeService.GetWorldsForSelection().ToList().Select(x => x.Id + " : " + x.Description).ToArray();
-                mondeDTOComboBox.Refresh();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occured while loading the classes\n" + ex.Message, "ERROR",
-MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-            }
-        }
+        #endregion
     }
 }

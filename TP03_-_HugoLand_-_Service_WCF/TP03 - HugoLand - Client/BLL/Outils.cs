@@ -1,5 +1,6 @@
 ﻿using HugoWorld_Client.HL_Services;
 using System;
+using System.Windows.Forms;
 
 namespace HugoWorld.BLL {
 
@@ -42,6 +43,18 @@ namespace HugoWorld.BLL {
         public static void SetHero(HeroDTO p_hero)
         {
             _activeHero = p_hero;
+        }
+
+        public static DialogResult ShowErrorMessage(string text, string caption) {
+            return MessageBox.Show(text, caption,
+                MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+        }
+
+        public static DialogResult ShowInfoMessage(string text, string caption, MessageBoxButtons boxButton) {
+            return MessageBox.Show(text, caption, boxButton,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1,
+                MessageBoxOptions.DefaultDesktopOnly);
         }
     }
 }

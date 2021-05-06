@@ -2371,6 +2371,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/ConnectDisconnectHeroById", ReplyAction="http://tempuri.org/IHeroService/ConnectDisconnectHeroByIdResponse")]
         System.Threading.Tasks.Task ConnectDisconnectHeroByIdAsync(int p_HeroId, bool p_State);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/IsHeroAvailable", ReplyAction="http://tempuri.org/IHeroService/IsHeroAvailableResponse")]
+        bool IsHeroAvailable(int p_HeroId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/IsHeroAvailable", ReplyAction="http://tempuri.org/IHeroService/IsHeroAvailableResponse")]
+        System.Threading.Tasks.Task<bool> IsHeroAvailableAsync(int p_HeroId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2430,6 +2436,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task ConnectDisconnectHeroByIdAsync(int p_HeroId, bool p_State) {
             return base.Channel.ConnectDisconnectHeroByIdAsync(p_HeroId, p_State);
+        }
+        
+        public bool IsHeroAvailable(int p_HeroId) {
+            return base.Channel.IsHeroAvailable(p_HeroId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsHeroAvailableAsync(int p_HeroId) {
+            return base.Channel.IsHeroAvailableAsync(p_HeroId);
         }
     }
 }

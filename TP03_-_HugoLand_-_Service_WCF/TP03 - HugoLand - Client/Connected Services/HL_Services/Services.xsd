@@ -84,6 +84,7 @@
       <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:Monde" />
       <xs:element minOccurs="0" name="MondeId" type="xs:int" />
       <xs:element minOccurs="0" name="Nom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="x" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="y" nillable="true" type="xs:int" />
     </xs:sequence>
@@ -136,6 +137,7 @@
       <xs:element minOccurs="0" name="MondeId" type="xs:int" />
       <xs:element minOccurs="0" name="Niveau" type="xs:int" />
       <xs:element minOccurs="0" name="Nom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="StatDmgMax" type="xs:float" />
       <xs:element minOccurs="0" name="StatDmgMin" type="xs:float" />
       <xs:element minOccurs="0" name="StatPV" type="xs:int" />
@@ -158,6 +160,7 @@
       <xs:element minOccurs="0" name="IsBlock" type="xs:boolean" />
       <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:Monde" />
       <xs:element minOccurs="0" name="MondeId" type="xs:int" />
+      <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="TypeObjet" type="xs:int" />
       <xs:element minOccurs="0" name="x" type="xs:int" />
       <xs:element minOccurs="0" name="y" type="xs:int" />

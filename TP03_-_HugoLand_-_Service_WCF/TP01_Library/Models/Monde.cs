@@ -28,6 +28,7 @@ namespace TP01_Library.Models
         public string Description { get; set; }
         public int LimiteX { get; set; }
         public int LimiteY { get; set; }
+        public byte[] RowVersion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Classe> Classes { get; set; }

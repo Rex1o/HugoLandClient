@@ -24,6 +24,7 @@ namespace TP01_Library.Models
         public float StatDmgMax { get; set; }
         public int MondeId { get; set; }
         public int ImageId { get; set; }
+        public byte[] RowVersion { get; set; }
     
         public virtual Monde Monde { get; set; }
     }

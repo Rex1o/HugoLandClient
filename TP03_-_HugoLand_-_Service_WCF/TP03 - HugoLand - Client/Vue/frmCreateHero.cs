@@ -17,8 +17,7 @@ namespace HugoWorld_Client.Vue {
         private ClasseDTO _SelectedClass;
         public HeroDTO createdHero { get; set; }
 
-        public frmCreateHero()
-        {
+        public frmCreateHero() {
             InitializeComponent();
             classeService = new ClasseServiceClient();
             mondeService = new MondeServiceClient();
@@ -33,8 +32,7 @@ namespace HugoWorld_Client.Vue {
             UpdateUI();
         }
 
-        private void btnReroll_Click(object sender, EventArgs e)
-        {
+        private void btnReroll_Click(object sender, EventArgs e) {
             _BaseStrength = _rnd.Next(0, 21);
             _BaseDexterity = _rnd.Next(0, 21);
             _BaseVitality = _rnd.Next(0, 21);
@@ -42,15 +40,12 @@ namespace HugoWorld_Client.Vue {
             UpdateUI();
         }
 
-        private void cmbClasse_SelectedValueChanged(object sender, EventArgs e)
-        {
+        private void cmbClasse_SelectedValueChanged(object sender, EventArgs e) {
             UpdateUI();
         }
 
-        private void cmbWorld_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (cmbWorld.SelectedItem != null)
-            {
+        private void cmbWorld_SelectedValueChanged(object sender, EventArgs e) {
+            if (cmbWorld.SelectedItem != null) {
                 var item = cmbWorld.SelectedItem as MondeDTO;
 
                 cmbClasse.DataSource = classeService.GetClassDTOFromMap(item.Id).ToList();
@@ -59,12 +54,10 @@ namespace HugoWorld_Client.Vue {
             }
         }
 
-        private void btnCreateHero_Click(object sender, EventArgs e)
-        {
+        private void btnCreateHero_Click(object sender, EventArgs e) {
             CompteJoueurDTO activeAccount = Outils.GetActiveUser();
 
-            HeroDTO newHero = new HeroDTO()
-            {
+            HeroDTO newHero = new HeroDTO() {
                 CompteJoueurId = activeAccount.Id,
                 x = 8,
                 y = 8,
@@ -79,15 +72,12 @@ namespace HugoWorld_Client.Vue {
                 MondeId = _SelectedClass.MondeId
             };
 
-            try
-            {
+            try {
                 heroService.AddHeroToDataBase(newHero);
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
                 Outils.ShowErrorMessage("An error occured while adding the class to the database", "ERROR");
             }
         }
@@ -99,17 +89,12 @@ namespace HugoWorld_Client.Vue {
 
         #region UI Methods
 
-        private void UpdateUI()
-        {
-            if (string.IsNullOrEmpty(cmbClasse.Text))
-            {
+        private void UpdateUI() {
+            if (string.IsNullOrEmpty(cmbClasse.Text)) {
                 btnCreateHero.Enabled = false;
-            }
-            else
-            {
+            } else {
                 _SelectedClass = cmbClasse.SelectedItem as ClasseDTO;
-                if (_SelectedClass != null)
-                {
+                if (_SelectedClass != null) {
                     _TotalStrength = _BaseStrength + _SelectedClass.StatBaseStr;
                     _TotalDexterity = _BaseDexterity + _SelectedClass.StatBaseDex;
                     _TotalVitality = _BaseVitality + _SelectedClass.StatBaseVitalite;
@@ -128,8 +113,7 @@ namespace HugoWorld_Client.Vue {
             }
         }
 
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
+        private void txtName_TextChanged(object sender, EventArgs e) {
             UpdateUI();
         }
 

@@ -166,6 +166,12 @@
   <wsdl:message name="IHeroService_DeleteHeroById_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteHeroByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IHeroService_ConnectDisconnectHeroById_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectDisconnectHeroById" />
+  </wsdl:message>
+  <wsdl:message name="IHeroService_ConnectDisconnectHeroById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectDisconnectHeroByIdResponse" />
+  </wsdl:message>
   <wsdl:portType name="IJoueurService">
     <wsdl:operation name="Connection">
       <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/Connection" message="tns:IJoueurService_Connection_InputMessage" />
@@ -280,6 +286,10 @@
     <wsdl:operation name="DeleteHeroById">
       <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/DeleteHeroById" message="tns:IHeroService_DeleteHeroById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHeroService/DeleteHeroByIdResponse" message="tns:IHeroService_DeleteHeroById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConnectDisconnectHeroById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/ConnectDisconnectHeroById" message="tns:IHeroService_ConnectDisconnectHeroById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroService/ConnectDisconnectHeroByIdResponse" message="tns:IHeroService_ConnectDisconnectHeroById_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IJoueurService" type="tns:IJoueurService">
@@ -526,6 +536,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteHeroById">
       <soap:operation soapAction="http://tempuri.org/IHeroService/DeleteHeroById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectDisconnectHeroById">
+      <soap:operation soapAction="http://tempuri.org/IHeroService/ConnectDisconnectHeroById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

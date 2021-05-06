@@ -29,6 +29,7 @@ namespace TP01_Library.Models
         public int MondeId { get; set; }
         public Nullable<int> IdHero { get; set; }
         public int ImageId { get; set; }
+        public byte[] RowVersion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EffetItem> EffetItems { get; set; }

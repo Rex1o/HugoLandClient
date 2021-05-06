@@ -81,6 +81,7 @@
           <Property Name="MondeId" Type="int" Nullable="false" />
           <Property Name="IdHero" Type="int" />
           <Property Name="ImageId" Type="int" Nullable="false" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <EntityType Name="Mondes">
           <Key>
@@ -90,6 +91,7 @@
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="LimiteX" Type="int" Nullable="false" />
           <Property Name="LimiteY" Type="int" Nullable="false" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <EntityType Name="Monstres">
           <Key>
@@ -105,6 +107,7 @@
           <Property Name="StatDmgMax" Type="real" Nullable="false" />
           <Property Name="MondeId" Type="int" Nullable="false" />
           <Property Name="ImageId" Type="int" Nullable="false" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <EntityType Name="ObjetMondes">
           <Key>
@@ -118,6 +121,7 @@
           <Property Name="MondeId" Type="int" Nullable="false" />
           <Property Name="ImageId" Type="int" Nullable="false" />
           <Property Name="IsBlock" Type="bit" Nullable="false" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -466,6 +470,7 @@
           <NavigationProperty Name="Hero" Relationship="Self.FK_Item_Heros" FromRole="Items" ToRole="Heros" />
           <NavigationProperty Name="InventaireHeroes" Relationship="Self.FK_BelongsToItem" FromRole="Items" ToRole="InventaireHeroes" />
           <NavigationProperty Name="Monde" Relationship="Self.FK_Item_Monde" FromRole="Items" ToRole="Mondes" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
         </EntityType>
         <EntityType Name="Monde">
           <Key>
@@ -480,6 +485,7 @@
           <NavigationProperty Name="Items" Relationship="Self.FK_Item_Monde" FromRole="Mondes" ToRole="Items" />
           <NavigationProperty Name="Monstres" Relationship="Self.FK_Monstre_Monde" FromRole="Mondes" ToRole="Monstres" />
           <NavigationProperty Name="ObjetMondes" Relationship="Self.FK_ObjetMonde_Monde" FromRole="Mondes" ToRole="ObjetMondes" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
         </EntityType>
         <EntityType Name="Monstre">
           <Key>
@@ -496,6 +502,7 @@
           <Property Name="MondeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Monde" Relationship="Self.FK_Monstre_Monde" FromRole="Monstres" ToRole="Mondes" />
           <Property Name="ImageId" Type="Int32" Nullable="false" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
         </EntityType>
         <EntityType Name="ObjetMonde">
           <Key>
@@ -510,6 +517,7 @@
           <Property Name="ImageId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Monde" Relationship="Self.FK_ObjetMonde_Monde" FromRole="ObjetMondes" ToRole="Mondes" />
           <Property Name="IsBlock" Type="Boolean" Nullable="false" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -851,6 +859,7 @@
           <EntitySetMapping Name="Items">
             <EntityTypeMapping TypeName="HugoLand.Item">
               <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -865,6 +874,7 @@
           <EntitySetMapping Name="Mondes">
             <EntityTypeMapping TypeName="HugoLand.Monde">
               <MappingFragment StoreEntitySet="Mondes">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="LimiteX" ColumnName="LimiteX" />
@@ -875,6 +885,7 @@
           <EntitySetMapping Name="Monstres">
             <EntityTypeMapping TypeName="HugoLand.Monstre">
               <MappingFragment StoreEntitySet="Monstres">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="ImageId" ColumnName="ImageId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nom" ColumnName="Nom" />
@@ -891,6 +902,7 @@
           <EntitySetMapping Name="ObjetMondes">
             <EntityTypeMapping TypeName="HugoLand.ObjetMonde">
               <MappingFragment StoreEntitySet="ObjetMondes">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="x" ColumnName="x" />

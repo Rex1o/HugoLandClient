@@ -14,5 +14,8 @@ namespace HugoWorld_WCF.Services {
 
         [OperationContract]
         bool DeleteHeroById(int p_HeroId);
+
+        [OperationContract]
+        void ConnectDisconnectHeroById(int p_HeroId, bool p_State);
     }
 }

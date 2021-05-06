@@ -28,6 +28,7 @@ namespace HugoWorld
 
     public class World : GameObject
     {
+        ItemServiceClient ItemService = new ItemServiceClient();
         private const string _startArea = "CurrentChunk";
 
         //private Dictionary<string, Area> _world = new Dictionary<string, Area>();
@@ -264,7 +265,12 @@ namespace HugoWorld
 
         private void checkObjects()
         {
-            Tile objectTile = _currentArea.Map[_heroPosition.X, _heroPosition.Y].ObjectTile;
+            MapTile tile = _currentArea.Map[_heroPosition.X, _heroPosition.Y];
+
+            Tile objectTile = tile.ObjectTile;
+
+
+
             if (objectTile == null)
                 return;
             switch (objectTile.Category)
@@ -272,12 +278,31 @@ namespace HugoWorld
                 //Most objects change your stats in some way.
                 case "armour":
                     _gameState.Armour++;
+
                     Sounds.Pickup();
                     break;
 
                 case "attack":
-                    _gameState.Attack++;
-                    Sounds.Pickup();
+
+                    TileImport t = tile.TileImport;
+                    ItemDTO dto = new ItemDTO()
+                    {
+                        Id = t.ID,
+                        Nom = t.Name,
+                        Description = t.Description,
+                        x = t.x,
+                        y = t.y,
+                        MondeId = _monde.Id,
+                        IdHero = _hero.Id,
+                        ImageId = int.Parse(t.tileID),
+                        RowVersion = t.RowVersion
+                    };
+
+                    if (ItemService.PickUpItem(dto) != null)
+                    {
+                        _gameState.Attack++;
+                        Sounds.Pickup();
+                    }
                     break;
 
                 case "food":
@@ -423,8 +448,7 @@ namespace HugoWorld
                         break;
 
                     case Keys.Left:
-                        if (_hero.x > 0)
-                        {
+                         
                             //Are we at the edge of the map?
                             if (_heroPosition.X > 0)
                             {
@@ -457,7 +481,7 @@ namespace HugoWorld
                                     }
                                 }
                             }
-                        }
+                        
                         break;
 
                     case Keys.Up:
@@ -539,7 +563,8 @@ namespace HugoWorld
                         break;
                     case Keys.P:
                         //Potion - if we have any
-                        if (_gameState.Potions > 0) {
+                        if (_gameState.Potions > 0)
+                        {
                             Sounds.Magic();
 
                             _gameState.Potions--;
@@ -549,10 +574,13 @@ namespace HugoWorld
 
                             //All monsters on the screen take maximum damage
                             _popups.Clear();
-                            for (int i = 0; i < Area.MapSizeX; i++) {
-                                for (int j = 0; j < Area.MapSizeY; j++) {
+                            for (int i = 0; i < Area.MapSizeX; i++)
+                            {
+                                for (int j = 0; j < Area.MapSizeY; j++)
+                                {
                                     MapTile mapTile = _currentArea.Map[i, j];
-                                    if (mapTile.ObjectTile != null && mapTile.ObjectTile.Category == "character") {
+                                    if (mapTile.ObjectTile != null && mapTile.ObjectTile.Category == "character")
+                                    {
                                         damageMonster(_gameState.Attack * 2, mapTile, i, j);
                                     }
                                 }

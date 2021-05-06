@@ -8,9 +8,11 @@
   <xs:element name="ArrayOfTileImport" nillable="true" type="tns:ArrayOfTileImport" />
   <xs:complexType name="TileImport">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Health" type="xs:int" />
       <xs:element minOccurs="0" name="ID" type="xs:int" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="Type" type="tns:TypeTile" />
       <xs:element minOccurs="0" name="maxDMG" type="xs:int" />
       <xs:element minOccurs="0" name="minDMG" type="xs:int" />

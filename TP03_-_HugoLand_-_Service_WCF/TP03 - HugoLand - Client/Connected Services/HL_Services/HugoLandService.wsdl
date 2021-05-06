@@ -130,6 +130,12 @@
   <wsdl:message name="IItemService_ConvertToObjetMondeDTOs_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConvertToObjetMondeDTOsResponse" />
   </wsdl:message>
+  <wsdl:message name="IItemService_PickUpItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:PickUpItem" />
+  </wsdl:message>
+  <wsdl:message name="IItemService_PickUpItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PickUpItemResponse" />
+  </wsdl:message>
   <wsdl:message name="ITileImgService_MonstreToTile_InputMessage">
     <wsdl:part name="parameters" element="tns:MonstreToTile" />
   </wsdl:message>
@@ -270,6 +276,10 @@
     <wsdl:operation name="ConvertToObjetMondeDTOs">
       <wsdl:input wsaw:Action="http://tempuri.org/IItemService/ConvertToObjetMondeDTOs" message="tns:IItemService_ConvertToObjetMondeDTOs_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IItemService/ConvertToObjetMondeDTOsResponse" message="tns:IItemService_ConvertToObjetMondeDTOs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PickUpItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IItemService/PickUpItem" message="tns:IItemService_PickUpItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IItemService/PickUpItemResponse" message="tns:IItemService_PickUpItem_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ITileImgService">
@@ -496,6 +506,15 @@
     </wsdl:operation>
     <wsdl:operation name="ConvertToObjetMondeDTOs">
       <soap:operation soapAction="http://tempuri.org/IItemService/ConvertToObjetMondeDTOs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PickUpItem">
+      <soap:operation soapAction="http://tempuri.org/IItemService/PickUpItem" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

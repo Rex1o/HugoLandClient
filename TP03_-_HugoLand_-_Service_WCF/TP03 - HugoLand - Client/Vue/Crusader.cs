@@ -1,4 +1,5 @@
 using HugoWorld.BLL;
+using HugoWorld_Client.HL_Services;
 using HugoWorld_Client.Vue;
 using System;
 using System.Diagnostics;
@@ -58,18 +59,21 @@ namespace HugoWorld {
 
         private void Crusader_KeyDown(object sender, KeyEventArgs e) {
 
-            if (e.KeyCode == Keys.M) {
+            if (e.KeyCode == Keys.Escape) {
                 DialogResult result = Outils.ShowInfoMessage("Do you wish to return to the main menu? Your progress will be automatically saved and you will be disconnected from the game.", "Warning!", MessageBoxButtons.YesNo);
 
                 if (result == DialogResult.Yes) {
                     this.Enabled = false;
-                    frmMenu menu = new frmMenu();
-                    menu.Show();
+                    _gameState.KeyDown(e.KeyCode);
+
+                    HeroServiceClient heroService = new HeroServiceClient();
+                    heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, false);
+
+                    ShowMenu();
                 }
+            } else {
+                _gameState.KeyDown(e.KeyCode);
             }
-
-            _gameState.KeyDown(e.KeyCode);
-
         }
 
         private void Crusader_Shown(object sender, EventArgs e) {
@@ -91,7 +95,10 @@ namespace HugoWorld {
                     Login.ShowDialog();
             }
 
-            // Show MainMenu
+            ShowMenu();
+        }
+
+        private void ShowMenu() {
             frmMenu menu = new frmMenu();
             menu.ShowDialog();
 
@@ -115,6 +122,10 @@ namespace HugoWorld {
                 help.Show();
                 help.Focus();
             }
+        }
+
+        private void HugoWorld_FormClosing(object sender, FormClosingEventArgs e) {
+            // save 
         }
     }
 }

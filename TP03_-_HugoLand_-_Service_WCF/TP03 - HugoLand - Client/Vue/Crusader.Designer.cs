@@ -44,8 +44,9 @@ namespace HugoWorld
             this.MaximizeBox = false;
             this.Name = "HugoWorld";
             this.Text = "HugoWorld";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Crusader_Paint);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HugoWorld_FormClosing);
             this.Shown += new System.EventHandler(this.Crusader_Shown);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Crusader_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Crusader_KeyDown);
             this.ResumeLayout(false);
 

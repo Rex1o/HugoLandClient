@@ -537,8 +537,29 @@ namespace HugoWorld
                             }
                         }
                         break;
+                    case Keys.P:
+                        //Potion - if we have any
+                        if (_gameState.Potions > 0) {
+                            Sounds.Magic();
 
-                    case Keys.M:
+                            _gameState.Potions--;
+
+                            _heroSpriteFighting = true;
+                            _startFightTime = -1;
+
+                            //All monsters on the screen take maximum damage
+                            _popups.Clear();
+                            for (int i = 0; i < Area.MapSizeX; i++) {
+                                for (int j = 0; j < Area.MapSizeY; j++) {
+                                    MapTile mapTile = _currentArea.Map[i, j];
+                                    if (mapTile.ObjectTile != null && mapTile.ObjectTile.Category == "character") {
+                                        damageMonster(_gameState.Attack * 2, mapTile, i, j);
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case Keys.Escape:
                         _hero.EstConnecte = false;
                         // save content hero (items, monstres, vie hero, etc)
 

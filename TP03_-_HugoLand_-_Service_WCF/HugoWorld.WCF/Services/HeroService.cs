@@ -55,10 +55,25 @@ namespace HugoWorld_WCF.Services {
         public void ConnectDisconnectHeroById(int p_HeroId, bool p_State) {
             using (HugoLandContext dbContext = new HugoLandContext()) {
                 Hero h = dbContext.Heros.Find(p_HeroId);
+
                 h.EstConnecte = p_State;
                 dbContext.SaveChanges();
             }
         }
 
+        public bool IsHeroAvailable(int p_HeroId) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
+                Hero h = dbContext.Heros.Find(p_HeroId);
+
+                if (h != null) {
+                    if (h.EstConnecte)
+                        return false;
+                    else
+                        return true;
+                }
+
+                return false;
+            }
+        }
     }
 }

@@ -47,7 +47,7 @@ namespace HugoWorld.Vue {
                     // Start game with selected hero
                     Hero = herosDataGridView.SelectedRows[0].DataBoundItem as HeroDTO;
                     RefreshData();
-                    if (!heroService.IsHeroAvailable(Hero.Id)) {
+                    if (heroService.IsHeroAvailable(Hero.Id)) {
                         Outils.ShowInfoMessage("A player is currently connected to this Hero. Please choose another Hero that isn't connected.", "Warning!", MessageBoxButtons.OK);
                         RefreshData();
                     } else {
@@ -71,7 +71,6 @@ namespace HugoWorld.Vue {
         private void btnDelete_Click(object sender, EventArgs e) {
             if (herosDataGridView.SelectedRows.Count > 0) {
                 int heroId = ((HeroDTO)herosDataGridView.SelectedRows[0].DataBoundItem).Id;
-
                 if (heroService.IsHeroAvailable(heroId)) {
                     DialogResult confirmation = Outils.ShowInfoMessage("Please confirm", "Confirmation", MessageBoxButtons.YesNo);
                     if (confirmation == DialogResult.Yes) {

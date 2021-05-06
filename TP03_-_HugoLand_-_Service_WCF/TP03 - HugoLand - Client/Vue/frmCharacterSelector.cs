@@ -57,8 +57,8 @@ namespace HugoWorld.Vue {
                         //    heroService.ConnectDisconnectHeroById(Hero.Id, true);
                         //    Hero.EstConnecte = true;
                         //    RefreshData();
-                        //    this.DialogResult = DialogResult.OK;
-                        //    this.Close();
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
                     } else {
                         Outils.ShowInfoMessage("A player is currently connected to this Hero. Please choose another Hero that isn't connected.", "Warning!", MessageBoxButtons.OK);
                         RefreshData();

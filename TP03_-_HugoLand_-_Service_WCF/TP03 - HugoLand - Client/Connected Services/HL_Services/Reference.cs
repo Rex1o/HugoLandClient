@@ -2276,6 +2276,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITileImgService/ObjetMondeToTile", ReplyAction="http://tempuri.org/ITileImgService/ObjetMondeToTileResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport> ObjetMondeToTileAsync(HugoWorld_Client.HL_Services.ObjetMondeDTO objet);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITileImgService/GetTileAt", ReplyAction="http://tempuri.org/ITileImgService/GetTileAtResponse")]
+        HugoWorld_Client.HL_Services.TileImport GetTileAt(int x, int y, int mondeId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITileImgService/GetTileAt", ReplyAction="http://tempuri.org/ITileImgService/GetTileAtResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport> GetTileAtAsync(int x, int y, int mondeId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2327,6 +2333,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport> ObjetMondeToTileAsync(HugoWorld_Client.HL_Services.ObjetMondeDTO objet) {
             return base.Channel.ObjetMondeToTileAsync(objet);
+        }
+        
+        public HugoWorld_Client.HL_Services.TileImport GetTileAt(int x, int y, int mondeId) {
+            return base.Channel.GetTileAt(x, y, mondeId);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport> GetTileAtAsync(int x, int y, int mondeId) {
+            return base.Channel.GetTileAtAsync(x, y, mondeId);
         }
     }
     

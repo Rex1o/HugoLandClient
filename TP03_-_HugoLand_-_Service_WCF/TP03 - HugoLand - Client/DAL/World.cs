@@ -7,10 +7,12 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace HugoWorld {
+namespace HugoWorld
+{
 
     //Textpop up used to display damage when monsters and players are hit
-    internal struct textPopup {
+    internal struct textPopup
+    {
         public int X;
         public int Y;
         public string Text;
@@ -23,7 +25,8 @@ namespace HugoWorld {
         }
     }
 
-    public class World : GameObject {
+    public class World : GameObject
+    {
         private const string _startArea = "CurrentChunk";
 
         //private Dictionary<string, Area> _world = new Dictionary<string, Area>();
@@ -350,6 +353,7 @@ namespace HugoWorld {
             //Ignore keypresses while we are animating or fighting
             if (!_heroSpriteAnimating && !_heroSpriteFighting)
             {
+                TileImgServiceClient service = new TileImgServiceClient();
                 switch (key)
                 {
                     case Keys.Right:
@@ -373,15 +377,18 @@ namespace HugoWorld {
                         else if (_currentArea.EastArea != "-")
                         {
                             //Edge of map - move to next area
-                            LoadChunk(_hero.x + 1);
-                            //_currentArea = _world[_currentArea.EastArea];
-                            if (_currentArea.EastArea == "OK")
+                            if (checkNextTile(new MapTile(service.GetTileAt(_hero.x + 1, _hero.y, _monde.Id), _tiles), _heroPosition.X + 1, _heroPosition.Y))
                             {
-                                _heroPosition.X = 0;
-                                _hero.x++;
-                                SaveHeroPos();
-                                setDestination();
-                                _heroSprite.Location = _heroDestination;
+                                LoadChunk(_hero.x + 1);
+                                //_currentArea = _world[_currentArea.EastArea];
+                                if (_currentArea.EastArea == "OK")
+                                {
+                                    _heroPosition.X = 0;
+                                    _hero.x++;
+                                    SaveHeroPos();
+                                    setDestination();
+                                    _heroSprite.Location = _heroDestination;
+                                }
                             }
                         }
                         break;
@@ -405,15 +412,18 @@ namespace HugoWorld {
                         }
                         else if (_currentArea.WestArea != "-")
                         {
-                            LoadChunk(_hero.x - 1);
-                            //_currentArea = _world[_currentArea.WestArea];
-                            if (_currentArea.WestArea == "OK")
+                            if (checkNextTile(new MapTile(service.GetTileAt(_hero.x - 1, _hero.y, _monde.Id), _tiles), _heroPosition.X - 1, _heroPosition.Y))
                             {
-                                _heroPosition.X = Area.MapSizeX - 1;
-                                _hero.x--;
-                                SaveHeroPos();
-                                setDestination();
-                                _heroSprite.Location = _heroDestination;
+                                LoadChunk(_hero.x - 1);
+                                //_currentArea = _world[_currentArea.WestArea];
+                                if (_currentArea.WestArea == "OK")
+                                {
+                                    _heroPosition.X = Area.MapSizeX - 1;
+                                    _hero.x--;
+                                    SaveHeroPos();
+                                    setDestination();
+                                    _heroSprite.Location = _heroDestination;
+                                }
                             }
                         }
                         break;
@@ -436,16 +446,19 @@ namespace HugoWorld {
                         }
                         else if (_currentArea.NorthArea != "-")
                         {
-                            //Edge of map - move to next area
-                            LoadChunk(-1, _hero.y - 1);
-                            if (_currentArea.NorthArea == "OK")
+                            if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y - 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y - 1))
                             {
-                                //_currentArea = _world[_currentArea.NorthArea];
-                                _heroPosition.Y = Area.MapSizeY - 1;
-                                _hero.y--;
-                                SaveHeroPos();
-                                setDestination();
-                                _heroSprite.Location = _heroDestination;
+                                //Edge of map - move to next area
+                                LoadChunk(-1, _hero.y - 1);
+                                if (_currentArea.NorthArea == "OK")
+                                {
+                                    //_currentArea = _world[_currentArea.NorthArea];
+                                    _heroPosition.Y = Area.MapSizeY - 1;
+                                    _hero.y--;
+                                    SaveHeroPos();
+                                    setDestination();
+                                    _heroSprite.Location = _heroDestination;
+                                }
                             }
                         }
                         break;
@@ -469,15 +482,18 @@ namespace HugoWorld {
                         else if (_currentArea.SouthArea != "-")
                         {
                             //Edge of map - move to next area
-                            LoadChunk(-1, _hero.y + 1);
-                            if (_currentArea.SouthArea == "OK")
+                            if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y + 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y + 1))
                             {
-                                //_currentArea = _world[_currentArea.SouthArea];
-                                _heroPosition.Y = 0;
-                                _hero.y++;
-                                SaveHeroPos();
-                                setDestination();
-                                _heroSprite.Location = _heroDestination;
+                                LoadChunk(-1, _hero.y + 1);
+                                if (_currentArea.SouthArea == "OK")
+                                {
+                                    //_currentArea = _world[_currentArea.SouthArea];
+                                    _heroPosition.Y = 0;
+                                    _hero.y++;
+                                    SaveHeroPos();
+                                    setDestination();
+                                    _heroSprite.Location = _heroDestination;
+                                }
                             }
                         }
                         break;
@@ -653,7 +669,8 @@ namespace HugoWorld {
                                             _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY);
         }
 
-        private enum HeroDirection {
+        private enum HeroDirection
+        {
             Left,
             Right,
             Up,

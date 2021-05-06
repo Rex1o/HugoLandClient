@@ -13,5 +13,9 @@ namespace HugoWorld_WCF.Services {
 
         [OperationContract]
         Models.TileImport ObjetMondeToTile(DTOs.ObjetMondeDTO objet);
+
+        [OperationContract]
+        Models.TileImport GetTileAt(int x, int y, int mondeId);
+
     }
 }

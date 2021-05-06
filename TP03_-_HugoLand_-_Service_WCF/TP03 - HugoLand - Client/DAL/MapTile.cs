@@ -1,4 +1,5 @@
 using HugoWorld_Client.HL_Services;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace HugoWorld {
@@ -18,6 +19,36 @@ namespace HugoWorld {
         public int GlobalX;
         public int GlobalY;
         public int ObjectHealth; //A copy of the health of the tile so we remember how damage monsters are
+
+        public MapTile() { }
+
+        public MapTile(TileImport t, Dictionary<string, Tile> tiles)
+        {
+            if (t.Type == TypeTile.Item || t.Type == TypeTile.Monstre)
+            {
+                ObjectTile = tiles[t.tileID];
+                SetObjectSprite(t.x % 8, t.y % 8);
+                Tile = tiles["17"];
+            }
+            else
+                Tile = tiles[t.tileID];
+
+            if (Tile != null)
+            {
+                SetSprite(t.x % 8, t.y % 8);
+                if (ObjectTile?.IsTransparent ?? false)
+                {
+                    ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
+                }
+            }
+
+            GlobalX = t.x;
+            GlobalY = t.y;
+
+            TileImport = t;
+        }
+
+
 
         public void SetSprite(int x, int y)
         {

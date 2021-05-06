@@ -317,10 +317,26 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetTileAt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="x" type="xs:int" />
+        <xs:element minOccurs="0" name="y" type="xs:int" />
+        <xs:element minOccurs="0" name="mondeId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTileAtResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.Models" minOccurs="0" name="GetTileAtResult" nillable="true" type="q37:TileImport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddHeroToDataBase">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="p_heroDTO" nillable="true" type="q37:HeroDTO" />
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="p_heroDTO" nillable="true" type="q38:HeroDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

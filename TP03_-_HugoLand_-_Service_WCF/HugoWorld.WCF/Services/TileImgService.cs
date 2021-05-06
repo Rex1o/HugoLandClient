@@ -1,5 +1,7 @@
 ﻿using HugoWorld_WCF.DTOs;
 using HugoWorld_WCF.Models;
+using System.Linq;
+using TP01_Library.Models;
 
 namespace HugoWorld_WCF.Services {
 
@@ -42,6 +44,32 @@ namespace HugoWorld_WCF.Services {
             tile.x = objet.x;
             tile.y = objet.y;
             return tile;
+        }
+
+        public TileImport GetTileAt(int x, int y, int mondeId)
+        {
+            using (HugoLandContext context = new HugoLandContext())
+            {
+                Monstre ms = context.Monstres.FirstOrDefault(m => m.x == x && m.y == y && m.MondeId == mondeId);
+                if (ms != null)
+                {
+                    return MonstreToTile(new MonstreDTO(ms));
+                }
+
+                ObjetMonde obj = context.ObjetMondes.FirstOrDefault(o => o.x == x && o.y == y && o.MondeId == mondeId);
+                if(obj != null)
+                {
+                    return ObjetMondeToTile(new ObjetMondeDTO(obj));
+                }
+
+                Item it = context.Items.FirstOrDefault(i => i.x == x && i.y == y && i.MondeId == mondeId);
+                if(it != null)
+                {
+                    return ItemToTile(new ItemDTO(it));
+                }
+
+                return null;
+            }
         }
     }
 }

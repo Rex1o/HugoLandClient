@@ -67,9 +67,9 @@ namespace HugoWorld_WCF.Services {
 
                 if (h != null) {
                     if (h.EstConnecte)
-                        return true;
-                    else
                         return false;
+                    else
+                        return true;
                 }
 
                 return false;

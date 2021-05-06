@@ -69,6 +69,7 @@
     <Compile Include="DTOs\MondeDTO.cs" />
     <Compile Include="DTOs\MonstreDTO.cs" />
     <Compile Include="DTOs\ObjetMondeDTO.cs" />
+    <Compile Include="Models\DTOtoReg.cs" />
     <Compile Include="Models\TileImport.cs" />
     <Compile Include="Models\TypeTyle.cs" />
     <Compile Include="Services\ClasseService.cs" />

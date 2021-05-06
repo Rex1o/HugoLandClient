@@ -14,7 +14,8 @@ namespace HugoWorld_WCF.Models {
         public string tileID;
         public int x;
         public int y;
-
+        public string Description;
+        public byte[] RowVersion;
         static public TileImport ItemToTile(ItemDTO item)
         {
             TileImport tile = new TileImport();
@@ -24,6 +25,8 @@ namespace HugoWorld_WCF.Models {
             tile.tileID = item.ImageId.ToString();
             tile.x = item.x ?? -1;
             tile.y = item.y ?? -1;
+            tile.Description = item.Description;
+            tile.RowVersion = item.RowVersion;
             return tile;
         }
 

@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using TP01_Library.Models;
+using HugoWorld_WCF.Models;
+using System.Data.Entity;
 
-namespace HugoWorld_WCF.Services {
+namespace HugoWorld_WCF.Services
+{
 
-    public partial class HugoLandService : IItemService {
+    public partial class HugoLandService : IItemService
+    {
 
         public List<ItemDTO> ConvertToItemsDTOs(ICollection<Item> items)
         {
@@ -54,6 +58,29 @@ namespace HugoWorld_WCF.Services {
             List<ObjetMondeDTO> objetMondesDTOS = new List<ObjetMondeDTO>();
             _objetMondes.ForEach(s => objetMondesDTOS.Add(new ObjetMondeDTO(s)));
             return objetMondesDTOS;
+        }
+
+        public ItemDTO PickUpItem(ItemDTO dto)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+
+                Item item = DTOtoReg.DTOToItem(dto);
+
+                dbContext.Entry(item).State = EntityState.Modified;
+                try
+                {
+                    dbContext.SaveChanges();
+                    return new ItemDTO(item);
+                }
+                catch (System.Exception)
+                {
+
+                    return null;
+                }
+
+
+            }
         }
     }
 }

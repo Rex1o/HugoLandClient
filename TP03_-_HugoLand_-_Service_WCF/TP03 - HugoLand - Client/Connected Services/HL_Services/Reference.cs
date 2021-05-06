@@ -982,6 +982,9 @@ namespace HugoWorld_Client.HL_Services {
         private string NomField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] RowVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> xField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1123,6 +1126,19 @@ namespace HugoWorld_Client.HL_Services {
                 if ((object.ReferenceEquals(this.NomField, value) != true)) {
                     this.NomField = value;
                     this.RaisePropertyChanged("Nom");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] RowVersion {
+            get {
+                return this.RowVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
+                    this.RowVersionField = value;
+                    this.RaisePropertyChanged("RowVersion");
                 }
             }
         }
@@ -1660,6 +1676,9 @@ namespace HugoWorld_Client.HL_Services {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int HealthField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1667,6 +1686,9 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] RowVersionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private HugoWorld_Client.HL_Services.TypeTile TypeField;
@@ -1693,6 +1715,19 @@ namespace HugoWorld_Client.HL_Services {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
             }
         }
         
@@ -1731,6 +1766,19 @@ namespace HugoWorld_Client.HL_Services {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] RowVersion {
+            get {
+                return this.RowVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
+                    this.RowVersionField = value;
+                    this.RaisePropertyChanged("RowVersion");
                 }
             }
         }
@@ -2185,6 +2233,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/ConvertToObjetMondeDTOs", ReplyAction="http://tempuri.org/IItemService/ConvertToObjetMondeDTOsResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ObjetMondeDTO[]> ConvertToObjetMondeDTOsAsync(TP01_Library.Models.ObjetMonde[] objetMondes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/PickUpItem", ReplyAction="http://tempuri.org/IItemService/PickUpItemResponse")]
+        HugoWorld_Client.HL_Services.ItemDTO PickUpItem(HugoWorld_Client.HL_Services.ItemDTO item);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/PickUpItem", ReplyAction="http://tempuri.org/IItemService/PickUpItemResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ItemDTO> PickUpItemAsync(HugoWorld_Client.HL_Services.ItemDTO item);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2252,6 +2306,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ObjetMondeDTO[]> ConvertToObjetMondeDTOsAsync(TP01_Library.Models.ObjetMonde[] objetMondes) {
             return base.Channel.ConvertToObjetMondeDTOsAsync(objetMondes);
+        }
+        
+        public HugoWorld_Client.HL_Services.ItemDTO PickUpItem(HugoWorld_Client.HL_Services.ItemDTO item) {
+            return base.Channel.PickUpItem(item);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ItemDTO> PickUpItemAsync(HugoWorld_Client.HL_Services.ItemDTO item) {
+            return base.Channel.PickUpItemAsync(item);
         }
     }
     

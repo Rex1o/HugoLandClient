@@ -84,6 +84,7 @@
       <xs:element minOccurs="0" name="Monde" nillable="true" type="tns:MondeDTO" />
       <xs:element minOccurs="0" name="MondeId" type="xs:int" />
       <xs:element minOccurs="0" name="Nom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RowVersion" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="x" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="y" nillable="true" type="xs:int" />
     </xs:sequence>

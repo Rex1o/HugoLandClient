@@ -448,8 +448,7 @@ namespace HugoWorld
                         break;
 
                     case Keys.Left:
-                        if (_hero.x > 0)
-s                        {
+                         
                             //Are we at the edge of the map?
                             if (_heroPosition.X > 0)
                             {
@@ -482,7 +481,7 @@ s                        {
                                     }
                                 }
                             }
-                        }
+                        
                         break;
 
                     case Keys.Up:

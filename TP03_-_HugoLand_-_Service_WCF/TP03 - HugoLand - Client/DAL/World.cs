@@ -78,6 +78,8 @@ namespace HugoWorld
 
         public void Clear()
         {
+
+
             //Vide l'écran du joueur
             _heroSprite = new Sprite(null, _heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX, _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY, _tiles["82"].Bitmap, _tiles["82"].Rectangle, _tiles["82"].NumberOfFrames);
             _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);

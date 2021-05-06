@@ -114,7 +114,7 @@ namespace HugoWorld {
                 //Then Show help/Start game
                 this.Enabled = true;
                 this.Show();
-
+                _gameState = new GameState(ClientSize);
                 connected = true;
                 initialize();
                 Form help = new helpform();

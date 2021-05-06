@@ -77,6 +77,31 @@ namespace HugoWorld
             _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
         }
 
+        public void Clear()
+        {
+            //Vide l'écran du joueur
+            _heroSprite = new Sprite(null, _heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX, _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY, _tiles["82"].Bitmap, _tiles["82"].Rectangle, _tiles["82"].NumberOfFrames);
+            _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+            for (int i = 0; i < _currentArea.Map.GetLength(0); i++)
+            {
+                for (int j = 0; j < _currentArea.Map.GetLength(1); j++)
+                {
+                    _currentArea.Map[i, j].Sprite = new Sprite(null, 0, 0, _tiles["82"].Bitmap, _tiles["82"].Rectangle, _tiles["82"].NumberOfFrames);
+                    _currentArea.Map[i, j].Sprite.ColorKey = Color.FromArgb(75, 75, 75);
+                }
+            }
+            _gameState.Armour = 0;
+            _gameState.Attack = 0;
+            _gameState.Health = 1;
+            _gameState.Experience = 0;
+            _gameState.HasBrownKey = false;
+            _gameState.HasGreenKey = false;
+            _gameState.HasRedKey = false;
+            _gameState.Level = 0;
+            _gameState.Potions = 0;
+            _gameState.Treasure = 0;
+        }
+
         private void readMapfile(string mapFile)
         {
             using (StreamReader stream = new StreamReader(mapFile))
@@ -383,142 +408,156 @@ namespace HugoWorld
                 switch (key)
                 {
                     case Keys.Right:
-                        //Are we at the edge of the map?
-                        if (_heroPosition.X < Area.MapSizeX - 1)
+                        if (_hero.x < _monde.LimiteX - 1)
                         {
-                            //Can we move to the next tile or not (blocking tile or monster)
-                            if (checkNextTile(_currentArea.Map[_heroPosition.X + 1, _heroPosition.Y], _heroPosition.X + 1, _heroPosition.Y))
+                            //Are we at the edge of the map?
+                            if (_heroPosition.X < Area.MapSizeX - 1)
                             {
-                                _heroSprite.Velocity = new PointF(100, 0);
-                                _heroSprite.Flip = true;
-                                _heroSpriteAnimating = true;
-                                _direction = HeroDirection.Right;
-                                _heroPosition.X++;
-                                //SetDB pos
-                                _hero.x++;
-                                SaveHeroPos();
-                                setDestination();
-                            }
-                        }
-                        else if (_currentArea.EastArea != "-")
-                        {
-                            //Edge of map - move to next area
-                            if (checkNextTile(new MapTile(service.GetTileAt(_hero.x + 1, _hero.y, _monde.Id), _tiles), _heroPosition.X + 1, _heroPosition.Y))
-                            {
-                                LoadChunk(_hero.x + 1);
-                                //_currentArea = _world[_currentArea.EastArea];
-                                if (_currentArea.EastArea == "OK")
+                                //Can we move to the next tile or not (blocking tile or monster)
+                                if (checkNextTile(_currentArea.Map[_heroPosition.X + 1, _heroPosition.Y], _heroPosition.X + 1, _heroPosition.Y))
                                 {
-                                    _heroPosition.X = 0;
+                                    _heroSprite.Velocity = new PointF(100, 0);
+                                    _heroSprite.Flip = true;
+                                    _heroSpriteAnimating = true;
+                                    _direction = HeroDirection.Right;
+                                    _heroPosition.X++;
+                                    //SetDB pos
                                     _hero.x++;
                                     SaveHeroPos();
                                     setDestination();
-                                    _heroSprite.Location = _heroDestination;
+                                }
+                            }
+                            else if (_currentArea.EastArea != "-")
+                            {
+                                //Edge of map - move to next area
+                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x + 1, _hero.y, _monde.Id), _tiles), _heroPosition.X + 1, _heroPosition.Y))
+                                {
+                                    LoadChunk(_hero.x + 1);
+                                    //_currentArea = _world[_currentArea.EastArea];
+                                    if (_currentArea.EastArea == "OK")
+                                    {
+                                        _heroPosition.X = 0;
+                                        _hero.x++;
+                                        SaveHeroPos();
+                                        setDestination();
+                                        _heroSprite.Location = _heroDestination;
+                                    }
                                 }
                             }
                         }
                         break;
 
                     case Keys.Left:
-                        //Are we at the edge of the map?
-                        if (_heroPosition.X > 0)
-                        {
-                            //Can we move to the next tile or not (blocking tile or monster)
-                            if (checkNextTile(_currentArea.Map[_heroPosition.X - 1, _heroPosition.Y], _heroPosition.X - 1, _heroPosition.Y))
+                        if (_hero.x > 0)
+s                        {
+                            //Are we at the edge of the map?
+                            if (_heroPosition.X > 0)
                             {
-                                _heroSprite.Velocity = new PointF(-100, 0);
-                                _heroSprite.Flip = false;
-                                _heroSpriteAnimating = true;
-                                _direction = HeroDirection.Left;
-                                _heroPosition.X--;
-                                _hero.x--;
-                                SaveHeroPos();
-                                setDestination();
-                            }
-                        }
-                        else if (_currentArea.WestArea != "-")
-                        {
-                            if (checkNextTile(new MapTile(service.GetTileAt(_hero.x - 1, _hero.y, _monde.Id), _tiles), _heroPosition.X - 1, _heroPosition.Y))
-                            {
-                                LoadChunk(_hero.x - 1);
-                                //_currentArea = _world[_currentArea.WestArea];
-                                if (_currentArea.WestArea == "OK")
+                                //Can we move to the next tile or not (blocking tile or monster)
+                                if (checkNextTile(_currentArea.Map[_heroPosition.X - 1, _heroPosition.Y], _heroPosition.X - 1, _heroPosition.Y))
                                 {
-                                    _heroPosition.X = Area.MapSizeX - 1;
+                                    _heroSprite.Velocity = new PointF(-100, 0);
+                                    _heroSprite.Flip = false;
+                                    _heroSpriteAnimating = true;
+                                    _direction = HeroDirection.Left;
+                                    _heroPosition.X--;
                                     _hero.x--;
                                     SaveHeroPos();
                                     setDestination();
-                                    _heroSprite.Location = _heroDestination;
+                                }
+                            }
+                            else if (_currentArea.WestArea != "-")
+                            {
+                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x - 1, _hero.y, _monde.Id), _tiles), _heroPosition.X - 1, _heroPosition.Y))
+                                {
+                                    LoadChunk(_hero.x - 1);
+                                    //_currentArea = _world[_currentArea.WestArea];
+                                    if (_currentArea.WestArea == "OK")
+                                    {
+                                        _heroPosition.X = Area.MapSizeX - 1;
+                                        _hero.x--;
+                                        SaveHeroPos();
+                                        setDestination();
+                                        _heroSprite.Location = _heroDestination;
+                                    }
                                 }
                             }
                         }
                         break;
 
                     case Keys.Up:
-                        //Are we at the edge of the map?
-                        if (_heroPosition.Y > 0)
+                        //Are we at the edge of the world?
+
+                        if (_hero.y > 0)
                         {
-                            //Can we move to the next tile or not (blocking tile or monster)
-                            if (checkNextTile(_currentArea.Map[_heroPosition.X, _heroPosition.Y - 1], _heroPosition.X, _heroPosition.Y - 1))
+                            //Are we at the edge of the map?
+                            if (_heroPosition.Y > 0)
                             {
-                                _heroSprite.Velocity = new PointF(0, -100);
-                                _heroSpriteAnimating = true;
-                                _direction = HeroDirection.Up;
-                                _heroPosition.Y--;
-                                _hero.y--;
-                                SaveHeroPos();
-                                setDestination();
-                            }
-                        }
-                        else if (_currentArea.NorthArea != "-")
-                        {
-                            if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y - 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y - 1))
-                            {
-                                //Edge of map - move to next area
-                                LoadChunk(-1, _hero.y - 1);
-                                if (_currentArea.NorthArea == "OK")
+                                //Can we move to the next tile or not (blocking tile or monster)
+                                if (checkNextTile(_currentArea.Map[_heroPosition.X, _heroPosition.Y - 1], _heroPosition.X, _heroPosition.Y - 1))
                                 {
-                                    //_currentArea = _world[_currentArea.NorthArea];
-                                    _heroPosition.Y = Area.MapSizeY - 1;
+                                    _heroSprite.Velocity = new PointF(0, -100);
+                                    _heroSpriteAnimating = true;
+                                    _direction = HeroDirection.Up;
+                                    _heroPosition.Y--;
                                     _hero.y--;
                                     SaveHeroPos();
                                     setDestination();
-                                    _heroSprite.Location = _heroDestination;
+                                }
+                            }
+                            else if (_currentArea.NorthArea != "-")
+                            {
+                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y - 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y - 1))
+                                {
+                                    //Edge of map - move to next area
+                                    LoadChunk(-1, _hero.y - 1);
+                                    if (_currentArea.NorthArea == "OK")
+                                    {
+                                        //_currentArea = _world[_currentArea.NorthArea];
+                                        _heroPosition.Y = Area.MapSizeY - 1;
+                                        _hero.y--;
+                                        SaveHeroPos();
+                                        setDestination();
+                                        _heroSprite.Location = _heroDestination;
+                                    }
                                 }
                             }
                         }
                         break;
 
                     case Keys.Down:
-                        //Are we at the edge of the map?
-                        if (_heroPosition.Y < Area.MapSizeY - 1)
+                        if (_hero.y < _monde.LimiteY - 1)
                         {
-                            //Can we move to the next tile or not (blocking tile or monster)
-                            if (checkNextTile(_currentArea.Map[_heroPosition.X, _heroPosition.Y + 1], _heroPosition.X, _heroPosition.Y + 1))
+                            //Are we at the edge of the map?
+                            if (_heroPosition.Y < Area.MapSizeY - 1)
                             {
-                                _heroSprite.Velocity = new PointF(0, 100);
-                                _heroSpriteAnimating = true;
-                                _direction = HeroDirection.Down;
-                                _heroPosition.Y++;
-                                _hero.y++;
-                                SaveHeroPos();
-                                setDestination();
-                            }
-                        }
-                        else if (_currentArea.SouthArea != "-")
-                        {
-                            //Edge of map - move to next area
-                            if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y + 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y + 1))
-                            {
-                                LoadChunk(-1, _hero.y + 1);
-                                if (_currentArea.SouthArea == "OK")
+                                //Can we move to the next tile or not (blocking tile or monster)
+                                if (checkNextTile(_currentArea.Map[_heroPosition.X, _heroPosition.Y + 1], _heroPosition.X, _heroPosition.Y + 1))
                                 {
-                                    //_currentArea = _world[_currentArea.SouthArea];
-                                    _heroPosition.Y = 0;
+                                    _heroSprite.Velocity = new PointF(0, 100);
+                                    _heroSpriteAnimating = true;
+                                    _direction = HeroDirection.Down;
+                                    _heroPosition.Y++;
                                     _hero.y++;
                                     SaveHeroPos();
                                     setDestination();
-                                    _heroSprite.Location = _heroDestination;
+                                }
+                            }
+                            else if (_currentArea.SouthArea != "-")
+                            {
+                                //Edge of map - move to next area
+                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y + 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y + 1))
+                                {
+                                    LoadChunk(-1, _hero.y + 1);
+                                    if (_currentArea.SouthArea == "OK")
+                                    {
+                                        //_currentArea = _world[_currentArea.SouthArea];
+                                        _heroPosition.Y = 0;
+                                        _hero.y++;
+                                        SaveHeroPos();
+                                        setDestination();
+                                        _heroSprite.Location = _heroDestination;
+                                    }
                                 }
                             }
                         }
@@ -554,6 +593,7 @@ namespace HugoWorld
                         // save content hero (items, monstres, vie hero, etc)
 
                         SaveHeroPos();
+                        Clear();
                         break;
                 }
             }

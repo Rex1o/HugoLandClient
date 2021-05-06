@@ -21,11 +21,11 @@ namespace HugoWorld.Vue {
             //Remplir la liste selon le user
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.FlatAppearance.BorderSize = 0;
-
-            herosDataGridView.DataSource = connectedPlayer.Heros;
-            herosDataGridView.Refresh();
             joueurService = new JoueurServiceClient();
             heroService = new HeroServiceClient();
+
+            RefreshData();
+
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -44,16 +44,24 @@ namespace HugoWorld.Vue {
         private void btnOk_Click(object sender, EventArgs e) {
             try {
                 if (herosDataGridView.SelectedRows.Count > 0) {
-                    // Start game with selected hero
+
                     Hero = herosDataGridView.SelectedRows[0].DataBoundItem as HeroDTO;
-                    RefreshData();
-                    if (!heroService.IsHeroAvailable(Hero.Id)) {
+                    if (Hero != null) {
+                        //if (heroService.IsHeroAvailable(Hero.Id)) {
+                        //    // Start game with selected hero
+                        //    if (Outils.GetHero() != null) {
+                        //        Outils.GetHero().EstConnecte = false;
+                        //        heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, false);
+                        //    }
+
+                        //    heroService.ConnectDisconnectHeroById(Hero.Id, true);
+                        //    Hero.EstConnecte = true;
+                        //    RefreshData();
+                        //    this.DialogResult = DialogResult.OK;
+                        //    this.Close();
+                    } else {
                         Outils.ShowInfoMessage("A player is currently connected to this Hero. Please choose another Hero that isn't connected.", "Warning!", MessageBoxButtons.OK);
                         RefreshData();
-                    } else {
-                        heroService.ConnectDisconnectHeroById(Hero.Id, true);
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
                     }
 
                 } else {
@@ -71,7 +79,6 @@ namespace HugoWorld.Vue {
         private void btnDelete_Click(object sender, EventArgs e) {
             if (herosDataGridView.SelectedRows.Count > 0) {
                 int heroId = ((HeroDTO)herosDataGridView.SelectedRows[0].DataBoundItem).Id;
-
                 if (heroService.IsHeroAvailable(heroId)) {
                     DialogResult confirmation = Outils.ShowInfoMessage("Please confirm", "Confirmation", MessageBoxButtons.YesNo);
                     if (confirmation == DialogResult.Yes) {
@@ -79,10 +86,12 @@ namespace HugoWorld.Vue {
                             //Start game with selected hero
                             if (heroService.DeleteHeroById(heroId)) {
                                 this.DialogResult = DialogResult.OK;
+                                RefreshData();
                                 Hero = null;
                             } else {
                                 this.DialogResult = DialogResult.Abort;
                                 this.ErrorMsg = "There's been an error while deleting your hero!";
+                                RefreshData();
                                 this.Close();
                             }
                             RefreshData();

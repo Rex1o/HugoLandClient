@@ -44,25 +44,21 @@ namespace HugoWorld.Vue {
         private void btnOk_Click(object sender, EventArgs e) {
             try {
                 if (herosDataGridView.SelectedRows.Count > 0) {
-                    RefreshData();
 
-                    if (Hero == null) {
-                        Hero = herosDataGridView.SelectedRows[0].DataBoundItem as HeroDTO;
-                    }
+                    Hero = herosDataGridView.SelectedRows[0].DataBoundItem as HeroDTO;
+                    if (Hero != null) {
+                        //if (heroService.IsHeroAvailable(Hero.Id)) {
+                        //    // Start game with selected hero
+                        //    if (Outils.GetHero() != null) {
+                        //        Outils.GetHero().EstConnecte = false;
+                        //        heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, false);
+                        //    }
 
-                    if (heroService.IsHeroAvailable(Hero.Id)) {
-                        // Start game with selected hero
-                        if (Hero != null && Hero.EstConnecte) {
-                            Hero.EstConnecte = false;
-                            heroService.ConnectDisconnectHeroById(Hero.Id, false);
-                        }
-
-                        Hero = herosDataGridView.SelectedRows[0].DataBoundItem as HeroDTO;
-                        heroService.ConnectDisconnectHeroById(Hero.Id, true);
-                        Hero.EstConnecte = true;
-                        RefreshData();
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        //    heroService.ConnectDisconnectHeroById(Hero.Id, true);
+                        //    Hero.EstConnecte = true;
+                        //    RefreshData();
+                        //    this.DialogResult = DialogResult.OK;
+                        //    this.Close();
                     } else {
                         Outils.ShowInfoMessage("A player is currently connected to this Hero. Please choose another Hero that isn't connected.", "Warning!", MessageBoxButtons.OK);
                         RefreshData();

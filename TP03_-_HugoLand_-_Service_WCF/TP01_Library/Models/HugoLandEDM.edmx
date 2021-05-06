@@ -91,7 +91,6 @@
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="LimiteX" Type="int" Nullable="false" />
           <Property Name="LimiteY" Type="int" Nullable="false" />
-          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <EntityType Name="Monstres">
           <Key>
@@ -485,7 +484,6 @@
           <NavigationProperty Name="Items" Relationship="Self.FK_Item_Monde" FromRole="Mondes" ToRole="Items" />
           <NavigationProperty Name="Monstres" Relationship="Self.FK_Monstre_Monde" FromRole="Mondes" ToRole="Monstres" />
           <NavigationProperty Name="ObjetMondes" Relationship="Self.FK_ObjetMonde_Monde" FromRole="Mondes" ToRole="ObjetMondes" />
-          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
         </EntityType>
         <EntityType Name="Monstre">
           <Key>
@@ -874,7 +872,6 @@
           <EntitySetMapping Name="Mondes">
             <EntityTypeMapping TypeName="HugoLand.Monde">
               <MappingFragment StoreEntitySet="Mondes">
-                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="LimiteX" ColumnName="LimiteX" />

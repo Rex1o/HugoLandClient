@@ -13,8 +13,7 @@ namespace HugoWorld {
         private GameState _gameState;
         private bool connected = false;
 
-        public HugoWorld()
-        {
+        public HugoWorld() {
             //Setup the form
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -27,12 +26,10 @@ namespace HugoWorld {
             initialize();
         }
 
-        private void initialize()
-        {
+        private void initialize() {
             _gameState.Initialize();
 
-            if (connected)
-            {
+            if (connected) {
                 //Initialise and start the timer
                 _lastTime = 0.0;
                 _timer.Reset();
@@ -40,16 +37,14 @@ namespace HugoWorld {
             }
         }
 
-        private void Crusader_Paint(object sender, PaintEventArgs e)
-        {
+        private void Crusader_Paint(object sender, PaintEventArgs e) {
             //Work out how long since we were last here in seconds
             double gameTime = _timer.ElapsedMilliseconds / 1000.0;
             double elapsedTime = gameTime - _lastTime;
             _lastTime = gameTime;
             _frameCounter++;
 
-            if (connected)
-            {
+            if (connected) {
                 //Perform any animation and updates
                 _gameState.Update(gameTime, elapsedTime);
 
@@ -61,13 +56,23 @@ namespace HugoWorld {
             this.Invalidate();
         }
 
-        private void Crusader_KeyDown(object sender, KeyEventArgs e)
-        {
+        private void Crusader_KeyDown(object sender, KeyEventArgs e) {
+
+            if (e.KeyCode == Keys.M) {
+                DialogResult result = Outils.ShowInfoMessage("Do you wish to return to the main menu? Your progress will be automatically saved and you will be disconnected from the game.", "Warning!", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes) {
+                    this.Enabled = false;
+                    frmMenu menu = new frmMenu();
+                    menu.Show();
+                }
+            }
+
             _gameState.KeyDown(e.KeyCode);
+
         }
 
-        private void Crusader_Shown(object sender, EventArgs e)
-        {
+        private void Crusader_Shown(object sender, EventArgs e) {
             //Il dit qu'il veut voir l'autre fen�tre derri�re donc j'ai mis les
             //forms dans l'event shown masi pour le character selection, il vas falloir modifier le code
             //pcqu'il est intilialis� dans le form initialise (et ici nous somme apr�s cette m�thode)
@@ -78,14 +83,11 @@ namespace HugoWorld {
             this.Enabled = false;
             Login.ShowDialog();
 
-            while (Login.DialogResult != DialogResult.OK)
-            {
-                if (Login.DialogResult == DialogResult.No)
-                {
+            while (Login.DialogResult != DialogResult.OK) {
+                if (Login.DialogResult == DialogResult.No) {
                     this.Close();
                     Application.Exit();
-                }
-                else
+                } else
                     Login.ShowDialog();
             }
 
@@ -96,13 +98,10 @@ namespace HugoWorld {
             while (menu.DialogResult != DialogResult.OK && menu.DialogResult != DialogResult.Abort)
                 menu.ShowDialog();
 
-            if (menu.DialogResult == DialogResult.Abort)
-            {
+            if (menu.DialogResult == DialogResult.Abort) {
                 Application.Exit();
                 this.Close();
-            }
-            else
-            {
+            } else {
                 //Loads the hero into Outils
                 Outils.SetHero(menu.currentHero);
                 //Then Show help/Start game

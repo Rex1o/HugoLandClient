@@ -373,4 +373,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ConnectDisconnectHeroById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="p_HeroId" type="xs:int" />
+        <xs:element minOccurs="0" name="p_State" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConnectDisconnectHeroByIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

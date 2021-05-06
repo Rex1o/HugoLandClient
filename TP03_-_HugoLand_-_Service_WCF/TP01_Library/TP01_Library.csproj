@@ -118,9 +118,6 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>HugoLandEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TileImg.cs">
-      <DependentUpon>HugoLandEDM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

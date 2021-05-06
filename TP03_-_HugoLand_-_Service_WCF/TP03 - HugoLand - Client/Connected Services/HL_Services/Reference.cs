@@ -2365,6 +2365,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/DeleteHeroById", ReplyAction="http://tempuri.org/IHeroService/DeleteHeroByIdResponse")]
         System.Threading.Tasks.Task<bool> DeleteHeroByIdAsync(int p_HeroId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/ConnectDisconnectHeroById", ReplyAction="http://tempuri.org/IHeroService/ConnectDisconnectHeroByIdResponse")]
+        void ConnectDisconnectHeroById(int p_HeroId, bool p_State);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/ConnectDisconnectHeroById", ReplyAction="http://tempuri.org/IHeroService/ConnectDisconnectHeroByIdResponse")]
+        System.Threading.Tasks.Task ConnectDisconnectHeroByIdAsync(int p_HeroId, bool p_State);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2416,6 +2422,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<bool> DeleteHeroByIdAsync(int p_HeroId) {
             return base.Channel.DeleteHeroByIdAsync(p_HeroId);
+        }
+        
+        public void ConnectDisconnectHeroById(int p_HeroId, bool p_State) {
+            base.Channel.ConnectDisconnectHeroById(p_HeroId, p_State);
+        }
+        
+        public System.Threading.Tasks.Task ConnectDisconnectHeroByIdAsync(int p_HeroId, bool p_State) {
+            return base.Channel.ConnectDisconnectHeroByIdAsync(p_HeroId, p_State);
         }
     }
 }

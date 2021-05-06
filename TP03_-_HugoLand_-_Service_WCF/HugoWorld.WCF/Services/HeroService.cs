@@ -5,12 +5,9 @@ namespace HugoWorld_WCF.Services {
 
     public partial class HugoLandService : IHeroService {
 
-        public void AddHeroToDataBase(HeroDTO p_heroDTO)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
-                Hero hero = new Hero()
-                {
+        public void AddHeroToDataBase(HeroDTO p_heroDTO) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
+                Hero hero = new Hero() {
                     CompteJoueurId = p_heroDTO.CompteJoueurId,
                     x = p_heroDTO.x,
                     y = p_heroDTO.y,
@@ -31,10 +28,8 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public bool DeleteHeroById(int p_HeroId)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public bool DeleteHeroById(int p_HeroId) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 Hero hero = dbContext.Heros.Find(p_HeroId);
 
                 if (hero == null)
@@ -47,10 +42,8 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public void SaveHeroPos(int id, int x, int y)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public void SaveHeroPos(int id, int x, int y) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 Hero h = dbContext.Heros.Find(id);
 
                 h.x = x;
@@ -58,5 +51,14 @@ namespace HugoWorld_WCF.Services {
                 dbContext.SaveChanges();
             }
         }
+
+        public void ConnectDisconnectHeroById(int p_HeroId, bool p_State) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
+                Hero h = dbContext.Heros.Find(p_HeroId);
+                h.EstConnecte = p_State;
+                dbContext.SaveChanges();
+            }
+        }
+
     }
 }

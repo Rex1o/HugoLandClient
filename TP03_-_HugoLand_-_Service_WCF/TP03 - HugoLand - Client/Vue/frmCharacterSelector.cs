@@ -43,8 +43,11 @@ namespace HugoWorld.Vue {
         private void btnOk_Click(object sender, EventArgs e) {
             try {
                 if (herosDataGridView.SelectedRows.Count > 0) {
-                    //Start game with selected hero
+                    // Start game with selected hero
                     Hero = herosDataGridView.SelectedRows[0].DataBoundItem as HeroDTO;
+                    Hero.EstConnecte = true;
+                    heroService.ConnectDisconnectHeroById(Hero.Id, true);
+                    
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 } else {

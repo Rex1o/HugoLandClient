@@ -79,3 +79,4 @@ magic1;78;Effect;gamedata\animations.bmp;1;8;Y;3;Open;;Item
 magic2;79;Effect;gamedata\animations.bmp;1;9;Y;3;Open;;Item
 magic3;80;Effect;gamedata\animations.bmp;1;10;Y;3;Open;;Item
 fire;81;Fire;gamedata\animations.bmp;1;11;Y;3;Open;;Item
+void;82;Normal;gamedata\tiles.bmp;10;5;Y;1;Open;;ObjetMonde

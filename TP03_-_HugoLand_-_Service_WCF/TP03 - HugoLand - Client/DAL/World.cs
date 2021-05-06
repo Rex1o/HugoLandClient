@@ -18,7 +18,8 @@ namespace HugoWorld
         public int Y;
         public string Text;
 
-        public textPopup(int x, int y, string text) {
+        public textPopup(int x, int y, string text)
+        {
             X = x;
             Y = y;
             Text = text;
@@ -50,7 +51,8 @@ namespace HugoWorld
         private static Brush _blackBrush = new SolidBrush(Color.Red);
         private static Random _random = new Random();
 
-        public World(GameState gameState, Dictionary<string, Tile> tiles, MondeDTO monde) {
+        public World(GameState gameState, Dictionary<string, Tile> tiles, MondeDTO monde)
+        {
             _gameState = gameState;
             _tiles = tiles;
             _monde = monde;
@@ -74,9 +76,37 @@ namespace HugoWorld
             _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
         }
 
-        private void readMapfile(string mapFile) {
-            using (StreamReader stream = new StreamReader(mapFile)) {
-                while (!stream.EndOfStream) {
+        public void Clear()
+        {
+            //Vide l'écran du joueur
+            _heroSprite = new Sprite(null, _heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX, _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY, _tiles["82"].Bitmap, _tiles["82"].Rectangle, _tiles["82"].NumberOfFrames);
+            _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+            for (int i = 0; i < _currentArea.Map.GetLength(0); i++)
+            {
+                for (int j = 0; j < _currentArea.Map.GetLength(1); j++)
+                {
+                    _currentArea.Map[i, j].Sprite = new Sprite(null, 0, 0, _tiles["82"].Bitmap, _tiles["82"].Rectangle, _tiles["82"].NumberOfFrames);
+                    _currentArea.Map[i, j].Sprite.ColorKey = Color.FromArgb(75, 75, 75);
+                }
+            }
+            _gameState.Armour = 0;
+            _gameState.Attack = 0;
+            _gameState.Health = 1;
+            _gameState.Experience = 0;
+            _gameState.HasBrownKey = false;
+            _gameState.HasGreenKey = false;
+            _gameState.HasRedKey = false;
+            _gameState.Level = 0;
+            _gameState.Potions = 0;
+            _gameState.Treasure = 0;
+        }
+
+        private void readMapfile(string mapFile)
+        {
+            using (StreamReader stream = new StreamReader(mapFile))
+            {
+                while (!stream.EndOfStream)
+                {
                     //Each area constructor will consume just one area
                     Area area = new Area(stream, _tiles);
                     //_world.Add(area.Name, area);
@@ -84,7 +114,8 @@ namespace HugoWorld
             }
         }
 
-        private int[] GetHeroPosInChunk() {
+        private int[] GetHeroPosInChunk()
+        {
             int[] pos = new int[2];
 
             pos[0] = _hero.x == 0 ? 0 : _hero.x % 8;
@@ -93,8 +124,10 @@ namespace HugoWorld
             return pos;
         }
 
-        private void LoadChunk(int p_posx = -1, int p_posy = -1) {
-            try {
+        private void LoadChunk(int p_posx = -1, int p_posy = -1)
+        {
+            try
+            {
                 MondeDTO w = _monde;
                 HeroDTO h = _hero;
 
@@ -139,21 +172,27 @@ namespace HugoWorld
                 Area area = new Area(_tiles, objects);
                 if (_currentArea == null)
                     _currentArea = area;
-                else if (_currentArea.Map[0, 0].GlobalX != area.Map[0, 0].GlobalX || _currentArea.Map[0, 0].GlobalY != area.Map[0, 0].GlobalY) {
-                    if (area != null && area.Name != null) {
+                else if (_currentArea.Map[0, 0].GlobalX != area.Map[0, 0].GlobalX || _currentArea.Map[0, 0].GlobalY != area.Map[0, 0].GlobalY)
+                {
+                    if (area != null && area.Name != null)
+                    {
                         area.NorthArea = "OK";
                         area.WestArea = "OK";
                         area.SouthArea = "OK";
                         area.EastArea = "OK";
                         _currentArea = area;
                     }
-                } else {
+                }
+                else
+                {
                     _currentArea.NorthArea = null;
                     _currentArea.WestArea = null;
                     _currentArea.SouthArea = null;
                     _currentArea.EastArea = null;
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 MessageBox.Show("V�rifiez la connection au VPN!");
             }
             //_world.Add(area.Name, area);
@@ -179,15 +218,18 @@ namespace HugoWorld
         //    }
         //}
 
-        public override void Update(double gameTime, double elapsedTime) {
+        public override void Update(double gameTime, double elapsedTime)
+        {
             //We only actually update the current area the rest all 'sleep'
             _currentArea.Update(gameTime, elapsedTime);
 
             _heroSprite.Update(gameTime, elapsedTime);
 
             //If the hero is moving we need to check if we are there yet
-            if (_heroSpriteAnimating) {
-                if (checkDestination()) {
+            if (_heroSpriteAnimating)
+            {
+                if (checkDestination())
+                {
                     //We have arrived. Stop moving and animating
                     _heroSprite.Location = _heroDestination;
                     _heroSprite.Velocity = PointF.Empty;
@@ -201,27 +243,32 @@ namespace HugoWorld
             //The hero gets animated when moving or fighting
             if (_heroSpriteAnimating || _heroSpriteFighting)
                 _heroSprite.CurrentFrame = (int)((gameTime * 8.0) % _heroSprite.NumberOfFrames);
-            else {
+            else
+            {
                 //Otherwise use frame 0
                 _heroSprite.CurrentFrame = 0;
             }
 
             //If we are fighting then keep animating for a period of time
-            if (_heroSpriteFighting) {
+            if (_heroSpriteFighting)
+            {
                 if (_startFightTime < 0)
                     _startFightTime = gameTime;
-                else {
+                else
+                {
                     if (gameTime - _startFightTime > 1.0)
                         _heroSpriteFighting = false;
                 }
             }
         }
 
-        private void checkObjects() {
+        private void checkObjects()
+        {
             Tile objectTile = _currentArea.Map[_heroPosition.X, _heroPosition.Y].ObjectTile;
             if (objectTile == null)
                 return;
-            switch (objectTile.Category) {
+            switch (objectTile.Category)
+            {
                 //Most objects change your stats in some way.
                 case "armour":
                     _gameState.Armour++;
@@ -260,15 +307,18 @@ namespace HugoWorld
                     break;
             }
             //Remove the object unless its bones or fire
-            if (objectTile.Category != "fire" && objectTile.Category != "bones" && objectTile.Category != "character") {
+            if (objectTile.Category != "fire" && objectTile.Category != "bones" && objectTile.Category != "character")
+            {
                 _currentArea.Map[_heroPosition.X, _heroPosition.Y].ObjectTile = null;
                 _currentArea.Map[_heroPosition.X, _heroPosition.Y].ObjectSprite = null;
             }
         }
 
-        private bool checkDestination() {
+        private bool checkDestination()
+        {
             //Depending on the direction we are moving we check different bounds of the destination
-            switch (_direction) {
+            switch (_direction)
+            {
                 case HeroDirection.Right:
                     return (_heroSprite.Location.X >= _heroDestination.X);
 
@@ -285,13 +335,16 @@ namespace HugoWorld
             throw new ArgumentException("Direction is not set correctly");
         }
 
-        public override void Draw(Graphics graphics) {
+        public override void Draw(Graphics graphics)
+        {
             _currentArea.Draw(graphics);
             _heroSprite.Draw(graphics);
 
             //If we are fighting then draw the damage
-            if (_heroSpriteFighting) {
-                foreach (textPopup popup in _popups) {
+            if (_heroSpriteFighting)
+            {
+                foreach (textPopup popup in _popups)
+                {
                     //Draw 4 text offsets to get an outline
                     graphics.DrawString(popup.Text, _font, _whiteBrush, popup.X + 2, popup.Y);
                     graphics.DrawString(popup.Text, _font, _whiteBrush, popup.X - 1, popup.Y);
@@ -304,11 +357,15 @@ namespace HugoWorld
             }
         }
 
-        private void SaveHeroPos() {
-            try {
+        private void SaveHeroPos()
+        {
+            try
+            {
                 HeroServiceClient service = new HeroServiceClient();
                 service.SaveHeroPos(_hero.Id, _hero.x, _hero.y);
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 MessageBox.Show("V�rifiez la connection au VPN!");
             }
         }
@@ -317,7 +374,8 @@ namespace HugoWorld
         /// Gestion du d�placement du h�ro
         /// </summary>
         /// <param name="key"></param>
-        public void KeyDown(Keys key) {
+        public void KeyDown(Keys key)
+        {
             //Ignore keypresses while we are animating or fighting
             if (!_heroSpriteAnimating && !_heroSpriteFighting)
             {
@@ -325,130 +383,156 @@ namespace HugoWorld
                 switch (key)
                 {
                     case Keys.Right:
-                        //Are we at the edge of the map?
-                        if (_heroPosition.X < Area.MapSizeX - 1) {
-                            //Can we move to the next tile or not (blocking tile or monster)
-                            if (checkNextTile(_currentArea.Map[_heroPosition.X + 1, _heroPosition.Y], _heroPosition.X + 1, _heroPosition.Y)) {
-                                _heroSprite.Velocity = new PointF(100, 0);
-                                _heroSprite.Flip = true;
-                                _heroSpriteAnimating = true;
-                                _direction = HeroDirection.Right;
-                                _heroPosition.X++;
-                                //SetDB pos
-                                _hero.x++;
-                                SaveHeroPos();
-                                setDestination();
-                            }
-                        } else if (_currentArea.EastArea != "-") {
-                            //Edge of map - move to next area
-                            if (checkNextTile(new MapTile(service.GetTileAt(_hero.x + 1, _hero.y, _monde.Id), _tiles), _heroPosition.X + 1, _heroPosition.Y))
+                        if (_hero.x < _monde.LimiteX - 1)
+                        {
+                            //Are we at the edge of the map?
+                            if (_heroPosition.X < Area.MapSizeX - 1)
                             {
-                                LoadChunk(_hero.x + 1);
-                                //_currentArea = _world[_currentArea.EastArea];
-                                if (_currentArea.EastArea == "OK")
+                                //Can we move to the next tile or not (blocking tile or monster)
+                                if (checkNextTile(_currentArea.Map[_heroPosition.X + 1, _heroPosition.Y], _heroPosition.X + 1, _heroPosition.Y))
                                 {
-                                    _heroPosition.X = 0;
+                                    _heroSprite.Velocity = new PointF(100, 0);
+                                    _heroSprite.Flip = true;
+                                    _heroSpriteAnimating = true;
+                                    _direction = HeroDirection.Right;
+                                    _heroPosition.X++;
+                                    //SetDB pos
                                     _hero.x++;
                                     SaveHeroPos();
                                     setDestination();
-                                    _heroSprite.Location = _heroDestination;
+                                }
+                            }
+                            else if (_currentArea.EastArea != "-")
+                            {
+                                //Edge of map - move to next area
+                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x + 1, _hero.y, _monde.Id), _tiles), _heroPosition.X + 1, _heroPosition.Y))
+                                {
+                                    LoadChunk(_hero.x + 1);
+                                    //_currentArea = _world[_currentArea.EastArea];
+                                    if (_currentArea.EastArea == "OK")
+                                    {
+                                        _heroPosition.X = 0;
+                                        _hero.x++;
+                                        SaveHeroPos();
+                                        setDestination();
+                                        _heroSprite.Location = _heroDestination;
+                                    }
                                 }
                             }
                         }
                         break;
 
                     case Keys.Left:
-                        //Are we at the edge of the map?
-                        if (_heroPosition.X > 0) {
-                            //Can we move to the next tile or not (blocking tile or monster)
-                            if (checkNextTile(_currentArea.Map[_heroPosition.X - 1, _heroPosition.Y], _heroPosition.X - 1, _heroPosition.Y)) {
-                                _heroSprite.Velocity = new PointF(-100, 0);
-                                _heroSprite.Flip = false;
-                                _heroSpriteAnimating = true;
-                                _direction = HeroDirection.Left;
-                                _heroPosition.X--;
-                                _hero.x--;
-                                SaveHeroPos();
-                                setDestination();
-                            }
-                        }
-                        else if (_currentArea.WestArea != "-")
+                        if (_hero.x > 0)
                         {
-                            if (checkNextTile(new MapTile(service.GetTileAt(_hero.x - 1, _hero.y, _monde.Id), _tiles), _heroPosition.X - 1, _heroPosition.Y))
+                            //Are we at the edge of the map?
+                            if (_heroPosition.X > 0)
                             {
-                                LoadChunk(_hero.x - 1);
-                                //_currentArea = _world[_currentArea.WestArea];
-                                if (_currentArea.WestArea == "OK")
+                                //Can we move to the next tile or not (blocking tile or monster)
+                                if (checkNextTile(_currentArea.Map[_heroPosition.X - 1, _heroPosition.Y], _heroPosition.X - 1, _heroPosition.Y))
                                 {
-                                    _heroPosition.X = Area.MapSizeX - 1;
+                                    _heroSprite.Velocity = new PointF(-100, 0);
+                                    _heroSprite.Flip = false;
+                                    _heroSpriteAnimating = true;
+                                    _direction = HeroDirection.Left;
+                                    _heroPosition.X--;
                                     _hero.x--;
                                     SaveHeroPos();
                                     setDestination();
-                                    _heroSprite.Location = _heroDestination;
+                                }
+                            }
+                            else if (_currentArea.WestArea != "-")
+                            {
+                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x - 1, _hero.y, _monde.Id), _tiles), _heroPosition.X - 1, _heroPosition.Y))
+                                {
+                                    LoadChunk(_hero.x - 1);
+                                    //_currentArea = _world[_currentArea.WestArea];
+                                    if (_currentArea.WestArea == "OK")
+                                    {
+                                        _heroPosition.X = Area.MapSizeX - 1;
+                                        _hero.x--;
+                                        SaveHeroPos();
+                                        setDestination();
+                                        _heroSprite.Location = _heroDestination;
+                                    }
                                 }
                             }
                         }
                         break;
 
                     case Keys.Up:
-                        //Are we at the edge of the map?
-                        if (_heroPosition.Y > 0) {
-                            //Can we move to the next tile or not (blocking tile or monster)
-                            if (checkNextTile(_currentArea.Map[_heroPosition.X, _heroPosition.Y - 1], _heroPosition.X, _heroPosition.Y - 1)) {
-                                _heroSprite.Velocity = new PointF(0, -100);
-                                _heroSpriteAnimating = true;
-                                _direction = HeroDirection.Up;
-                                _heroPosition.Y--;
-                                _hero.y--;
-                                SaveHeroPos();
-                                setDestination();
-                            }
-                        }
-                        else if (_currentArea.NorthArea != "-")
+                        //Are we at the edge of the world?
+
+                        if (_hero.y > 0)
                         {
-                            if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y - 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y - 1))
+                            //Are we at the edge of the map?
+                            if (_heroPosition.Y > 0)
                             {
-                                //Edge of map - move to next area
-                                LoadChunk(-1, _hero.y - 1);
-                                if (_currentArea.NorthArea == "OK")
+                                //Can we move to the next tile or not (blocking tile or monster)
+                                if (checkNextTile(_currentArea.Map[_heroPosition.X, _heroPosition.Y - 1], _heroPosition.X, _heroPosition.Y - 1))
                                 {
-                                    //_currentArea = _world[_currentArea.NorthArea];
-                                    _heroPosition.Y = Area.MapSizeY - 1;
+                                    _heroSprite.Velocity = new PointF(0, -100);
+                                    _heroSpriteAnimating = true;
+                                    _direction = HeroDirection.Up;
+                                    _heroPosition.Y--;
                                     _hero.y--;
                                     SaveHeroPos();
                                     setDestination();
-                                    _heroSprite.Location = _heroDestination;
+                                }
+                            }
+                            else if (_currentArea.NorthArea != "-")
+                            {
+                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y - 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y - 1))
+                                {
+                                    //Edge of map - move to next area
+                                    LoadChunk(-1, _hero.y - 1);
+                                    if (_currentArea.NorthArea == "OK")
+                                    {
+                                        //_currentArea = _world[_currentArea.NorthArea];
+                                        _heroPosition.Y = Area.MapSizeY - 1;
+                                        _hero.y--;
+                                        SaveHeroPos();
+                                        setDestination();
+                                        _heroSprite.Location = _heroDestination;
+                                    }
                                 }
                             }
                         }
                         break;
 
                     case Keys.Down:
-                        //Are we at the edge of the map?
-                        if (_heroPosition.Y < Area.MapSizeY - 1) {
-                            //Can we move to the next tile or not (blocking tile or monster)
-                            if (checkNextTile(_currentArea.Map[_heroPosition.X, _heroPosition.Y + 1], _heroPosition.X, _heroPosition.Y + 1)) {
-                                _heroSprite.Velocity = new PointF(0, 100);
-                                _heroSpriteAnimating = true;
-                                _direction = HeroDirection.Down;
-                                _heroPosition.Y++;
-                                _hero.y++;
-                                SaveHeroPos();
-                                setDestination();
-                            }
-                        } else if (_currentArea.SouthArea != "-") {
-                            //Edge of map - move to next area
-                            if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y + 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y + 1))
+                        if (_hero.y < _monde.LimiteY - 1)
+                        {
+                            //Are we at the edge of the map?
+                            if (_heroPosition.Y < Area.MapSizeY - 1)
                             {
-                                LoadChunk(-1, _hero.y + 1);
-                                if (_currentArea.SouthArea == "OK")
+                                //Can we move to the next tile or not (blocking tile or monster)
+                                if (checkNextTile(_currentArea.Map[_heroPosition.X, _heroPosition.Y + 1], _heroPosition.X, _heroPosition.Y + 1))
                                 {
-                                    //_currentArea = _world[_currentArea.SouthArea];
-                                    _heroPosition.Y = 0;
+                                    _heroSprite.Velocity = new PointF(0, 100);
+                                    _heroSpriteAnimating = true;
+                                    _direction = HeroDirection.Down;
+                                    _heroPosition.Y++;
                                     _hero.y++;
                                     SaveHeroPos();
                                     setDestination();
-                                    _heroSprite.Location = _heroDestination;
+                                }
+                            }
+                            else if (_currentArea.SouthArea != "-")
+                            {
+                                //Edge of map - move to next area
+                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y + 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y + 1))
+                                {
+                                    LoadChunk(-1, _hero.y + 1);
+                                    if (_currentArea.SouthArea == "OK")
+                                    {
+                                        //_currentArea = _world[_currentArea.SouthArea];
+                                        _heroPosition.Y = 0;
+                                        _hero.y++;
+                                        SaveHeroPos();
+                                        setDestination();
+                                        _heroSprite.Location = _heroDestination;
+                                    }
                                 }
                             }
                         }
@@ -459,6 +543,7 @@ namespace HugoWorld
                         // save content hero (items, monstres, vie hero, etc)
 
                         SaveHeroPos();
+                        Clear();
                         break;
                 }
             }
@@ -471,13 +556,16 @@ namespace HugoWorld
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        private bool checkNextTile(MapTile mapTile, int x, int y) {
+        private bool checkNextTile(MapTile mapTile, int x, int y)
+        {
             //See if there is a door we need to open
             checkDoors(mapTile, x, y);
 
             //See if there is character to fight
-            if (mapTile.ObjectTile != null && mapTile.ObjectTile.Category == "character") {
-                if (mapTile.ObjectTile.Shortcut == "pri") {
+            if (mapTile.ObjectTile != null && mapTile.ObjectTile.Category == "character")
+            {
+                if (mapTile.ObjectTile.Shortcut == "pri")
+                {
                     //Game is won
                     Sounds.Kiss();
                     _gameState.GameIsWon = true;
@@ -493,12 +581,14 @@ namespace HugoWorld
                 //A monsters attack ability is 1/2 their max health. Compare that to your armour
                 //If you outclass them then there is still a chance of a lucky hit
                 if (_random.Next((mapTile.ObjectTile.Health / 2) + 1) >= _gameState.Armour
-                    || (mapTile.ObjectTile.Health / 2 < _gameState.Armour && _random.Next(10) == 0)) {
+                    || (mapTile.ObjectTile.Health / 2 < _gameState.Armour && _random.Next(10) == 0))
+                {
                     //Monsters do damage up to their max health - if they hit you.
                     heroDamage = _random.Next(mapTile.ObjectTile.Health) + 1;
                     _gameState.Health -= heroDamage;
 
-                    if (_gameState.Health <= 0) {
+                    if (_gameState.Health <= 0)
+                    {
                         _gameState.Health = 0;
                         _heroSprite = new Sprite(null, _heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
                                 _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
@@ -511,13 +601,17 @@ namespace HugoWorld
                 _popups.Add(new textPopup((int)_heroSprite.Location.X + 40, (int)_heroSprite.Location.Y + 20, (heroDamage != 0) ? heroDamage.ToString() : "miss"));
 
                 //A monsters armour is 1/5 of their max health
-                if (_random.Next(_gameState.Attack + 1) >= (mapTile.ObjectTile.Health / 5)) {
+                if (_random.Next(_gameState.Attack + 1) >= (mapTile.ObjectTile.Health / 5))
+                {
                     //Hero damage is up to twice the attack rating
-                    if (damageMonster(_random.Next(_gameState.Attack * 2) + 1, mapTile, x, y)) {
+                    if (damageMonster(_random.Next(_gameState.Attack * 2) + 1, mapTile, x, y))
+                    {
                         //Monster is dead now
                         return true;
                     }
-                } else {
+                }
+                else
+                {
                     _popups.Add(new textPopup((int)mapTile.Sprite.Location.X + 40, (int)mapTile.Sprite.Location.Y + 20, "miss"));
                 }
                 //Monster not dead
@@ -530,18 +624,21 @@ namespace HugoWorld
             return true;
         }
 
-        private bool damageMonster(int damage, MapTile mapTile, int x, int y) {
+        private bool damageMonster(int damage, MapTile mapTile, int x, int y)
+        {
             //Do some damage, and remove the monster if its dead
             bool returnValue = false; //monster not dead
 
             //Set the monster health if its not already set
-            if (mapTile.ObjectHealth == 0) {
+            if (mapTile.ObjectHealth == 0)
+            {
                 mapTile.ObjectHealth = mapTile.ObjectTile.Health;
             }
 
             mapTile.ObjectHealth -= damage;
 
-            if (mapTile.ObjectHealth <= 0) {
+            if (mapTile.ObjectHealth <= 0)
+            {
                 mapTile.ObjectHealth = 0;
                 //Experience is the monsters max health
                 _gameState.Experience += mapTile.ObjectTile.Health;
@@ -557,23 +654,28 @@ namespace HugoWorld
             return returnValue;
         }
 
-        private void checkDoors(MapTile mapTile, int x, int y) {
+        private void checkDoors(MapTile mapTile, int x, int y)
+        {
             //If the next tile is a closed door then check if we have the key
-            if (mapTile.Tile.Category == "door" && mapTile.Tile.IsBlock) {
+            if (mapTile.Tile.Category == "door" && mapTile.Tile.IsBlock)
+            {
                 //For each key if it matches then open the door by switching the sprite & sprite to its matching open version
-                if (mapTile.Tile.Color == "brown" && _gameState.HasBrownKey) {
+                if (mapTile.Tile.Color == "brown" && _gameState.HasBrownKey)
+                {
                     //Open the door
                     mapTile.Tile = _tiles["10"];
                     mapTile.SetSprite(x, y);
                 }
 
-                if (mapTile.Tile.Color == "red" && _gameState.HasRedKey) {
+                if (mapTile.Tile.Color == "red" && _gameState.HasRedKey)
+                {
                     //Open the door
                     mapTile.Tile = _tiles["14"];
                     mapTile.SetSprite(x, y);
                 }
 
-                if (mapTile.Tile.Color == "green" && _gameState.HasGreenKey) {
+                if (mapTile.Tile.Color == "green" && _gameState.HasGreenKey)
+                {
                     //Open the door
                     mapTile.Tile = _tiles["12"];
                     mapTile.SetSprite(x, y);
@@ -581,7 +683,8 @@ namespace HugoWorld
             }
         }
 
-        private void setDestination() {
+        private void setDestination()
+        {
             //Calculate the eventual sprite destination based on the area grid coordinates
             _heroDestination = new PointF(_heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
                                             _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY);

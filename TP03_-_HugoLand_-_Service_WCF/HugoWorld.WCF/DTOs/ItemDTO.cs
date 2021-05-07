@@ -23,7 +23,6 @@ namespace HugoWorld_WCF.DTOs {
             MondeId = item.MondeId;
             ImageId = item.ImageId;
             IdHero = item.IdHero;
-            Monde = new MondeDTO(item.Monde);
             RowVersion = item.RowVersion;
 
             if (item.Hero != null)

@@ -47,7 +47,8 @@ namespace HugoWorld_WCF.Services {
                     y = it.y,
                     MondeId = it.MondeId,
                     IdHero = it.IdHero,
-                    ImageId = it.ImageId
+                    ImageId = it.ImageId,
+                    RowVersion = it.RowVersion
                 }).ToList())
                     objects.Add(TileImport.ItemToTile(i));
 

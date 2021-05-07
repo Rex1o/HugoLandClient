@@ -66,6 +66,9 @@ namespace HugoWorld_WCF.Services
             {
 
                 Item item = DTOtoReg.DTOToItem(dto);
+                item.x = null;
+                item.y = null;
+
 
                 dbContext.Entry(item).State = EntityState.Modified;
                 try
@@ -75,7 +78,6 @@ namespace HugoWorld_WCF.Services
                 }
                 catch (System.Exception)
                 {
-
                     return null;
                 }
 

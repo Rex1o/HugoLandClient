@@ -64,10 +64,9 @@
           <Key>
             <PropertyRef Name="IdInventaireHero" />
           </Key>
-          <Property Name="IdHero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdHero" Type="int" Nullable="false" StoreGeneratedPattern="None" />
           <Property Name="ItemId" Type="int" Nullable="false" />
-          <Property Name="IdInventaireHero" Type="int" Nullable="false" />
-          <Property Name="Quantite" Type="int" Nullable="false" />
+          <Property Name="IdInventaireHero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Items">
           <Key>
@@ -446,10 +445,9 @@
           <Key>
             <PropertyRef Name="IdInventaireHero" />
           </Key>
-          <Property Name="IdHero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdHero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="ItemId" Type="Int32" Nullable="false" />
-          <Property Name="IdInventaireHero" Type="Int32" Nullable="false" />
-          <Property Name="Quantite" Type="Int32" Nullable="false" />
+          <Property Name="IdInventaireHero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Hero" Relationship="Self.FK_BelongsToHero" FromRole="InventaireHeroes" ToRole="Heros" />
           <NavigationProperty Name="Item" Relationship="Self.FK_BelongsToItem" FromRole="InventaireHeroes" ToRole="Items" />
         </EntityType>
@@ -850,7 +848,6 @@
                 <ScalarProperty Name="IdHero" ColumnName="IdHero" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="IdInventaireHero" ColumnName="IdInventaireHero" />
-                <ScalarProperty Name="Quantite" ColumnName="Quantite" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

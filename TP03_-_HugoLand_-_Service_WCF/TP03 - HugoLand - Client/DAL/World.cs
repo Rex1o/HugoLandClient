@@ -204,7 +204,7 @@ namespace HugoWorld
                 int[][] chunk = GetChunkLimitsAtHeroPos(p_x, p_y);
 
                 MondeServiceClient MondeService = new MondeServiceClient();
-                List<TileImport> objects = MondeService.GetChunk(chunk[0], chunk[0], w).ToList();
+                List<TileImport> objects = MondeService.GetChunk(chunk[0], chunk[1], w).ToList();
 
                 Area area = new Area(_tiles, objects);
                 if (_currentArea == null)

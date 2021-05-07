@@ -405,6 +405,8 @@ namespace HugoWorld
             _currentArea.Draw(graphics);
             _heroSprite.Draw(graphics);
 
+            _herosMP.ForEach((x) => x.heroSprite.Draw(graphics));
+
             //If we are fighting then draw the damage
             if (_heroSpriteFighting)
             {

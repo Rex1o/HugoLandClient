@@ -69,14 +69,6 @@ namespace HugoWorld_WCF.Services {
                     objects.Add(TileImport.MonstreToTile(o));
 
                 return objects;
-                //foreach (ObjetMondeDTO o in m .ObjetMondes.Where(obj => obj.x >= TopLeft[0] && obj.x <= BotRight[0] && obj.y >= TopLeft[1] && obj.y <= BotRight[1]))
-                //    objects.Add(service.ObjetMondeToTile(o));
-
-                //foreach (ItemDTO i in w.Items.Where(obj => obj.x >= TopLeft[0] && obj.x <= BotRight[0] && obj.y >= TopLeft[1] && obj.y <= BotRight[1]))
-                //    objects.Add(service.ItemToTile(i));
-
-                //foreach (MonstreDTO m in w.Monstres.Where(obj => obj.x >= TopLeft[0] && obj.x <= BotRight[0] && obj.y >= TopLeft[1] && obj.y <= BotRight[1]))
-                //    objects.Add(service.MonstreToTile(m));
             }
         }
 
@@ -84,27 +76,6 @@ namespace HugoWorld_WCF.Services {
         {
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-                #region Old
-
-                //List<Monde> mondes = dbContext.Mondes
-                //                    .Include(x => x.Classes)
-                //                    .Include(x => x.Heros)
-                //                    .Include(x => x.Items)
-                //                    .Include(x => x.ObjetMondes)
-                //                    .Include(x => x.Monstres).ToList();
-
-                //List<MondeDTO> mondeDTOs = new List<MondeDTO>();
-                //mondes.ForEach(m => mondeDTOs.Add(new MondeDTO(m)
-                //{
-                //    Items = ConvertToItemsDTOs(m.Items),
-                //    Classes = ConvertToClassesDTO(m.Classes),
-                //    Heros = ConvertToHerosDTO(m.Heros),
-                //    Monstres = ConvertToMonstresDTOs(m.Monstres),
-                //    ObjetMondes = ConvertToObjetMondeDTOs(m.ObjetMondes)
-                //}));
-
-                #endregion Old
-
                 return dbContext.Mondes.ToList().Select(m => new MondeDTO(m)).ToList();
             }
         }

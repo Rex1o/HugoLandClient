@@ -47,7 +47,7 @@ namespace HugoWorld {
                     try {
                         Outils.SetActiveUser(joueurService.GetAccountByName(username));
                         this.Close();
-                    } catch (Exception) {
+                    } catch (Exception ex) {
                         this.Cursor = Cursors.Default;
                         Outils.ShowErrorMessage("SERVICES NOT ACCESSIBLE", "Connection error");
                     }

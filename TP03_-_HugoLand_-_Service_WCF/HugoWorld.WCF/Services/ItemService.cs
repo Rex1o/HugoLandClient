@@ -17,11 +17,7 @@ namespace HugoWorld_WCF.Services
             List<Item> _items = items.ToList();
 
             List<ItemDTO> itemDTOs = new List<ItemDTO>();
-            _items.ForEach(s => itemDTOs.Add(new ItemDTO(s)
-            {
-                EffetsItems = ConvertToEffetItemsDTOs(s.EffetItems),
-                InventaireHeroDTOs = ConvertToInventaireHeroDTOs(s.InventaireHeroes)
-            }));
+            _items.ForEach(s => itemDTOs.Add(new ItemDTO(s)));
             return itemDTOs;
         }
 

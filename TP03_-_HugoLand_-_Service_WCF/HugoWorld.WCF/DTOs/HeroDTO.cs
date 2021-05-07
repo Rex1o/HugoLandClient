@@ -29,17 +29,10 @@ namespace HugoWorld_WCF.DTOs {
             MondeId = hero.MondeId;
             ClasseId = hero.ClasseId;
             EstConnecte = hero.EstConnecte;
-
-            Monde = new MondeDTO(hero.Monde);
-            Classe = new ClasseDTO(hero.Classe);
-            CompteJoueur = new CompteJoueurDTO(hero.CompteJoueur);
         }
 
         [DataMember]
         public int Id { get; set; }
-
-        [DataMember]
-        public int CompteJoueurId { get; set; }
 
         [DataMember]
         public int Niveau { get; set; }
@@ -66,30 +59,18 @@ namespace HugoWorld_WCF.DTOs {
         public int StatVitalite { get; set; }
 
         [DataMember]
-        public int MondeId { get; set; }
-
-        [DataMember]
-        public int ClasseId { get; set; }
-
-        [DataMember]
         public string NomHero { get; set; }
 
         [DataMember]
         public bool EstConnecte { get; set; }
 
         [DataMember]
-        public virtual ClasseDTO Classe { get; set; }
+        public int MondeId { get; set; }
 
         [DataMember]
-        public virtual CompteJoueurDTO CompteJoueur { get; set; }
+        public int ClasseId { get; set; }
 
         [DataMember]
-        public virtual List<InventaireHeroDTO> InventaireHeros { get; set; }
-
-        [DataMember]
-        public virtual MondeDTO Monde { get; set; }
-
-        [DataMember]
-        public virtual List<ItemDTO> Items { get; set; }
+        public int CompteJoueurId { get; set; }
     }
 }

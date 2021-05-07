@@ -15,8 +15,6 @@ namespace HugoWorld_WCF.DTOs {
             IdHero = inventaireHero.IdHero;
             ItemId = inventaireHero.ItemId;
             IdInventaireHero = inventaireHero.IdInventaireHero;
-            Hero = new HeroDTO(inventaireHero.Hero);
-            Item = new ItemDTO(inventaireHero.Item);
         }
 
         [DataMember]
@@ -27,11 +25,5 @@ namespace HugoWorld_WCF.DTOs {
 
         [DataMember]
         public int IdInventaireHero { get; set; }
-
-        [DataMember]
-        public virtual HeroDTO Hero { get; set; }
-
-        [DataMember]
-        public virtual ItemDTO Item { get; set; }
     }
 }

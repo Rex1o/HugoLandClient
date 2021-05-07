@@ -20,7 +20,6 @@ namespace HugoWorld_WCF.DTOs {
             MondeId = objetMonde.MondeId;
             ImageId = objetMonde.ImageId;
             IsBlock = objetMonde.IsBlock;
-            Monde = new MondeDTO(objetMonde.Monde);
         }
 
         [DataMember]
@@ -46,8 +45,5 @@ namespace HugoWorld_WCF.DTOs {
 
         [DataMember]
         public bool IsBlock { get; set; }
-
-        [DataMember]
-        public virtual MondeDTO Monde { get; set; }
     }
 }

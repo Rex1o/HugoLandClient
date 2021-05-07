@@ -63,7 +63,8 @@ namespace HugoWorld_WCF.Services {
         {
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-                return dbContext.Classes.Where(x => x.MondeId == p_MapId).ToList().Select(x => new ClasseDTO(x)).ToList();
+                return dbContext.Classes.Where(x => x.MondeId == p_MapId).ToList()
+                                        .Select(x => new ClasseDTO(x)).ToList();
             }
         }
 
@@ -71,7 +72,8 @@ namespace HugoWorld_WCF.Services {
         {
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-                return dbContext.Classes.ToList().Select(x => new ClasseDTO(x)).ToList();
+                return dbContext.Classes.ToList()
+                                        .Select(x => new ClasseDTO(x)).ToList();
             }
         }
     }

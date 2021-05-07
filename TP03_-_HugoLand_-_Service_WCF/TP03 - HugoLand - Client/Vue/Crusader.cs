@@ -105,8 +105,8 @@ namespace HugoWorld {
                 menu.ShowDialog();
 
             if (menu.DialogResult == DialogResult.Abort) {
-                Application.Exit();
                 this.Close();
+                Application.Exit();
             } else {
                 //Loads the hero into Outils
                 if (heroService.IsHeroAvailable(Outils.GetHero().Id)) {
@@ -124,7 +124,6 @@ namespace HugoWorld {
                     help.Show();
                     help.Focus();
                 } else {
-                    this.Close();
                     Outils.ShowInfoMessage("A player is currently connected to this Hero. Please choose another Hero that isn't connected.", "Warning!", MessageBoxButtons.OK);
                     ShowMenu();
                 }

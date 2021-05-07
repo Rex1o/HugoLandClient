@@ -268,7 +268,7 @@ namespace HugoWorld
             MapTile tile = _currentArea.Map[_heroPosition.X, _heroPosition.Y];
 
             Tile objectTile = tile.ObjectTile;
-
+            TileImport t = tile.TileImport;
 
 
             if (objectTile == null)
@@ -277,28 +277,16 @@ namespace HugoWorld
             {
                 //Most objects change your stats in some way.
                 case "armour":
-                    _gameState.Armour++;
-
-                    Sounds.Pickup();
+                    if (RamasserItems(t))
+                    {
+                        _gameState.Armour++;
+                        Sounds.Pickup();
+                    }
                     break;
 
                 case "attack":
 
-                    TileImport t = tile.TileImport;
-                    ItemDTO dto = new ItemDTO()
-                    {
-                        Id = t.ID,
-                        Nom = t.Name,
-                        Description = t.Description,
-                        x = t.x,
-                        y = t.y,
-                        MondeId = _monde.Id,
-                        IdHero = _hero.Id,
-                        ImageId = int.Parse(t.tileID),
-                        RowVersion = t.RowVersion
-                    };
-
-                    if (ItemService.PickUpItem(dto) != null)
+                    if (RamasserItems(t))
                     {
                         _gameState.Attack++;
                         Sounds.Pickup();
@@ -306,25 +294,37 @@ namespace HugoWorld
                     break;
 
                 case "food":
-                    _gameState.Health += 10;
-                    Sounds.Eat();
+                    if (RamasserItems(t))
+                    {
+                        _gameState.Health += 10;
+                        Sounds.Eat();
+                    }
                     break;
 
                 case "treasure":
-                    _gameState.Treasure += 5;
-                    Sounds.Pickup();
+                    if (RamasserItems(t))
+                    {
+                        _gameState.Treasure += 5;
+                        Sounds.Pickup();
+                    }
                     break;
 
                 case "potion":
-                    _gameState.Potions++;
-                    Sounds.Pickup();
+                    if (RamasserItems(t))
+                    {
+                        _gameState.Potions++;
+                        Sounds.Pickup();
+                    }
                     break;
 
                 case "key":
-                    if (objectTile.Color == "brown") _gameState.HasBrownKey = true;
-                    if (objectTile.Color == "green") _gameState.HasGreenKey = true;
-                    if (objectTile.Color == "red") _gameState.HasRedKey = true;
-                    Sounds.Pickup();
+                    if (RamasserItems(t))
+                    {
+                        if (objectTile.Color == "brown") _gameState.HasBrownKey = true;
+                        if (objectTile.Color == "green") _gameState.HasGreenKey = true;
+                        if (objectTile.Color == "red") _gameState.HasRedKey = true;
+                        Sounds.Pickup();
+                    }
                     break;
 
                 case "fire":
@@ -745,6 +745,30 @@ namespace HugoWorld
             Right,
             Up,
             Down
+        }
+
+        private bool RamasserItems(TileImport t) {
+            
+            ItemDTO dto = new ItemDTO()
+            {
+                Id = t.ID,
+                Nom = t.Name,
+                Description = t.Description,
+                x = t.x,
+                y = t.y,
+                MondeId = _monde.Id,
+                IdHero = _hero.Id,
+                ImageId = int.Parse(t.tileID),
+                RowVersion = t.RowVersion
+            };
+
+            if (ItemService.PickUpItem(dto) != null)
+            {
+                return true;
+            }
+
+            return false;
+
         }
     }
 }

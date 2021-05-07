@@ -278,7 +278,7 @@
   <xs:element name="PickUpItem">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="item" nillable="true" type="q31:ItemDTO" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="dto" nillable="true" type="q31:ItemDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

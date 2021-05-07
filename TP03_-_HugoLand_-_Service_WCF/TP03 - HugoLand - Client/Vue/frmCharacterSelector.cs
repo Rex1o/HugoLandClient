@@ -54,7 +54,6 @@ namespace HugoWorld.Vue {
                         }
 
                         Outils.SetHero(Hero);
-                        RefreshData();
                         this.DialogResult = DialogResult.OK;
                         this.Close();
                     } else {

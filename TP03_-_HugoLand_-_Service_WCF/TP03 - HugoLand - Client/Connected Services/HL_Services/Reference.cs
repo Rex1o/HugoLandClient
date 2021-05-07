@@ -841,9 +841,6 @@ namespace HugoWorld_Client.HL_Services {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ItemIdField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int QuantiteField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -919,19 +916,6 @@ namespace HugoWorld_Client.HL_Services {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Quantite {
-            get {
-                return this.QuantiteField;
-            }
-            set {
-                if ((this.QuantiteField.Equals(value) != true)) {
-                    this.QuantiteField = value;
-                    this.RaisePropertyChanged("Quantite");
-                }
-            }
-        }
-        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -971,9 +955,6 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private HugoWorld_Client.HL_Services.InventaireHeroDTO[] InventaireHeroDTOsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private HugoWorld_Client.HL_Services.MondeDTO MondeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MondeIdField;
@@ -1087,19 +1068,6 @@ namespace HugoWorld_Client.HL_Services {
                 if ((object.ReferenceEquals(this.InventaireHeroDTOsField, value) != true)) {
                     this.InventaireHeroDTOsField = value;
                     this.RaisePropertyChanged("InventaireHeroDTOs");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public HugoWorld_Client.HL_Services.MondeDTO Monde {
-            get {
-                return this.MondeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MondeField, value) != true)) {
-                    this.MondeField = value;
-                    this.RaisePropertyChanged("Monde");
                 }
             }
         }
@@ -2235,10 +2203,10 @@ namespace HugoWorld_Client.HL_Services {
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ObjetMondeDTO[]> ConvertToObjetMondeDTOsAsync(TP01_Library.Models.ObjetMonde[] objetMondes);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/PickUpItem", ReplyAction="http://tempuri.org/IItemService/PickUpItemResponse")]
-        HugoWorld_Client.HL_Services.ItemDTO PickUpItem(HugoWorld_Client.HL_Services.ItemDTO item);
+        HugoWorld_Client.HL_Services.ItemDTO PickUpItem(HugoWorld_Client.HL_Services.ItemDTO dto);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IItemService/PickUpItem", ReplyAction="http://tempuri.org/IItemService/PickUpItemResponse")]
-        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ItemDTO> PickUpItemAsync(HugoWorld_Client.HL_Services.ItemDTO item);
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ItemDTO> PickUpItemAsync(HugoWorld_Client.HL_Services.ItemDTO dto);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2308,12 +2276,12 @@ namespace HugoWorld_Client.HL_Services {
             return base.Channel.ConvertToObjetMondeDTOsAsync(objetMondes);
         }
         
-        public HugoWorld_Client.HL_Services.ItemDTO PickUpItem(HugoWorld_Client.HL_Services.ItemDTO item) {
-            return base.Channel.PickUpItem(item);
+        public HugoWorld_Client.HL_Services.ItemDTO PickUpItem(HugoWorld_Client.HL_Services.ItemDTO dto) {
+            return base.Channel.PickUpItem(dto);
         }
         
-        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ItemDTO> PickUpItemAsync(HugoWorld_Client.HL_Services.ItemDTO item) {
-            return base.Channel.PickUpItemAsync(item);
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.ItemDTO> PickUpItemAsync(HugoWorld_Client.HL_Services.ItemDTO dto) {
+            return base.Channel.PickUpItemAsync(dto);
         }
     }
     

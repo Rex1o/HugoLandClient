@@ -4,6 +4,7 @@ using System.Linq;
 using TP01_Library.Models;
 using HugoWorld_WCF.Models;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace HugoWorld_WCF.Services
 {
@@ -65,11 +66,31 @@ namespace HugoWorld_WCF.Services
             using (HugoLandContext dbContext = new HugoLandContext())
             {
 
+
                 Item item = DTOtoReg.DTOToItem(dto);
+
+                InventaireHero inv = new InventaireHero()
+                {
+                    IdHero = (int)dto.IdHero,
+                    ItemId = dto.Id
+                };
+
+                ObjetMonde grass = new ObjetMonde()
+                {
+                    x = (int)item.x,
+                    y = (int)item.y,
+                    TypeObjet = 0,
+                    MondeId = item.MondeId,
+                    ImageId = 17,
+                    IsBlock = false,
+                    Description = "Grass"
+                };
+
                 item.x = null;
                 item.y = null;
 
-
+                dbContext.ObjetMondes.Add(grass);
+                dbContext.InventaireHeroes.Add(inv);
                 dbContext.Entry(item).State = EntityState.Modified;
                 try
                 {
@@ -80,8 +101,6 @@ namespace HugoWorld_WCF.Services
                 {
                     return null;
                 }
-
-
             }
         }
     }

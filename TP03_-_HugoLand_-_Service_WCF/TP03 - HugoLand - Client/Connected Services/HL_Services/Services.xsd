@@ -119,7 +119,6 @@
       <xs:element minOccurs="0" name="IdInventaireHero" type="xs:int" />
       <xs:element minOccurs="0" name="Item" nillable="true" type="tns:Item" />
       <xs:element minOccurs="0" name="ItemId" type="xs:int" />
-      <xs:element minOccurs="0" name="Quantite" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="InventaireHero" nillable="true" type="tns:InventaireHero" />

@@ -95,6 +95,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="DAL\OtherPlayers.cs" />
     <Compile Include="Validators\ClasseDTOValidator.cs" />
     <Compile Include="Vue\ClassCreator.cs">
       <SubType>Form</SubType>

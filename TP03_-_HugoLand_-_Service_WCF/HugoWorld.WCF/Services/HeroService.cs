@@ -83,7 +83,11 @@ namespace HugoWorld_WCF.Services {
             using (HugoLandContext context = new HugoLandContext())
             {
                 IJoueurService service = new HugoLandService();
-                return service.ConvertToHerosDTO(context.Heros.Where(h => h.MondeId == mondeID && h.x >= chunk[0][0] && h.x <= chunk[1][0] && h.y >= chunk[0][1] && h.y <= chunk[1][1] && h.EstConnecte).ToList());
+                int TLX = chunk[0][0];
+                int BRX = chunk[1][0];
+                int TLY = chunk[0][1];
+                int BRY = chunk[0][1];
+                return service.ConvertToHerosDTO(context.Heros.Where(h => h.MondeId == mondeID && h.x >= TLX && h.x <= BRX && h.y >= TLY && h.y <= BRY && h.EstConnecte).ToList());
             }
         }
     }

@@ -86,7 +86,7 @@ namespace HugoWorld_WCF.Services {
                 int TLX = chunk[0][0];
                 int BRX = chunk[1][0];
                 int TLY = chunk[0][1];
-                int BRY = chunk[0][1];
+                int BRY = chunk[1][1];
                 return service.ConvertToHerosDTO(context.Heros.Where(h => h.MondeId == mondeID && h.x >= TLX && h.x <= BRX && h.y >= TLY && h.y <= BRY && h.EstConnecte).ToList());
             }
         }

@@ -13,7 +13,7 @@ namespace HugoWorld_Client.Vue {
         private int _Strength;
         private int _Dexterity;
         private int _Vitality;
-        private int _Intelligence;
+        private int _Integrity;
 
         private readonly ClasseServiceClient classeService;
         private readonly MondeServiceClient mondeService;
@@ -55,7 +55,7 @@ namespace HugoWorld_Client.Vue {
                     NomClasse = newNomClasseTextBox.Text,
                     Description = newDescriptionTextBox.Text,
                     StatBaseDex = _Dexterity,
-                    StatBaseInt = _Intelligence,
+                    StatBaseInt = _Integrity,
                     StatBaseStr = _Strength,
                     StatBaseVitalite = _Vitality
                 };
@@ -185,7 +185,7 @@ namespace HugoWorld_Client.Vue {
                 if (nValue < 1) {
                     return false;
                 }
-                _Intelligence = nValue;
+                _Integrity = nValue;
             } else {
                 return false;
             }

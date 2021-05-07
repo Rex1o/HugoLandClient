@@ -30,9 +30,9 @@ namespace HugoWorld_WCF.DTOs {
             ClasseId = hero.ClasseId;
             EstConnecte = hero.EstConnecte;
 
-            Monde = new MondeDTO(hero.Monde);
-            Classe = new ClasseDTO(hero.Classe);
-            CompteJoueur = new CompteJoueurDTO(hero.CompteJoueur);
+           // Monde = new MondeDTO(hero.Monde);
+           // Classe = new ClasseDTO(hero.Classe);
+           // CompteJoueur = new CompteJoueurDTO(hero.CompteJoueur);
         }
 
         [DataMember]

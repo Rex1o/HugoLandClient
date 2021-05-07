@@ -31,6 +31,7 @@ namespace HugoWorld_WCF.Services {
             tile.tileID = monstre.ImageId.ToString();
             tile.x = monstre.x;
             tile.y = monstre.y;
+
             return tile;
         }
 

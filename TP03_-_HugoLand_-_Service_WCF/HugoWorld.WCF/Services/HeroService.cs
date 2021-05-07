@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using TP01_Library.Models;
 
-namespace HugoWorld_WCF.Services {
+namespace HugoWorld_WCF.Services
+{
 
-    public partial class HugoLandService : IHeroService {
+    public partial class HugoLandService : IHeroService
+    {
 
-        public void AddHeroToDataBase(HeroDTO p_heroDTO) {
-            using (HugoLandContext dbContext = new HugoLandContext()) {
-                Hero hero = new Hero() {
+        public void AddHeroToDataBase(HeroDTO p_heroDTO)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                Hero hero = new Hero()
+                {
                     CompteJoueurId = p_heroDTO.CompteJoueurId,
                     x = p_heroDTO.x,
                     y = p_heroDTO.y,
@@ -30,8 +35,10 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public bool DeleteHeroById(int p_HeroId) {
-            using (HugoLandContext dbContext = new HugoLandContext()) {
+        public bool DeleteHeroById(int p_HeroId)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
                 Hero hero = dbContext.Heros.Find(p_HeroId);
 
                 if (hero == null)
@@ -44,8 +51,10 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public void SaveHeroPos(int id, int x, int y) {
-            using (HugoLandContext dbContext = new HugoLandContext()) {
+        public void SaveHeroPos(int id, int x, int y)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
                 Hero h = dbContext.Heros.Find(id);
 
                 h.x = x;
@@ -54,8 +63,10 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public void ConnectDisconnectHeroById(int p_HeroId, bool p_State) {
-            using (HugoLandContext dbContext = new HugoLandContext()) {
+        public void ConnectDisconnectHeroById(int p_HeroId, bool p_State)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
                 Hero h = dbContext.Heros.Find(p_HeroId);
 
                 h.EstConnecte = p_State;
@@ -63,11 +74,14 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public bool IsHeroAvailable(int p_HeroId) {
-            using (HugoLandContext dbContext = new HugoLandContext()) {
+        public bool IsHeroAvailable(int p_HeroId)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
                 Hero h = dbContext.Heros.Find(p_HeroId);
 
-                if (h != null) {
+                if (h != null)
+                {
                     if (h.EstConnecte)
                         return false;
                     else
@@ -90,5 +104,32 @@ namespace HugoWorld_WCF.Services {
                 return service.ConvertToHerosDTO(context.Heros.Where(h => h.MondeId == mondeID && h.x >= TLX && h.x <= BRX && h.y >= TLY && h.y <= BRY && h.EstConnecte).ToList());
             }
         }
+
+        //public List<HeroDTO> ConvertToHerosDTO(ICollection<Hero> heroes)
+        //{
+        //    List<Hero> _heroes = heroes.ToList();
+
+        //    List<HeroDTO> heroDTOs = new List<HeroDTO>();
+
+        //    foreach (Hero h in _heroes)
+        //    {
+        //        HeroDTO hdto = new HeroDTO();
+        //        hdto.Id = h.Id;
+        //        hdto.x = h.x;
+        //        hdto.y = h.y;
+        //        hdto.ClasseId = h.ClasseId;
+        //        hdto.CompteJoueurId = h.CompteJoueurId;
+        //        hdto.EstConnecte = h.EstConnecte;
+        //        hdto.Monde = null;
+        //        hdto.
+
+        //    }
+        //    //_heroes.ForEach(h => heroDTOs.Add(new HeroDTO(h)
+        //    //{
+        //    //    InventaireHeros = ConvertToInventaireHeroDTOs(h.InventaireHeroes),
+        //    //    Items = ConvertToItemsDTOs(h.Items)
+        //    //}));
+        //    return heroDTOs;
+        //}
     }
 }

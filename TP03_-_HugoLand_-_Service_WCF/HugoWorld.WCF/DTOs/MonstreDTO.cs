@@ -21,7 +21,7 @@ namespace HugoWorld_WCF.DTOs {
             StatDmgMin = monstre.StatDmgMin;
             StatDmgMax = monstre.StatDmgMax;
             MondeId = monstre.MondeId;
-            Monde = new MondeDTO(monstre.Monde);
+            ImageId = monstre.ImageId;
         }
 
         [DataMember]

@@ -36,5 +36,14 @@ namespace HugoWorld_WCF.DTOs {
 
         [DataMember]
         public virtual List<HeroDTO> Heros { get; set; }
+
+        [DataMember]
+        public virtual List<ItemDTO> Items { get; set; }
+
+        [DataMember]
+        public virtual List<MonstreDTO> Monstres { get; set; }
+
+        [DataMember]
+        public virtual List<ObjetMondeDTO> ObjetMondes { get; set; }
     }
 }

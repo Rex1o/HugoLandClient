@@ -68,8 +68,11 @@
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Heros" nillable="true" type="tns:ArrayOfHeroDTO" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfItemDTO" />
       <xs:element minOccurs="0" name="LimiteX" type="xs:int" />
       <xs:element minOccurs="0" name="LimiteY" type="xs:int" />
+      <xs:element minOccurs="0" name="Monstres" nillable="true" type="tns:ArrayOfMonstreDTO" />
+      <xs:element minOccurs="0" name="ObjetMondes" nillable="true" type="tns:ArrayOfObjetMondeDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MondeDTO" nillable="true" type="tns:MondeDTO" />
@@ -93,35 +96,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ItemDTO" nillable="true" type="tns:ItemDTO" />
-  <xs:complexType name="ArrayOfEffetItemDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="EffetItemDTO" nillable="true" type="tns:EffetItemDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfEffetItemDTO" nillable="true" type="tns:ArrayOfEffetItemDTO" />
-  <xs:complexType name="EffetItemDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="ItemId" type="xs:int" />
-      <xs:element minOccurs="0" name="TypeEffet" type="xs:int" />
-      <xs:element minOccurs="0" name="ValeurEffet" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="EffetItemDTO" nillable="true" type="tns:EffetItemDTO" />
-  <xs:complexType name="ArrayOfInventaireHeroDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventaireHeroDTO" nillable="true" type="tns:InventaireHeroDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfInventaireHeroDTO" nillable="true" type="tns:ArrayOfInventaireHeroDTO" />
-  <xs:complexType name="InventaireHeroDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="IdHero" type="xs:int" />
-      <xs:element minOccurs="0" name="IdInventaireHero" type="xs:int" />
-      <xs:element minOccurs="0" name="ItemId" type="xs:int" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="InventaireHeroDTO" nillable="true" type="tns:InventaireHeroDTO" />
   <xs:complexType name="ArrayOfMonstreDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="MonstreDTO" nillable="true" type="tns:MonstreDTO" />
@@ -163,4 +137,33 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ObjetMondeDTO" nillable="true" type="tns:ObjetMondeDTO" />
+  <xs:complexType name="ArrayOfEffetItemDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EffetItemDTO" nillable="true" type="tns:EffetItemDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEffetItemDTO" nillable="true" type="tns:ArrayOfEffetItemDTO" />
+  <xs:complexType name="EffetItemDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ItemId" type="xs:int" />
+      <xs:element minOccurs="0" name="TypeEffet" type="xs:int" />
+      <xs:element minOccurs="0" name="ValeurEffet" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EffetItemDTO" nillable="true" type="tns:EffetItemDTO" />
+  <xs:complexType name="ArrayOfInventaireHeroDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InventaireHeroDTO" nillable="true" type="tns:InventaireHeroDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInventaireHeroDTO" nillable="true" type="tns:ArrayOfInventaireHeroDTO" />
+  <xs:complexType name="InventaireHeroDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdHero" type="xs:int" />
+      <xs:element minOccurs="0" name="IdInventaireHero" type="xs:int" />
+      <xs:element minOccurs="0" name="ItemId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InventaireHeroDTO" nillable="true" type="tns:InventaireHeroDTO" />
 </xs:schema>

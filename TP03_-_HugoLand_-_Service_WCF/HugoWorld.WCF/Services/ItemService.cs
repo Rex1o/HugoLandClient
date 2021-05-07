@@ -99,5 +99,16 @@ namespace HugoWorld_WCF.Services
                 }
             }
         }
+
+        public List<ItemDTO> ObtenirItemHero(HeroDTO h)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+
+                List<Item> items = dbContext.Items.Where(x => x.IdHero == h.Id).ToList();
+                List<ItemDTO> itemsdto = ConvertToItemsDTOs(items);
+                return itemsdto;
+            }
+        }
     }
 }

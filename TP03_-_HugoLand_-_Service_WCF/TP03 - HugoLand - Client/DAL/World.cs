@@ -89,7 +89,7 @@ namespace HugoWorld
 
             //Get all the connected heros in the loaded chunk
             List<HeroDTO> others = serviceHero.GetHerosInChunk(chunk, _monde.Id).ToList();
-            foreach(HeroDTO other in others)
+            foreach(HeroDTO other in others.Where(x => x.Id != _hero.Id))
             {
                 OtherPlayers op = new OtherPlayers();
                 op.Hero = other;
@@ -98,8 +98,8 @@ namespace HugoWorld
                 op._heroSprite = new Sprite(null, op._heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
                                             _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
                                             _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
-                op.heroSprite.Flip = true;
-                op.heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+                op._heroSprite.Flip = true;
+                op._heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
 
                 _herosMP.Add(op);
             }

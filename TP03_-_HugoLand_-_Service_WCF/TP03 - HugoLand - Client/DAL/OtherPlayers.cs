@@ -13,7 +13,6 @@ namespace HugoWorld_Client.DAL
     public class OtherPlayers
     {
         public HeroDTO Hero;
-        public Sprite heroSprite;
         public Point _heroPosition;
         public Sprite _heroSprite;
         public bool _heroSpriteAnimating;

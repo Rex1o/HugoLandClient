@@ -89,7 +89,7 @@ namespace HugoWorld
 
             //Get all the connected heros in the loaded chunk
             List<HeroDTO> others = serviceHero.GetHerosInChunk(chunk, _monde.Id).ToList();
-            foreach(HeroDTO other in others.Where(x => x.Id != _hero.Id))
+            foreach (HeroDTO other in others.Where(x => x.Id != _hero.Id))
             {
                 OtherPlayers op = new OtherPlayers();
                 op.Hero = other;
@@ -199,7 +199,7 @@ namespace HugoWorld
                 else
                     p_y = p_posy;
 
-              
+
 
                 int[][] chunk = GetChunkLimitsAtHeroPos(p_x, p_y);
 
@@ -472,7 +472,7 @@ namespace HugoWorld
                             else if (_currentArea.EastArea != "-")
                             {
                                 //Edge of map - move to next area
-                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x + 1, _hero.y, _monde.Id), _tiles), _heroPosition.X + 1, _heroPosition.Y))
+                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x + 1, _hero.y, _monde.Id), _tiles), _heroPosition.X + 1, _heroPosition.Y, true))
                                 {
                                     LoadChunk(_hero.x + 1);
                                     //_currentArea = _world[_currentArea.EastArea];
@@ -490,7 +490,9 @@ namespace HugoWorld
                         break;
 
                     case Keys.Left:
-                         
+                        if (_hero.x > 0)
+                        {
+
                             //Are we at the edge of the map?
                             if (_heroPosition.X > 0)
                             {
@@ -509,7 +511,7 @@ namespace HugoWorld
                             }
                             else if (_currentArea.WestArea != "-")
                             {
-                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x - 1, _hero.y, _monde.Id), _tiles), _heroPosition.X - 1, _heroPosition.Y))
+                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x - 1, _hero.y, _monde.Id), _tiles), _heroPosition.X - 1, _heroPosition.Y, true))
                                 {
                                     LoadChunk(_hero.x - 1);
                                     //_currentArea = _world[_currentArea.WestArea];
@@ -523,7 +525,7 @@ namespace HugoWorld
                                     }
                                 }
                             }
-                        
+                        }
                         break;
 
                     case Keys.Up:
@@ -548,7 +550,7 @@ namespace HugoWorld
                             }
                             else if (_currentArea.NorthArea != "-")
                             {
-                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y - 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y - 1))
+                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y - 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y - 1, true))
                                 {
                                     //Edge of map - move to next area
                                     LoadChunk(-1, _hero.y - 1);
@@ -587,7 +589,7 @@ namespace HugoWorld
                             else if (_currentArea.SouthArea != "-")
                             {
                                 //Edge of map - move to next area
-                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y + 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y + 1))
+                                if (checkNextTile(new MapTile(service.GetTileAt(_hero.x, _hero.y + 1, _monde.Id), _tiles), _heroPosition.X, _heroPosition.Y + 1, true))
                                 {
                                     LoadChunk(-1, _hero.y + 1);
                                     if (_currentArea.SouthArea == "OK")
@@ -647,10 +649,15 @@ namespace HugoWorld
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        private bool checkNextTile(MapTile mapTile, int x, int y)
+        private bool checkNextTile(MapTile mapTile, int x, int y, bool newChunk = false)
         {
             //See if there is a door we need to open
             checkDoors(mapTile, x, y);
+
+            //ne peux pas changer de chunk sur un item ou un monstre
+            if (newChunk)
+                if (mapTile.TileImport.Type == TypeTile.Monstre || mapTile.TileImport.Type == TypeTile.Item)
+                    return false;
 
             //See if there is character to fight
             if (mapTile.ObjectTile != null && mapTile.ObjectTile.Category == "character")
@@ -790,8 +797,9 @@ namespace HugoWorld
             Down
         }
 
-        private bool RamasserItems(TileImport t) {
-            
+        private bool RamasserItems(TileImport t)
+        {
+
             ItemDTO dto = new ItemDTO()
             {
                 Id = t.ID,

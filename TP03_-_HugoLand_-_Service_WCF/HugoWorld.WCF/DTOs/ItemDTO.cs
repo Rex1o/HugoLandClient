@@ -24,7 +24,7 @@ namespace HugoWorld_WCF.DTOs {
             ImageId = item.ImageId;
             IdHero = item.IdHero;
             RowVersion = item.RowVersion;
-
+            
             if (item.Hero != null)
                 Hero = new HeroDTO(item.Hero);
         }
@@ -64,7 +64,5 @@ namespace HugoWorld_WCF.DTOs {
         [DataMember]
         public virtual HeroDTO Hero { get; set; }
 
-        [DataMember]
-        public virtual MondeDTO Monde { get; set; }
     }
 }

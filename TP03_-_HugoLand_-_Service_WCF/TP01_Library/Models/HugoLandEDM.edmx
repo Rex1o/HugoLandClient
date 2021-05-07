@@ -59,15 +59,15 @@
           <Property Name="NomHero" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EstConnecte" Type="bit" Nullable="false" />
           <Property Name="ImageId" Type="int" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <EntityType Name="InventaireHeroes">
           <Key>
             <PropertyRef Name="IdInventaireHero" />
           </Key>
-          <Property Name="IdHero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdHero" Type="int" Nullable="false" />
           <Property Name="ItemId" Type="int" Nullable="false" />
-          <Property Name="IdInventaireHero" Type="int" Nullable="false" />
-          <Property Name="Quantite" Type="int" Nullable="false" />
+          <Property Name="IdInventaireHero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Items">
           <Key>
@@ -441,15 +441,15 @@
           <NavigationProperty Name="InventaireHeroes" Relationship="Self.FK_BelongsToHero" FromRole="Heros" ToRole="InventaireHeroes" />
           <NavigationProperty Name="Monde" Relationship="Self.FK_Hero_Monde" FromRole="Heros" ToRole="Mondes" />
           <NavigationProperty Name="Items" Relationship="Self.FK_Item_Heros" FromRole="Heros" ToRole="Items" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
         </EntityType>
         <EntityType Name="InventaireHero">
           <Key>
             <PropertyRef Name="IdInventaireHero" />
           </Key>
-          <Property Name="IdHero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdHero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="ItemId" Type="Int32" Nullable="false" />
-          <Property Name="IdInventaireHero" Type="Int32" Nullable="false" />
-          <Property Name="Quantite" Type="Int32" Nullable="false" />
+          <Property Name="IdInventaireHero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Hero" Relationship="Self.FK_BelongsToHero" FromRole="InventaireHeroes" ToRole="Heros" />
           <NavigationProperty Name="Item" Relationship="Self.FK_BelongsToItem" FromRole="InventaireHeroes" ToRole="Items" />
         </EntityType>
@@ -827,6 +827,7 @@
           <EntitySetMapping Name="Heros">
             <EntityTypeMapping TypeName="HugoLand.Hero">
               <MappingFragment StoreEntitySet="Heros">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CompteJoueurId" ColumnName="CompteJoueurId" />
                 <ScalarProperty Name="Niveau" ColumnName="Niveau" />
@@ -850,7 +851,6 @@
                 <ScalarProperty Name="IdHero" ColumnName="IdHero" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="IdInventaireHero" ColumnName="IdInventaireHero" />
-                <ScalarProperty Name="Quantite" ColumnName="Quantite" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

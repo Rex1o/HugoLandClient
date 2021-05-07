@@ -64,25 +64,6 @@ namespace TP01_Library.Controllers {
         }
 
         /// <summary>
-        /// Auteur: Simon Lalancette |
-        /// Summary: Permet de modifier la quantité d'item qu'un hero a |
-        /// Date: 2021-02-11
-        /// </summary>
-        public void ModifierQuantiteItem(int Item_ID, int p_quantite)
-        {
-            using (HugoLandContext context = new HugoLandContext())
-            {
-                InventaireHero item = context.InventaireHeroes.FirstOrDefault(x => x.ItemId == Item_ID);
-
-                if (item != null)
-                {
-                    item.Quantite = p_quantite;
-                    context.SaveChanges();
-                }
-            }
-        }
-
-        /// <summary>
         /// Auteur: Mathias Lavoie-Rivard
         /// Description: Permet d'ajouter les items et updater le monde en cours
         /// </summary>

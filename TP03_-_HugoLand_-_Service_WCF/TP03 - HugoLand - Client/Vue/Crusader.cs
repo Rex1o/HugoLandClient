@@ -14,7 +14,7 @@ namespace HugoWorld {
         private GameState _gameState;
         private bool connected = false;
         private HeroServiceClient heroService;
-        
+
 
         public HugoWorld() {
             heroService = new HeroServiceClient();
@@ -101,7 +101,6 @@ namespace HugoWorld {
         private void ShowMenu() {
             frmMenu menu = new frmMenu();
             menu.ShowDialog();
-
             while (menu.DialogResult != DialogResult.OK && menu.DialogResult != DialogResult.Abort)
                 menu.ShowDialog();
 
@@ -110,27 +109,32 @@ namespace HugoWorld {
                 this.Close();
             } else {
                 //Loads the hero into Outils
-                Outils.SetHero(menu.currentHero);
+                if (heroService.IsHeroAvailable(Outils.GetHero().Id)) {
+                    heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, true);
+                    Outils.GetHero().EstConnecte = true;
 
-                heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, true);
-                Outils.GetHero().EstConnecte = true;
-
-                //Then Show help/Start game
-                this.Enabled = true;
-                this.Show();
-                _gameState = new GameState(ClientSize);
-                connected = true;
-                initialize();
-                Form help = new helpform();
-                help.StartPosition = FormStartPosition.CenterScreen;
-                help.Show();
-                help.Focus();
+                    //Then Show help/Start game
+                    this.Enabled = true;
+                    this.Show();
+                    _gameState = new GameState(ClientSize);
+                    connected = true;
+                    initialize();
+                    Form help = new helpform();
+                    help.StartPosition = FormStartPosition.CenterScreen;
+                    help.Show();
+                    help.Focus();
+                } else {
+                    this.Close();
+                    Outils.ShowInfoMessage("A player is currently connected to this Hero. Please choose another Hero that isn't connected.", "Warning!", MessageBoxButtons.OK);
+                    ShowMenu();
+                }
             }
         }
 
         private void HugoWorld_FormClosing(object sender, FormClosingEventArgs e) {
             _gameState.KeyDown(Keys.Escape);
-            heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, false);
+            if (Outils.GetHero() != null)
+                heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, false);
         }
     }
 }

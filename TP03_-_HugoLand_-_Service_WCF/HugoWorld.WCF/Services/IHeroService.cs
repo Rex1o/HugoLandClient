@@ -1,4 +1,5 @@
 ﻿using HugoWorld_WCF.DTOs;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace HugoWorld_WCF.Services {
@@ -20,5 +21,8 @@ namespace HugoWorld_WCF.Services {
 
         [OperationContract]
         bool IsHeroAvailable(int p_HeroId);
+
+        [OperationContract]
+        List<HeroDTO> GetHerosInChunk(int[][] chunk, int mondeID);
     }
 }

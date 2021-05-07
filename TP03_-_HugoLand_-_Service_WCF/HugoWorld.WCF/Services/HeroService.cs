@@ -1,4 +1,6 @@
 ﻿using HugoWorld_WCF.DTOs;
+using System.Collections.Generic;
+using System.Linq;
 using TP01_Library.Models;
 
 namespace HugoWorld_WCF.Services {
@@ -73,6 +75,15 @@ namespace HugoWorld_WCF.Services {
                 }
 
                 return false;
+            }
+        }
+
+        public List<HeroDTO> GetHerosInChunk(int[][] chunk, int mondeID)
+        {
+            using (HugoLandContext context = new HugoLandContext())
+            {
+                IJoueurService service = new HugoLandService();
+                return service.ConvertToHerosDTO(context.Heros.Where(h => h.MondeId == mondeID && h.x >= chunk[0][0] && h.x <= chunk[1][0] && h.y >= chunk[0][1] && h.y <= chunk[1][1] && h.EstConnecte).ToList());
             }
         }
     }

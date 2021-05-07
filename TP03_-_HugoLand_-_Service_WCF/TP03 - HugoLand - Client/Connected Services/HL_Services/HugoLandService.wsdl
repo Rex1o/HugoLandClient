@@ -190,6 +190,12 @@
   <wsdl:message name="IHeroService_IsHeroAvailable_OutputMessage">
     <wsdl:part name="parameters" element="tns:IsHeroAvailableResponse" />
   </wsdl:message>
+  <wsdl:message name="IHeroService_GetHerosInChunk_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHerosInChunk" />
+  </wsdl:message>
+  <wsdl:message name="IHeroService_GetHerosInChunk_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHerosInChunkResponse" />
+  </wsdl:message>
   <wsdl:portType name="IJoueurService">
     <wsdl:operation name="Connection">
       <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/Connection" message="tns:IJoueurService_Connection_InputMessage" />
@@ -320,6 +326,10 @@
     <wsdl:operation name="IsHeroAvailable">
       <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/IsHeroAvailable" message="tns:IHeroService_IsHeroAvailable_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHeroService/IsHeroAvailableResponse" message="tns:IHeroService_IsHeroAvailable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHerosInChunk">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/GetHerosInChunk" message="tns:IHeroService_GetHerosInChunk_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroService/GetHerosInChunkResponse" message="tns:IHeroService_GetHerosInChunk_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IJoueurService" type="tns:IJoueurService">
@@ -602,6 +612,15 @@
     </wsdl:operation>
     <wsdl:operation name="IsHeroAvailable">
       <soap:operation soapAction="http://tempuri.org/IHeroService/IsHeroAvailable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHerosInChunk">
+      <soap:operation soapAction="http://tempuri.org/IHeroService/GetHerosInChunk" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -1,4 +1,5 @@
 using HugoWorld.BLL;
+using HugoWorld_Client.DAL;
 using HugoWorld_Client.HL_Services;
 using HugoWorld_Client.Vue;
 using System;
@@ -33,7 +34,7 @@ namespace HugoWorld
 
         //private Dictionary<string, Area> _world = new Dictionary<string, Area>();
         private MondeDTO _monde;
-
+        private List<OtherPlayers> _herosMP = new List<OtherPlayers>();
         private HeroDTO _hero;
         private Area _currentArea;
         private Dictionary<string, Tile> _tiles;
@@ -68,13 +69,40 @@ namespace HugoWorld
             HeroDTO h = Outils.GetHero();
             //Create and position the hero character
 
-            int[] pos = GetHeroPosInChunk();
+            int[] pos = GetHeroPosInChunk(_hero);
             _heroPosition = new Point(pos[0], pos[1]);
             _heroSprite = new Sprite(null, _heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
                                             _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
                                             _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
             _heroSprite.Flip = true;
             _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+
+        }
+
+        public void RenderOtherPlayers()
+        {
+            //fetch the updated heros
+            HeroServiceClient serviceHero = new HeroServiceClient();
+            int[][] chunk = GetChunkLimitsAtHeroPos(_hero.x, _hero.y);
+
+            _herosMP.Clear();
+
+            //Get all the connected heros in the loaded chunk
+            List<HeroDTO> others = serviceHero.GetHerosInChunk(chunk, _monde.Id).ToList();
+            foreach(HeroDTO other in others)
+            {
+                OtherPlayers op = new OtherPlayers();
+                op.Hero = other;
+                int[] pos = GetHeroPosInChunk(other);
+                op._heroPosition = new Point(pos[0], pos[1]);
+                op._heroSprite = new Sprite(null, op._heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
+                                            _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
+                                            _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
+                op.heroSprite.Flip = true;
+                op.heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+
+                _herosMP.Add(op);
+            }
         }
 
         public void Clear()
@@ -115,14 +143,36 @@ namespace HugoWorld
             }
         }
 
-        private int[] GetHeroPosInChunk()
+        private int[] GetHeroPosInChunk(HeroDTO h)
         {
             int[] pos = new int[2];
 
-            pos[0] = _hero.x == 0 ? 0 : _hero.x % 8;
-            pos[1] = _hero.y == 0 ? 0 : _hero.y % 8;
+            pos[0] = h.x == 0 ? 0 : h.x % 8;
+            pos[1] = h.y == 0 ? 0 : h.y % 8;
 
             return pos;
+        }
+
+        private int[][] GetChunkLimitsAtHeroPos(int x, int y)
+        {
+            //Chunk position
+            int Chunkx = (x / 8);
+            int Chunky = (y / 8);
+
+
+            //x = [0]
+            //y = [1]
+            int[] TopLeftCorner = new int[2];
+            TopLeftCorner[0] = Chunkx * 8;
+            TopLeftCorner[1] = Chunky * 8;
+
+            int[] BotRightCorner = new int[2];
+            BotRightCorner[0] = (Chunkx + 1) * 8 - 1;
+            BotRightCorner[1] = (Chunky + 1) * 8 - 1;
+
+            int[][] chunk = new int[2][] { TopLeftCorner, BotRightCorner };
+
+            return chunk;
         }
 
         private void LoadChunk(int p_posx = -1, int p_posy = -1)
@@ -149,26 +199,12 @@ namespace HugoWorld
                 else
                     p_y = p_posy;
 
-                //Chunk position
-                int Chunkx = (p_x / 8);
-                int Chunky = (p_y / 8);
+              
 
-                //Player position in chunk
-                int Chunkpx = h.x == 0 ? 0 : (x_size % h.x);
-                int Chunkpy = h.y == 0 ? 0 : (y_size % h.y);
-
-                //x = [0]
-                //y = [1]
-                int[] TopLeftCorner = new int[2];
-                TopLeftCorner[0] = Chunkx * 8;
-                TopLeftCorner[1] = Chunky * 8;
-
-                int[] BotRightCorner = new int[2];
-                BotRightCorner[0] = (Chunkx + 1) * 8 - 1;
-                BotRightCorner[1] = (Chunky + 1) * 8 - 1;
+                int[][] chunk = GetChunkLimitsAtHeroPos(p_x, p_y);
 
                 MondeServiceClient MondeService = new MondeServiceClient();
-                List<TileImport> objects = MondeService.GetChunk(TopLeftCorner, BotRightCorner, w).ToList();
+                List<TileImport> objects = MondeService.GetChunk(chunk[0], chunk[0], w).ToList();
 
                 Area area = new Area(_tiles, objects);
                 if (_currentArea == null)
@@ -221,10 +257,14 @@ namespace HugoWorld
 
         public override void Update(double gameTime, double elapsedTime)
         {
+            RenderOtherPlayers();
             //We only actually update the current area the rest all 'sleep'
             _currentArea.Update(gameTime, elapsedTime);
 
             _heroSprite.Update(gameTime, elapsedTime);
+
+            //UpdateSprites
+            _herosMP.ForEach((x) => x.heroSprite.Update(gameTime, elapsedTime));
 
             //If the hero is moving we need to check if we are there yet
             if (_heroSpriteAnimating)
@@ -739,7 +779,7 @@ namespace HugoWorld
                                             _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY);
         }
 
-        private enum HeroDirection
+        public enum HeroDirection
         {
             Left,
             Right,

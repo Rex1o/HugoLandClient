@@ -264,7 +264,7 @@ namespace HugoWorld
             _heroSprite.Update(gameTime, elapsedTime);
 
             //UpdateSprites
-            _herosMP.ForEach((x) => x.heroSprite.Update(gameTime, elapsedTime));
+            _herosMP.ForEach((x) => x._heroSprite.Update(gameTime, elapsedTime));
 
             //If the hero is moving we need to check if we are there yet
             if (_heroSpriteAnimating)
@@ -405,7 +405,7 @@ namespace HugoWorld
             _currentArea.Draw(graphics);
             _heroSprite.Draw(graphics);
 
-            _herosMP.ForEach((x) => x.heroSprite.Draw(graphics));
+            _herosMP.ForEach((x) => x._heroSprite.Draw(graphics));
 
             //If we are fighting then draw the damage
             if (_heroSpriteFighting)

@@ -46,17 +46,17 @@ namespace HugoWorld.Vue {
                 if (herosDataGridView.SelectedRows.Count > 0) {
 
                     Hero = herosDataGridView.SelectedRows[0].DataBoundItem as HeroDTO;
-                    if (Hero != null) {
-                        //if (heroService.IsHeroAvailable(Hero.Id)) {
-                        //    // Start game with selected hero
-                        //    if (Outils.GetHero() != null) {
-                        //        Outils.GetHero().EstConnecte = false;
-                        //        heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, false);
-                        //    }
+                    if (heroService.IsHeroAvailable(Hero.Id)) {
+                        // Start game with selected hero
+                        if (Outils.GetHero() != null) {
+                            Outils.GetHero().EstConnecte = false;
+                            heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, false);
+                        }
 
-                        //    heroService.ConnectDisconnectHeroById(Hero.Id, true);
-                        //    Hero.EstConnecte = true;
-                        //    RefreshData();
+                        heroService.ConnectDisconnectHeroById(Hero.Id, true);
+                        Hero.EstConnecte = true;
+                        Outils.SetHero(Hero);
+                        RefreshData();
                         this.DialogResult = DialogResult.OK;
                         this.Close();
                     } else {

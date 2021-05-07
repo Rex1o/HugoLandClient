@@ -96,7 +96,7 @@ namespace HugoWorld
                 int[] pos = GetHeroPosInChunk(other);
                 op._heroPosition = new Point(pos[0], pos[1]);
                 op._heroSprite = new Sprite(null, op._heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
-                                            _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
+                                            op._heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
                                             _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
                 op._heroSprite.Flip = true;
                 op._heroSprite.ColorKey = Color.FromArgb(75, 75, 75);

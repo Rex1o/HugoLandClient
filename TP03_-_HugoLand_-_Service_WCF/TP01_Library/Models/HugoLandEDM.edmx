@@ -59,12 +59,13 @@
           <Property Name="NomHero" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EstConnecte" Type="bit" Nullable="false" />
           <Property Name="ImageId" Type="int" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <EntityType Name="InventaireHeroes">
           <Key>
             <PropertyRef Name="IdInventaireHero" />
           </Key>
-          <Property Name="IdHero" Type="int" Nullable="false" StoreGeneratedPattern="None" />
+          <Property Name="IdHero" Type="int" Nullable="false" />
           <Property Name="ItemId" Type="int" Nullable="false" />
           <Property Name="IdInventaireHero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
@@ -440,6 +441,7 @@
           <NavigationProperty Name="InventaireHeroes" Relationship="Self.FK_BelongsToHero" FromRole="Heros" ToRole="InventaireHeroes" />
           <NavigationProperty Name="Monde" Relationship="Self.FK_Hero_Monde" FromRole="Heros" ToRole="Mondes" />
           <NavigationProperty Name="Items" Relationship="Self.FK_Item_Heros" FromRole="Heros" ToRole="Items" />
+          <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" ConcurrencyMode="Fixed" />
         </EntityType>
         <EntityType Name="InventaireHero">
           <Key>
@@ -825,6 +827,7 @@
           <EntitySetMapping Name="Heros">
             <EntityTypeMapping TypeName="HugoLand.Hero">
               <MappingFragment StoreEntitySet="Heros">
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CompteJoueurId" ColumnName="CompteJoueurId" />
                 <ScalarProperty Name="Niveau" ColumnName="Niveau" />

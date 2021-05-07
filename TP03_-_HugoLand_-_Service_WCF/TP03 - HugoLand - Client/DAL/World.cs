@@ -645,6 +645,7 @@ namespace HugoWorld
                         _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
                     }
                 }
+
                 //Hero
                 _popups.Clear();
                 _popups.Add(new textPopup((int)_heroSprite.Location.X + 40, (int)_heroSprite.Location.Y + 20, (heroDamage != 0) ? heroDamage.ToString() : "miss"));

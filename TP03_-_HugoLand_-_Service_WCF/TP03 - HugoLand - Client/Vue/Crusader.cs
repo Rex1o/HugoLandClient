@@ -13,8 +13,11 @@ namespace HugoWorld {
         private long _frameCounter;
         private GameState _gameState;
         private bool connected = false;
+        private HeroServiceClient heroService;
+        
 
         public HugoWorld() {
+            heroService = new HeroServiceClient();
             //Setup the form
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -65,8 +68,7 @@ namespace HugoWorld {
                 if (result == DialogResult.Yes) {
                     this.Enabled = false;
                     _gameState.KeyDown(e.KeyCode);
-                    SaveGame();
-
+                    heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, false);
                     ShowMenu();
                 }
             } else {
@@ -109,6 +111,10 @@ namespace HugoWorld {
             } else {
                 //Loads the hero into Outils
                 Outils.SetHero(menu.currentHero);
+
+                heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, true);
+                Outils.GetHero().EstConnecte = true;
+
                 //Then Show help/Start game
                 this.Enabled = true;
                 this.Show();
@@ -124,12 +130,6 @@ namespace HugoWorld {
 
         private void HugoWorld_FormClosing(object sender, FormClosingEventArgs e) {
             _gameState.KeyDown(Keys.Escape);
-            SaveGame();
-        }
-
-        private void SaveGame() {
-            // save map, hero, items, monstres
-            HeroServiceClient heroService = new HeroServiceClient();
             heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, false);
         }
     }

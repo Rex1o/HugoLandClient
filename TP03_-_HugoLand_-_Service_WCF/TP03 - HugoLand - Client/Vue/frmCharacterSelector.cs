@@ -53,8 +53,6 @@ namespace HugoWorld.Vue {
                             heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, false);
                         }
 
-                        heroService.ConnectDisconnectHeroById(Hero.Id, true);
-                        Hero.EstConnecte = true;
                         Outils.SetHero(Hero);
                         RefreshData();
                         this.DialogResult = DialogResult.OK;

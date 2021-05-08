@@ -30,6 +30,7 @@ namespace HugoWorld_WCF.DTOs {
             ClasseId = hero.ClasseId;
             EstConnecte = hero.EstConnecte;
             RowVersion = hero.RowVersion;
+            Hp = hero.Hp;
         }
 
         [DataMember]
@@ -76,5 +77,7 @@ namespace HugoWorld_WCF.DTOs {
         
         [DataMember]
         public byte[] RowVersion { get; set; }
+        [DataMember]
+        public int Hp { get; set; }
     }
 }

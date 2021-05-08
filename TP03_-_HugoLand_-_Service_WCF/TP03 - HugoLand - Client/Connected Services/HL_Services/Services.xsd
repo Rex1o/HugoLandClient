@@ -15,6 +15,7 @@
       <xs:element minOccurs="0" name="CompteJoueurId" type="xs:int" />
       <xs:element minOccurs="0" name="EstConnecte" type="xs:boolean" />
       <xs:element minOccurs="0" name="Experience" type="xs:long" />
+      <xs:element minOccurs="0" name="Hp" type="xs:int" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="InventaireHeroes" nillable="true" type="tns:ArrayOfInventaireHero" />
       <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfItem" />

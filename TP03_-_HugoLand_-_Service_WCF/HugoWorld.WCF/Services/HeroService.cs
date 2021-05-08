@@ -107,8 +107,9 @@ namespace HugoWorld_WCF.Services {
                     MondeId = h.MondeId,
                     ClasseId = h.ClasseId,
                     NomHero = h.NomHero,
-                    EstConnecte = h.EstConnecte
-
+                    EstConnecte = h.EstConnecte,
+                    Hp = h.Hp
+                    
                 };
                 dbContext.Entry(hero).State = EntityState.Modified;
 

@@ -36,6 +36,7 @@ namespace TP01_Library.Models
         public string NomHero { get; set; }
         public bool EstConnecte { get; set; }
         public byte[] RowVersion { get; set; }
+        public int Hp { get; set; }
     
         public virtual Classe Classe { get; set; }
         public virtual CompteJoueur CompteJoueur { get; set; }

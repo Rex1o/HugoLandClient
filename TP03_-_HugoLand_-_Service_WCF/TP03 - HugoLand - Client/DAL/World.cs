@@ -429,8 +429,7 @@ namespace HugoWorld {
                         if(mt.TileImport.Type == TypeTile.Item)
                         {
                             TileImgServiceClient service = new TileImgServiceClient();
-                            _currentArea.Map[x._heroPosition.X, x._heroPosition.Y] = new MapTile(service.GetTileAt(x.Hero.x, x.Hero.y, _monde.Id), _tiles);
-                            _currentArea.Map[x._heroPosition.X, x._heroPosition.Y].Sprite.Update(gameTime, elapsedTime);
+                            _currentArea.Map[x._heroPosition.X, x._heroPosition.Y] = new MapTile(service.GetTileAt(mt.GlobalX, mt.GlobalY, _monde.Id), _tiles);
                         }
                     }
                 }
@@ -539,8 +538,10 @@ namespace HugoWorld {
             }
             //Remove the object unless its bones or fire
             if (objectTile.Category != "fire" && objectTile.Category != "bones" && objectTile.Category != "character") {
-                _currentArea.Map[_heroPosition.X, _heroPosition.Y].ObjectTile = null;
-                _currentArea.Map[_heroPosition.X, _heroPosition.Y].ObjectSprite = null;
+                // _currentArea.Map[_heroPosition.X, _heroPosition.Y].ObjectTile = null;
+                // _currentArea.Map[_heroPosition.X, _heroPosition.Y].ObjectSprite = null;
+                TileImgServiceClient service = new TileImgServiceClient();
+                _currentArea.Map[_heroPosition.X, _heroPosition.Y] = new MapTile(service.GetTileAt(tile.GlobalX, tile.GlobalY, _monde.Id), _tiles);
             }
         }
 

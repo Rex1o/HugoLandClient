@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ServiceModel;
 
-namespace HugoWorld_WCF.Services {
+namespace HugoWorld_WCF.Services
+{
 
     [ServiceContract]
-    public interface IHeroService {
+    public interface IHeroService
+    {
 
         [OperationContract]
         void AddHeroToDataBase(HeroDTO p_heroDTO);
@@ -24,5 +26,8 @@ namespace HugoWorld_WCF.Services {
 
         [OperationContract]
         List<HeroDTO> GetHerosInChunk(int[][] chunk, int mondeID);
+        [OperationContract]
+        void UpdateHero(HeroDTO h, bool force);
     }
+
 }

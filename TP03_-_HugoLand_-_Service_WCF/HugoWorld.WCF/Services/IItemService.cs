@@ -24,5 +24,7 @@ namespace HugoWorld_WCF.Services {
         List<ObjetMondeDTO> ConvertToObjetMondeDTOs(ICollection<ObjetMonde> objetMondes);
         [OperationContract]
         ItemDTO PickUpItem(ItemDTO dto);
+        [OperationContract]
+        List<ItemDTO> ObtenirItemHero(HeroDTO h);
     }
 }

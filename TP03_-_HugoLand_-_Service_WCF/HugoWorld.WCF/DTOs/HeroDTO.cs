@@ -73,7 +73,7 @@ namespace HugoWorld_WCF.DTOs {
 
         [DataMember]
         public int CompteJoueurId { get; set; }
-
+        
         [DataMember]
         public byte[] RowVersion { get; set; }
     }

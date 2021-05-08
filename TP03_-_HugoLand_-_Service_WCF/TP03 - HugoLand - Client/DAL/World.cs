@@ -186,6 +186,9 @@ namespace HugoWorld
                     _currentArea.Map[i, j].Sprite.ColorKey = Color.FromArgb(75, 75, 75);
                 }
             }
+
+            //Instancier les valeurs de base du héro ici
+
             _gameState.Armour = 0;
             _gameState.Attack = 0;
             _gameState.Health = 1;

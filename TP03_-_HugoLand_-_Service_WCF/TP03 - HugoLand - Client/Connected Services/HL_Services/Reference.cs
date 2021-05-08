@@ -176,6 +176,9 @@ namespace HugoWorld_Client.HL_Services {
         private long ExperienceField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int HpField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -266,6 +269,19 @@ namespace HugoWorld_Client.HL_Services {
                 if ((this.ExperienceField.Equals(value) != true)) {
                     this.ExperienceField = value;
                     this.RaisePropertyChanged("Experience");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Hp {
+            get {
+                return this.HpField;
+            }
+            set {
+                if ((this.HpField.Equals(value) != true)) {
+                    this.HpField = value;
+                    this.RaisePropertyChanged("Hp");
                 }
             }
         }
@@ -2251,6 +2267,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/GetHerosInChunk", ReplyAction="http://tempuri.org/IHeroService/GetHerosInChunkResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO[]> GetHerosInChunkAsync(int[][] chunk, int mondeID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/UpdateHero", ReplyAction="http://tempuri.org/IHeroService/UpdateHeroResponse")]
+        void UpdateHero(HugoWorld_Client.HL_Services.HeroDTO h, bool force);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/UpdateHero", ReplyAction="http://tempuri.org/IHeroService/UpdateHeroResponse")]
+        System.Threading.Tasks.Task UpdateHeroAsync(HugoWorld_Client.HL_Services.HeroDTO h, bool force);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2326,6 +2348,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO[]> GetHerosInChunkAsync(int[][] chunk, int mondeID) {
             return base.Channel.GetHerosInChunkAsync(chunk, mondeID);
+        }
+        
+        public void UpdateHero(HugoWorld_Client.HL_Services.HeroDTO h, bool force) {
+            base.Channel.UpdateHero(h, force);
+        }
+        
+        public System.Threading.Tasks.Task UpdateHeroAsync(HugoWorld_Client.HL_Services.HeroDTO h, bool force) {
+            return base.Channel.UpdateHeroAsync(h, force);
         }
     }
 }

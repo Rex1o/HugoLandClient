@@ -456,18 +456,4 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetPosOfHerosInWorld">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="mondeId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetPosOfHerosInWorldResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q46="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetPosOfHerosInWorldResult" nillable="true" type="q46:ArrayOfArrayOfint" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
 </xs:schema>

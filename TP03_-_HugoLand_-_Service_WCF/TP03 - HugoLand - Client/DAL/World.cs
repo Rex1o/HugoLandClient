@@ -104,48 +104,60 @@ namespace HugoWorld {
 
                 if (_herosMP.FirstOrDefault(x => x.Hero.Id == other.Id).Hero.RowVersion != other.RowVersion) {
                     OtherPlayers og = _herosMP.FirstOrDefault(x => x.Hero.Id == other.Id);
+                    int[] posother = GetHeroPosInChunk(other);
 
-                    int diffx = og.Hero.x - other.x;
-                    int diffy = og.Hero.y - other.y;
 
-                    //x
-                    if (diffx != 0) {
-                        if (diffx < 0) {
-                            //gauche
-                            og._heroSprite.Velocity = new PointF(-100, 0);
-                            og._heroSprite.Flip = false;
-                            og._heroSpriteAnimating = true;
-                            og._direction = HeroDirection.Left;
-                            og._heroPosition.X--;
-                        } else {
-                            //droite
-                            og._heroSprite.Velocity = new PointF(100, 0);
-                            og._heroSprite.Flip = true;
-                            og._heroSpriteAnimating = true;
-                            og._direction = HeroDirection.Right;
-                            og._heroPosition.X++;
+                    int diffx =  posother[0] - og._heroPosition.X;
+                    int diffy =  posother[1] - og._heroPosition.Y;
+
+                    if (!og._heroSpriteAnimating)
+                    {
+
+                        //x
+                        if (diffx != 0)
+                        {
+                            if (diffx < 0)
+                            {
+                                //gauche
+                                og._heroSprite.Velocity = new PointF(-100, 0);
+                                og._heroSprite.Flip = false;
+                                og._heroSpriteAnimating = true;
+                                og._direction = HeroDirection.Left;
+                                og._heroPosition.X--;
+                            }
+                            else
+                            {
+                                //droite
+                                og._heroSprite.Velocity = new PointF(100, 0);
+                                og._heroSprite.Flip = true;
+                                og._heroSpriteAnimating = true;
+                                og._direction = HeroDirection.Right;
+                                og._heroPosition.X++;
+                            }
                         }
-                    }
-                    //y
-                    else if (diffy != 0) {
-                        if (diffy > 0) {
-                            //haut
-                            og._heroSprite.Velocity = new PointF(0, -100);
-                            og._heroSpriteAnimating = true;
-                            og._direction = HeroDirection.Up;
-                            og._heroPosition.Y++;
-                        } else {
-                            og._heroSprite.Velocity = new PointF(0, 100);
-                            og._heroSpriteAnimating = true;
-                            og._direction = HeroDirection.Down;
-                            og._heroPosition.Y--;
+                        //y
+                        else if (diffy != 0)
+                        {
+                            if (diffy > 0)
+                            {
+                                //haut
+                                og._heroSprite.Velocity = new PointF(0, 100);
+                                og._heroSpriteAnimating = true;
+                                og._direction = HeroDirection.Down;
+                                og._heroPosition.Y++;
+                            }
+                            else
+                            {
+                                og._heroSprite.Velocity = new PointF(0, -100);
+                                og._heroSpriteAnimating = true;
+                                og._direction = HeroDirection.Up;
+                                og._heroPosition.Y--;
+                            }
                         }
-                    }
 
-                    setDestination(og);
+                        setDestination(og);
+                    }
                 }
-
-
             }
 
             //Vérifie si les héros sont toujours connecté ou dans le chunk
@@ -413,7 +425,7 @@ namespace HugoWorld {
                     if (checkDestination(x)) {
                         x._heroSprite.Location = x._heroDestination;
                         x._heroSprite.Velocity = PointF.Empty;
-                        _heroSpriteAnimating = false;
+                        x._heroSpriteAnimating = false;
 
                         //Check objects?
 

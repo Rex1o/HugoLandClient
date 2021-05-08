@@ -428,7 +428,13 @@ namespace HugoWorld {
                         x._heroSpriteAnimating = false;
 
                         //Check objects?
-
+                        MapTile mt = _currentArea.Map[x._heroPosition.X, x._heroPosition.Y];
+                        if(mt.TileImport.Type == TypeTile.Item)
+                        {
+                            TileImgServiceClient service = new TileImgServiceClient();
+                            _currentArea.Map[x._heroPosition.X, x._heroPosition.Y] = new MapTile(service.GetTileAt(x.Hero.x, x.Hero.y, _monde.Id), _tiles);
+                            _currentArea.Map[x._heroPosition.X, x._heroPosition.Y].Sprite.Update(gameTime, elapsedTime);
+                        }
                     }
                 }
             });

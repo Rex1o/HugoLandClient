@@ -139,12 +139,13 @@ namespace HugoWorld {
 
         public void Initialize()
         {
-            if (!(Outils.GetHero() == null))
+            if (Outils.GetHero() != null)
             {
                 Sounds.Start();
 
                 MondeServiceClient MondeService = new MondeServiceClient();
                 Monde = MondeService.GetWorldByHero(Outils.GetHero());
+
                 //Create all the main gameobjects
                 World = new World(this, _tiles, Monde);
 

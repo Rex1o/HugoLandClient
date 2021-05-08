@@ -85,24 +85,92 @@ namespace HugoWorld
             HeroServiceClient serviceHero = new HeroServiceClient();
             int[][] chunk = GetChunkLimitsAtHeroPos(_hero.x, _hero.y);
 
-            _herosMP.Clear();
+            //_herosMP.Clear();
 
             //Get all the connected heros in the loaded chunk
             List<HeroDTO> others = serviceHero.GetHerosInChunk(chunk, _monde.Id).ToList();
             foreach (HeroDTO other in others.Where(x => x.Id != _hero.Id))
             {
-                OtherPlayers op = new OtherPlayers();
-                op.Hero = other;
-                int[] pos = GetHeroPosInChunk(other);
-                op._heroPosition = new Point(pos[0], pos[1]);
-                op._heroSprite = new Sprite(null, op._heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
-                                            op._heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
-                                            _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
-                op._heroSprite.Flip = true;
-                op._heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+                if (_herosMP.FirstOrDefault(x => x.Hero.Id == other.Id) == null)
+                {
+                    OtherPlayers op = new OtherPlayers();
+                    op.Hero = other;
+                    int[] pos = GetHeroPosInChunk(other);
+                    op._heroPosition = new Point(pos[0], pos[1]);
+                    op._heroSprite = new Sprite(null, op._heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
+                                                op._heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
+                                                _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
+                    op._heroSprite.Flip = true;
+                    op._heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
 
-                _herosMP.Add(op);
+                    _herosMP.Add(op);
+                }
+
+                if (_herosMP.FirstOrDefault(x => x.Hero.Id == other.Id).Hero.RowVersion != other.RowVersion)
+                {
+                    OtherPlayers og = _herosMP.FirstOrDefault(x => x.Hero.Id == other.Id);
+
+                    int diffx = og.Hero.x - other.x;
+                    int diffy = og.Hero.y - other.y;
+
+                    //x
+                    if (diffx != 0)
+                    {
+                        if (diffx < 0)
+                        {
+                            //gauche
+                            og._heroSprite.Velocity = new PointF(-100, 0);
+                            og._heroSprite.Flip = false;
+                            og._heroSpriteAnimating = true;
+                            og._direction = HeroDirection.Left;
+                            og._heroPosition.X--;
+                        }
+                        else
+                        {
+                            //droite
+                            og._heroSprite.Velocity = new PointF(100, 0);
+                            og._heroSprite.Flip = true;
+                            og._heroSpriteAnimating = true;
+                            og._direction = HeroDirection.Right;
+                            og._heroPosition.X++;
+                        }
+                    }
+                    //y
+                    else if (diffy != 0)
+                    {
+                        if (diffy > 0)
+                        {
+                            //haut
+                            og._heroSprite.Velocity = new PointF(0, -100);
+                            og._heroSpriteAnimating = true;
+                            og._direction = HeroDirection.Up;
+                            og._heroPosition.Y++;
+                        }
+                        else
+                        {
+                            og._heroSprite.Velocity = new PointF(0, 100);
+                            og._heroSpriteAnimating = true;
+                            og._direction = HeroDirection.Down;
+                            og._heroPosition.Y--;
+                        }
+                    }
+
+                    setDestination(og);
+                }
+
+
             }
+
+            //Vérifie si les héros sont toujours connecté ou dans le chunk
+            List<int> localID = _herosMP.Select(x => x.Hero.Id).ToList();
+            List<int> ExternalID = others.Select(x => x.Id).ToList();
+
+            foreach (int id in localID)
+            {
+                if (!ExternalID.Contains(id))
+                    _herosMP.Remove(_herosMP.FirstOrDefault(x => x.Hero.Id == id));
+            }
+
         }
 
         public void Clear()
@@ -281,6 +349,22 @@ namespace HugoWorld
                 }
             }
 
+            _herosMP.ForEach((x) =>
+            {
+                if (x._heroSpriteAnimating)
+                {
+                    if (checkDestination(x))
+                    {
+                        x._heroSprite.Location = x._heroDestination;
+                        x._heroSprite.Velocity = PointF.Empty;
+                        _heroSpriteAnimating = false;
+
+                        //Check objects?
+
+                    }
+                }
+            });
+
             //The hero gets animated when moving or fighting
             if (_heroSpriteAnimating || _heroSpriteFighting)
                 _heroSprite.CurrentFrame = (int)((gameTime * 8.0) % _heroSprite.NumberOfFrames);
@@ -289,6 +373,19 @@ namespace HugoWorld
                 //Otherwise use frame 0
                 _heroSprite.CurrentFrame = 0;
             }
+
+            //Update l'animation des autres joueurs
+            _herosMP.ForEach((x) =>
+            {
+                if (x._heroSpriteAnimating || x._heroSpriteFighting)
+                    x._heroSprite.CurrentFrame = (int)((gameTime * 8.0) % x._heroSprite.NumberOfFrames);
+                else
+                {
+                    //Otherwise use frame 0
+                    x._heroSprite.CurrentFrame = 0;
+                }
+
+            });
 
             //If we are fighting then keep animating for a period of time
             if (_heroSpriteFighting)
@@ -301,6 +398,20 @@ namespace HugoWorld
                         _heroSpriteFighting = false;
                 }
             }
+
+            _herosMP.ForEach((x) =>
+            {
+                if (x._heroSpriteFighting)
+                {
+                    if (x._startFightTime < 0)
+                        x._startFightTime = gameTime;
+                    else
+                    {
+                        if (gameTime - x._startFightTime > 1.0)
+                            x._heroSpriteFighting = false;
+                    }
+                }
+            });
         }
 
         private void checkObjects()
@@ -395,6 +506,27 @@ namespace HugoWorld
 
                 case HeroDirection.Down:
                     return (_heroSprite.Location.Y >= _heroDestination.Y);
+            }
+
+            throw new ArgumentException("Direction is not set correctly");
+        }
+
+        private bool checkDestination(OtherPlayers p)
+        {
+            //Depending on the direction we are moving we check different bounds of the destination
+            switch (p._direction)
+            {
+                case HeroDirection.Right:
+                    return (p._heroSprite.Location.X >= p._heroDestination.X);
+
+                case HeroDirection.Left:
+                    return (p._heroSprite.Location.X <= p._heroDestination.X);
+
+                case HeroDirection.Up:
+                    return (p._heroSprite.Location.Y <= p._heroDestination.Y);
+
+                case HeroDirection.Down:
+                    return (p._heroSprite.Location.Y >= p._heroDestination.Y);
             }
 
             throw new ArgumentException("Direction is not set correctly");
@@ -656,7 +788,7 @@ namespace HugoWorld
 
             //ne peux pas changer de chunk sur un item ou un monstre
             if (newChunk)
-                if (mapTile.TileImport.Type == TypeTile.Monstre || mapTile.TileImport.Type == TypeTile.Item)
+                if (mapTile.TileImport.Type == TypeTile.Monstre)
                     return false;
 
             //See if there is character to fight
@@ -787,6 +919,13 @@ namespace HugoWorld
             //Calculate the eventual sprite destination based on the area grid coordinates
             _heroDestination = new PointF(_heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
                                             _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY);
+        }
+
+        private void setDestination(OtherPlayers o)
+        {
+            //Calculate the eventual sprite destination based on the area grid coordinates
+            o._heroDestination = new PointF(o._heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
+                                            o._heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY);
         }
 
         public enum HeroDirection

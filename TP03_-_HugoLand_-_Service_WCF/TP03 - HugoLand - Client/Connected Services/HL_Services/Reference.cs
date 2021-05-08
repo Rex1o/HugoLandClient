@@ -188,6 +188,9 @@ namespace HugoWorld_Client.HL_Services {
         private string NomHeroField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] RowVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int StatDexField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -315,6 +318,19 @@ namespace HugoWorld_Client.HL_Services {
                 if ((object.ReferenceEquals(this.NomHeroField, value) != true)) {
                     this.NomHeroField = value;
                     this.RaisePropertyChanged("NomHero");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] RowVersion {
+            get {
+                return this.RowVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
+                    this.RowVersionField = value;
+                    this.RaisePropertyChanged("RowVersion");
                 }
             }
         }

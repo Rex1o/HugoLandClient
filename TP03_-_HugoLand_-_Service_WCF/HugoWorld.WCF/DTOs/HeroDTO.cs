@@ -29,6 +29,7 @@ namespace HugoWorld_WCF.DTOs {
             MondeId = hero.MondeId;
             ClasseId = hero.ClasseId;
             EstConnecte = hero.EstConnecte;
+            RowVersion = hero.RowVersion;
         }
 
         [DataMember]
@@ -72,5 +73,8 @@ namespace HugoWorld_WCF.DTOs {
 
         [DataMember]
         public int CompteJoueurId { get; set; }
+
+        [DataMember]
+        public byte[] RowVersion { get; set; }
     }
 }

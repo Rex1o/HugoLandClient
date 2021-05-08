@@ -26,6 +26,7 @@ namespace HugoWorld_WCF.Services
 
         [OperationContract]
         List<HeroDTO> GetHerosInChunk(int[][] chunk, int mondeID);
+        
         [OperationContract]
         void UpdateHero(HeroDTO h, bool force);
     }

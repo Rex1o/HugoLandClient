@@ -443,4 +443,31 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="UpdateHero">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="h" nillable="true" type="q45:HeroDTO" />
+        <xs:element minOccurs="0" name="force" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateHeroResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPosOfHerosInWorld">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="mondeId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPosOfHerosInWorldResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetPosOfHerosInWorldResult" nillable="true" type="q46:ArrayOfArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

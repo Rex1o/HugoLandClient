@@ -2251,6 +2251,18 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/GetHerosInChunk", ReplyAction="http://tempuri.org/IHeroService/GetHerosInChunkResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO[]> GetHerosInChunkAsync(int[][] chunk, int mondeID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/UpdateHero", ReplyAction="http://tempuri.org/IHeroService/UpdateHeroResponse")]
+        void UpdateHero(HugoWorld_Client.HL_Services.HeroDTO h, bool force);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/UpdateHero", ReplyAction="http://tempuri.org/IHeroService/UpdateHeroResponse")]
+        System.Threading.Tasks.Task UpdateHeroAsync(HugoWorld_Client.HL_Services.HeroDTO h, bool force);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/GetPosOfHerosInWorld", ReplyAction="http://tempuri.org/IHeroService/GetPosOfHerosInWorldResponse")]
+        int[][] GetPosOfHerosInWorld(int mondeId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/GetPosOfHerosInWorld", ReplyAction="http://tempuri.org/IHeroService/GetPosOfHerosInWorldResponse")]
+        System.Threading.Tasks.Task<int[][]> GetPosOfHerosInWorldAsync(int mondeId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2326,6 +2338,22 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO[]> GetHerosInChunkAsync(int[][] chunk, int mondeID) {
             return base.Channel.GetHerosInChunkAsync(chunk, mondeID);
+        }
+        
+        public void UpdateHero(HugoWorld_Client.HL_Services.HeroDTO h, bool force) {
+            base.Channel.UpdateHero(h, force);
+        }
+        
+        public System.Threading.Tasks.Task UpdateHeroAsync(HugoWorld_Client.HL_Services.HeroDTO h, bool force) {
+            return base.Channel.UpdateHeroAsync(h, force);
+        }
+        
+        public int[][] GetPosOfHerosInWorld(int mondeId) {
+            return base.Channel.GetPosOfHerosInWorld(mondeId);
+        }
+        
+        public System.Threading.Tasks.Task<int[][]> GetPosOfHerosInWorldAsync(int mondeId) {
+            return base.Channel.GetPosOfHerosInWorldAsync(mondeId);
         }
     }
 }

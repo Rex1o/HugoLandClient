@@ -29,6 +29,12 @@ namespace HugoWorld_WCF.Services
         
         [OperationContract]
         void UpdateHero(HeroDTO h, bool force);
+
+        [OperationContract]
+        HeroDTO GetHeroByID(int heroID);
+
+        [OperationContract]
+        int GetHeroHPDiff(int heroID, int LocalHP);
     }
 
 }

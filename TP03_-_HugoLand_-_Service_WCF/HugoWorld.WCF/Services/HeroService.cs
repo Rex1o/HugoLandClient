@@ -81,6 +81,14 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
+        public HeroDTO  GetHeroByID(int heroID)
+        {
+            using (HugoLandContext context = new HugoLandContext())
+            {
+                return new HeroDTO(context.Heros.FirstOrDefault(x => x.Id == heroID));
+            }
+        }
+
         public List<HeroDTO> GetHerosInChunk(int[][] chunk, int mondeID) {
             using (HugoLandContext context = new HugoLandContext()) {
                 IJoueurService service = new HugoLandService();
@@ -135,6 +143,15 @@ namespace HugoWorld_WCF.Services {
 
                     }
                 }
+            }
+        }
+
+        public int GetHeroHPDiff(int heroID, int LocalHP)
+        {
+            using (HugoLandContext context = new HugoLandContext())
+            {
+                int currHP = context.Heros.FirstOrDefault(x => x.Id == heroID).Hp;
+                return currHP - LocalHP;
             }
         }
     }

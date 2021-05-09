@@ -10,6 +10,8 @@ using static HugoWorld.World;
 
 namespace HugoWorld_Client.DAL
 {
+
+
     public class OtherPlayers
     {
         public HeroDTO Hero;
@@ -20,7 +22,7 @@ namespace HugoWorld_Client.DAL
         public double _startFightTime = -1.0;
         public PointF _heroDestination;
         public HeroDirection _direction;
-        //_popups => List<textPopup> => internal class de World
+        public List<textPopup> _popups = new List<textPopup>();
 
         public OtherPlayers()
         {

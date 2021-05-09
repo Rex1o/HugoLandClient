@@ -70,6 +70,18 @@
   <wsdl:message name="IMondeService_GetChunk_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetChunkResponse" />
   </wsdl:message>
+  <wsdl:message name="IMondeService_UpdateMonster_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMonster" />
+  </wsdl:message>
+  <wsdl:message name="IMondeService_UpdateMonster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMonsterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMondeService_GetMonsterById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMonsterById" />
+  </wsdl:message>
+  <wsdl:message name="IMondeService_GetMonsterById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMonsterByIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IClasseService_AddClassToDataBase_InputMessage">
     <wsdl:part name="parameters" element="tns:AddClassToDataBase" />
   </wsdl:message>
@@ -220,6 +232,12 @@
   <wsdl:message name="IHeroService_GetHeroHPDiff_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetHeroHPDiffResponse" />
   </wsdl:message>
+  <wsdl:message name="IHeroService_ChangeHeroStats_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeHeroStats" />
+  </wsdl:message>
+  <wsdl:message name="IHeroService_ChangeHeroStats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeHeroStatsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IJoueurService">
     <wsdl:operation name="Connection">
       <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/Connection" message="tns:IJoueurService_Connection_InputMessage" />
@@ -262,6 +280,14 @@
     <wsdl:operation name="GetChunk">
       <wsdl:input wsaw:Action="http://tempuri.org/IMondeService/GetChunk" message="tns:IMondeService_GetChunk_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMondeService/GetChunkResponse" message="tns:IMondeService_GetChunk_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMonster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMondeService/UpdateMonster" message="tns:IMondeService_UpdateMonster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMondeService/UpdateMonsterResponse" message="tns:IMondeService_UpdateMonster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMonsterById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMondeService/GetMonsterById" message="tns:IMondeService_GetMonsterById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMondeService/GetMonsterByIdResponse" message="tns:IMondeService_GetMonsterById_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IClasseService">
@@ -371,6 +397,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/GetHeroHPDiff" message="tns:IHeroService_GetHeroHPDiff_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHeroService/GetHeroHPDiffResponse" message="tns:IHeroService_GetHeroHPDiff_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ChangeHeroStats">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/ChangeHeroStats" message="tns:IHeroService_ChangeHeroStats_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroService/ChangeHeroStatsResponse" message="tns:IHeroService_ChangeHeroStats_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IJoueurService" type="tns:IJoueurService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -460,6 +490,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetChunk">
       <soap:operation soapAction="http://tempuri.org/IMondeService/GetChunk" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMonster">
+      <soap:operation soapAction="http://tempuri.org/IMondeService/UpdateMonster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMonsterById">
+      <soap:operation soapAction="http://tempuri.org/IMondeService/GetMonsterById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -697,6 +745,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetHeroHPDiff">
       <soap:operation soapAction="http://tempuri.org/IHeroService/GetHeroHPDiff" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeHeroStats">
+      <soap:operation soapAction="http://tempuri.org/IHeroService/ChangeHeroStats" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

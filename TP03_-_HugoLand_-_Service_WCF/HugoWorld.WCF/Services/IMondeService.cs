@@ -19,5 +19,11 @@ namespace HugoWorld_WCF.Services {
 
         [OperationContract]
         List<TileImport> GetChunk(int[] TopLeft, int[] BotRight, MondeDTO p_world);
+
+        [OperationContract]
+        void UpdateMonster(MonstreDTO monstre, bool force);
+
+        [OperationContract]
+        MonstreDTO GetMonsterById(int monsterId);
     }
 }

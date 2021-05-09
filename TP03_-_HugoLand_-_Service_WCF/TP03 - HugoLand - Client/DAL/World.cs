@@ -51,6 +51,7 @@ namespace HugoWorld
         private static Brush _whiteBrush = new SolidBrush(Color.White);
         private static Brush _blackBrush = new SolidBrush(Color.Red);
         private static Random _random = new Random();
+        
 
         public World(GameState gameState, Dictionary<string, Tile> tiles, MondeDTO monde)
         {
@@ -564,6 +565,7 @@ namespace HugoWorld
 
         private void checkObjects()
         {
+            
             MapTile tile = _currentArea.Map[_heroPosition.X, _heroPosition.Y];
 
             Tile objectTile = tile.ObjectTile;
@@ -572,6 +574,7 @@ namespace HugoWorld
 
             if (objectTile == null)
                 return;
+            HeroServiceClient HeroService = new HeroServiceClient();
             switch (objectTile.Category)
             {
                 //Most objects change your stats in some way.
@@ -579,6 +582,7 @@ namespace HugoWorld
                     if (RamasserItems(t))
                     {
                         _gameState.Armour++;
+                        HeroService.ChangeHeroStats(Outils.GetHero().Id,1,null,null);
                         Sounds.Pickup();
                     }
                     break;
@@ -588,6 +592,7 @@ namespace HugoWorld
                     if (RamasserItems(t))
                     {
                         _gameState.Attack++;
+                        HeroService.ChangeHeroStats(Outils.GetHero().Id, null, 1, null);
                         Sounds.Pickup();
                     }
                     break;
@@ -595,7 +600,7 @@ namespace HugoWorld
                 case "food":
                     if (RamasserItems(t))
                     {
-                        _gameState.Health += 10;
+                        HeroService.ChangeHeroStats(Outils.GetHero().Id, null, null, 10);
                         Sounds.Eat();
                     }
                     break;
@@ -1059,7 +1064,8 @@ namespace HugoWorld
                     // dmg opponent 
                     opponent.Hero.Hp -= h_dmg;
                     HeroServiceClient heroService = new HeroServiceClient();
-                    heroService.UpdateHero(opponent.Hero, true);
+                    //heroService.
+                    //heroService.UpdateHero(opponent.Hero, true);
                 }
 
                 // popup de dmg local sur le héro

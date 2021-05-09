@@ -163,5 +163,32 @@ namespace HugoWorld_WCF.Services {
                 }
             }
         }
+
+        public MonstreDTO ChangeMonsterStats(int monsterId, int? hp = null, int? imgId = null) {
+            Monstre monsterToChange;
+            using (HugoLandContext dbContext = new HugoLandContext()) {
+                bool isAdded = true;
+
+                do {
+
+                    monsterToChange = dbContext.Monstres.Where(x => x.Id == monsterId).Single();
+
+                    if (hp != null)
+                        monsterToChange.StatPV += (int)hp;
+
+                    if (imgId != null)
+                        monsterToChange.ImageId = (int)imgId;
+
+                    dbContext.Entry(monsterToChange).State = EntityState.Modified;
+                    try {
+                        dbContext.SaveChanges();
+                        isAdded = false;
+                    } catch (DbUpdateConcurrencyException) {
+                        isAdded = true;
+                    }
+                } while (isAdded);
+            }
+            return new MonstreDTO(monsterToChange);
+        }
     }
 }

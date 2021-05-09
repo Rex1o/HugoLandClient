@@ -25,5 +25,8 @@ namespace HugoWorld_WCF.Services {
 
         [OperationContract]
         MonstreDTO GetMonsterById(int monsterId);
+
+        [OperationContract]
+        MonstreDTO ChangeMonsterStats(int monsterId, int? hp = null, int? imgId = null);
     }
 }

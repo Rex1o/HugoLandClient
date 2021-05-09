@@ -82,6 +82,12 @@
   <wsdl:message name="IMondeService_GetMonsterById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetMonsterByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IMondeService_ChangeMonsterStats_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeMonsterStats" />
+  </wsdl:message>
+  <wsdl:message name="IMondeService_ChangeMonsterStats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeMonsterStatsResponse" />
+  </wsdl:message>
   <wsdl:message name="IClasseService_AddClassToDataBase_InputMessage">
     <wsdl:part name="parameters" element="tns:AddClassToDataBase" />
   </wsdl:message>
@@ -288,6 +294,10 @@
     <wsdl:operation name="GetMonsterById">
       <wsdl:input wsaw:Action="http://tempuri.org/IMondeService/GetMonsterById" message="tns:IMondeService_GetMonsterById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IMondeService/GetMonsterByIdResponse" message="tns:IMondeService_GetMonsterById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMonsterStats">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMondeService/ChangeMonsterStats" message="tns:IMondeService_ChangeMonsterStats_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMondeService/ChangeMonsterStatsResponse" message="tns:IMondeService_ChangeMonsterStats_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IClasseService">
@@ -508,6 +518,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetMonsterById">
       <soap:operation soapAction="http://tempuri.org/IMondeService/GetMonsterById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeMonsterStats">
+      <soap:operation soapAction="http://tempuri.org/IMondeService/ChangeMonsterStats" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

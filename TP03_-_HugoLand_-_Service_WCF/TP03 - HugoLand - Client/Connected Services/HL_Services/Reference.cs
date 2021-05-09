@@ -1871,6 +1871,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/GetMonsterById", ReplyAction="http://tempuri.org/IMondeService/GetMonsterByIdResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MonstreDTO> GetMonsterByIdAsync(int monsterId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/ChangeMonsterStats", ReplyAction="http://tempuri.org/IMondeService/ChangeMonsterStatsResponse")]
+        HugoWorld_Client.HL_Services.MonstreDTO ChangeMonsterStats(int monsterId, System.Nullable<int> hp, System.Nullable<int> imgId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/ChangeMonsterStats", ReplyAction="http://tempuri.org/IMondeService/ChangeMonsterStatsResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MonstreDTO> ChangeMonsterStatsAsync(int monsterId, System.Nullable<int> hp, System.Nullable<int> imgId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1946,6 +1952,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MonstreDTO> GetMonsterByIdAsync(int monsterId) {
             return base.Channel.GetMonsterByIdAsync(monsterId);
+        }
+        
+        public HugoWorld_Client.HL_Services.MonstreDTO ChangeMonsterStats(int monsterId, System.Nullable<int> hp, System.Nullable<int> imgId) {
+            return base.Channel.ChangeMonsterStats(monsterId, hp, imgId);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MonstreDTO> ChangeMonsterStatsAsync(int monsterId, System.Nullable<int> hp, System.Nullable<int> imgId) {
+            return base.Channel.ChangeMonsterStatsAsync(monsterId, hp, imgId);
         }
     }
     

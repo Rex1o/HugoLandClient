@@ -204,6 +204,7 @@ namespace HugoWorld_WCF.Services
             }
             return new HeroDTO(heroToChange);
         }
+
         public HeroDTO GetHeroByID(int heroID)
         {
             using (HugoLandContext context = new HugoLandContext())

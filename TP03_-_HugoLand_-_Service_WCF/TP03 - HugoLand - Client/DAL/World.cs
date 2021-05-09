@@ -960,9 +960,10 @@ namespace HugoWorld
                     heroDamage = _random.Next(mapTile.ObjectTile.Health) + 1;
                     _gameState.Health -= heroDamage;
 
-                    HeroServiceClient heroService = new HeroServiceClient();
                     _hero.Hp = _gameState.Health;
-                    heroService.UpdateHero(_hero, true);
+
+                    HeroServiceClient heroService = new HeroServiceClient();
+                    heroService.ChangeHeroStats(_hero.Id, null, null, -heroDamage);
 
                     if (_gameState.Health <= 0) {
                         _gameState.Health = 0;
@@ -1037,8 +1038,7 @@ namespace HugoWorld
                     // dmg opponent 
                     opponent.Hero.Hp -= h_dmg;
                     HeroServiceClient heroService = new HeroServiceClient();
-                    //heroService.
-                    //heroService.UpdateHero(opponent.Hero, true);
+                    heroService.ChangeHeroStats(opponent.Hero.Id, null, null, -h_dmg);
                 }
 
                 // popup de dmg local sur le héro
@@ -1062,17 +1062,14 @@ namespace HugoWorld
 
                 mapTile.ObjectHealth -= h_dmg;
                 MondeServiceClient mondeService = new MondeServiceClient();
-                MonstreDTO m = mondeService.GetMonsterById(mapTile.TileImport.ID);
-                m.StatPV = mapTile.ObjectHealth;
-                mondeService.UpdateMonster(m, true);
+                mondeService.ChangeMonsterStats(mapTile.TileImport.ID, -h_dmg, null);
 
                 if (mapTile.ObjectHealth <= 0) {
                     mapTile.ObjectHealth = 0;
                     //Experience is the monsters max health
                     _gameState.Experience += mapTile.ObjectTile.Health;
 
-                    m.ImageId = 3;
-                    mondeService.UpdateMonster(m, true);
+                    mondeService.ChangeMonsterStats(mapTile.TileImport.ID, null, 3);
 
                     //Remove the monster and replace with bones
                     mapTile.ObjectTile = _tiles["3"];

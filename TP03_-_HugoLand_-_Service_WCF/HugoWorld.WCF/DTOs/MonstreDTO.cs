@@ -56,5 +56,8 @@ namespace HugoWorld_WCF.DTOs {
 
         [DataMember]
         public virtual MondeDTO Monde { get; set; }
+
+        [DataMember]
+        public byte[] RowVersion { get; set; }
     }
 }

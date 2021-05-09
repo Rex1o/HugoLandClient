@@ -970,6 +970,9 @@ namespace HugoWorld_Client.HL_Services {
         private string NomField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] RowVersionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private float StatDmgMaxField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1068,6 +1071,19 @@ namespace HugoWorld_Client.HL_Services {
                 if ((object.ReferenceEquals(this.NomField, value) != true)) {
                     this.NomField = value;
                     this.RaisePropertyChanged("Nom");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] RowVersion {
+            get {
+                return this.RowVersionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RowVersionField, value) != true)) {
+                    this.RowVersionField = value;
+                    this.RaisePropertyChanged("RowVersion");
                 }
             }
         }
@@ -1843,6 +1859,18 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/GetChunk", ReplyAction="http://tempuri.org/IMondeService/GetChunkResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport[]> GetChunkAsync(int[] TopLeft, int[] BotRight, HugoWorld_Client.HL_Services.MondeDTO p_world);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/UpdateMonster", ReplyAction="http://tempuri.org/IMondeService/UpdateMonsterResponse")]
+        void UpdateMonster(HugoWorld_Client.HL_Services.MonstreDTO monstre, bool force);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/UpdateMonster", ReplyAction="http://tempuri.org/IMondeService/UpdateMonsterResponse")]
+        System.Threading.Tasks.Task UpdateMonsterAsync(HugoWorld_Client.HL_Services.MonstreDTO monstre, bool force);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/GetMonsterById", ReplyAction="http://tempuri.org/IMondeService/GetMonsterByIdResponse")]
+        HugoWorld_Client.HL_Services.MonstreDTO GetMonsterById(int monsterId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IMondeService/GetMonsterById", ReplyAction="http://tempuri.org/IMondeService/GetMonsterByIdResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MonstreDTO> GetMonsterByIdAsync(int monsterId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1902,6 +1930,22 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.TileImport[]> GetChunkAsync(int[] TopLeft, int[] BotRight, HugoWorld_Client.HL_Services.MondeDTO p_world) {
             return base.Channel.GetChunkAsync(TopLeft, BotRight, p_world);
+        }
+        
+        public void UpdateMonster(HugoWorld_Client.HL_Services.MonstreDTO monstre, bool force) {
+            base.Channel.UpdateMonster(monstre, force);
+        }
+        
+        public System.Threading.Tasks.Task UpdateMonsterAsync(HugoWorld_Client.HL_Services.MonstreDTO monstre, bool force) {
+            return base.Channel.UpdateMonsterAsync(monstre, force);
+        }
+        
+        public HugoWorld_Client.HL_Services.MonstreDTO GetMonsterById(int monsterId) {
+            return base.Channel.GetMonsterById(monsterId);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.MonstreDTO> GetMonsterByIdAsync(int monsterId) {
+            return base.Channel.GetMonsterByIdAsync(monsterId);
         }
     }
     

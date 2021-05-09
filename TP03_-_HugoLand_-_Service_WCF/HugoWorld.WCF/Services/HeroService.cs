@@ -95,16 +95,10 @@ namespace HugoWorld_WCF.Services
             }
         }
 
-        public HeroDTO  GetHeroByID(int heroID)
+        public List<HeroDTO> GetHerosInChunk(int[][] chunk, int mondeID)
         {
             using (HugoLandContext context = new HugoLandContext())
             {
-                return new HeroDTO(context.Heros.FirstOrDefault(x => x.Id == heroID));
-            }
-        }
-
-        public List<HeroDTO> GetHerosInChunk(int[][] chunk, int mondeID) {
-            using (HugoLandContext context = new HugoLandContext()) {
                 IJoueurService service = new HugoLandService();
                 int TLX = chunk[0][0];
                 int BRX = chunk[1][0];
@@ -173,6 +167,51 @@ namespace HugoWorld_WCF.Services
             }
         }
 
+        public HeroDTO ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null)
+        {
+            Hero heroToChange;
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                bool isAdded = false;
+
+                do
+                {
+                    heroToChange = dbContext.Heros.Where(x => x.Id == heroID).Single();
+
+                    if (Integrity != null)
+                    {
+                        heroToChange.StatInt += (int)Integrity;
+                    }
+                    if (Strenght != null)
+                    {
+                        heroToChange.StatStr += (int)Strenght;
+                    }
+                    if (Vie != null)
+                    {
+                        heroToChange.Hp += (int)Vie;
+                    }
+
+                    try
+                    {
+                        dbContext.SaveChanges();
+                        isAdded = true;
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        isAdded = false;
+                    }
+                } while (isAdded);
+            }
+            return new HeroDTO(heroToChange);
+        }
+        public HeroDTO GetHeroByID(int heroID)
+        {
+            using (HugoLandContext context = new HugoLandContext())
+            {
+                return new HeroDTO(context.Heros.FirstOrDefault(x => x.Id == heroID));
+            }
+        }
+
         public int GetHeroHPDiff(int heroID, int LocalHP)
         {
             using (HugoLandContext context = new HugoLandContext())
@@ -181,26 +220,7 @@ namespace HugoWorld_WCF.Services
                 return currHP - LocalHP;
             }
         }
-        
-        public HeroDTO ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
-                Hero heroToChange = dbContext.Heros.Where(x => x.Id == heroID).Single();
-                if (Integrity != null)
-                {
-                    heroToChange.StatInt += (int)Integrity;
-                }
-                if (Strenght != null)
-                {
-
-                }
-                if (Vie != null)
-                {
-
-                }
-                return null;
-            }
-        }
     }
+
+
 }

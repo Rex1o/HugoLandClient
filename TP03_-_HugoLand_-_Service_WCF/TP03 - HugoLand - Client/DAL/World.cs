@@ -12,8 +12,7 @@ using System.Windows.Forms;
 namespace HugoWorld
 {
     //Textpop up used to display damage when monsters and players are hit
-    internal struct textPopup
-    {
+    public struct textPopup {
         public int X;
         public int Y;
         public string Text;
@@ -119,23 +118,18 @@ namespace HugoWorld
                     int diffx = posother[0] - og._heroPosition.X;
                     int diffy = posother[1] - og._heroPosition.Y;
 
-                    if (!og._heroSpriteAnimating)
-                    {
+                    if (!og._heroSpriteAnimating) {
 
                         //x
-                        if (diffx != 0)
-                        {
-                            if (diffx < 0)
-                            {
+                        if (diffx != 0) {
+                            if (diffx < 0) {
                                 //gauche
                                 og._heroSprite.Velocity = new PointF(-100, 0);
                                 og._heroSprite.Flip = false;
                                 og._heroSpriteAnimating = true;
                                 og._direction = HeroDirection.Left;
                                 og._heroPosition.X--;
-                            }
-                            else
-                            {
+                            } else {
                                 //droite
                                 og._heroSprite.Velocity = new PointF(100, 0);
                                 og._heroSprite.Flip = true;
@@ -145,18 +139,14 @@ namespace HugoWorld
                             }
                         }
                         //y
-                        else if (diffy != 0)
-                        {
-                            if (diffy > 0)
-                            {
+                        else if (diffy != 0) {
+                            if (diffy > 0) {
                                 //haut
                                 og._heroSprite.Velocity = new PointF(0, 100);
                                 og._heroSpriteAnimating = true;
                                 og._direction = HeroDirection.Down;
                                 og._heroPosition.Y++;
-                            }
-                            else
-                            {
+                            } else {
                                 og._heroSprite.Velocity = new PointF(0, -100);
                                 og._heroSpriteAnimating = true;
                                 og._direction = HeroDirection.Up;
@@ -186,12 +176,12 @@ namespace HugoWorld
             //Vide l'écran du joueur
             _heroSprite = new Sprite(null, _heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX, _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY, _tiles["82"].Bitmap, _tiles["82"].Rectangle, _tiles["82"].NumberOfFrames);
             _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
-            for (int i = 0; i < _currentArea.Map.GetLength(0); i++)
-            {
-                for (int j = 0; j < _currentArea.Map.GetLength(1); j++)
-                {
-                    _currentArea.Map[i, j].Sprite = new Sprite(null, 0, 0, _tiles["82"].Bitmap, _tiles["82"].Rectangle, _tiles["82"].NumberOfFrames);
-                    _currentArea.Map[i, j].Sprite.ColorKey = Color.FromArgb(75, 75, 75);
+            for (int i = 0; i < _currentArea.Map.GetLength(0); i++) {
+                for (int j = 0; j < _currentArea.Map.GetLength(1); j++) {
+                    if (_currentArea.Map[i, j] != null) {
+                        _currentArea.Map[i, j].Sprite = new Sprite(null, 0, 0, _tiles["82"].Bitmap, _tiles["82"].Rectangle, _tiles["82"].NumberOfFrames);
+                        _currentArea.Map[i, j].Sprite.ColorKey = Color.FromArgb(75, 75, 75);
+                    }
                 }
             }
             _gameState.Armour = 0;
@@ -499,8 +489,7 @@ namespace HugoWorld
 
                         //Check objects?
                         MapTile mt = _currentArea.Map[x._heroPosition.X, x._heroPosition.Y];
-                        if (mt.TileImport.Type == TypeTile.Item)
-                        {
+                        if (mt.TileImport.Type == TypeTile.Item) {
                             TileImgServiceClient service = new TileImgServiceClient();
                             _currentArea.Map[x._heroPosition.X, x._heroPosition.Y] = new MapTile(service.GetTileAt(mt.GlobalX, mt.GlobalY, _monde.Id), _tiles);
                         }
@@ -947,6 +936,10 @@ namespace HugoWorld
                     return false; //Don't want to walk on her
                 }
 
+                if (mapTile.ObjectHealth < 0) {
+                    return true;
+                }
+
                 Sounds.Fight();
 
                 _heroSpriteFighting = true;
@@ -962,26 +955,28 @@ namespace HugoWorld
                     heroDamage = _random.Next(mapTile.ObjectTile.Health) + 1;
                     _gameState.Health -= heroDamage;
 
-                    if (_gameState.Health <= 0)
-                    {
+                    HeroServiceClient heroService = new HeroServiceClient();
+                    _hero.Hp = _gameState.Health;
+                    heroService.UpdateHero(_hero, true);
+
+                    if (_gameState.Health <= 0) {
                         _gameState.Health = 0;
-                        _heroSprite = new Sprite(null, _heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
-                                _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
-                                _tiles["3"].Bitmap, _tiles["3"].Rectangle, _tiles["3"].NumberOfFrames);
-                        _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+                        DeadHero();
                     }
                 }
 
                 //Hero
                 _popups.Clear();
-                _popups.Add(new textPopup((int)_heroSprite.Location.X + 40, (int)_heroSprite.Location.Y + 20, (heroDamage != 0) ? heroDamage.ToString() : "miss"));
+                _popups.Add(new textPopup((int)_heroSprite.Location.X + 40,
+                                          (int)_heroSprite.Location.Y + 20,
+                                          (heroDamage != 0) ? heroDamage.ToString() : "miss"));
 
                 //A monsters armour is 1/5 of their max health
                 if (_random.Next(_gameState.Attack + 1) >= (mapTile.ObjectTile.Health / 5))
                 {
                     //Hero damage is up to twice the attack rating
-                    if (damageMonster(_random.Next(_gameState.Attack * 2) + 1, mapTile, x, y))
-                    {
+
+                    if (Combat(mapTile, x, y, null)) {
                         //Monster is dead now
                         return true;
                     }
@@ -994,14 +989,102 @@ namespace HugoWorld
                 return false;
             }
 
+            foreach (OtherPlayers player in _herosMP) {
+                if (player.Hero.x == mapTile.GlobalX && player.Hero.y == mapTile.GlobalY) {
+                    // combat
+                    Sounds.Fight();
+
+                    _heroSpriteFighting = true;
+                    _startFightTime = -1;
+
+                    if (Combat(mapTile, x, y, player)) { // s'il est mort return true
+                        // opponent mort
+                        player._heroSprite = new Sprite(null, player._heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
+                                                              player._heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
+                                                              _tiles["3"].Bitmap, _tiles["3"].Rectangle, _tiles["3"].NumberOfFrames);
+                        player._heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+                        return true;
+
+                    } else { // s'il est toujours vivant return false
+                        return false;
+                    }
+                }
+            }
+
+
             //If the next tile is a blocker then we can't move
-            if (mapTile.Tile.IsBlock) return false;
+            if (mapTile.Tile.IsBlock)
+                return false;
 
             return true;
         }
 
-        private bool damageMonster(int damage, MapTile mapTile, int x, int y)
-        {
+        private bool Combat(MapTile mapTile, int x, int y, OtherPlayers opponent) {
+
+            // current player
+            int h_chance = _random.Next(0, 2);
+
+            int h_dmg = (h_chance * _hero.StatDex * _hero.StatStr);
+
+            if (opponent != null) {
+
+                if (h_dmg != 0) {
+                    // dmg opponent 
+                    opponent.Hero.Hp -= h_dmg;
+                    HeroServiceClient heroService = new HeroServiceClient();
+                    heroService.
+                    heroService.UpdateHero(opponent.Hero, true);
+                }
+
+                // popup de dmg local sur le héro
+                _popups.Add(new textPopup((int)opponent._heroSprite.Location.X + 40,
+                          (int)opponent._heroSprite.Location.Y + 20,
+                          (h_dmg != 0) ? h_dmg.ToString() : "miss"));
+
+                if (opponent.Hero.Hp <= 0)
+                    return true; // he dead fam
+                else
+                    return false; // he livin fam
+
+            } else {
+                //Do some damage, and remove the monster if its dead
+                bool returnValue = false; //monster not dead
+
+                //Set the monster health if its not already set
+                if (mapTile.ObjectHealth == 0) {
+                    mapTile.ObjectHealth = mapTile.ObjectTile.Health;
+                }
+
+                mapTile.ObjectHealth -= h_dmg;
+                MondeServiceClient mondeService = new MondeServiceClient();
+                MonstreDTO m = mondeService.GetMonsterById(mapTile.TileImport.ID);
+                m.StatPV = mapTile.ObjectHealth;
+                mondeService.UpdateMonster(m, true);
+
+                if (mapTile.ObjectHealth <= 0) {
+                    mapTile.ObjectHealth = 0;
+                    //Experience is the monsters max health
+                    _gameState.Experience += mapTile.ObjectTile.Health;
+
+                    m.ImageId = 3;
+                    mondeService.UpdateMonster(m, true);
+
+                    //Remove the monster and replace with bones
+                    mapTile.ObjectTile = _tiles["3"];
+                    mapTile.SetObjectSprite(x, y);
+                    returnValue = true; //monster is dead
+                }
+
+                _popups.Add(new textPopup((int)mapTile.Sprite.Location.X + 40,
+                                          (int)mapTile.Sprite.Location.Y + 20,
+                                          (h_dmg != 0) ? h_dmg.ToString() : "miss"));
+
+                return returnValue;
+            }
+
+        }
+
+        private bool damageMonster(int damage, MapTile mapTile, int x, int y) {
             //Do some damage, and remove the monster if its dead
             bool returnValue = false; //monster not dead
 
@@ -1104,6 +1187,13 @@ namespace HugoWorld
 
             return false;
 
+        }
+
+        private void DeadHero() {
+            _heroSprite = new Sprite(null, _heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
+                                    _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
+                                    _tiles["3"].Bitmap, _tiles["3"].Rectangle, _tiles["3"].NumberOfFrames);
+            _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
         }
     }
 }

@@ -540,9 +540,7 @@
   </xs:element>
   <xs:element name="ChangeHeroStatsResponse">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="ChangeHeroStatsResult" nillable="true" type="q50:HeroDTO" />
-      </xs:sequence>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>

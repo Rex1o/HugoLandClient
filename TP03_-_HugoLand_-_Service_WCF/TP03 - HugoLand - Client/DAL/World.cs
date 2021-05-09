@@ -582,7 +582,7 @@ namespace HugoWorld
                     if (RamasserItems(t))
                     {
                         _gameState.Armour++;
-                        HeroService.ChangeHeroStats(Outils.GetHero().Id,1,null,null);
+                        HeroService.ChangeHeroStatsAsync(Outils.GetHero().Id,1,null,null);
                         Sounds.Pickup();
                     }
                     break;
@@ -592,7 +592,7 @@ namespace HugoWorld
                     if (RamasserItems(t))
                     {
                         _gameState.Attack++;
-                        HeroService.ChangeHeroStats(Outils.GetHero().Id, null, 1, null);
+                        HeroService.ChangeHeroStatsAsync(Outils.GetHero().Id, null, 1, null);
                         Sounds.Pickup();
                     }
                     break;
@@ -600,7 +600,7 @@ namespace HugoWorld
                 case "food":
                     if (RamasserItems(t))
                     {
-                        HeroService.ChangeHeroStats(Outils.GetHero().Id, null, null, 10);
+                        HeroService.ChangeHeroStatsAsync(Outils.GetHero().Id, null, null, 10);
                         Sounds.Eat();
                     }
                     break;
@@ -980,7 +980,7 @@ namespace HugoWorld
                     _hero.Hp = _gameState.Health;
 
                     HeroServiceClient heroService = new HeroServiceClient();
-                    heroService.ChangeHeroStats(_hero.Id, null, null, -heroDamage);
+                    heroService.ChangeHeroStatsAsync(_hero.Id, null, null, -heroDamage);
 
                     if (_gameState.Health <= 0)
                     {
@@ -1065,9 +1065,9 @@ namespace HugoWorld
                     // dmg opponent 
                     opponent.Hero.Hp -= h_dmg;
                     HeroServiceClient heroService = new HeroServiceClient();
-                    heroService.ChangeHeroStats(opponent.Hero.Id, null, null, -h_dmg);
+                    heroService.ChangeHeroStatsAsync(opponent.Hero.Id, null, null, -h_dmg);
                 }
-
+                _popups.Clear();
                 // popup de dmg local sur le héro
                 _popups.Add(new textPopup((int)opponent._heroSprite.Location.X + 40,
                           (int)opponent._heroSprite.Location.Y + 20,
@@ -1092,7 +1092,7 @@ namespace HugoWorld
 
                 mapTile.ObjectHealth -= h_dmg;
                 MondeServiceClient mondeService = new MondeServiceClient();
-                mondeService.ChangeMonsterStats(mapTile.TileImport.ID, -h_dmg, null);
+                mondeService.ChangeMonsterStatsAsync(mapTile.TileImport.ID, -h_dmg, null);
 
                 if (mapTile.ObjectHealth <= 0)
                 {
@@ -1100,7 +1100,7 @@ namespace HugoWorld
                     //Experience is the monsters max health
                     _gameState.Experience += mapTile.ObjectTile.Health;
 
-                    mondeService.ChangeMonsterStats(mapTile.TileImport.ID, null, 3);
+                    mondeService.ChangeMonsterStatsAsync(mapTile.TileImport.ID, null, 3);
 
                     //Remove the monster and replace with bones
                     mapTile.ObjectTile = _tiles["3"];

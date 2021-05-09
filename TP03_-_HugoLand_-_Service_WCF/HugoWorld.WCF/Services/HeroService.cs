@@ -167,7 +167,7 @@ namespace HugoWorld_WCF.Services
             }
         }
 
-        public HeroDTO ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null)
+        public void ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null)
         {
             Hero heroToChange;
             using (HugoLandContext dbContext = new HugoLandContext())
@@ -202,7 +202,6 @@ namespace HugoWorld_WCF.Services
                     }
                 } while (isAdded);
             }
-            return new HeroDTO(heroToChange);
         }
 
         public HeroDTO GetHeroByID(int heroID)

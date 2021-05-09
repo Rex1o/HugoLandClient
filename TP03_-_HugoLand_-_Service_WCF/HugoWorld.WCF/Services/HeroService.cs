@@ -58,11 +58,25 @@ namespace HugoWorld_WCF.Services
         {
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-                Hero h = dbContext.Heros.Find(id);
+                bool isAdded = true;
+                do
+                {
+                    Hero h = dbContext.Heros.Find(id);
 
-                h.x = x;
-                h.y = y;
-                dbContext.SaveChanges();
+                    h.x = x;
+                    h.y = y;
+
+                    dbContext.Entry(h).State = EntityState.Modified;
+                    try
+                    {
+                        dbContext.SaveChanges();
+                        isAdded = false;
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        isAdded = true;
+                    }
+                } while (isAdded);
             }
         }
 

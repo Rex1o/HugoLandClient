@@ -453,7 +453,6 @@ namespace HugoWorld
                 _gameState.Health = _hero.Hp;
 
                 //kill player if under 0 hp
-
             }
 
 

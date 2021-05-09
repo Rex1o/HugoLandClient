@@ -2285,6 +2285,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/GetHeroHPDiff", ReplyAction="http://tempuri.org/IHeroService/GetHeroHPDiffResponse")]
         System.Threading.Tasks.Task<int> GetHeroHPDiffAsync(int heroID, int LocalHP);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/ChangeHeroStats", ReplyAction="http://tempuri.org/IHeroService/ChangeHeroStatsResponse")]
+        HugoWorld_Client.HL_Services.HeroDTO ChangeHeroStats(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/ChangeHeroStats", ReplyAction="http://tempuri.org/IHeroService/ChangeHeroStatsResponse")]
+        System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO> ChangeHeroStatsAsync(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2384,6 +2390,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task<int> GetHeroHPDiffAsync(int heroID, int LocalHP) {
             return base.Channel.GetHeroHPDiffAsync(heroID, LocalHP);
+        }
+        
+        public HugoWorld_Client.HL_Services.HeroDTO ChangeHeroStats(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie) {
+            return base.Channel.ChangeHeroStats(heroID, Integrity, Strenght, Vie);
+        }
+        
+        public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO> ChangeHeroStatsAsync(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie) {
+            return base.Channel.ChangeHeroStatsAsync(heroID, Integrity, Strenght, Vie);
         }
     }
 }

@@ -184,23 +184,40 @@ namespace HugoWorld_WCF.Services
         
         public HeroDTO ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null)
         {
+            Hero heroToChange;
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-                Hero heroToChange = dbContext.Heros.Where(x => x.Id == heroID).Single();
-                if (Integrity != null)
-                {
-                    heroToChange.StatInt += (int)Integrity;
-                }
-                if (Strenght != null)
-                {
+                bool isAdded = false;
 
-                }
-                if (Vie != null)
+                do
                 {
+                    heroToChange = dbContext.Heros.Where(x => x.Id == heroID).Single();
 
-                }
-                return null;
+                    if (Integrity != null)
+                    {
+                        heroToChange.StatInt += (int)Integrity;
+                    }
+                    if (Strenght != null)
+                    {
+                        heroToChange.StatStr += (int)Strenght;
+                    }
+                    if (Vie != null)
+                    {
+                        heroToChange.Hp += (int)Vie;
+                    }
+
+                    try
+                    {
+                        dbContext.SaveChanges();
+                        isAdded = true;
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        isAdded = false;
+                    }
+                } while (isAdded);
             }
+            return new HeroDTO(heroToChange);
         }
     }
 }

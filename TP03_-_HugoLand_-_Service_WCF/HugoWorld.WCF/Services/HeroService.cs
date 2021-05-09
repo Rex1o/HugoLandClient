@@ -172,7 +172,7 @@ namespace HugoWorld_WCF.Services
             Hero heroToChange;
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-                bool isAdded = false;
+                bool isAdded = true;
 
                 do
                 {
@@ -190,15 +190,15 @@ namespace HugoWorld_WCF.Services
                     {
                         heroToChange.Hp += (int)Vie;
                     }
-
+                    dbContext.Entry(heroToChange).State = EntityState.Modified;
                     try
                     {
                         dbContext.SaveChanges();
-                        isAdded = true;
+                        isAdded = false;
                     }
                     catch (DbUpdateConcurrencyException)
                     {
-                        isAdded = false;
+                        isAdded = true;
                     }
                 } while (isAdded);
             }

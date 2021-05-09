@@ -170,6 +170,9 @@ namespace HugoWorld
                 }
             }
 
+            //Update les hp de notre hero
+            CheckPlayerHealth(others.FirstOrDefault(x => x.Id == _hero.Id).Hp);
+
             //Vérifie si les héros sont toujours connecté ou dans le chunk
             List<int> localID = _herosMP.Select(x => x.Hero.Id).ToList();
             List<int> ExternalID = others.Select(x => x.Id).ToList();
@@ -442,11 +445,10 @@ namespace HugoWorld
             return true;
         }
 
-        public void CheckPlayerHealth()
+        public void CheckPlayerHealth(int playerDBhp)
         {
-            HeroServiceClient service = new HeroServiceClient();
             //check if there is a hp diff
-            int hpDiff = service.GetHeroHPDiff(_hero.Id, _hero.Hp);
+            int hpDiff = playerDBhp - _hero.Hp;
             if (hpDiff != 0)
             {
                 _popups.Clear();
@@ -469,7 +471,6 @@ namespace HugoWorld
         {
             RenderOtherPlayers();
 
-            CheckPlayerHealth();
             //We only actually update the current area the rest all 'sleep'
             _currentArea.Update(gameTime, elapsedTime);
 

@@ -167,14 +167,14 @@ namespace HugoWorld_WCF.Services
             }
         }
 
-        public HeroDTO ChangeHeroStats(HeroDTO hero, int? Integrity = null, int? Strenght = null, int? Vie = null)
+        public HeroDTO ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null)
         {
             using (HugoLandContext dbContext = new HugoLandContext())
             {
-
+                Hero heroToChange = dbContext.Heros.Where(x => x.Id == heroID).Single();
                 if (Integrity != null)
                 {
-
+                    heroToChange.StatInt += (int)Integrity;
                 }
                 if (Strenght != null)
                 {

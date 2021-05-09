@@ -95,16 +95,10 @@ namespace HugoWorld_WCF.Services
             }
         }
 
-        public HeroDTO  GetHeroByID(int heroID)
+        public List<HeroDTO> GetHerosInChunk(int[][] chunk, int mondeID)
         {
             using (HugoLandContext context = new HugoLandContext())
             {
-                return new HeroDTO(context.Heros.FirstOrDefault(x => x.Id == heroID));
-            }
-        }
-
-        public List<HeroDTO> GetHerosInChunk(int[][] chunk, int mondeID) {
-            using (HugoLandContext context = new HugoLandContext()) {
                 IJoueurService service = new HugoLandService();
                 int TLX = chunk[0][0];
                 int BRX = chunk[1][0];
@@ -173,15 +167,6 @@ namespace HugoWorld_WCF.Services
             }
         }
 
-        public int GetHeroHPDiff(int heroID, int LocalHP)
-        {
-            using (HugoLandContext context = new HugoLandContext())
-            {
-                int currHP = context.Heros.FirstOrDefault(x => x.Id == heroID).Hp;
-                return currHP - LocalHP;
-            }
-        }
-        
         public HeroDTO ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null)
         {
             Hero heroToChange;
@@ -219,5 +204,23 @@ namespace HugoWorld_WCF.Services
             }
             return new HeroDTO(heroToChange);
         }
+        public HeroDTO GetHeroByID(int heroID)
+        {
+            using (HugoLandContext context = new HugoLandContext())
+            {
+                return new HeroDTO(context.Heros.FirstOrDefault(x => x.Id == heroID));
+            }
+        }
+
+        public int GetHeroHPDiff(int heroID, int LocalHP)
+        {
+            using (HugoLandContext context = new HugoLandContext())
+            {
+                int currHP = context.Heros.FirstOrDefault(x => x.Id == heroID).Hp;
+                return currHP - LocalHP;
+            }
+        }
     }
+
+
 }

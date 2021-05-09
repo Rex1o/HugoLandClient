@@ -30,7 +30,7 @@ namespace HugoWorld_WCF.Services
         [OperationContract]
         void UpdateHero(HeroDTO h, bool force);
         [OperationContract]
-        HeroDTO ChangeHeroStats(HeroDTO hero, int? Integrity = null, int? Strenght = null, int? Vie = null);
+        HeroDTO ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null);
     }
 
 }

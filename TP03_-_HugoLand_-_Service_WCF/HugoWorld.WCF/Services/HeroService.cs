@@ -108,7 +108,7 @@ namespace HugoWorld_WCF.Services
                 return false;
             }
         }
-
+        //Caller crissement souvent
         public List<HeroDTO> GetHerosInChunk(int[][] chunk, int mondeID)
         {
             using (HugoLandContext context = new HugoLandContext())
@@ -119,65 +119,6 @@ namespace HugoWorld_WCF.Services
                 int TLY = chunk[0][1];
                 int BRY = chunk[1][1];
                 return service.ConvertToHerosDTO(context.Heros.Where(h => h.MondeId == mondeID && h.x >= TLX && h.x <= BRX && h.y >= TLY && h.y <= BRY && h.EstConnecte).ToList());
-            }
-        }
-
-        public void UpdateHero(HeroDTO h, bool force)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
-                var currVersion = h.RowVersion;
-
-                Hero hero = new Hero()
-                {
-                    CompteJoueurId = h.Id,
-                    Niveau = h.Niveau,
-                    x = h.x,
-                    y = h.y,
-                    StatDex = h.StatDex,
-                    StatInt = h.StatInt,
-                    StatVitalite = h.StatVitalite,
-                    MondeId = h.MondeId,
-                    ClasseId = h.ClasseId,
-                    NomHero = h.NomHero,
-                    EstConnecte = h.EstConnecte,
-                    Hp = h.Hp
-
-                };
-                dbContext.Entry(hero).State = EntityState.Modified;
-
-                if (force)
-                {
-                    do
-                    {
-                        dbContext.Entry(hero).State = EntityState.Modified;
-
-                        try
-                        {
-                            dbContext.SaveChanges();
-                        }
-                        catch (DbUpdateConcurrencyException)
-                        {
-                            var objContext = ((IObjectContextAdapter)dbContext).ObjectContext;
-
-                            objContext.Refresh(RefreshMode.ClientWins, hero);
-                        }
-                    } while (currVersion != hero.RowVersion);
-
-                }
-                else
-                {
-                    dbContext.Entry(hero).State = EntityState.Modified;
-
-                    try
-                    {
-                        dbContext.SaveChanges();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-
-                    }
-                }
             }
         }
 
@@ -225,15 +166,7 @@ namespace HugoWorld_WCF.Services
                 return new HeroDTO(context.Heros.FirstOrDefault(x => x.Id == heroID));
             }
         }
-
-        public int GetHeroHPDiff(int heroID, int LocalHP)
-        {
-            using (HugoLandContext context = new HugoLandContext())
-            {
-                int currHP = context.Heros.FirstOrDefault(x => x.Id == heroID).Hp;
-                return currHP - LocalHP;
-            }
-        }
+        //En train d'être enlever
     }
 
 

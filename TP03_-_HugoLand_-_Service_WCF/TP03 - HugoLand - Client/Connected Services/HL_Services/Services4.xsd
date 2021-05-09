@@ -486,19 +486,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UpdateHero">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="h" nillable="true" type="q48:HeroDTO" />
-        <xs:element minOccurs="0" name="force" type="xs:boolean" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdateHeroResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetHeroByID">
     <xs:complexType>
       <xs:sequence>
@@ -509,22 +496,7 @@
   <xs:element name="GetHeroByIDResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="GetHeroByIDResult" nillable="true" type="q49:HeroDTO" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetHeroHPDiff">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="heroID" type="xs:int" />
-        <xs:element minOccurs="0" name="LocalHP" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetHeroHPDiffResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="GetHeroHPDiffResult" type="xs:int" />
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/HugoWorld_WCF.DTOs" minOccurs="0" name="GetHeroByIDResult" nillable="true" type="q48:HeroDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

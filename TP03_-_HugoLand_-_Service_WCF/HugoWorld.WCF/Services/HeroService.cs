@@ -167,14 +167,6 @@ namespace HugoWorld_WCF.Services
             }
         }
         //En train d'être enlever
-        public int GetHeroHPDiff(int heroID, int LocalHP)
-        {
-            using (HugoLandContext context = new HugoLandContext())
-            {
-                int currHP = context.Heros.FirstOrDefault(x => x.Id == heroID).Hp;
-                return currHP - LocalHP;
-            }
-        }
     }
 
 

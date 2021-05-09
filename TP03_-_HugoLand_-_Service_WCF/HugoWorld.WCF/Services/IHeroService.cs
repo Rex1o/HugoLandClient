@@ -35,6 +35,9 @@ namespace HugoWorld_WCF.Services
 
         [OperationContract]
         int GetHeroHPDiff(int heroID, int LocalHP);
+        
+        [OperationContract]
+        HeroDTO ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null);
     }
 
 }

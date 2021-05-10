@@ -198,7 +198,6 @@ namespace HugoWorld {
                 //If game is over then allow S to restart
                 if (keys == Keys.S) {
                     World.Respawn();
-                    World = new World(this, _tiles, Monde);
                 }
             }
         }

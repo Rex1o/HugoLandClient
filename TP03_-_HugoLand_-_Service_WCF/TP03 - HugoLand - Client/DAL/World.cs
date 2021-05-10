@@ -1076,19 +1076,32 @@ namespace HugoWorld {
         }
 
         public void Respawn() {
+           
+
+            // respawn point
+            _hero.x = 4;
+            _hero.y = 4;
+            LoadChunk();
+            VerifySpawnPoint();
+            SaveHeroPos();
+
+
+            int[] pos = GetHeroPosInChunk(_hero);
+            _heroPosition = new Point(pos[0], pos[1]);
+
+            _heroSprite = new Sprite(null, _heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
+                                            _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
+                                            _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
+            _heroSprite.Flip = true;
+            _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+
+
             // vie
             _gameState.GameIsWon = false;
             _gameState.Health = 100;
             _hero.Hp = 100;
             HeroServiceClient heroService = new HeroServiceClient();
             heroService.SetHeroStatsAsync(_hero.Id, null, null, 100);
-
-            // respawn point
-            _hero.x = 4;
-            _hero.y = 4;
-            _heroPosition.X = 4;
-            _heroPosition.Y = 4;
-            SaveHeroPos();
         }
     }
 }

@@ -1237,6 +1237,7 @@ namespace HugoWorld
 
         public void Respawn() {
             // vie
+            _gameState.GameIsWon = false;
             _gameState.Health = 100;
             _hero.Hp = 100;
             HeroServiceClient heroService = new HeroServiceClient();

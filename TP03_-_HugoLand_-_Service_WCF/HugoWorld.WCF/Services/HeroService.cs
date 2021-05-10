@@ -23,7 +23,8 @@ namespace HugoWorld_WCF.Services {
                     Experience = p_heroDTO.Experience,
                     Niveau = p_heroDTO.Niveau,
                     NomHero = p_heroDTO.NomHero,
-                    MondeId = p_heroDTO.MondeId
+                    MondeId = p_heroDTO.MondeId,
+                    Hp = p_heroDTO.Hp
                 };
 
                 dbContext.Heros.Add(hero);

@@ -219,16 +219,19 @@ namespace HugoWorld
         {
             if (keys == Keys.Escape)
             {
-                World.SaveHeroPos();
-                World.Disconnect();
-                World.Clear();
-                World = null;
+                if (World != null)
+                {
+                    World.SaveHeroPos();
+                    World.Disconnect();
+                    World.Clear();
+                    World = null;
+                }
             }
             //If the game is not over then allow the user to play
             else if (Health > 0 && !GameIsWon)
             {
-                
-                    World.KeyDown(keys);
+
+                World.KeyDown(keys);
             }
             else
             {

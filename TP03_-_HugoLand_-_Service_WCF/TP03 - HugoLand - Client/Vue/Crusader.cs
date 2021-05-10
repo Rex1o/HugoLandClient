@@ -70,6 +70,8 @@ namespace HugoWorld {
 
                 if (result == DialogResult.Yes) {
                     this.Enabled = false;
+                    connected = false;
+                    _timer.Stop();
                     _gameState.KeyDown(e.KeyCode);
                     heroService.ConnectDisconnectHeroById(Outils.GetHero().Id, false);
                     ShowMenu();

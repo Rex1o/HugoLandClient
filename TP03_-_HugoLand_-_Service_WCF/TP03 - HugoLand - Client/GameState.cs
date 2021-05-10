@@ -151,7 +151,6 @@ namespace HugoWorld {
 
                 //Reset the game state
 
-
                 //Instancier les valeurs de base du héro ici
                 List<ItemDTO> items = ItemService.ObtenirItemHero(Outils.GetHero()).ToList();
 
@@ -226,7 +225,7 @@ namespace HugoWorld {
                 //If game is over then allow S to restart
                 if (keys == Keys.S)
                 {
-                    Initialize();
+                    World.Respawn();
                 }
             }
         }

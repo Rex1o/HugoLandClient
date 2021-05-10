@@ -384,6 +384,7 @@ namespace HugoWorld
                             {
                                 isOccupied = false;
                                 _hero.x -= distance;
+                                _heroPosition.X -= distance;
                                 SaveHeroPos();
                                 break;
                             }
@@ -393,6 +394,7 @@ namespace HugoWorld
                             {
                                 isOccupied = false;
                                 _hero.x += distance;
+                                _heroPosition.X += distance;
                                 SaveHeroPos();
                                 break;
                             }
@@ -402,6 +404,7 @@ namespace HugoWorld
                             {
                                 isOccupied = false;
                                 _hero.y -= distance;
+                                _heroPosition.Y -= distance;
                                 SaveHeroPos();
                                 break;
                             }
@@ -411,6 +414,7 @@ namespace HugoWorld
                             {
                                 isOccupied = false;
                                 _hero.y += distance;
+                                _heroPosition.Y += distance;
                                 SaveHeroPos();
                                 break;
                             }
@@ -465,7 +469,6 @@ namespace HugoWorld
 
 
         }
-
 
         public override void Update(double gameTime, double elapsedTime)
         {
@@ -1017,7 +1020,7 @@ namespace HugoWorld
 
             foreach (OtherPlayers player in _herosMP)
             {
-                if (player.Hero.x == mapTile.GlobalX && player.Hero.y == mapTile.GlobalY)
+                if (player.Hero.x == mapTile.GlobalX && player.Hero.y == mapTile.GlobalY && player.Hero.Hp > 0)
                 {
                     // combat
                     Sounds.Fight();
@@ -1230,6 +1233,36 @@ namespace HugoWorld
                                     _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
                                     _tiles["3"].Bitmap, _tiles["3"].Rectangle, _tiles["3"].NumberOfFrames);
             _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+        }
+
+        public void Respawn() {
+            // vie
+            _gameState.Health = 100;
+            _hero.Hp = 100;
+            HeroServiceClient heroService = new HeroServiceClient();
+            heroService.ChangeHeroStatsAsync(_hero.Id, null, null, 100);
+
+            // respawn point
+            _hero.x = 4;
+            _hero.y = 4;
+            _heroPosition.X = 4;
+            _heroPosition.Y = 4;
+            SaveHeroPos();
+
+            // verifie le spawn point
+            VerifySpawnPoint();
+
+
+
+            setDestination();
+
+            // change les sprites bones to hero
+            _heroSprite = new Sprite(null, _heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
+                                           _heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
+                                           _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
+            _heroSprite.Flip = true;
+            _heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+            _heroSprite.Location = _heroDestination;
         }
     }
 }

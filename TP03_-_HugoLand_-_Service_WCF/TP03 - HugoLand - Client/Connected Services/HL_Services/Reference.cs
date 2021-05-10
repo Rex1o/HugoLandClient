@@ -2326,23 +2326,11 @@ namespace HugoWorld_Client.HL_Services {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/GetHerosInChunk", ReplyAction="http://tempuri.org/IHeroService/GetHerosInChunkResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO[]> GetHerosInChunkAsync(int[][] chunk, int mondeID);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/UpdateHero", ReplyAction="http://tempuri.org/IHeroService/UpdateHeroResponse")]
-        void UpdateHero(HugoWorld_Client.HL_Services.HeroDTO h, bool force);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/UpdateHero", ReplyAction="http://tempuri.org/IHeroService/UpdateHeroResponse")]
-        System.Threading.Tasks.Task UpdateHeroAsync(HugoWorld_Client.HL_Services.HeroDTO h, bool force);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/GetHeroByID", ReplyAction="http://tempuri.org/IHeroService/GetHeroByIDResponse")]
         HugoWorld_Client.HL_Services.HeroDTO GetHeroByID(int heroID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/GetHeroByID", ReplyAction="http://tempuri.org/IHeroService/GetHeroByIDResponse")]
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO> GetHeroByIDAsync(int heroID);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/GetHeroHPDiff", ReplyAction="http://tempuri.org/IHeroService/GetHeroHPDiffResponse")]
-        int GetHeroHPDiff(int heroID, int LocalHP);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/GetHeroHPDiff", ReplyAction="http://tempuri.org/IHeroService/GetHeroHPDiffResponse")]
-        System.Threading.Tasks.Task<int> GetHeroHPDiffAsync(int heroID, int LocalHP);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/ChangeHeroStats", ReplyAction="http://tempuri.org/IHeroService/ChangeHeroStatsResponse")]
         void ChangeHeroStats(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie);
@@ -2426,28 +2414,12 @@ namespace HugoWorld_Client.HL_Services {
             return base.Channel.GetHerosInChunkAsync(chunk, mondeID);
         }
         
-        public void UpdateHero(HugoWorld_Client.HL_Services.HeroDTO h, bool force) {
-            base.Channel.UpdateHero(h, force);
-        }
-        
-        public System.Threading.Tasks.Task UpdateHeroAsync(HugoWorld_Client.HL_Services.HeroDTO h, bool force) {
-            return base.Channel.UpdateHeroAsync(h, force);
-        }
-        
         public HugoWorld_Client.HL_Services.HeroDTO GetHeroByID(int heroID) {
             return base.Channel.GetHeroByID(heroID);
         }
         
         public System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO> GetHeroByIDAsync(int heroID) {
             return base.Channel.GetHeroByIDAsync(heroID);
-        }
-        
-        public int GetHeroHPDiff(int heroID, int LocalHP) {
-            return base.Channel.GetHeroHPDiff(heroID, LocalHP);
-        }
-        
-        public System.Threading.Tasks.Task<int> GetHeroHPDiffAsync(int heroID, int LocalHP) {
-            return base.Channel.GetHeroHPDiffAsync(heroID, LocalHP);
         }
         
         public void ChangeHeroStats(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie) {

@@ -220,23 +220,11 @@
   <wsdl:message name="IHeroService_GetHerosInChunk_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetHerosInChunkResponse" />
   </wsdl:message>
-  <wsdl:message name="IHeroService_UpdateHero_InputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateHero" />
-  </wsdl:message>
-  <wsdl:message name="IHeroService_UpdateHero_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UpdateHeroResponse" />
-  </wsdl:message>
   <wsdl:message name="IHeroService_GetHeroByID_InputMessage">
     <wsdl:part name="parameters" element="tns:GetHeroByID" />
   </wsdl:message>
   <wsdl:message name="IHeroService_GetHeroByID_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetHeroByIDResponse" />
-  </wsdl:message>
-  <wsdl:message name="IHeroService_GetHeroHPDiff_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetHeroHPDiff" />
-  </wsdl:message>
-  <wsdl:message name="IHeroService_GetHeroHPDiff_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetHeroHPDiffResponse" />
   </wsdl:message>
   <wsdl:message name="IHeroService_ChangeHeroStats_InputMessage">
     <wsdl:part name="parameters" element="tns:ChangeHeroStats" />
@@ -395,17 +383,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/GetHerosInChunk" message="tns:IHeroService_GetHerosInChunk_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHeroService/GetHerosInChunkResponse" message="tns:IHeroService_GetHerosInChunk_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UpdateHero">
-      <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/UpdateHero" message="tns:IHeroService_UpdateHero_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IHeroService/UpdateHeroResponse" message="tns:IHeroService_UpdateHero_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetHeroByID">
       <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/GetHeroByID" message="tns:IHeroService_GetHeroByID_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHeroService/GetHeroByIDResponse" message="tns:IHeroService_GetHeroByID_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetHeroHPDiff">
-      <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/GetHeroHPDiff" message="tns:IHeroService_GetHeroHPDiff_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IHeroService/GetHeroHPDiffResponse" message="tns:IHeroService_GetHeroHPDiff_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ChangeHeroStats">
       <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/ChangeHeroStats" message="tns:IHeroService_ChangeHeroStats_InputMessage" />
@@ -744,26 +724,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UpdateHero">
-      <soap:operation soapAction="http://tempuri.org/IHeroService/UpdateHero" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetHeroByID">
       <soap:operation soapAction="http://tempuri.org/IHeroService/GetHeroByID" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetHeroHPDiff">
-      <soap:operation soapAction="http://tempuri.org/IHeroService/GetHeroHPDiff" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

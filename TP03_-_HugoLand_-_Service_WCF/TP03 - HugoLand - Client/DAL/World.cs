@@ -171,7 +171,7 @@ namespace HugoWorld
             }
 
             //Update les hp de notre hero
-            CheckPlayerHealth(others.FirstOrDefault(x => x.Id == _hero.Id).Hp);
+            CheckPlayerHealth(others.FirstOrDefault(x => x.Id == _hero.Id)?.Hp ?? 0);
 
             //Vérifie si les héros sont toujours connecté ou dans le chunk
             List<int> localID = _herosMP.Select(x => x.Hero.Id).ToList();

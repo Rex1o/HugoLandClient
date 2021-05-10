@@ -21,12 +21,9 @@ namespace TP01_Library.Controllers {
         /// <param name="p_iPositionX"></param>
         /// <param name="p_iPositionY"></param>
         /// <param name="p_iTypeObjet"></param>
-        public void AjouterObjetMonde(int p_iMondeId, string p_sDescription, int p_iPositionX, int p_iPositionY, int p_iTypeObjet, int p_imageId)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
-                dbContext.ObjetMondes.Add(new ObjetMonde()
-                {
+        public void AjouterObjetMonde(int p_iMondeId, string p_sDescription, int p_iPositionX, int p_iPositionY, int p_iTypeObjet, int p_imageId) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
+                dbContext.ObjetMondes.Add(new ObjetMonde() {
                     Description = p_sDescription,
                     x = p_iPositionX,
                     y = p_iPositionY,
@@ -45,10 +42,8 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="p_monde"></param>
         /// <param name="p_objetMonde"></param>
-        public void SupprimerObjetMonde(int p_iObjetMondeId)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public void SupprimerObjetMonde(int p_iObjetMondeId) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 ObjetMonde objetMonde = dbContext.ObjetMondes.FirstOrDefault(x => x.Id == p_iObjetMondeId);
 
                 dbContext.ObjetMondes.Remove(objetMonde);
@@ -66,22 +61,18 @@ namespace TP01_Library.Controllers {
         /// <param name="p_monde"></param>
         /// <param name="p_newMonde"></param>
         /// <param name="p_sNouvelleDescription"></param>
-        public void ModifierDescriptionObjetMonde(int p_iObjetMondeId, int p_iMondeId, int p_iNewMondeId = -1, string p_sNouvelleDescription = "")
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public void ModifierDescriptionObjetMonde(int p_iObjetMondeId, int p_iMondeId, int p_iNewMondeId = -1, string p_sNouvelleDescription = "") {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 ObjetMonde objetMonde = dbContext.ObjetMondes.FirstOrDefault(x => x.MondeId == p_iMondeId &&
                                                                              x.Id == p_iObjetMondeId);
 
                 objetMonde.MondeId = p_iMondeId;
 
-                if (p_iNewMondeId > 0)
-                {
+                if (p_iNewMondeId > 0) {
                     objetMonde.MondeId = p_iNewMondeId;
                 }
 
-                if (!string.IsNullOrEmpty(p_sNouvelleDescription))
-                {
+                if (!string.IsNullOrEmpty(p_sNouvelleDescription)) {
                     objetMonde.Description = p_sNouvelleDescription;
                 }
 
@@ -94,10 +85,8 @@ namespace TP01_Library.Controllers {
         /// Description: Retourne l'objetmonde par défaut, soit la tuile de gazon
         /// </summary>
         /// <returns></returns>
-        public ObjetMonde GetObjetMondeDefault()
-        {
-            using (HugoLandContext context = new HugoLandContext())
-            {
+        public ObjetMonde GetObjetMondeDefault() {
+            using (HugoLandContext context = new HugoLandContext()) {
                 return context.ObjetMondes.FirstOrDefault(x => x.ImageId == 32);
             }
         }
@@ -107,10 +96,8 @@ namespace TP01_Library.Controllers {
         /// Description: Permet d'ajouter les objetmondes et updater le monde en cours
         /// </summary>
         /// <param name="list"></param>
-        public void AddRange(List<ObjetMonde> list)
-        {
-            using (HugoLandContext context = new HugoLandContext())
-            {
+        public void AddRange(List<ObjetMonde> list) {
+            using (HugoLandContext context = new HugoLandContext()) {
                 context.ObjetMondes.AddRange(list);
                 context.SaveChanges();
             }
@@ -121,10 +108,8 @@ namespace TP01_Library.Controllers {
         /// Description: Supprime les objetmondes du monde précédent avant la sauvegarde, pour faire place aux nouvelles listes
         /// </summary>
         /// <param name="id"></param>
-        public void RemoveRange(int id)
-        {
-            using (HugoLandContext context = new HugoLandContext())
-            {
+        public void RemoveRange(int id) {
+            using (HugoLandContext context = new HugoLandContext()) {
                 //context.ObjetMondes.RemoveRange(context.ObjetMondes.Where(x => x.MondeId == id));
                 //context.SaveChanges();
 

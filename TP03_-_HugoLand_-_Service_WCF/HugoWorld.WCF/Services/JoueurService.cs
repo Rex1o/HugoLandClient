@@ -10,36 +10,28 @@ namespace HugoWorld_WCF.Services {
 
     public partial class HugoLandService : IJoueurService {
 
-        public string Connection(string p_Username, string p_Password)
-        {
-            using (HugoLandContext dbcontext = new HugoLandContext())
-            {
+        public string Connection(string p_Username, string p_Password) {
+            using (HugoLandContext dbcontext = new HugoLandContext()) {
                 ObjectParameter message = new ObjectParameter("message", typeof(string));
                 dbcontext.Connexion(p_Username, p_Password, message);
                 return (Convert.ToString(message.Value));
             }
         }
 
-        public List<HeroDTO> GetHeroesByAccountId(int p_Id)
-        {
-            using (HugoLandContext context = new HugoLandContext())
-            {
+        public List<HeroDTO> GetHeroesByAccountId(int p_Id) {
+            using (HugoLandContext context = new HugoLandContext()) {
                 return ConvertToHerosDTO(context.CompteJoueurs.Find(p_Id)?.Heros.ToList());
             }
         }
 
-        public CompteJoueurDTO GetAccountByName(string p_Username)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public CompteJoueurDTO GetAccountByName(string p_Username) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 CompteJoueur compteJoueur = dbContext.CompteJoueurs
                     .Include(x => x.Heros)
                     .FirstOrDefault(x => x.NomJoueur.StartsWith(p_Username));
 
-                if (compteJoueur != null)
-                {
-                    CompteJoueurDTO compteJoueurDTO = new CompteJoueurDTO(compteJoueur)
-                    {
+                if (compteJoueur != null) {
+                    CompteJoueurDTO compteJoueurDTO = new CompteJoueurDTO(compteJoueur) {
                         Heros = ConvertToHerosDTO(compteJoueur.Heros)
                     };
 
@@ -50,8 +42,7 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public List<HeroDTO> ConvertToHerosDTO(ICollection<Hero> heroes)
-        {
+        public List<HeroDTO> ConvertToHerosDTO(ICollection<Hero> heroes) {
             List<Hero> _heroes = heroes.ToList();
 
             List<HeroDTO> heroDTOs = new List<HeroDTO>();
@@ -59,8 +50,7 @@ namespace HugoWorld_WCF.Services {
             return heroDTOs;
         }
 
-        public List<ClasseDTO> ConvertToClassesDTO(ICollection<Classe> classes)
-        {
+        public List<ClasseDTO> ConvertToClassesDTO(ICollection<Classe> classes) {
             List<Classe> _classes = classes.ToList();
 
             List<ClasseDTO> classeDTOs = new List<ClasseDTO>();
@@ -68,10 +58,8 @@ namespace HugoWorld_WCF.Services {
             return classeDTOs;
         }
 
-        public async void EditAccount(CompteJoueurDTO compteJoueurDTO)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public async void EditAccount(CompteJoueurDTO compteJoueurDTO) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 CompteJoueur compteJoueur = dbContext.CompteJoueurs.Find(compteJoueurDTO.Id);
                 compteJoueur.Courriel = compteJoueurDTO.Courriel;
                 compteJoueur.NomJoueur = compteJoueurDTO.NomJoueur;

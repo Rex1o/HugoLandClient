@@ -515,4 +515,19 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetHeroStats">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="heroID" type="xs:int" />
+        <xs:element minOccurs="0" name="Integrity" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="Strenght" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="Vie" nillable="true" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetHeroStatsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

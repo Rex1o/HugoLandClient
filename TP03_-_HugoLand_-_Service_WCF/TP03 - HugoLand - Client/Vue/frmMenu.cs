@@ -13,27 +13,21 @@ namespace HugoWorld_Client.Vue {
         private CompteJoueurDTO connectedPlayer;
         private HeroDTO _currentHero;
 
-        public HeroDTO currentHero
-        {
+        public HeroDTO currentHero {
             get => _currentHero;
-            set
-            {
+            set {
                 _currentHero = value;
-                if (value != null)
-                {
+                if (value != null) {
                     btnPlay.Enabled = true;
                     heroSelectedTextBox.Text = _currentHero.NomHero;
-                }
-                else
-                {
+                } else {
                     btnPlay.Enabled = false;
                     heroSelectedTextBox.Text = "";
                 }
             }
         }
 
-        public frmMenu()
-        {
+        public frmMenu() {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             joueurService = new JoueurServiceClient();
@@ -45,8 +39,7 @@ namespace HugoWorld_Client.Vue {
                 btnClasses.Visible = true;
         }
 
-        private void btnHeroes_Click(object sender, EventArgs e)
-        {
+        private void btnHeroes_Click(object sender, EventArgs e) {
             //Show Character Selector/Creator Here
             frmCharacterSelector chSelect = new frmCharacterSelector(Outils.GetActiveUser());
             this.Enabled = false;
@@ -58,8 +51,7 @@ namespace HugoWorld_Client.Vue {
             this.Enabled = true;
         }
 
-        private void btnClasses_Click(object sender, EventArgs e)
-        {
+        private void btnClasses_Click(object sender, EventArgs e) {
             frmClassList frmClassList = new frmClassList();
             this.Enabled = false;
             frmClassList.ShowDialog();
@@ -67,14 +59,12 @@ namespace HugoWorld_Client.Vue {
             this.Enabled = true;
         }
 
-        private void btnPlay_Click(object sender, EventArgs e)
-        {
+        private void btnPlay_Click(object sender, EventArgs e) {
             this.DialogResult = DialogResult.OK;
             return;
         }
 
-        private void FillMenu()
-        {
+        private void FillMenu() {
             courrielTextBox.Text = connectedPlayer.Courriel;
             nomJoueurTextBox.Text = connectedPlayer.NomJoueur;
             nomTextBox.Text = connectedPlayer.Nom;
@@ -83,15 +73,12 @@ namespace HugoWorld_Client.Vue {
             Refresh();
         }
 
-        private void frmMenu_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
+        private void frmMenu_FormClosed(object sender, FormClosedEventArgs e) {
+            if (e.CloseReason == CloseReason.UserClosing) {
                 DialogResult result = Outils.ShowInfoMessage("Are you sure you want to quit?",
                       "Closing the world save", MessageBoxButtons.OKCancel);
 
-                if (result == DialogResult.OK)
-                {
+                if (result == DialogResult.OK) {
                     this.DialogResult = DialogResult.Abort;
                     this.Close();
                 }

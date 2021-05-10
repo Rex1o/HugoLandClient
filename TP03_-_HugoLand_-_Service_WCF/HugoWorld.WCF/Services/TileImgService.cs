@@ -7,8 +7,7 @@ namespace HugoWorld_WCF.Services {
 
     public partial class HugoLandService : ITileImgService {
 
-        public TileImport ItemToTile(ItemDTO item)
-        {
+        public TileImport ItemToTile(ItemDTO item) {
             TileImport tile = new TileImport();
             tile.Name = item.Nom;
             tile.ID = item.Id;
@@ -19,8 +18,7 @@ namespace HugoWorld_WCF.Services {
             return tile;
         }
 
-        public TileImport MonstreToTile(MonstreDTO monstre)
-        {
+        public TileImport MonstreToTile(MonstreDTO monstre) {
             TileImport tile = new TileImport();
             tile.Name = monstre.Nom;
             tile.Health = monstre.StatPV;
@@ -35,8 +33,7 @@ namespace HugoWorld_WCF.Services {
             return tile;
         }
 
-        public TileImport ObjetMondeToTile(ObjetMondeDTO objet)
-        {
+        public TileImport ObjetMondeToTile(ObjetMondeDTO objet) {
             TileImport tile = new TileImport();
             tile.Name = objet.Description;
             tile.ID = objet.Id;
@@ -47,25 +44,20 @@ namespace HugoWorld_WCF.Services {
             return tile;
         }
 
-        public TileImport GetTileAt(int x, int y, int mondeId)
-        {
-            using (HugoLandContext context = new HugoLandContext())
-            {
+        public TileImport GetTileAt(int x, int y, int mondeId) {
+            using (HugoLandContext context = new HugoLandContext()) {
                 Monstre ms = context.Monstres.FirstOrDefault(m => m.x == x && m.y == y && m.MondeId == mondeId);
-                if (ms != null)
-                {
+                if (ms != null) {
                     return MonstreToTile(new MonstreDTO(ms));
                 }
 
                 ObjetMonde obj = context.ObjetMondes.FirstOrDefault(o => o.x == x && o.y == y && o.MondeId == mondeId);
-                if(obj != null)
-                {
+                if (obj != null) {
                     return ObjetMondeToTile(new ObjetMondeDTO(obj));
                 }
 
                 Item it = context.Items.FirstOrDefault(i => i.x == x && i.y == y && i.MondeId == mondeId);
-                if(it != null)
-                {
+                if (it != null) {
                     return ItemToTile(new ItemDTO(it));
                 }
 

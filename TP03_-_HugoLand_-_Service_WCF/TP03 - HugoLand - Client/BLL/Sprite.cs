@@ -20,11 +20,9 @@ namespace HugoWorld {
         private List<Rectangle> _rectangle = new List<Rectangle>();
         protected GameState _gameState;
 
-        public Color ColorKey
-        {
+        public Color ColorKey {
             get { return _colorKey; }
-            set
-            {
+            set {
                 _colorKey = value;
                 //Set the color key for this sprite;
                 _attributes = new ImageAttributes();
@@ -32,18 +30,15 @@ namespace HugoWorld {
             }
         }
 
-        public int NumberOfFrames
-        {
+        public int NumberOfFrames {
             get { return _frames.Count; }
         }
 
-        private Sprite()
-        {
+        private Sprite() {
             //No default constructor
         }
 
-        public Sprite(GameState gameState, float x, float y, string filename)
-        {
+        public Sprite(GameState gameState, float x, float y, string filename) {
             //Load the bitmap
             _frames.Add(new Bitmap(filename));
 
@@ -51,8 +46,7 @@ namespace HugoWorld {
             initialize(gameState, x, y, _frames[0].Width, _frames[0].Height);
         }
 
-        public Sprite(GameState gameState, float x, float y, string filename1, string filename2)
-        {
+        public Sprite(GameState gameState, float x, float y, string filename1, string filename2) {
             //Load the 2 animation frames
             _frames.Add(new Bitmap(filename1));
             _frames.Add(new Bitmap(filename2));
@@ -61,10 +55,8 @@ namespace HugoWorld {
             initialize(gameState, x, y, _frames[0].Width, _frames[0].Height);
         }
 
-        public Sprite(GameState gameState, float x, float y, Bitmap bitmap, Rectangle rectangle, int numberAnimationFrames)
-        {
-            for (int i = 0; i < numberAnimationFrames; i++)
-            {
+        public Sprite(GameState gameState, float x, float y, Bitmap bitmap, Rectangle rectangle, int numberAnimationFrames) {
+            for (int i = 0; i < numberAnimationFrames; i++) {
                 _frames.Add(bitmap);
 
                 //Set the location and use the height and width from the 1st frame
@@ -75,8 +67,7 @@ namespace HugoWorld {
             }
         }
 
-        private void initialize(GameState gameState, float x, float y, float width, float height)
-        {
+        private void initialize(GameState gameState, float x, float y, float width, float height) {
             _gameState = gameState;
             Location.X = x;
             Location.Y = y;
@@ -85,8 +76,7 @@ namespace HugoWorld {
             CurrentFrame = 0;
         }
 
-        public override void Update(double gameTime, double elapsedTime)
-        {
+        public override void Update(double gameTime, double elapsedTime) {
             //Move the sprite
             Location.X += Velocity.X * (float)elapsedTime;
             Location.Y += Velocity.Y * (float)elapsedTime;
@@ -96,34 +86,24 @@ namespace HugoWorld {
             Velocity.Y += Math.Sign(Velocity.Y) * Acceleration.Y * (float)elapsedTime;
         }
 
-        public override void Draw(Graphics graphics)
-        {
+        public override void Draw(Graphics graphics) {
             //Draw the correct frame at the current point
-            if (_rectangle[CurrentFrame] == Rectangle.Empty)
-            {
+            if (_rectangle[CurrentFrame] == Rectangle.Empty) {
                 graphics.DrawImage(_frames[CurrentFrame], Location.X, Location.Y, Size.Width, Size.Height);
-            }
-            else
-            {
+            } else {
                 Rectangle outputRect = Rectangle.Empty;
-                if (Flip)
-                {
+                if (Flip) {
                     outputRect = new Rectangle((int)Location.X + (int)Size.Width, (int)Location.Y, -(int)Size.Width, (int)Size.Height);
-                }
-                else
-                {
+                } else {
                     outputRect = new Rectangle((int)Location.X, (int)Location.Y, (int)Size.Width, (int)Size.Height);
                 }
 
-                if (_attributes == null)
-                {
+                if (_attributes == null) {
                     graphics.DrawImage(_frames[CurrentFrame], outputRect,
                                                                 _rectangle[CurrentFrame].X, _rectangle[CurrentFrame].Y,
                                                                 _rectangle[CurrentFrame].Width, _rectangle[CurrentFrame].Height,
                                                                 GraphicsUnit.Pixel);
-                }
-                else
-                {
+                } else {
                     graphics.DrawImage(_frames[CurrentFrame], outputRect,
                                                                 _rectangle[CurrentFrame].X, _rectangle[CurrentFrame].Y,
                                                                 _rectangle[CurrentFrame].Width, _rectangle[CurrentFrame].Height,
@@ -132,8 +112,7 @@ namespace HugoWorld {
             }
         }
 
-        public static bool Collision(Sprite sprite1, Sprite sprite2)
-        {
+        public static bool Collision(Sprite sprite1, Sprite sprite2) {
             //See if the sprite rectangles overlap
             return !(sprite1.Location.X > sprite2.Location.X + sprite2.Size.Width
                     || sprite1.Location.X + sprite1.Size.Width < sprite2.Location.X

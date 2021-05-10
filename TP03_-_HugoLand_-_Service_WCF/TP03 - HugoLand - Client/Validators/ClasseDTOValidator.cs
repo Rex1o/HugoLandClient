@@ -5,8 +5,7 @@ namespace Hugoworld.Validators {
 
     public class ClasseDTOValidator : AbstractValidator<ClasseDTO> {
 
-        public ClasseDTOValidator()
-        {
+        public ClasseDTOValidator() {
             RuleFor(c => c.NomClasse)
                 .NotEmpty()
                 .WithMessage("Please provide a name")

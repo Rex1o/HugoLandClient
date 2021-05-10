@@ -20,10 +20,8 @@ namespace TP01_Library.Controllers {
         /// <param name="p_TypeUtilisateur"></param>
         /// <param name="p_Mdp"></param>
         /// <returns>Message de succès ou d'erreur</returns>
-        public string CreerJoueur(string p_NomJoueur, string p_Courriel, string p_Prenom, string p_Nom, int p_TypeUtilisateur, string p_Mdp)
-        {
-            using (HugoLandContext dbcontext = new HugoLandContext())
-            {
+        public string CreerJoueur(string p_NomJoueur, string p_Courriel, string p_Prenom, string p_Nom, int p_TypeUtilisateur, string p_Mdp) {
+            using (HugoLandContext dbcontext = new HugoLandContext()) {
                 ObjectParameter message = new ObjectParameter("message", typeof(string));
                 dbcontext.CreerCompteJoueur(p_NomJoueur, p_Courriel, p_Prenom, p_Nom, p_TypeUtilisateur, p_Mdp, message);
                 return (Convert.ToString(message.Value));
@@ -36,10 +34,8 @@ namespace TP01_Library.Controllers {
         /// Date: 2021-02-11
         /// </summary>
         /// <param name="p_CompteJoueur"></param>
-        public void SupprimerJoueur(int p_iCompteJoueurId)
-        {
-            using (HugoLandContext dbcontext = new HugoLandContext())
-            {
+        public void SupprimerJoueur(int p_iCompteJoueurId) {
+            using (HugoLandContext dbcontext = new HugoLandContext()) {
                 CompteJoueur compteJoueur = dbcontext.CompteJoueurs.FirstOrDefault(x => x.Id == p_iCompteJoueurId);
 
                 dbcontext.CompteJoueurs.Remove(compteJoueur);
@@ -53,30 +49,23 @@ namespace TP01_Library.Controllers {
         /// Date: 2021-02-11
         /// </summary>
         /// <param name="p_CompteJoueur"></param>
-        public void ModifierJoueur(int p_iCompteJoueurId, string p_NomJoueur, string p_Courriel, string p_Prenom, string p_Nom, int? p_TypeUtilisateur)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public void ModifierJoueur(int p_iCompteJoueurId, string p_NomJoueur, string p_Courriel, string p_Prenom, string p_Nom, int? p_TypeUtilisateur) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 CompteJoueur joueurModif = dbContext.CompteJoueurs.FirstOrDefault(x => x.Id == p_iCompteJoueurId);
 
-                if (p_NomJoueur != joueurModif.NomJoueur)
-                {
+                if (p_NomJoueur != joueurModif.NomJoueur) {
                     joueurModif.NomJoueur = p_NomJoueur;
                 }
-                if (p_Courriel != joueurModif.Courriel)
-                {
+                if (p_Courriel != joueurModif.Courriel) {
                     joueurModif.Courriel = p_Courriel;
                 }
-                if (p_Prenom != joueurModif.Prenom)
-                {
+                if (p_Prenom != joueurModif.Prenom) {
                     joueurModif.Prenom = p_Prenom;
                 }
-                if (p_Nom != joueurModif.Nom)
-                {
+                if (p_Nom != joueurModif.Nom) {
                     joueurModif.Nom = p_Nom;
                 }
-                if (p_TypeUtilisateur != null && p_TypeUtilisateur != joueurModif.TypeUtilisateur)
-                {
+                if (p_TypeUtilisateur != null && p_TypeUtilisateur != joueurModif.TypeUtilisateur) {
                     joueurModif.TypeUtilisateur = (int)p_TypeUtilisateur;
                 }
 
@@ -92,10 +81,8 @@ namespace TP01_Library.Controllers {
         /// <param name="p_Mdp"></param>
         /// <param name="p_NomJoueur"></param>
         /// <returns>Message de succès ou d'erreur</returns>
-        public string ValiderConnexion(string p_Mdp, string p_NomJoueur)
-        {
-            using (HugoLandContext dbcontext = new HugoLandContext())
-            {
+        public string ValiderConnexion(string p_Mdp, string p_NomJoueur) {
+            using (HugoLandContext dbcontext = new HugoLandContext()) {
                 ObjectParameter message = new ObjectParameter("message", typeof(string));
                 dbcontext.Connexion(p_NomJoueur, p_Mdp, message);
                 return (Convert.ToString(message.Value));
@@ -109,10 +96,8 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public CompteJoueur TrouverJoueur(string username)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public CompteJoueur TrouverJoueur(string username) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 return dbContext.CompteJoueurs.FirstOrDefault(x => x.NomJoueur == username);
             }
         }
@@ -123,10 +108,8 @@ namespace TP01_Library.Controllers {
         /// Description: Liste tous les joueurs présent dans la bd
         /// </summary>
         /// <returns></returns>
-        public List<CompteJoueur> ListerCompte()
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public List<CompteJoueur> ListerCompte() {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 return dbContext.CompteJoueurs.ToList();
             }
         }

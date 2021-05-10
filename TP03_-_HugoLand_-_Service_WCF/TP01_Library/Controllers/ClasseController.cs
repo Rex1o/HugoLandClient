@@ -24,8 +24,7 @@ namespace TP01_Library.Controllers {
         /// <param name="p_iStatBaseInt"></param>
         /// <param name="p_iStatBaseVit"></param>
         public void AjouterClasse(int p_MondeId, string p_sNomClasse, string p_sDescription, int p_iStatBaseStr,
-                                int p_iStatBaseDex, int p_iStatBaseInt, int p_iStatBaseVit)
-        {
+                                int p_iStatBaseDex, int p_iStatBaseInt, int p_iStatBaseVit) {
             //using (HugoLandContext dbContext = new HugoLandContext())
             //{
             //    if (p_monde != null)
@@ -44,10 +43,8 @@ namespace TP01_Library.Controllers {
             //        dbContext.SaveChanges();
             //    }
             //}
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
-                dbContext.Classes.Add(new Classe()
-                {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
+                dbContext.Classes.Add(new Classe() {
                     NomClasse = p_sNomClasse,
                     Description = p_sDescription,
                     StatBaseStr = p_iStatBaseStr,
@@ -67,10 +64,8 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="p_monde"></param>
         /// <param name="p_iClasseId"></param>
-        public void SupprimerClasse(int p_iClasseId)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public void SupprimerClasse(int p_iClasseId) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 Classe classe = dbContext.Classes.FirstOrDefault(x => x.Id == p_iClasseId);
 
                 dbContext.Classes.Remove(classe);
@@ -83,14 +78,11 @@ namespace TP01_Library.Controllers {
         /// Desc : Modifie une classe selon une classe passée en paramètre
         /// </summary>
         /// <param name="modified"></param>
-        public void ModifierClasse(Classe modified)
-        {
-            using (var context = new HugoLandContext())
-            {
+        public void ModifierClasse(Classe modified) {
+            using (var context = new HugoLandContext()) {
                 Classe original = context.Classes.FirstOrDefault(x => x.Id == modified.Id);
 
-                if (original != null)
-                {
+                if (original != null) {
                     original.Heros = modified.Heros;
                     original.Monde = modified.Monde;
                     original.NomClasse = modified.NomClasse;
@@ -119,31 +111,24 @@ namespace TP01_Library.Controllers {
         /// <param name="p_iStatBaseInt"></param>
         /// <param name="p_iStatBaseVit"></param>
         public void ModifierClasse(Monde p_monde, int p_iClasseId, string p_sNomClasse, string p_sDescription, int p_iStatBaseStr = -1,
-                                int p_iStatBaseDex = -1, int p_iStatBaseInt = -1, int p_iStatBaseVit = -1)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
-                if (p_monde != null)
-                {
+                                int p_iStatBaseDex = -1, int p_iStatBaseInt = -1, int p_iStatBaseVit = -1) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
+                if (p_monde != null) {
                     Classe classe = dbContext.Classes.FirstOrDefault(x => x.MondeId == p_monde.Id && x.Id == p_iClasseId);
 
                     classe.Description = p_sDescription ?? classe.Description;
                     classe.NomClasse = p_sNomClasse ?? classe.NomClasse;
 
-                    if (p_iStatBaseDex != -1)
-                    {
+                    if (p_iStatBaseDex != -1) {
                         classe.StatBaseDex = p_iStatBaseDex;
                     }
-                    if (p_iStatBaseInt != -1)
-                    {
+                    if (p_iStatBaseInt != -1) {
                         classe.StatBaseInt = p_iStatBaseInt;
                     }
-                    if (p_iStatBaseStr != -1)
-                    {
+                    if (p_iStatBaseStr != -1) {
                         classe.StatBaseStr = p_iStatBaseStr;
                     }
-                    if (p_iStatBaseVit != -1)
-                    {
+                    if (p_iStatBaseVit != -1) {
                         classe.StatBaseVitalite = p_iStatBaseVit;
                     }
 
@@ -159,12 +144,9 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="p_monde"></param>
         /// <returns></returns>
-        public List<Classe> GetClasses(Monde p_monde)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
-                if (p_monde != null)
-                {
+        public List<Classe> GetClasses(Monde p_monde) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
+                if (p_monde != null) {
                     return dbContext.Classes.Where(x => x.MondeId == p_monde.Id).ToList();
                 }
 
@@ -179,12 +161,9 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="p_hero"></param>
         /// <returns></returns>
-        public Classe GetClasseHero(Hero p_hero)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
-                if (p_hero != null)
-                {
+        public Classe GetClasseHero(Hero p_hero) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
+                if (p_hero != null) {
                     return dbContext.Classes.FirstOrDefault(x => x.Heros.Contains(p_hero));
                 }
 

@@ -17,12 +17,9 @@ namespace TP01_Library.Controllers {
         /// <param name="p_y"></param>
         /// <param name="p_ImageID"></param>
         /// <param name="p_MondeID"></param>
-        public void AjouterItems(string p_nom, string p_description, int p_x, int p_y, int p_ImageID, int p_MondeID)
-        {
-            using (HugoLandContext dbcontext = new HugoLandContext())
-            {
-                dbcontext.Items.Add(new Item()
-                {
+        public void AjouterItems(string p_nom, string p_description, int p_x, int p_y, int p_ImageID, int p_MondeID) {
+            using (HugoLandContext dbcontext = new HugoLandContext()) {
+                dbcontext.Items.Add(new Item() {
                     Nom = p_nom,
                     Description = p_description,
                     x = p_x,
@@ -42,21 +39,16 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="p_Item"></param>
         /// <param name="p_CompteJoeur"></param>
-        public void SupprimerItem(int p_iItemId, Hero p_Hero)
-        {
-            using (HugoLandContext dbcontext = new HugoLandContext())
-            {
-                if (p_Hero != null)
-                {
+        public void SupprimerItem(int p_iItemId, Hero p_Hero) {
+            using (HugoLandContext dbcontext = new HugoLandContext()) {
+                if (p_Hero != null) {
                     Item itemDelete = dbcontext.Items.FirstOrDefault(x => x.Id == p_iItemId);
 
                     itemDelete.x = null;
                     itemDelete.y = null;
                     itemDelete.IdHero = p_Hero.Id;
                     dbcontext.SaveChanges();
-                }
-                else
-                {
+                } else {
                     Item itemDelete = dbcontext.Items.FirstOrDefault(x => x.Id == p_iItemId);
                     dbcontext.Items.Remove(itemDelete);
                 }
@@ -68,10 +60,8 @@ namespace TP01_Library.Controllers {
         /// Description: Permet d'ajouter les items et updater le monde en cours
         /// </summary>
         /// <param name="list"></param>
-        public void AddRange(List<Item> list)
-        {
-            using (HugoLandContext context = new HugoLandContext())
-            {
+        public void AddRange(List<Item> list) {
+            using (HugoLandContext context = new HugoLandContext()) {
                 context.Items.AddRange(list);
                 context.SaveChanges();
             }
@@ -82,10 +72,8 @@ namespace TP01_Library.Controllers {
         /// Description: Supprime les items du monde précédent avant la sauvegarde, pour faire place aux nouvelles listes
         /// </summary>
         /// <param name="id"></param>
-        public void RemoveRange(int id)
-        {
-            using (HugoLandContext context = new HugoLandContext())
-            {
+        public void RemoveRange(int id) {
+            using (HugoLandContext context = new HugoLandContext()) {
                 //context.Items.RemoveRange(context.Items.Where(x => x.MondeId == id));
                 //context.SaveChanges();
 

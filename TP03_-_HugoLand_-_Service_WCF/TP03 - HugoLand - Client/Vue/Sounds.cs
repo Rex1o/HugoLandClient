@@ -13,8 +13,7 @@ namespace HugoWorld {
         private static SoundPlayer _magic = new SoundPlayer(@"gamedata\magic.wav");
         private static SoundPlayer _start = new SoundPlayer(@"gamedata\start.wav");
 
-        static Sounds()
-        {
+        static Sounds() {
             //preload the sounds on construction.
             _eat.Load();
             _pickup.Load();
@@ -24,33 +23,27 @@ namespace HugoWorld {
             _start.Load();
         }
 
-        public static void Eat()
-        {
+        public static void Eat() {
             _eat.Play();
         }
 
-        public static void Pickup()
-        {
+        public static void Pickup() {
             _pickup.Play();
         }
 
-        public static void Fight()
-        {
+        public static void Fight() {
             _fight.Play();
         }
 
-        public static void Kiss()
-        {
+        public static void Kiss() {
             _kiss.Play();
         }
 
-        public static void Magic()
-        {
+        public static void Magic() {
             _magic.Play();
         }
 
-        public static void Start()
-        {
+        public static void Start() {
             //_start.Play();
         }
     }

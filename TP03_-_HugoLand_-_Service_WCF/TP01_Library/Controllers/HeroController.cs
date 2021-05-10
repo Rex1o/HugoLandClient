@@ -23,18 +23,15 @@ namespace TP01_Library.Controllers {
         /// <param name="position_x">position de départ x</param>
         /// <param name="position_y">position de départ y</param>
         /// <param name="nomHero">Nom du héro</param>
-        public void CreerHero(CompteJoueur joueur, Monde monde, Classe classe, int position_x, int position_y, string nomHero)
-        {
-            using (var context = new HugoLandContext())
-            {
+        public void CreerHero(CompteJoueur joueur, Monde monde, Classe classe, int position_x, int position_y, string nomHero) {
+            using (var context = new HugoLandContext()) {
                 //randomize base stats
                 int Dex = Outil.RollD20();
                 int intel = Outil.RollD20();
                 int str = Outil.RollD20();
                 int pv = 10 + Outil.RollD20();
 
-                Hero newHero = new Hero()
-                {
+                Hero newHero = new Hero() {
                     Monde = monde,
                     MondeId = monde.Id,
                     NomHero = nomHero,
@@ -63,14 +60,11 @@ namespace TP01_Library.Controllers {
         /// Desc : Permet de supprimer en cascade un héro et tout objet lié à lui
         /// </summary>
         /// <param name="heroId"></param>
-        public void DeleteHero(int heroId)
-        {
-            using (var context = new HugoLandContext())
-            {
+        public void DeleteHero(int heroId) {
+            using (var context = new HugoLandContext()) {
                 Hero toDelete = context.Heros.FirstOrDefault(x => x.Id == heroId);
 
-                if (toDelete != null)
-                {
+                if (toDelete != null) {
                     context.InventaireHeroes.RemoveRange(toDelete.InventaireHeroes);
                     toDelete.InventaireHeroes.Clear();
 
@@ -89,14 +83,11 @@ namespace TP01_Library.Controllers {
         /// Desc : Permet d'appliqué les modifications apportées à un héro grâce à un formulaire/menu
         /// </summary>
         /// <param name="modified"></param>
-        public void EditHero(Hero modified)
-        {
-            using (var context = new HugoLandContext())
-            {
+        public void EditHero(Hero modified) {
+            using (var context = new HugoLandContext()) {
                 Hero original = context.Heros.FirstOrDefault(x => x.Id == modified.Id);
 
-                if (original != null)
-                {
+                if (original != null) {
                     original.Classe = modified.Classe;
                     original.CompteJoueur = modified.CompteJoueur;
                     original.Experience = modified.Experience;
@@ -123,8 +114,7 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="hero"></param>
         /// <returns></returns>
-        public List<ObjetMonde> ObjetsVuParHero(Hero hero)
-        {
+        public List<ObjetMonde> ObjetsVuParHero(Hero hero) {
             return hero.Monde.ObjetMondes.Where(o => o.x >= (hero.x - 200) && o.x <= (hero.x + 200) &&
                                                 o.y >= (hero.y - 200) && o.y <= (hero.y + 200)).ToList();
         }
@@ -135,10 +125,8 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="JoueurId"></param>
         /// <returns></returns>
-        public List<Hero> HeroCompteJoueur(int JoueurId)
-        {
-            using (var context = new HugoLandContext())
-            {
+        public List<Hero> HeroCompteJoueur(int JoueurId) {
+            using (var context = new HugoLandContext()) {
                 return context.Heros.Where(x => x.CompteJoueurId == JoueurId).ToList();
             }
         }
@@ -150,10 +138,8 @@ namespace TP01_Library.Controllers {
         /// <param name="HeroId"></param>
         /// <param name="newX"></param>
         /// <param name="newY"></param>
-        public void Move(int HeroId, int newX, int newY)
-        {
-            using (var context = new HugoLandContext())
-            {
+        public void Move(int HeroId, int newX, int newY) {
+            using (var context = new HugoLandContext()) {
                 Hero hero = context.Heros.Find(HeroId);
                 hero.x = newX;
                 hero.y = newY;
@@ -167,10 +153,8 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="Nom"></param>
         /// <returns></returns>
-        public Hero GetHero(string Nom)
-        {
-            using (HugoLandContext context = new HugoLandContext())
-            {
+        public Hero GetHero(string Nom) {
+            using (HugoLandContext context = new HugoLandContext()) {
                 return context.Heros.FirstOrDefault(x => x.NomHero == Nom);
             }
         }

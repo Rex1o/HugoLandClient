@@ -9,8 +9,7 @@ namespace HugoWorld {
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        private static void Main()
-        {
+        private static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

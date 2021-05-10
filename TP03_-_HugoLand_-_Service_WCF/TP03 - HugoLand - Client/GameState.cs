@@ -42,9 +42,9 @@ namespace HugoWorld {
         private static Brush _brush = new SolidBrush(Color.White);
         private static Random _random = new Random();
 
-        ItemServiceClient ItemService = new ItemServiceClient();
-        public GameState(SizeF gameArea)
-        {
+        private ItemServiceClient ItemService = new ItemServiceClient();
+
+        public GameState(SizeF gameArea) {
             GameArea = gameArea;
 
             //Load in all the tile definitions
@@ -74,18 +74,14 @@ namespace HugoWorld {
 
         //Experience property automatically upgrades your skill as the 'set' passes
         //the level threshold
-        public int Experience
-        {
-            get
-            {
+        public int Experience {
+            get {
                 return _experience;
             }
-            set
-            {
+            set {
                 _experience = value;
                 //If we hit the upgrade threshold then increase our abilities
-                if (_experience > _nextUpgrade)
-                {
+                if (_experience > _nextUpgrade) {
                     Attack++;
                     Armour++;
                     //Each upgrade is a little harder to get
@@ -95,8 +91,7 @@ namespace HugoWorld {
             }
         }
 
-        public void Draw(Graphics graphics)
-        {
+        public void Draw(Graphics graphics) {
             World.Draw(graphics);
 
             //Draw the HUD
@@ -118,29 +113,24 @@ namespace HugoWorld {
             graphics.DrawString(Potions.ToString(), _font, _brush, 650, y += 74);
 
             //If the game is over then display the end game message
-            if (Health <= 0)
-            {
+            if (Health <= 0) {
                 graphics.DrawString("You died!", _font, _brush, 200, 250);
                 graphics.DrawString("Press 's' to play again", _font, _brush, 100, 300);
             }
 
             //If the game is won then show congratulations
-            if (GameIsWon)
-            {
+            if (GameIsWon) {
                 graphics.DrawString("You Won!", _font, _brush, 200, 250);
                 graphics.DrawString("Press 's' to play again", _font, _brush, 100, 300);
             }
         }
 
-        public void Update(double gameTime, double elapsedTime)
-        {
+        public void Update(double gameTime, double elapsedTime) {
             World.Update(gameTime, elapsedTime);
         }
 
-        public void Initialize()
-        {
-            if (Outils.GetHero() != null)
-            {
+        public void Initialize() {
+            if (Outils.GetHero() != null) {
                 Sounds.Start();
 
                 MondeServiceClient MondeService = new MondeServiceClient();
@@ -155,40 +145,30 @@ namespace HugoWorld {
                 List<ItemDTO> items = ItemService.ObtenirItemHero(Outils.GetHero()).ToList();
 
                 //Verifier si il a une clef verte
-                if (items.Where(x => x.Nom == "KeyGreen").FirstOrDefault() != null)
-                {
+                if (items.Where(x => x.Nom == "KeyGreen").FirstOrDefault() != null) {
                     HasGreenKey = true;//Si il a la clef Verte
-                }
-                else
-                {
+                } else {
                     HasGreenKey = false;
                 }
                 //Verifier si il a une clef rouge
-                if (items.Where(x => x.Nom == "KeyRed").FirstOrDefault() != null)
-                {
+                if (items.Where(x => x.Nom == "KeyRed").FirstOrDefault() != null) {
                     HasRedKey = true;//Si il a la clef Verte
-                }
-                else
-                {
+                } else {
                     HasRedKey = false;
                 }
                 //Verifier si il a une clef rune
-                if (items.Where(x => x.Nom == "KeyBrown").FirstOrDefault() != null)
-                {
+                if (items.Where(x => x.Nom == "KeyBrown").FirstOrDefault() != null) {
                     HasBrownKey = true;
-                }
-                else
-                {
+                } else {
                     HasBrownKey = false;
                 }
-
 
                 Armour = Outils.GetHero().StatInt;
                 Attack = Outils.GetHero().StatStr; //Force/strength -> ajouter directement au héro
                 Health = Outils.GetHero().Hp;//Vie -> ajouter directement au héro
                 Experience = (int)Outils.GetHero().Experience;//En tuant des monstre
                 Level = Outils.GetHero().Niveau;//Niveau selon l'xp
-                Potions = items.Where(x => x.Nom == "Potion").Count();//Nb de postion dans l'inventaire 
+                Potions = items.Where(x => x.Nom == "Potion").Count();//Nb de postion dans l'inventaire
                 Treasure = items.Where(x => x.Description == "treasure").Count() * 5;//Nb d'argent
 
                 GameIsWon = false;
@@ -196,13 +176,10 @@ namespace HugoWorld {
         }
 
         //Each line contains a comma delimited tile definition that the tile constructor understands
-        private void readTileDefinitions(string tileDescriptionFile)
-        {
-            using (StreamReader stream = new StreamReader(tileDescriptionFile))
-            {
+        private void readTileDefinitions(string tileDescriptionFile) {
+            using (StreamReader stream = new StreamReader(tileDescriptionFile)) {
                 string line;
-                while ((line = stream.ReadLine()) != null)
-                {
+                while ((line = stream.ReadLine()) != null) {
                     //separate out the elements of the
                     string[] elements = line.Split(';');
 
@@ -213,19 +190,15 @@ namespace HugoWorld {
             }
         }
 
-        public void KeyDown(Keys keys)
-        {
+        public void KeyDown(Keys keys) {
             //If the game is not over then allow the user to play
-            if (Health > 0 && !GameIsWon)
-            {
+            if (Health > 0 && !GameIsWon) {
                 World.KeyDown(keys);
-            }
-            else
-            {
+            } else {
                 //If game is over then allow S to restart
-                if (keys == Keys.S)
-                {
+                if (keys == Keys.S) {
                     World.Respawn();
+                    World = new World(this, _tiles, Monde);
                 }
             }
         }

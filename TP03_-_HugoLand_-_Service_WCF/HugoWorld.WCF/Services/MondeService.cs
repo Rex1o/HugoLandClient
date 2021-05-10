@@ -151,14 +151,12 @@ namespace HugoWorld_WCF.Services {
                             objContext.Refresh(RefreshMode.ClientWins, monstre);
                         }
                     } while (currVersion != monstre.RowVersion);
-
                 } else {
                     dbContext.Entry(monstre).State = EntityState.Modified;
 
                     try {
                         dbContext.SaveChanges();
                     } catch (DbUpdateConcurrencyException) {
-
                     }
                 }
             }
@@ -170,7 +168,6 @@ namespace HugoWorld_WCF.Services {
                 bool isAdded = true;
 
                 do {
-
                     monsterToChange = dbContext.Monstres.Where(x => x.Id == monsterId).Single();
 
                     if (hp != null)

@@ -5,13 +5,11 @@ namespace HugoWorld {
 
     public partial class helpform : Form {
 
-        public helpform()
-        {
+        public helpform() {
             InitializeComponent();
         }
 
-        private void close_Click(object sender, EventArgs e)
-        {
+        private void close_Click(object sender, EventArgs e) {
             this.Close();
         }
     }

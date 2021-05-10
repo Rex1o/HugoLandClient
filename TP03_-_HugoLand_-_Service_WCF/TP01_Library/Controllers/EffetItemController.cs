@@ -13,12 +13,9 @@ namespace TP01_Library.Controllers {
         /// <param name="p_item"></param>
         /// <param name="p_iValeurEffet"></param>
         /// <param name="p_iTypeEffet"></param>
-        public void AjouterEffetItem(int p_iItemId, int p_iValeurEffet, int p_iTypeEffet)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
-                dbContext.EffetItems.Add(new EffetItem()
-                {
+        public void AjouterEffetItem(int p_iItemId, int p_iValeurEffet, int p_iTypeEffet) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
+                dbContext.EffetItems.Add(new EffetItem() {
                     ItemId = p_iItemId,
                     ValeurEffet = p_iValeurEffet,
                     TypeEffet = p_iTypeEffet
@@ -33,10 +30,8 @@ namespace TP01_Library.Controllers {
         /// Date :          2021-02-13
         /// </summary>
         /// <param name="p_item"></param>
-        public void SupprimerEffetItem(int p_iEffetItemId, int p_iItemId)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public void SupprimerEffetItem(int p_iEffetItemId, int p_iItemId) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 EffetItem effetItem = dbContext.EffetItems.FirstOrDefault(x => x.ItemId == p_iItemId && x.Id == p_iEffetItemId);
                 dbContext.EffetItems.Remove(effetItem);
                 dbContext.SaveChanges();
@@ -53,24 +48,19 @@ namespace TP01_Library.Controllers {
         /// <param name="p_newItem"></param>
         /// <param name="p_iValeurEffet"></param>
         /// <param name="p_iTypeEffet"></param>
-        public void ModifierEffetItem(int p_iItemId, int p_iEffetItemId, int p_iValeurEffet, int p_iTypeEffet)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public void ModifierEffetItem(int p_iItemId, int p_iEffetItemId, int p_iValeurEffet, int p_iTypeEffet) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 EffetItem effetItem = dbContext.EffetItems.FirstOrDefault(x => x.Id == p_iEffetItemId);
 
-                if (p_iTypeEffet != effetItem.TypeEffet)
-                {
+                if (p_iTypeEffet != effetItem.TypeEffet) {
                     effetItem.TypeEffet = p_iTypeEffet;
                 }
 
-                if (p_iValeurEffet != effetItem.ValeurEffet)
-                {
+                if (p_iValeurEffet != effetItem.ValeurEffet) {
                     effetItem.ValeurEffet = p_iValeurEffet;
                 }
 
-                if (p_iItemId != effetItem.ItemId)
-                {
+                if (p_iItemId != effetItem.ItemId) {
                     effetItem.ItemId = p_iItemId;
                 }
 

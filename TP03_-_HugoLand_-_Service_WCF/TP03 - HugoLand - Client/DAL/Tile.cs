@@ -28,14 +28,11 @@ namespace HugoWorld {
         public int IndexTypeObjet { get; set; }
         public TypeTile TypeObjet { get; set; }
 
-        public Tile()
-        {
+        public Tile() {
         }
 
-        public Tile(string[] tileData)
-        {
-            try
-            {
+        public Tile(string[] tileData) {
+            try {
                 Name = tileData[0];
                 IndexTypeObjet = Convert.ToInt32(tileData[1]);
                 Category = tileData[2].ToLower();
@@ -61,8 +58,7 @@ namespace HugoWorld {
                     Health = Convert.ToInt32(tileData[9]);
 
                 //Définir le type d'objet
-                switch (tileData[10])
-                {
+                switch (tileData[10]) {
                     case "Objet":
                         TypeObjet = TypeTile.ObjetMonde;
                         break;
@@ -75,9 +71,7 @@ namespace HugoWorld {
                         TypeObjet = TypeTile.Item;
                         break;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Console.WriteLine(ex.Message);
                 foreach (string s in tileData)
                     Console.WriteLine(s);

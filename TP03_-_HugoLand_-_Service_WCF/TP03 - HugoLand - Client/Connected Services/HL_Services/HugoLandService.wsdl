@@ -232,6 +232,12 @@
   <wsdl:message name="IHeroService_ChangeHeroStats_OutputMessage">
     <wsdl:part name="parameters" element="tns:ChangeHeroStatsResponse" />
   </wsdl:message>
+  <wsdl:message name="IHeroService_SetHeroStats_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetHeroStats" />
+  </wsdl:message>
+  <wsdl:message name="IHeroService_SetHeroStats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetHeroStatsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IJoueurService">
     <wsdl:operation name="Connection">
       <wsdl:input wsaw:Action="http://tempuri.org/IJoueurService/Connection" message="tns:IJoueurService_Connection_InputMessage" />
@@ -390,6 +396,10 @@
     <wsdl:operation name="ChangeHeroStats">
       <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/ChangeHeroStats" message="tns:IHeroService_ChangeHeroStats_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IHeroService/ChangeHeroStatsResponse" message="tns:IHeroService_ChangeHeroStats_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetHeroStats">
+      <wsdl:input wsaw:Action="http://tempuri.org/IHeroService/SetHeroStats" message="tns:IHeroService_SetHeroStats_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IHeroService/SetHeroStatsResponse" message="tns:IHeroService_SetHeroStats_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IJoueurService" type="tns:IJoueurService">
@@ -735,6 +745,15 @@
     </wsdl:operation>
     <wsdl:operation name="ChangeHeroStats">
       <soap:operation soapAction="http://tempuri.org/IHeroService/ChangeHeroStats" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetHeroStats">
+      <soap:operation soapAction="http://tempuri.org/IHeroService/SetHeroStats" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -16,8 +16,8 @@ namespace HugoWorld_WCF.Models {
         public int y;
         public string Description;
         public byte[] RowVersion;
-        static public TileImport ItemToTile(ItemDTO item)
-        {
+
+        static public TileImport ItemToTile(ItemDTO item) {
             TileImport tile = new TileImport();
             tile.Name = item.Nom;
             tile.ID = item.Id;
@@ -30,8 +30,7 @@ namespace HugoWorld_WCF.Models {
             return tile;
         }
 
-        static public TileImport MonstreToTile(MonstreDTO monstre)
-        {
+        static public TileImport MonstreToTile(MonstreDTO monstre) {
             TileImport tile = new TileImport();
             tile.Name = monstre.Nom;
             tile.Health = monstre.StatPV;
@@ -45,8 +44,7 @@ namespace HugoWorld_WCF.Models {
             return tile;
         }
 
-        static public TileImport ObjetMondeToTile(ObjetMondeDTO objet)
-        {
+        static public TileImport ObjetMondeToTile(ObjetMondeDTO objet) {
             TileImport tile = new TileImport();
             tile.Name = objet.Description;
             tile.ID = objet.Id;

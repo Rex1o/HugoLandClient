@@ -8,12 +8,9 @@ namespace HugoWorld_WCF.Services {
 
     public partial class HugoLandService : IClasseService {
 
-        public void AddClassToDataBase(ClasseDTO classeDTO)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
-                Classe classe = new Classe()
-                {
+        public void AddClassToDataBase(ClasseDTO classeDTO) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
+                Classe classe = new Classe() {
                     NomClasse = classeDTO.NomClasse,
                     Description = classeDTO.Description,
                     StatBaseStr = classeDTO.StatBaseStr,
@@ -28,12 +25,9 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public bool DeleteClass(ClasseDTO classeDTO)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
-                if (dbContext.Heros.Any(x => x.ClasseId == classeDTO.Id))
-                {
+        public bool DeleteClass(ClasseDTO classeDTO) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
+                if (dbContext.Heros.Any(x => x.ClasseId == classeDTO.Id)) {
                     return false;
                 }
 
@@ -43,10 +37,8 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public void EditClass(ClasseDTO classeDTO)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public void EditClass(ClasseDTO classeDTO) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 Classe Class = dbContext.Classes.Find(classeDTO.Id);
                 Class.NomClasse = classeDTO.NomClasse;
                 Class.StatBaseDex = classeDTO.StatBaseDex;
@@ -59,19 +51,15 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public List<ClasseDTO> GetClassDTOFromMap(int p_MapId)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public List<ClasseDTO> GetClassDTOFromMap(int p_MapId) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 return dbContext.Classes.Where(x => x.MondeId == p_MapId).ToList()
                                         .Select(x => new ClasseDTO(x)).ToList();
             }
         }
 
-        public List<ClasseDTO> GetClasseDTOs()
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public List<ClasseDTO> GetClasseDTOs() {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 return dbContext.Classes.ToList()
                                         .Select(x => new ClasseDTO(x)).ToList();
             }

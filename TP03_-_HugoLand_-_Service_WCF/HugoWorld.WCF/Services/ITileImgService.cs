@@ -16,6 +16,5 @@ namespace HugoWorld_WCF.Services {
 
         [OperationContract]
         Models.TileImport GetTileAt(int x, int y, int mondeId);
-
     }
 }

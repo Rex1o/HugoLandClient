@@ -1,5 +1,4 @@
 ﻿using HugoWorld_WCF.Services;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TP01_Library.Models;
 
@@ -9,12 +8,10 @@ namespace HugoWorld_WCF.DTOs {
     public class ItemDTO {
         private readonly HugoLandService itemService = new HugoLandService();
 
-        public ItemDTO()
-        {
+        public ItemDTO() {
         }
 
-        public ItemDTO(Item item)
-        {
+        public ItemDTO(Item item) {
             Id = item.Id;
             Nom = item.Nom;
             Description = item.Description;

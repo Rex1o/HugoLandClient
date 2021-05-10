@@ -6,12 +6,10 @@ namespace HugoWorld_WCF.DTOs {
     [DataContract]
     public class MonstreDTO {
 
-        public MonstreDTO()
-        {
+        public MonstreDTO() {
         }
 
-        public MonstreDTO(Monstre monstre)
-        {
+        public MonstreDTO(Monstre monstre) {
             Id = monstre.Id;
             Nom = monstre.Nom;
             Niveau = monstre.Niveau;

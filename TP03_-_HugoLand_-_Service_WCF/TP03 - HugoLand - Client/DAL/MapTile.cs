@@ -20,24 +20,20 @@ namespace HugoWorld {
         public int GlobalY;
         public int ObjectHealth; //A copy of the health of the tile so we remember how damage monsters are
 
-        public MapTile() { }
+        public MapTile() {
+        }
 
-        public MapTile(TileImport t, Dictionary<string, Tile> tiles)
-        {
-            if (t.Type == TypeTile.Item || t.Type == TypeTile.Monstre)
-            {
+        public MapTile(TileImport t, Dictionary<string, Tile> tiles) {
+            if (t.Type == TypeTile.Item || t.Type == TypeTile.Monstre) {
                 ObjectTile = tiles[t.tileID];
                 SetObjectSprite(t.x % 8, t.y % 8);
                 Tile = tiles["17"];
-            }
-            else
+            } else
                 Tile = tiles[t.tileID];
 
-            if (Tile != null)
-            {
+            if (Tile != null) {
                 SetSprite(t.x % 8, t.y % 8);
-                if (ObjectTile?.IsTransparent ?? false)
-                {
+                if (ObjectTile?.IsTransparent ?? false) {
                     ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
                 }
             }
@@ -48,10 +44,7 @@ namespace HugoWorld {
             TileImport = t;
         }
 
-
-
-        public void SetSprite(int x, int y)
-        {
+        public void SetSprite(int x, int y) {
             //Update the sprite
             Sprite = new Sprite(null, Area.AreaOffsetX + x * Tile.TileSizeX,
                                       Area.AreaOffsetY + y * Tile.TileSizeY,
@@ -59,15 +52,13 @@ namespace HugoWorld {
                                       Tile.NumberOfFrames);
         }
 
-        public void SetObjectSprite(int x, int y)
-        {
+        public void SetObjectSprite(int x, int y) {
             //Update the sprite
             ObjectSprite = new Sprite(null, Area.AreaOffsetX + x * Tile.TileSizeX,
                                       Area.AreaOffsetY + y * Tile.TileSizeY,
                                       ObjectTile.Bitmap, ObjectTile.Rectangle,
                                       ObjectTile.NumberOfFrames);
-            if (ObjectTile.IsTransparent)
-            {
+            if (ObjectTile.IsTransparent) {
                 ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
             }
         }

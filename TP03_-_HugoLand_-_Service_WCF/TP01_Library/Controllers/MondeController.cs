@@ -20,12 +20,9 @@ namespace TP01_Library.Controllers {
         /// <param name="p_sDescription"></param>
         /// <param name="p_iLimiteX"></param>
         /// <param name="p_iLimiteY"></param>
-        public void AjouterMonde(string p_sDescription, int p_iLimiteX, int p_iLimiteY)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
-                dbContext.Mondes.Add(new Monde()
-                {
+        public void AjouterMonde(string p_sDescription, int p_iLimiteX, int p_iLimiteY) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
+                dbContext.Mondes.Add(new Monde() {
                     Description = p_sDescription,
                     LimiteX = p_iLimiteX,
                     LimiteY = p_iLimiteY,
@@ -43,10 +40,8 @@ namespace TP01_Library.Controllers {
         /// Date :          2021-02-10
         /// </summary>
         /// <param name="p_monde"></param>
-        public void SupprimerMonde(int p_iMondeId)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public void SupprimerMonde(int p_iMondeId) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 Monde monde = dbContext.Mondes.FirstOrDefault(x => x.Id == p_iMondeId);
 
                 dbContext.Mondes.Remove(monde);
@@ -62,10 +57,8 @@ namespace TP01_Library.Controllers {
         /// <param name="p_monde"></param>
         /// <param name="p_iNouvelleDimensionsX"></param>
         /// <param name="p_iNouvelleDimensionsY"></param>
-        public void ModifierDimensionsMonde(int p_iMondeId, int p_iNouvelleDimensionsX, int p_iNouvelleDimensionsY)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public void ModifierDimensionsMonde(int p_iMondeId, int p_iNouvelleDimensionsX, int p_iNouvelleDimensionsY) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 Monde mondeModif = dbContext.Mondes.FirstOrDefault(x => x.Id == p_iMondeId);
 
                 mondeModif.LimiteX = p_iNouvelleDimensionsX;
@@ -82,10 +75,8 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="p_monde"></param>
         /// <param name="p_sNouvelleDescription"></param>
-        public void ModifierDescriptionMonde(int p_iMondeId, string p_sNouvelleDescription)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public void ModifierDescriptionMonde(int p_iMondeId, string p_sNouvelleDescription) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 Monde mondeModif = dbContext.Mondes.FirstOrDefault(x => x.Id == p_iMondeId);
 
                 mondeModif.Description = p_sNouvelleDescription;
@@ -100,10 +91,8 @@ namespace TP01_Library.Controllers {
         /// Date :          2021-02-10
         /// </summary>
         /// <returns></returns>
-        public List<Monde> ListerMondes()
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public List<Monde> ListerMondes() {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 return dbContext.Mondes.ToList();
             }
         }
@@ -115,10 +104,8 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Monde GetMonde(int id)
-        {
-            using (HugoLandContext dbContext = new HugoLandContext())
-            {
+        public Monde GetMonde(int id) {
+            using (HugoLandContext dbContext = new HugoLandContext()) {
                 return dbContext.Mondes.Include(x => x.Items)
                                           .Include(x => x.ObjetMondes)
                                           .Include(x => x.Monstres)
@@ -135,10 +122,8 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="p_monde"></param>
         /// <returns></returns>
-        public List<Item> ListerItems(Monde p_monde)
-        {
-            using (HugoLandContext ctx = new HugoLandContext())
-            {
+        public List<Item> ListerItems(Monde p_monde) {
+            using (HugoLandContext ctx = new HugoLandContext()) {
                 return ctx.Items.Where(x => x.MondeId == p_monde.Id).ToList();
             }
         }
@@ -148,10 +133,8 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="p_monde"></param>
         /// <returns></returns>
-        public List<ObjetMonde> ListerObjetMondes(Monde p_monde)
-        {
-            using (HugoLandContext ctx = new HugoLandContext())
-            {
+        public List<ObjetMonde> ListerObjetMondes(Monde p_monde) {
+            using (HugoLandContext ctx = new HugoLandContext()) {
                 return ctx.ObjetMondes.Where(x => x.MondeId == p_monde.Id).ToList();
             }
         }
@@ -161,10 +144,8 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="p_monde"></param>
         /// <returns></returns>
-        public List<Monstre> ListerMonstres(Monde p_monde)
-        {
-            using (HugoLandContext ctx = new HugoLandContext())
-            {
+        public List<Monstre> ListerMonstres(Monde p_monde) {
+            using (HugoLandContext ctx = new HugoLandContext()) {
                 return ctx.Monstres.Where(x => x.MondeId == p_monde.Id).ToList();
             }
         }
@@ -174,10 +155,8 @@ namespace TP01_Library.Controllers {
         /// </summary>
         /// <param name="p_monde"></param>
         /// <returns></returns>
-        public List<Hero> ListerHeroes(Monde p_monde)
-        {
-            using (HugoLandContext ctx = new HugoLandContext())
-            {
+        public List<Hero> ListerHeroes(Monde p_monde) {
+            using (HugoLandContext ctx = new HugoLandContext()) {
                 return ctx.Heros.Where(x => x.MondeId == p_monde.Id).ToList();
             }
         }

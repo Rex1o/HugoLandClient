@@ -137,6 +137,6 @@ namespace HugoWorld.Vue {
             btnAddClass.Enabled = ValidateInput();
         }
 
-        #endregion
+        #endregion UI Methods
     }
 }

@@ -25,8 +25,7 @@ namespace HugoWorld {
         public string SouthArea;
         public string WestArea;
 
-        public Area(StreamReader stream, Dictionary<string, Tile> tiles)
-        {
+        public Area(StreamReader stream, Dictionary<string, Tile> tiles) {
             string line;
 
             //1st line is the name
@@ -40,13 +39,11 @@ namespace HugoWorld {
 
             //Read in 8 lines of 8 characters each. Look up the tile and make the
             //matching sprite
-            for (int j = 0; j < MapSizeY; j++)
-            {
+            for (int j = 0; j < MapSizeY; j++) {
                 //Get a line of map characters
                 line = stream.ReadLine();
 
-                for (int i = 0; i < MapSizeX; i++)
-                {
+                for (int i = 0; i < MapSizeX; i++) {
                     MapTile mapTile = new MapTile();
                     Map[i, j] = mapTile;
                     mapTile.Tile = tiles[line[i].ToString()];
@@ -55,8 +52,7 @@ namespace HugoWorld {
             }
 
             //Read game objects until the blank line
-            while (!stream.EndOfStream && (line = stream.ReadLine().Trim()) != "")
-            {
+            while (!stream.EndOfStream && (line = stream.ReadLine().Trim()) != "") {
                 //Each line is an x,y coordinate and a tile shortcut
                 //Look up the tile and construct the sprite
                 string[] elements = line.Split(',');
@@ -66,38 +62,30 @@ namespace HugoWorld {
                 mapTile.ObjectTile = tiles[elements[2]];
                 mapTile.SetObjectSprite(x, y);
 
-                if (mapTile.ObjectTile.IsTransparent)
-                {
+                if (mapTile.ObjectTile.IsTransparent) {
                     mapTile.ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
                 }
             }
         }
 
-        public Area(Dictionary<string, Tile> tiles, List<TileImport> objects)
-        {
-            try
-            {
+        public Area(Dictionary<string, Tile> tiles, List<TileImport> objects) {
+            try {
                 Name = "CurrentChunk";
 
-                foreach (TileImport t in objects.OrderBy(pos => pos.x).ThenBy(pos => pos.y))
-                {
+                foreach (TileImport t in objects.OrderBy(pos => pos.x).ThenBy(pos => pos.y)) {
                     MapTile mapT = new MapTile();
                     Map[t.x % 8, t.y % 8] = mapT;
-                    
-                    if (t.Type == TypeTile.Item || t.Type == TypeTile.Monstre)
-                    {
+
+                    if (t.Type == TypeTile.Item || t.Type == TypeTile.Monstre) {
                         mapT.ObjectTile = tiles[t.tileID];
                         mapT.SetObjectSprite(t.x % 8, t.y % 8);
                         mapT.Tile = tiles["17"];
-                    }
-                    else
+                    } else
                         mapT.Tile = tiles[t.tileID];
 
-                    if (mapT.Tile != null)
-                    {
+                    if (mapT.Tile != null) {
                         mapT.SetSprite(t.x % 8, t.y % 8);
-                        if (mapT.ObjectTile?.IsTransparent ?? false)
-                        {
+                        if (mapT.ObjectTile?.IsTransparent ?? false) {
                             mapT.ObjectSprite.ColorKey = Color.FromArgb(75, 75, 75);
                         }
                     }
@@ -107,25 +95,18 @@ namespace HugoWorld {
 
                     mapT.TileImport = t;
                 }
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 Name = null;
             }
         }
 
-        public override void Update(double gameTime, double elapsedTime)
-        {
+        public override void Update(double gameTime, double elapsedTime) {
             //Update all the map tiles and any objects
-            foreach (MapTile mapTile in Map)
-            {
-                if (mapTile?.Tile != null)
-                {
+            foreach (MapTile mapTile in Map) {
+                if (mapTile?.Tile != null) {
                     mapTile.Sprite.Update(gameTime, elapsedTime);
-                    if (mapTile.ObjectSprite != null)
-                    {
-                        if (mapTile.ObjectSprite.NumberOfFrames > 1)
-                        {
+                    if (mapTile.ObjectSprite != null) {
+                        if (mapTile.ObjectSprite.NumberOfFrames > 1) {
                             mapTile.ObjectSprite.CurrentFrame = (int)((gameTime * 8.0) % (double)mapTile.ObjectSprite.NumberOfFrames);
                         }
                         mapTile.ObjectSprite.Update(gameTime, elapsedTime);
@@ -134,14 +115,11 @@ namespace HugoWorld {
             }
         }
 
-        public override void Draw(Graphics graphics)
-        {
+        public override void Draw(Graphics graphics) {
             //And draw the map and any objects
-            foreach (MapTile mapTile in Map)
-            {
+            foreach (MapTile mapTile in Map) {
                 mapTile?.Sprite?.Draw(graphics);
-                if (mapTile?.ObjectSprite != null)
-                {
+                if (mapTile?.ObjectSprite != null) {
                     mapTile.ObjectSprite.Draw(graphics);
                 }
             }

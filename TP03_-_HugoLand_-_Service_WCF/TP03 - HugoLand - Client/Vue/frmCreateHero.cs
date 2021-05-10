@@ -118,6 +118,6 @@ namespace HugoWorld_Client.Vue {
             UpdateUI();
         }
 
-        #endregion
+        #endregion UI Methods
     }
 }

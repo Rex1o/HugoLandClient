@@ -1,5 +1,4 @@
 ﻿using HugoWorld_WCF.Services;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 using TP01_Library.Models;
 
@@ -9,12 +8,10 @@ namespace HugoWorld_WCF.DTOs {
     public class HeroDTO {
         private readonly HugoLandService joueurService = new HugoLandService();
 
-        public HeroDTO()
-        {
+        public HeroDTO() {
         }
 
-        public HeroDTO(Hero hero)
-        {
+        public HeroDTO(Hero hero) {
             Id = hero.Id;
             NomHero = hero.NomHero;
             CompteJoueurId = hero.CompteJoueurId;
@@ -74,9 +71,10 @@ namespace HugoWorld_WCF.DTOs {
 
         [DataMember]
         public int CompteJoueurId { get; set; }
-        
+
         [DataMember]
         public byte[] RowVersion { get; set; }
+
         [DataMember]
         public int Hp { get; set; }
     }

@@ -6,12 +6,10 @@ namespace HugoWorld_WCF.DTOs {
     [DataContract]
     public class InventaireHeroDTO {
 
-        public InventaireHeroDTO()
-        {
+        public InventaireHeroDTO() {
         }
 
-        public InventaireHeroDTO(InventaireHero inventaireHero)
-        {
+        public InventaireHeroDTO(InventaireHero inventaireHero) {
             IdHero = inventaireHero.IdHero;
             ItemId = inventaireHero.ItemId;
             IdInventaireHero = inventaireHero.IdInventaireHero;

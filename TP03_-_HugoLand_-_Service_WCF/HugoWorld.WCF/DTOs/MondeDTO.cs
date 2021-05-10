@@ -7,12 +7,10 @@ namespace HugoWorld_WCF.DTOs {
     [DataContract]
     public class MondeDTO {
 
-        public MondeDTO()
-        {
+        public MondeDTO() {
         }
 
-        public MondeDTO(Monde monde)
-        {
+        public MondeDTO(Monde monde) {
             Id = monde.Id;
             Description = monde.Description;
             LimiteX = monde.LimiteX;

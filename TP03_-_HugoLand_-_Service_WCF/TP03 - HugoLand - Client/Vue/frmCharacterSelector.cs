@@ -2,7 +2,6 @@
 using HugoWorld_Client.HL_Services;
 using HugoWorld_Client.Vue;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace HugoWorld.Vue {
@@ -44,7 +43,6 @@ namespace HugoWorld.Vue {
         private void btnOk_Click(object sender, EventArgs e) {
             try {
                 if (herosDataGridView.SelectedRows.Count > 0) {
-
                     Hero = herosDataGridView.SelectedRows[0].DataBoundItem as HeroDTO;
                     if (heroService.IsHeroAvailable(Hero.Id)) {
                         // Start game with selected hero
@@ -60,7 +58,6 @@ namespace HugoWorld.Vue {
                         Outils.ShowInfoMessage("A player is currently connected to this Hero. Please choose another Hero that isn't connected.", "Warning!", MessageBoxButtons.OK);
                         RefreshData();
                     }
-
                 } else {
                     this.DialogResult = DialogResult.Cancel;
                     this.ErrorMsg = "Please a choose a character!";

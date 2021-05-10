@@ -2337,6 +2337,12 @@ namespace HugoWorld_Client.HL_Services {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/ChangeHeroStats", ReplyAction="http://tempuri.org/IHeroService/ChangeHeroStatsResponse")]
         System.Threading.Tasks.Task ChangeHeroStatsAsync(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/SetHeroStats", ReplyAction="http://tempuri.org/IHeroService/SetHeroStatsResponse")]
+        void SetHeroStats(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/SetHeroStats", ReplyAction="http://tempuri.org/IHeroService/SetHeroStatsResponse")]
+        System.Threading.Tasks.Task SetHeroStatsAsync(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2428,6 +2434,14 @@ namespace HugoWorld_Client.HL_Services {
         
         public System.Threading.Tasks.Task ChangeHeroStatsAsync(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie) {
             return base.Channel.ChangeHeroStatsAsync(heroID, Integrity, Strenght, Vie);
+        }
+        
+        public void SetHeroStats(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie) {
+            base.Channel.SetHeroStats(heroID, Integrity, Strenght, Vie);
+        }
+        
+        public System.Threading.Tasks.Task SetHeroStatsAsync(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie) {
+            return base.Channel.SetHeroStatsAsync(heroID, Integrity, Strenght, Vie);
         }
     }
 }

@@ -47,9 +47,7 @@ namespace HugoWorld_Client.Vue {
         }
 
         private void btnConfirm_Click(object sender, EventArgs e) {
-
             if (ValidateInput()) {
-
                 ClasseDTO classeDTO = new ClasseDTO() {
                     Id = int.Parse(newIdLabel.Text),
                     NomClasse = newNomClasseTextBox.Text,
@@ -76,7 +74,6 @@ namespace HugoWorld_Client.Vue {
             } else {
                 Outils.ShowErrorMessage("Please enter valid informations.", "Errors");
             }
-
         }
 
         private void btnCancel_Click(object sender, EventArgs e) {
@@ -259,6 +256,6 @@ namespace HugoWorld_Client.Vue {
             }
         }
 
-        #endregion
+        #endregion UI Methods
     }
 }

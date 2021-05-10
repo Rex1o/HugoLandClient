@@ -142,6 +142,25 @@ namespace HugoWorld {
 
                         setDestination(og);
                     }
+
+
+                    OtherPlayers local = _herosMP.FirstOrDefault(x => x.Hero.Id == other.Id);
+
+                    //dead
+                    if (other.Hp <= 0)
+                        local.isDead = true;
+
+                    if(local.isDead && other.Hp > 0)
+                    {
+                        //respawn
+                        local._heroSprite = new Sprite(null, local._heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
+                                                local._heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
+                                                _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
+
+                        local._heroSprite.Flip = true;
+                        local._heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+                        local.isDead = false;
+                    }
                 }
             }
 

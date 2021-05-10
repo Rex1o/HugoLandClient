@@ -15,6 +15,7 @@ namespace HugoWorld_Client.DAL {
         public double _startFightTime = -1.0;
         public PointF _heroDestination;
         public HeroDirection _direction;
+        public bool isDead = false;
         public List<textPopup> _popups = new List<textPopup>();
 
         public OtherPlayers() {

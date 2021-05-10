@@ -1020,8 +1020,8 @@ namespace HugoWorld
 
             foreach (OtherPlayers player in _herosMP)
             {
-                if (player.Hero.x == mapTile.GlobalX && player.Hero.y == mapTile.GlobalY && player.Hero.Hp > 0)
-                {
+                if (player._heroPosition.X == x && player._heroPosition.Y == y && player.Hero.Hp > 0)
+                {   
                     // combat
                     Sounds.Fight();
 

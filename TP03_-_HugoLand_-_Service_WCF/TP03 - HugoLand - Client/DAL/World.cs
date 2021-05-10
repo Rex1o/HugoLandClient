@@ -142,9 +142,10 @@ namespace HugoWorld {
 
                         setDestination(og);
                     }
-
+                    
 
                     OtherPlayers local = _herosMP.FirstOrDefault(x => x.Hero.Id == other.Id);
+                    local.Hero.Hp = other.Hp;
 
                     //dead
                     if (other.Hp <= 0)

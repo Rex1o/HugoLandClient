@@ -217,20 +217,18 @@ namespace HugoWorld
 
         public void KeyDown(Keys keys)
         {
-            //If the game is not over then allow the user to play
-            if (Health > 0 && !GameIsWon)
+            if (keys == Keys.Escape)
             {
-                if (keys == Keys.Escape)
-                {
-                    World.SaveHeroPos();
-                    World.Disconnect();
-                    World.Clear();
-                    World = null;
-                }
-                else
-                {
+                World.SaveHeroPos();
+                World.Disconnect();
+                World.Clear();
+                World = null;
+            }
+            //If the game is not over then allow the user to play
+            else if (Health > 0 && !GameIsWon)
+            {
+                
                     World.KeyDown(keys);
-                }
             }
             else
             {

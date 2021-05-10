@@ -105,7 +105,7 @@ namespace HugoWorld {
                     int diffx = posother[0] - og._heroPosition.X;
                     int diffy = posother[1] - og._heroPosition.Y;
 
-                    if (!og._heroSpriteAnimating) {
+                    if (!og._heroSpriteAnimating && !og.isDead) {
                         //x
                         if (diffx != 0) {
                             if (diffx < 0) {

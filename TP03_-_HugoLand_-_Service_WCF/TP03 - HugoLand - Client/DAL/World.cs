@@ -1144,6 +1144,8 @@ namespace HugoWorld
                     mapTile.ObjectHealth = 0;
                     //Experience is the monsters max health
                     _gameState.Experience += mapTile.ObjectTile.Health;
+                    HeroServiceClient service = new HeroServiceClient();
+                    service.ChangeHeroStats(Outils.GetHero().Id, null, null, null, mapTile.ObjectTile.Health);
 
                     mondeService.ChangeMonsterStats(mapTile.TileImport.ID, null, 3);
 
@@ -1178,9 +1180,8 @@ namespace HugoWorld
             {
                 mapTile.ObjectHealth = 0;
                 //Experience is the monsters max health
-                HeroServiceClient service = new HeroServiceClient();
                 _gameState.Experience += mapTile.ObjectTile.Health;
-                service.ChangeHeroStats(Outils.GetHero().Id, null, null, null, mapTile.ObjectTile.Health);
+                
 
                 //Remove the monster and replace with bones
                 mapTile.ObjectTile = _tiles["3"];

@@ -1111,6 +1111,8 @@ namespace HugoWorld
                                                               player._heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
                                                               _tiles["3"].Bitmap, _tiles["3"].Rectangle, _tiles["3"].NumberOfFrames);
                         player._heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+                        HeroServiceClient service = new HeroServiceClient();
+                        service.ChangeHeroStats(Outils.GetHero().Id, null, null, null, 100);
                         return true;
                     }
                     else

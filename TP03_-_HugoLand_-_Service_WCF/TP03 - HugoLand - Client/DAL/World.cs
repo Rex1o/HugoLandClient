@@ -1130,9 +1130,9 @@ namespace HugoWorld
         private bool Combat(MapTile mapTile, int x, int y, OtherPlayers opponent)
         {
             // current player
-            double h_chance = _random.NextDouble();
+            int h_chance = _random.Next(0,2);
 
-            int h_dmg = (int)(h_chance * (_hero.StatDex / 100) * _hero.StatStr);
+            int h_dmg = (h_chance * (_hero.StatDex / 100) * _hero.StatStr);
 
             if (opponent != null)
             {

@@ -521,7 +521,7 @@ namespace HugoWorld {
                 case "armour":
                     if (RamasserItems(t)) {
                         _gameState.Armour++;
-                        HeroService.ChangeHeroStatsAsync(Outils.GetHero().Id, 1, null, null);
+                        HeroService.ChangeHeroStats(Outils.GetHero().Id, 1, null, null);
                         Sounds.Pickup();
                     }
                     break;
@@ -530,14 +530,14 @@ namespace HugoWorld {
 
                     if (RamasserItems(t)) {
                         _gameState.Attack++;
-                        HeroService.ChangeHeroStatsAsync(Outils.GetHero().Id, null, 1, null);
+                        HeroService.ChangeHeroStats(Outils.GetHero().Id, null, 1, null);
                         Sounds.Pickup();
                     }
                     break;
 
                 case "food":
                     if (RamasserItems(t)) {
-                        HeroService.ChangeHeroStatsAsync(Outils.GetHero().Id, null, null, 10);
+                        HeroService.ChangeHeroStats(Outils.GetHero().Id, null, null, 10);
                         Sounds.Eat();
                     }
                     break;
@@ -863,7 +863,7 @@ namespace HugoWorld {
                     _hero.Hp = _gameState.Health;
 
                     HeroServiceClient heroService = new HeroServiceClient();
-                    heroService.ChangeHeroStatsAsync(_hero.Id, null, null, -heroDamage);
+                    heroService.ChangeHeroStats(_hero.Id, null, null, -heroDamage);
 
                     if (_gameState.Health <= 0) {
                         _gameState.Health = 0;

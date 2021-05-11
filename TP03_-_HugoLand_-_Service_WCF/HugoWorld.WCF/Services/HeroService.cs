@@ -156,7 +156,7 @@ namespace HugoWorld_WCF.Services
                     catch (DbUpdateConcurrencyException)
                     {
                         var objContext = ((IObjectContextAdapter)dbContext).ObjectContext;
-                        objContext.Refresh(RefreshMode.ClientWins, heroToChange);
+                        objContext.Refresh(RefreshMode.StoreWins, heroToChange);
                         isAdded = true;
                     }
                 } while (isAdded);
@@ -202,6 +202,8 @@ namespace HugoWorld_WCF.Services
                     }
                     catch (DbUpdateConcurrencyException)
                     {
+                        var objContext = ((IObjectContextAdapter)dbContext).ObjectContext;
+                        objContext.Refresh(RefreshMode.StoreWins, heroToChange);
                         isAdded = true;
                     }
                 } while (isAdded);

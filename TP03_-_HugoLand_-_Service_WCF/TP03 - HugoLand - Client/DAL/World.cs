@@ -559,12 +559,42 @@ namespace HugoWorld
                         x._heroSpriteAnimating = false;
 
                         //Check objects?
+                        TileImgServiceClient service = new TileImgServiceClient();
                         MapTile mt = _currentArea.Map[x._heroPosition.X, x._heroPosition.Y];
-                        if (mt.TileImport.Type == TypeTile.Item)
+                        if (mt.TileImport.Type == TypeTile.Item || mt.TileImport.Type == TypeTile.Monstre)
                         {
-                            TileImgServiceClient service = new TileImgServiceClient();
                             _currentArea.Map[x._heroPosition.X, x._heroPosition.Y] = new MapTile(service.GetTileAt(mt.GlobalX, mt.GlobalY, _monde.Id), _tiles);
                         }
+
+                        //check for monsters
+                        //MapTile ms = _currentArea.Map[x._heroPosition.X + 1, x._heroPosition.Y];//Right
+                        //if (ms.TileImport.Type == TypeTile.Monstre)
+                        //{
+                        //    _currentArea.Map[x._heroPosition.X + 1, x._heroPosition.Y] = new MapTile(service.GetTileAt(mt.GlobalX + 1, mt.GlobalY, _monde.Id), _tiles);
+                        //}
+
+                        //ms = _currentArea.Map[x._heroPosition.X - 1, x._heroPosition.Y];//Left
+                        //if (ms.TileImport.Type == TypeTile.Monstre)
+                        //{
+                        //    _currentArea.Map[x._heroPosition.X - 1, x._heroPosition.Y] = new MapTile(service.GetTileAt(mt.GlobalX - 1, mt.GlobalY, _monde.Id), _tiles);
+
+                        //}
+
+                        //ms = _currentArea.Map[x._heroPosition.X, x._heroPosition.Y + 1];//Down
+                        //if (ms.TileImport.Type == TypeTile.Monstre)
+                        //{
+                        //    _currentArea.Map[x._heroPosition.X, x._heroPosition.Y + 1] = new MapTile(service.GetTileAt(mt.GlobalX, mt.GlobalY + 1, _monde.Id), _tiles);
+
+                        //}
+
+                        //ms = _currentArea.Map[x._heroPosition.X, x._heroPosition.Y - 1];//Up
+                        //if (ms.TileImport.Type == TypeTile.Monstre)
+                        //{
+                        //    _currentArea.Map[x._heroPosition.X, x._heroPosition.Y - 1] = new MapTile(service.GetTileAt(mt.GlobalX, mt.GlobalY - 1, _monde.Id), _tiles);
+
+                        //}
+
+                        
                     }
                 }
             });

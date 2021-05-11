@@ -1,17 +1,23 @@
 ﻿using HugoWorld_WCF.DTOs;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using TP01_Library.Models;
 
-namespace HugoWorld_WCF.Services {
+namespace HugoWorld_WCF.Services
+{
 
-    public partial class HugoLandService : IHeroService {
+    public partial class HugoLandService : IHeroService
+    {
 
-        public void AddHeroToDataBase(HeroDTO p_heroDTO) {
-            using (HugoLandContext dbContext = new HugoLandContext()) {
-                Hero hero = new Hero() {
+        public void AddHeroToDataBase(HeroDTO p_heroDTO)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
+                Hero hero = new Hero()
+                {
                     CompteJoueurId = p_heroDTO.CompteJoueurId,
                     x = p_heroDTO.x,
                     y = p_heroDTO.y,
@@ -33,8 +39,10 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public bool DeleteHeroById(int p_HeroId) {
-            using (HugoLandContext dbContext = new HugoLandContext()) {
+        public bool DeleteHeroById(int p_HeroId)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
                 Hero hero = dbContext.Heros.Find(p_HeroId);
 
                 if (hero == null)
@@ -47,28 +55,36 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public void SaveHeroPos(int id, int x, int y) {
-            using (HugoLandContext dbContext = new HugoLandContext()) {
+        public void SaveHeroPos(int id, int x, int y)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
                 bool isAdded = true;
-                do {
+                do
+                {
                     Hero h = dbContext.Heros.Find(id);
 
                     h.x = x;
                     h.y = y;
 
                     dbContext.Entry(h).State = EntityState.Modified;
-                    try {
+                    try
+                    {
                         dbContext.SaveChanges();
                         isAdded = false;
-                    } catch (DbUpdateConcurrencyException) {
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
                         isAdded = true;
                     }
                 } while (isAdded);
             }
         }
 
-        public void ConnectDisconnectHeroById(int p_HeroId, bool p_State) {
-            using (HugoLandContext dbContext = new HugoLandContext()) {
+        public void ConnectDisconnectHeroById(int p_HeroId, bool p_State)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
                 Hero h = dbContext.Heros.Find(p_HeroId);
 
                 h.EstConnecte = p_State;
@@ -76,11 +92,14 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public bool IsHeroAvailable(int p_HeroId) {
-            using (HugoLandContext dbContext = new HugoLandContext()) {
+        public bool IsHeroAvailable(int p_HeroId)
+        {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
                 Hero h = dbContext.Heros.Find(p_HeroId);
 
-                if (h != null) {
+                if (h != null)
+                {
                     if (h.EstConnecte)
                         return false;
                     else
@@ -92,8 +111,10 @@ namespace HugoWorld_WCF.Services {
         }
 
         //Caller crissement souvent
-        public List<HeroDTO> GetHerosInChunk(int[][] chunk, int mondeID) {
-            using (HugoLandContext context = new HugoLandContext()) {
+        public List<HeroDTO> GetHerosInChunk(int[][] chunk, int mondeID)
+        {
+            using (HugoLandContext context = new HugoLandContext())
+            {
                 IJoueurService service = new HugoLandService();
                 int TLX = chunk[0][0];
                 int BRX = chunk[1][0];
@@ -103,62 +124,86 @@ namespace HugoWorld_WCF.Services {
             }
         }
 
-        public void ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null) {
+        public void ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null)
+        {
             Hero heroToChange;
-            using (HugoLandContext dbContext = new HugoLandContext()) {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
                 bool isAdded = true;
 
-                do {
+                do
+                {
                     heroToChange = dbContext.Heros.Where(x => x.Id == heroID).Single();
 
-                    if (Integrity != null) {
+                    if (Integrity != null)
+                    {
                         heroToChange.StatInt += (int)Integrity;
                     }
-                    if (Strenght != null) {
+                    if (Strenght != null)
+                    {
                         heroToChange.StatStr += (int)Strenght;
                     }
-                    if (Vie != null) {
+                    if (Vie != null)
+                    {
                         heroToChange.Hp += (int)Vie;
                     }
                     dbContext.Entry(heroToChange).State = EntityState.Modified;
-                    try {
+                    try
+                    {
                         dbContext.SaveChanges();
                         isAdded = false;
-                    } catch (DbUpdateConcurrencyException) {
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        var objContext = ((IObjectContextAdapter)dbContext).ObjectContext;
+                        objContext.Refresh(RefreshMode.StoreWins, heroToChange);
                         isAdded = true;
                     }
                 } while (isAdded);
             }
         }
 
-        public HeroDTO GetHeroByID(int heroID) {
-            using (HugoLandContext context = new HugoLandContext()) {
+        public HeroDTO GetHeroByID(int heroID)
+        {
+            using (HugoLandContext context = new HugoLandContext())
+            {
                 return new HeroDTO(context.Heros.FirstOrDefault(x => x.Id == heroID));
             }
         }
 
-        public void SetHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null) {
+        public void SetHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null)
+        {
             Hero heroToChange;
-            using (HugoLandContext dbContext = new HugoLandContext()) {
+            using (HugoLandContext dbContext = new HugoLandContext())
+            {
                 bool isAdded = true;
 
-                do {
+                do
+                {
                     heroToChange = dbContext.Heros.Where(x => x.Id == heroID).Single();
 
-                    if (Integrity != null) {
+                    if (Integrity != null)
+                    {
                         heroToChange.StatInt = (int)Integrity;
                     }
-                    if (Strenght != null) {
+                    if (Strenght != null)
+                    {
                         heroToChange.StatStr = (int)Strenght;
                     }
-                    if (Vie != null) {
+                    if (Vie != null)
+                    {
                         heroToChange.Hp = (int)Vie;
                     }
                     dbContext.Entry(heroToChange).State = EntityState.Modified;
-                    try {
+                    try
+                    {
                         dbContext.SaveChanges();
                         isAdded = false;
-                    } catch (DbUpdateConcurrencyException) {
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        var objContext = ((IObjectContextAdapter)dbContext).ObjectContext;
+                        objContext.Refresh(RefreshMode.StoreWins, heroToChange);
                         isAdded = true;
                     }
                 } while (isAdded);

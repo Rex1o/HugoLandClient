@@ -2333,10 +2333,10 @@ namespace HugoWorld_Client.HL_Services {
         System.Threading.Tasks.Task<HugoWorld_Client.HL_Services.HeroDTO> GetHeroByIDAsync(int heroID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/ChangeHeroStats", ReplyAction="http://tempuri.org/IHeroService/ChangeHeroStatsResponse")]
-        void ChangeHeroStats(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie);
+        void ChangeHeroStats(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie, System.Nullable<long> xp);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/ChangeHeroStats", ReplyAction="http://tempuri.org/IHeroService/ChangeHeroStatsResponse")]
-        System.Threading.Tasks.Task ChangeHeroStatsAsync(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie);
+        System.Threading.Tasks.Task ChangeHeroStatsAsync(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie, System.Nullable<long> xp);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHeroService/SetHeroStats", ReplyAction="http://tempuri.org/IHeroService/SetHeroStatsResponse")]
         void SetHeroStats(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie);
@@ -2428,12 +2428,12 @@ namespace HugoWorld_Client.HL_Services {
             return base.Channel.GetHeroByIDAsync(heroID);
         }
         
-        public void ChangeHeroStats(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie) {
-            base.Channel.ChangeHeroStats(heroID, Integrity, Strenght, Vie);
+        public void ChangeHeroStats(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie, System.Nullable<long> xp) {
+            base.Channel.ChangeHeroStats(heroID, Integrity, Strenght, Vie, xp);
         }
         
-        public System.Threading.Tasks.Task ChangeHeroStatsAsync(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie) {
-            return base.Channel.ChangeHeroStatsAsync(heroID, Integrity, Strenght, Vie);
+        public System.Threading.Tasks.Task ChangeHeroStatsAsync(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie, System.Nullable<long> xp) {
+            return base.Channel.ChangeHeroStatsAsync(heroID, Integrity, Strenght, Vie, xp);
         }
         
         public void SetHeroStats(int heroID, System.Nullable<int> Integrity, System.Nullable<int> Strenght, System.Nullable<int> Vie) {

@@ -192,7 +192,7 @@ namespace HugoWorld
                 Level = Outils.GetHero().Niveau;//Niveau selon l'xp
                 Potions = items.Where(x => x.Nom == "Potion").Count();//Nb de postion dans l'inventaire
                 Treasure = items.Where(x => x.Description == "treasure").Count() * 5;//Nb d'argent
-
+                Experience = (int)Outils.GetHero().Experience;
                 GameIsWon = false;
             }
         }

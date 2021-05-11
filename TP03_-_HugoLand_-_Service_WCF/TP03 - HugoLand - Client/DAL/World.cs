@@ -1113,6 +1113,7 @@ namespace HugoWorld
                         player._heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
                         HeroServiceClient service = new HeroServiceClient();
                         service.ChangeHeroStats(Outils.GetHero().Id, null, null, null, 100);
+                        _gameState.Experience += 100;
                         return true;
                     }
                     else

@@ -1134,7 +1134,7 @@ namespace HugoWorld
             // current player
             int h_chance = _random.Next(0,2);
 
-            int h_dmg = (h_chance * (_hero.StatDex / 100) * _hero.StatStr);
+            int h_dmg = (int)(h_chance * (double)(_hero.StatDex / 100d) * _hero.StatStr);
 
             if (opponent != null)
             {

@@ -106,6 +106,14 @@ namespace HugoWorld
                     _herosMP.Add(op);
                 }
 
+                OtherPlayers local = _herosMP.FirstOrDefault(x => x.Hero.Id == other.Id);
+                local.Hero.Hp = other.Hp;
+
+                //dead
+                if (other.Hp <= 0)
+                    local.isDead = true;
+
+
                 if (_herosMP.FirstOrDefault(x => x.Hero.Id == other.Id).Hero.RowVersion != other.RowVersion)
                 {
                     OtherPlayers og = _herosMP.FirstOrDefault(x => x.Hero.Id == other.Id);
@@ -114,73 +122,103 @@ namespace HugoWorld
                     int diffx = posother[0] - og._heroPosition.X;
                     int diffy = posother[1] - og._heroPosition.Y;
 
-                    if (!og._heroSpriteAnimating && !og.isDead)
+
+                    if (!og._heroSpriteAnimating)
                     {
                         //x
                         if (diffx != 0)
                         {
-                            if (diffx < 0)
+                            if (og.isDead)
                             {
-                                //gauche
-                                og._heroSprite.Velocity = new PointF(-100, 0);
-                                og._heroSprite.Flip = false;
-                                og._heroSpriteAnimating = true;
-                                og._direction = HeroDirection.Left;
-                                og._heroPosition.X--;
+                                if (diffx < 0)
+                                {
+                                    //gauche
+                                    og._heroSprite.Flip = false;
+                                    og._heroPosition.X += diffx;
+                                }
+                                else
+                                {
+                                    //droite
+                                    og._heroSprite.Flip = true;
+                                    og._heroPosition.X += diffx;
+                                }
                             }
                             else
                             {
-                                //droite
-                                og._heroSprite.Velocity = new PointF(100, 0);
-                                og._heroSprite.Flip = true;
-                                og._heroSpriteAnimating = true;
-                                og._direction = HeroDirection.Right;
-                                og._heroPosition.X++;
+
+                                if (diffx < 0)
+                                {
+                                    //gauche
+                                    og._heroSprite.Velocity = new PointF(-100, 0);
+                                    og._heroSprite.Flip = false;
+                                    og._heroSpriteAnimating = true;
+                                    og._direction = HeroDirection.Left;
+                                    og._heroPosition.X--;
+                                }
+                                else
+                                {
+                                    //droite
+                                    og._heroSprite.Velocity = new PointF(100, 0);
+                                    og._heroSprite.Flip = true;
+                                    og._heroSpriteAnimating = true;
+                                    og._direction = HeroDirection.Right;
+                                    og._heroPosition.X++;
+                                }
                             }
                         }
                         //y
                         else if (diffy != 0)
                         {
-                            if (diffy > 0)
+                            if (og.isDead)
                             {
-                                //haut
-                                og._heroSprite.Velocity = new PointF(0, 100);
-                                og._heroSpriteAnimating = true;
-                                og._direction = HeroDirection.Down;
-                                og._heroPosition.Y++;
+                                if (diffy > 0)
+                                {
+                                    //haut
+                                    og._heroPosition.Y += diffy;
+                                }
+                                else
+                                {
+                                    og._heroPosition.Y += diffy;
+                                }
                             }
                             else
                             {
-                                og._heroSprite.Velocity = new PointF(0, -100);
-                                og._heroSpriteAnimating = true;
-                                og._direction = HeroDirection.Up;
-                                og._heroPosition.Y--;
+                                if (diffy > 0)
+                                {
+                                    //haut
+                                    og._heroSprite.Velocity = new PointF(0, 100);
+                                    og._heroSpriteAnimating = true;
+                                    og._direction = HeroDirection.Down;
+                                    og._heroPosition.Y++;
+                                }
+                                else
+                                {
+                                    og._heroSprite.Velocity = new PointF(0, -100);
+                                    og._heroSpriteAnimating = true;
+                                    og._direction = HeroDirection.Up;
+                                    og._heroPosition.Y--;
+                                }
                             }
-                        }
 
+                        }
                         setDestination(og);
                     }
 
 
-                    OtherPlayers local = _herosMP.FirstOrDefault(x => x.Hero.Id == other.Id);
-                    local.Hero.Hp = other.Hp;
-
-                    //dead
-                    if (other.Hp <= 0)
-                        local.isDead = true;
-
-                    if (local.isDead && other.Hp > 0)
-                    {
-                        //respawn
-                        local._heroSprite = new Sprite(null, local._heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
-                                                local._heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
-                                                _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
-
-                        local._heroSprite.Flip = true;
-                        local._heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
-                        local.isDead = false;
-                    }
                 }
+
+                if (local.isDead && other.Hp > 0)
+                {
+                    //respawn
+                    local._heroSprite = new Sprite(null, local._heroPosition.X * Tile.TileSizeX + Area.AreaOffsetX,
+                                            local._heroPosition.Y * Tile.TileSizeY + Area.AreaOffsetY,
+                                            _tiles["71"].Bitmap, _tiles["71"].Rectangle, _tiles["71"].NumberOfFrames);
+
+                    local._heroSprite.Flip = true;
+                    local._heroSprite.ColorKey = Color.FromArgb(75, 75, 75);
+                    local.isDead = false;
+                }
+
             }
 
             //Update les hp de notre hero

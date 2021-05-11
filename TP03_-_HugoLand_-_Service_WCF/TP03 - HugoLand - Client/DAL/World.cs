@@ -1073,7 +1073,7 @@ namespace HugoWorld
                     // dmg opponent
                     opponent.Hero.Hp -= h_dmg;
                     HeroServiceClient heroService = new HeroServiceClient();
-                    heroService.ChangeHeroStatsAsync(opponent.Hero.Id, null, null, -h_dmg);
+                    heroService.ChangeHeroStatsopponent.Hero.Id, null, null, -h_dmg);
                 }
                 _popups.Clear();
                 // popup de dmg local sur le héro

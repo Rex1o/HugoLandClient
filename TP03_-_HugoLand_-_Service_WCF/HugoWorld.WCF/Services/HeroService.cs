@@ -124,7 +124,7 @@ namespace HugoWorld_WCF.Services
             }
         }
 
-        public void ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null)
+        public void ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null, long? xp = null)
         {
             Hero heroToChange;
             using (HugoLandContext dbContext = new HugoLandContext())
@@ -147,7 +147,12 @@ namespace HugoWorld_WCF.Services
                     {
                         heroToChange.Hp += (int)Vie;
                     }
+                    if (xp != null)
+                    {
+                        heroToChange.Experience += (long)xp;
+                    }
                     dbContext.Entry(heroToChange).State = EntityState.Modified;
+
                     try
                     {
                         dbContext.SaveChanges();

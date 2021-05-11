@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ServiceModel;
 
-namespace HugoWorld_WCF.Services {
+namespace HugoWorld_WCF.Services
+{
 
     [ServiceContract]
-    public interface IHeroService {
+    public interface IHeroService
+    {
 
         [OperationContract]
         void AddHeroToDataBase(HeroDTO p_heroDTO);
@@ -29,7 +31,7 @@ namespace HugoWorld_WCF.Services {
         HeroDTO GetHeroByID(int heroID);
 
         [OperationContract]
-        void ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null);
+        void ChangeHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null, long? xp = null);
 
         [OperationContract]
         void SetHeroStats(int heroID, int? Integrity = null, int? Strenght = null, int? Vie = null);

@@ -1100,9 +1100,9 @@ namespace HugoWorld
         private bool Combat(MapTile mapTile, int x, int y, OtherPlayers opponent)
         {
             // current player
-            int h_chance = _random.Next(0, 2);
+            double h_chance = _random.NextDouble();
 
-            int h_dmg = (h_chance * _hero.StatDex * _hero.StatStr);
+            int h_dmg = (int)(h_chance * _hero.StatDex / 100 * _hero.StatStr);
 
             if (opponent != null)
             {
@@ -1186,7 +1186,9 @@ namespace HugoWorld
                 returnValue = true; //monster is dead
             }
 
-            _popups.Add(new textPopup((int)mapTile.Sprite.Location.X + 40, (int)mapTile.Sprite.Location.Y + 20, (damage != 0) ? damage.ToString() : "miss"));
+            _popups.Add(new textPopup((int)mapTile.Sprite.Location.X + 40,
+                                      (int)mapTile.Sprite.Location.Y + 20,
+                                      (damage != 0) ? damage.ToString() : "miss"));
 
             return returnValue;
         }
